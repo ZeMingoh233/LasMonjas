@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Version>1.0.0</Version>
+        <Description>Las Monjas</Description>
+        <Authors>Allul</Authors>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GameVersion>2021.12.15</GameVersion>
+        <DefineConstants>$(DefineConstants);STEAM</DefineConstants>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="Images\MyAssets\allulcustombundle" />
+        <None Remove="Images\MyAssets\allulcustomlobby" />
+        <None Remove="Images\MyAssets\allulcustommap" />
+        <None Remove="Images\MyAssets\allulcustommusic" />
+    </ItemGroup>
+  
+    <ItemGroup>        
+        <EmbeddedResource Include="Images\*.png" />
+        <EmbeddedResource Include="Images\IlusionistAnimation\*.png" />
+      
+        <EmbeddedResource Include="Images\MyAssets\allulcustombundle">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Images\MyAssets\allulcustomlobby">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Images\MyAssets\allulcustommap">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Images\MyAssets\allulcustommusic">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="$(AmongUs)\BepInEx\core\*.dll" />
+        <Reference Include="$(AmongUs)\BepInEx\unhollowed\*.dll" />
+        <Reference Include="$(AmongUs)\BepInEx\plugins\Reactor.dll" />
+    </ItemGroup>
+
+    <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+        <Message Text="Second occurrence" />
+        <Copy SourceFiles="$(ProjectDir)\bin\$(Configuration)\netstandard2.1\LasMonjas.dll" DestinationFolder="$(AmongUs)/BepInEx/plugins/" />
+    </Target>
+</Project>
