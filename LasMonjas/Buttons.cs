@@ -985,16 +985,29 @@ namespace LasMonjas
             // Renegade Kill
             renegadeKillButton = new CustomButton(
                 () => {
-                    if (Helpers.checkMurderAttemptAndKill(Renegade.renegade, Renegade.currentTarget) == MurderAttemptResult.JinxKill) {
+                    MurderAttemptResult murderAttemptResult = Helpers.checkMurderAttempt(Renegade.renegade, Renegade.currentTarget);
+                    if (murderAttemptResult == MurderAttemptResult.JinxKill) {
                         SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
                         renegadeKillButton.Timer = renegadeKillButton.MaxTimer;
                         Renegade.currentTarget = null;
                         return;
                     }
-                    else if (Helpers.checkMurderAttemptAndKill(Renegade.renegade, Renegade.currentTarget) == MurderAttemptResult.SuppressKill) return;
+                    else if (murderAttemptResult == MurderAttemptResult.SuppressKill) {
+                        return;
+                    }
+
+                    if (murderAttemptResult == MurderAttemptResult.PerformKill) {
+                        
+                        MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedMurderPlayer, Hazel.SendOption.Reliable, -1);
+                        killWriter.Write(Renegade.renegade.Data.PlayerId);
+                        killWriter.Write(Renegade.currentTarget.PlayerId);
+                        killWriter.Write(byte.MaxValue);
+                        AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                        RPCProcedure.uncheckedMurderPlayer(Renegade.renegade.Data.PlayerId, Renegade.currentTarget.PlayerId, Byte.MaxValue);
+                    }
 
                     renegadeKillButton.Timer = renegadeKillButton.MaxTimer;
-                    Renegade.currentTarget = null;
+                    Renegade.currentTarget = null; 
                 },
                 () => { return Renegade.renegade != null && Renegade.renegade == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
                 () => { return Renegade.currentTarget && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling; },
@@ -1032,16 +1045,29 @@ namespace LasMonjas
             // Minion Kill
             minionKillButton = new CustomButton(
                 () => {
-                    if (Helpers.checkMurderAttemptAndKill(Minion.minion, Minion.currentTarget) == MurderAttemptResult.JinxKill) {
+                    MurderAttemptResult murderAttemptResult = Helpers.checkMurderAttempt(Minion.minion, Minion.currentTarget);
+                    if (murderAttemptResult == MurderAttemptResult.JinxKill) {
                         SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
                         minionKillButton.Timer = minionKillButton.MaxTimer;
                         Minion.currentTarget = null;
                         return;
                     }
-                    else if (Helpers.checkMurderAttemptAndKill(Minion.minion, Minion.currentTarget) == MurderAttemptResult.SuppressKill) return;
+                    else if (murderAttemptResult == MurderAttemptResult.SuppressKill) {
+                        return;
+                    }
+
+                    if (murderAttemptResult == MurderAttemptResult.PerformKill) {
+
+                        MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedMurderPlayer, Hazel.SendOption.Reliable, -1);
+                        killWriter.Write(Minion.minion.Data.PlayerId);
+                        killWriter.Write(Minion.currentTarget.PlayerId);
+                        killWriter.Write(byte.MaxValue);
+                        AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                        RPCProcedure.uncheckedMurderPlayer(Minion.minion.Data.PlayerId, Minion.currentTarget.PlayerId, Byte.MaxValue);
+                    }
 
                     minionKillButton.Timer = minionKillButton.MaxTimer;
-                    Minion.currentTarget = null;
+                    Minion.currentTarget = null; 
                 },
                 () => { return Minion.minion != null && Minion.minion == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
                 () => { return Minion.currentTarget && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling; },
