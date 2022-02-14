@@ -422,6 +422,13 @@ namespace LasMonjas.Patches {
                 TheChosenOne.reportDelay -= Time.fixedDeltaTime;
                 DeadPlayer deadPlayer = deadPlayers?.Where(x => x.player?.PlayerId == TheChosenOne.theChosenOne.PlayerId)?.FirstOrDefault();
                 if (deadPlayer.killerIfExisting != null && TheChosenOne.reportDelay <= 0f) {
+                    // Bomberman bomb reset when report the chosen one
+                    if (Bomberman.bomberman != null && Bomberman.activeBomb == true) {
+                        MessageWriter bombwriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.FixBomb, Hazel.SendOption.Reliable, -1);
+                        AmongUsClient.Instance.FinishRpcImmediately(bombwriter);
+                        RPCProcedure.fixBomb();
+                    }
+                    
                     Helpers.handleDemonBiteOnBodyReport(); // Manually call Demon handling, since the CmdReportDeadBody Prefix won't be called
                     RPCProcedure.uncheckedCmdReportDeadBody(deadPlayer.killerIfExisting.PlayerId, TheChosenOne.theChosenOne.PlayerId);
 
