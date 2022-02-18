@@ -26,6 +26,19 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 -----------------------
 
+# Changelog
+<details>
+  <summary>Click to show</summary>
+
+**Version 1.0.1**
+- Added an option for choosing if Thiefs can or not kill on Police And Thiefs gamemode
+
+**Version 1.0.0**
+- Initial Release
+</details>
+
+-----------------------
+
 # Custom Servers
 I recommend to play this mod only on custom servers (for example [Impostor](https://github.com/Impostor/Impostor), note that modded handshake is required to play the mod [Example Modded Handshake by js6pak](https://github.com/NuclearPowered/Reactor.Impostor)), if you own an Impostor server, make sure AntiCheat and BanIpFromGame are set to false in the config.json file. This mod has [Unify by Daemon](https://github.com/MoltenMods/Unify) implemented, which you can use to select the custom region to join a custom server by entering the IP or domain name and the port of the server.
 
