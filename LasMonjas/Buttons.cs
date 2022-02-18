@@ -4273,7 +4273,7 @@ namespace LasMonjas
                     thiefplayer01KillButton.Timer = thiefplayer01KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer01currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer01 != null && PoliceAndThief.thiefplayer01 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer01 != null && PoliceAndThief.thiefplayer01 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer01IsStealing; },
                 () => { thiefplayer01KillButton.Timer = thiefplayer01KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -4430,7 +4430,7 @@ namespace LasMonjas
                     thiefplayer02KillButton.Timer = thiefplayer02KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer02currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer02 != null && PoliceAndThief.thiefplayer02 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer02 != null && PoliceAndThief.thiefplayer02 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer02IsStealing; },
                 () => { thiefplayer02KillButton.Timer = thiefplayer02KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -4587,7 +4587,7 @@ namespace LasMonjas
                     thiefplayer03KillButton.Timer = thiefplayer03KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer03currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer03 != null && PoliceAndThief.thiefplayer03 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer03 != null && PoliceAndThief.thiefplayer03 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer03IsStealing; },
                 () => { thiefplayer03KillButton.Timer = thiefplayer03KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -4744,7 +4744,7 @@ namespace LasMonjas
                     thiefplayer04KillButton.Timer = thiefplayer04KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer04currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer04 != null && PoliceAndThief.thiefplayer04 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer04 != null && PoliceAndThief.thiefplayer04 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer04IsStealing; },
                 () => { thiefplayer04KillButton.Timer = thiefplayer04KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -4901,7 +4901,7 @@ namespace LasMonjas
                     thiefplayer05KillButton.Timer = thiefplayer05KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer05currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer05 != null && PoliceAndThief.thiefplayer05 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer05 != null && PoliceAndThief.thiefplayer05 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer05IsStealing; },
                 () => { thiefplayer05KillButton.Timer = thiefplayer05KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -5058,7 +5058,7 @@ namespace LasMonjas
                     thiefplayer06KillButton.Timer = thiefplayer06KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer06currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer06 != null && PoliceAndThief.thiefplayer06 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer06 != null && PoliceAndThief.thiefplayer06 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer06IsStealing; },
                 () => { thiefplayer06KillButton.Timer = thiefplayer06KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -5215,7 +5215,7 @@ namespace LasMonjas
                     thiefplayer07KillButton.Timer = thiefplayer07KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer07currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer07 != null && PoliceAndThief.thiefplayer07 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer07 != null && PoliceAndThief.thiefplayer07 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer07IsStealing; },
                 () => { thiefplayer07KillButton.Timer = thiefplayer07KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -5372,7 +5372,7 @@ namespace LasMonjas
                     thiefplayer08KillButton.Timer = thiefplayer08KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer08currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer08 != null && PoliceAndThief.thiefplayer08 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer08 != null && PoliceAndThief.thiefplayer08 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer08IsStealing; },
                 () => { thiefplayer08KillButton.Timer = thiefplayer08KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -5529,7 +5529,7 @@ namespace LasMonjas
                     thiefplayer09KillButton.Timer = thiefplayer09KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer09currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer09 != null && PoliceAndThief.thiefplayer09 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer09 != null && PoliceAndThief.thiefplayer09 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer09currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer09IsStealing; },
                 () => { thiefplayer09KillButton.Timer = thiefplayer09KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -5686,7 +5686,7 @@ namespace LasMonjas
                     thiefplayer10KillButton.Timer = thiefplayer10KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer10currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer10 != null && PoliceAndThief.thiefplayer10 == PlayerControl.LocalPlayer; },
+                () => { return PoliceAndThief.thiefplayer10 != null && PoliceAndThief.thiefplayer10 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer10currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer10IsStealing; },
                 () => { thiefplayer10KillButton.Timer = thiefplayer10KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,

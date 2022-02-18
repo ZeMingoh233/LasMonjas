@@ -1958,6 +1958,7 @@ namespace LasMonjas
         public static float captureThiefTime = 3f;
         public static float matchDuration = 300f;
         public static float reviveTime = 5f;
+        public static bool thiefTeamCanKill = false;
 
         public static float currentJewelsStoled = 0;
         public static float currentThiefsCaptured = 0;
@@ -2110,6 +2111,7 @@ namespace LasMonjas
             captureThiefTime = CustomOptionHolder.thiefModecaptureThiefTime.getFloat();
             matchDuration = CustomOptionHolder.thiefModeMatchDuration.getFloat() + 10f;
             reviveTime = CustomOptionHolder.thiefModeReviveTime.getFloat();
+            thiefTeamCanKill = CustomOptionHolder.thiefModeCanKill.getBool();
             currentJewelsStoled = 0;
             triggerThiefWin = false;
             triggerPoliceWin = false;

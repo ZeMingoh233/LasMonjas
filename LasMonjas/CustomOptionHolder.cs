@@ -48,6 +48,7 @@ namespace LasMonjas
         public static CustomOption thiefModePoliceCathCooldown;
         public static CustomOption thiefModecaptureThiefTime;
         public static CustomOption thiefModeReviveTime;
+        public static CustomOption thiefModeCanKill;
 
         // Impostors configurable options
 
@@ -303,7 +304,8 @@ namespace LasMonjas
             thiefModePoliceCathCooldown = CustomOption.Create(64, cs(TheChosenOne.color, "Police and Thiefs") + ": Arrest Cooldown", 10f, 5f, 15f, 1f, policeAndThiefMode);
             thiefModecaptureThiefTime = CustomOption.Create(65, cs(TheChosenOne.color, "Police and Thiefs") + ": Time to Arrest", 3f, 3f, 5f, 1f, policeAndThiefMode);
             thiefModeReviveTime = CustomOption.Create(66, cs(TheChosenOne.color, "Police and Thiefs") + ": Revive Wait Time", 7f, 5f, 10f, 1f, policeAndThiefMode);
-            
+            thiefModeCanKill = CustomOption.Create(67, cs(TheChosenOne.color, "Police and Thiefs") + ": Thiefs Can Kill", false, policeAndThiefMode);
+
             // Modifiers
             activateModifiers = CustomOption.Create(10, cs(Modifiers.color, "Modifiers"), rates, null, true);
             activateRoles = CustomOption.Create(11, cs(Modifiers.color, "Roles") + ": Activate mod roles and deactivate vanilla ones", true, activateModifiers);
