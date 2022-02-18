@@ -111,7 +111,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 - If the Demon kills near a Nun, the next kill will have an additional 20 seconds cooldown.
 - A bitten player will die if someone reports a body or make a meeting if he's not near a Nun.
 - Time Traveler and Squire shields block the bite even if the shields activated after being bitten.
-- On the special game condition called 1vs1, it can kill even if the targed in near a Nun.
+- On the special game condition called 1vs1, it can kill even if the targed in near a Nun and the option disabled.
 
 -----------------------
 
@@ -135,7 +135,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 | Impostors | Can make his own vent network and turn off the lights from anywhere |
 | Hats Cooldown | Place Vent Ability Cooldown | 
 | Lights Cooldown | Lights Ability Cooldown | 
-| Blackout Duration | Ability Cooldown | 
+| Blackout Duration | Ability Duration | 
 
 **Additional Ability Notes:**
 - Can place 3 Hats on the map to make his own vent network.
@@ -230,11 +230,11 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 # Renegade
 | Team and Options  | Description |
 |----------|-------------|
-| Rebel | Can recuit a minion and have to kill everyone to win |
+| Rebel | Can recruit a minion and have to kill everyone to win |
 | Cooldown | Kill Cooldown | 
 | Recruit Minion Cooldown | Cooldown for recruit a minion | 
 | Can use vents | Define if they can use or not vents | 
-| Can recruit a Minion | Define if he can recuit a Minion to help him | 
+| Can recruit a Minion | Define if he can recruit a Minion to help him | 
 
 **Additional Ability Notes:**
 - Both can make tasks to disguise themselves but won't count for the tasks progress.
@@ -311,7 +311,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 # Challenger
 | Team and Options  | Description |
 |----------|-------------|
-| Rebel | Have to kill everyone challengin players to a rock-paper-scissors duel |
+| Rebel | Have to kill everyone challenging players to a rock-paper-scissors duel |
 | Cooldown | Ability Cooldown | 
 
 **Additional Ability Notes:**
@@ -340,6 +340,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 - Can make tasks to disguise himself but won't count for the tasks progress.
 - If he can sabotage, he can only do while being alive.
 - He can't be in the same game as Role Thief, Pyromaniac, Treasure Hunter and Devourer.
+- If Can Sabotage is enabled, Joker needs to open the map 1 time to activate the Sabotage button
 
 -----------------------
 
@@ -401,7 +402,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 **Additional Ability Notes:**
 - Can make tasks to disguise himself but won't count for the tasks progress.
-- When a player dies, a sound will be played only for Devourer, indicanting him there's a body somewhere.
+- When a player dies, a sound will be played only for Devourer, indicating him there's a body somewhere.
 - He can't devour if he's dead.
 - He can't be in the same game as Joker, Role Thief, Pyromaniac and Treasure Hunter.
 
@@ -493,7 +494,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 **Additional Ability Notes:**
 - Rewind and Shield button shared their cooldown.
 - Rewind button can be used only 1 time per game and only if there's no sabotages at the moment.
-- Shield button can be used whenever the player wants until a sucessfull use of the shield.
+- Shield button can be used whenever the player wants until a successfull use of the shield.
 - Trying to kill the Time Traveler while the shield is active will trigger the rewind time.
 - He can't use Vitals on Polus and Airship.
 - He doesn't hear the Performer's music.
@@ -581,7 +582,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can reveal who the Impostors are after finishing all his tasks |
-| Traks for being revealed to Impostors | When the Impostors will know who is the Fink |  
+| Tasks for being revealed to Impostors | When the Impostors will know who is the Fink |  
 | Can Reveal Renegade and Minion | Define if Renegade and Minion are revealed too |  
 
 **Additional Ability Notes:**
@@ -609,7 +610,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 | Seal Number | How many vents can be sealed |
 
 **Additional Ability Notes:**
-- Seal vent happens after a meeting.
+- Ven seal happens after a meeting.
 - He can't seal the same vent multiple times.
 - A sealed vent can't be entered or exited, but can still be used as a tunnel.
 
@@ -640,8 +641,8 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 **Additional Ability Notes:**
 - Is the only role Spiritualist can't revive.
-- Time Traverer can manage to revive him before the report delay fills in, this will cause that the next time the Chosen One dies it will be reported before the full delayed time since a few second already passed on his first death.
-- 
+- Time Traveler can manage to revive him before the report delay fills in, this will cause that the next time the Chosen One dies it will be reported before the full delayed time since a few second already passed on his first death.
+
 -----------------------
 
 # Vigilant
@@ -710,7 +711,7 @@ This mod also features some game mechanic modifiers, one of them being a custom 
 |----------|-------------|
 | Activate Mod Roles | Activate this option to play mod roles and deactivate it to play with vanilla ones |
 | Role Assignment | Choose if mod roles are assigned randomly or by list order |
-| Activate Custom Skeld Map | If enabled and Skeld is selected and the game map, the custom map will load instead the normal Skeld |
+| Activate Custom Skeld Map | If enabled and Skeld is selected as the game map, the custom map will load instead the normal Skeld |
 | Remove Swipe Card Task | I hate this task so I made an option to remove it |
 | Remove Airship Doors | After reading what is written above this, you can guess why this option is here |
 | Modifiers Number | How many role modifiers will be on the game |
