@@ -13,6 +13,10 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 -----------------------
 
+[<p align="center"> <img src="./gitHubImages/LasMonjas_discord.png" width="640" height="320"> </p>](https://discord.gg/UPCSqnD4NU)
+
+-----------------------
+
 # Installation
 
   1. Download the latest [Release](https://github.com/KiraYamato94/LasMonjas/releases) of Las Monjas.
@@ -610,7 +614,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 | Seal Number | How many vents can be sealed |
 
 **Additional Ability Notes:**
-- Ven seal happens after a meeting.
+- Vent seal happens after a meeting.
 - He can't seal the same vent multiple times.
 - A sealed vent can't be entered or exited, but can still be used as a tunnel.
 
