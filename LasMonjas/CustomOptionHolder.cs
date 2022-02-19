@@ -395,7 +395,7 @@ namespace LasMonjas
             
             // Yinyanger options
             yinyangerSpawnRate = CustomOption.Create(240, cs(Yinyanger.color, "Yinyanger"), rates, null, true);
-            yinyangerCooldown = CustomOption.Create(241, cs(Yinyanger.color, "Yinyanger") + ": Cooldown", 20f, 20f, 30f, 1f, yinyangerSpawnRate);
+            yinyangerCooldown = CustomOption.Create(241, cs(Yinyanger.color, "Yinyanger") + ": Cooldown", 15f, 15f, 30f, 1f, yinyangerSpawnRate);
 
             // Challenger options
             challengerSpawnRate = CustomOption.Create(250, cs(Challenger.color, "Challenger"), rates, null, true);
