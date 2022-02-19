@@ -254,26 +254,28 @@ namespace LasMonjas.Patches {
         static void fortuneTellerUpdate() {
             if (FortuneTeller.fortuneTeller == null || FortuneTeller.fortuneTeller != PlayerControl.LocalPlayer) return;
 
-            // Update revealed players
-            foreach (PlayerControl p in FortuneTeller.revealedPlayers) {
-                // Update color and name regarding settings and given info
-                string result = p.Data.PlayerName;
-                RoleFortuneTellerInfo si = RoleFortuneTellerInfo.getFortuneTellerRoleInfoForPlayer(p);
-                if (FortuneTeller.kindOfInfo == 0)
-                    si.color = si.isGood ? new Color(141f / 255f, 255f / 255f, 255f / 255f, 1) : new Color(255f / 255f, 0f / 255f, 0f / 255f, 1);
-                else if (FortuneTeller.kindOfInfo == 1) {
-                    result = p.Data.PlayerName + " (" + si.name + ")";
-                }
+            // Update revealed players names if not in the duel
+            if (!Challenger.isDueling) {
+                foreach (PlayerControl p in FortuneTeller.revealedPlayers) {
+                    // Update color and name regarding settings and given info
+                    string result = p.Data.PlayerName;
+                    RoleFortuneTellerInfo si = RoleFortuneTellerInfo.getFortuneTellerRoleInfoForPlayer(p);
+                    if (FortuneTeller.kindOfInfo == 0)
+                        si.color = si.isGood ? new Color(141f / 255f, 255f / 255f, 255f / 255f, 1) : new Color(255f / 255f, 0f / 255f, 0f / 255f, 1);
+                    else if (FortuneTeller.kindOfInfo == 1) {
+                        result = p.Data.PlayerName + " (" + si.name + ")";
+                    }
 
-                // Set color and name
-                p.nameText.color = si.color;
-                p.nameText.text = result;
-                if (MeetingHud.Instance != null) {
-                    foreach (PlayerVoteArea player in MeetingHud.Instance.playerStates) {
-                        if (p.PlayerId == player.TargetPlayerId) {
-                            player.NameText.text = result;
-                            player.NameText.color = si.color;
-                            break;
+                    // Set color and name
+                    p.nameText.color = si.color;
+                    p.nameText.text = result;
+                    if (MeetingHud.Instance != null) {
+                        foreach (PlayerVoteArea player in MeetingHud.Instance.playerStates) {
+                            if (p.PlayerId == player.TargetPlayerId) {
+                                player.NameText.text = result;
+                                player.NameText.color = si.color;
+                                break;
+                            }
                         }
                     }
                 }
