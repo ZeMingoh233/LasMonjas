@@ -30,6 +30,15 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
+\
+**Version 1.0.3**
+- Reduced minimum Yinyanger cooldown to 15 sec
+- Fixed Fortune Teller revealed names to hide them during the Challenger's duel
+- During the Challenger's duel, Flash and Big Chungus speed are set to normal
+
+**Version 1.0.2**
+- Updated Reactor.dll which fixed an issue selecting regions on 2022.2.8s
+  
 **Version 1.0.1**
 - Added an option for choosing if Thiefs can or not kill on Police And Thiefs gamemode
 
