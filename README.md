@@ -769,6 +769,7 @@ Match between red and blue team where each team has to steal the enemy flag and 
 | Score Number | Points needed to win, from 3 to 5 |
 | Kill Cooldown | Everyone can kill with the same cooldown |
 | Revive Time | Everyone revives on his team base after a setted amount of time |
+| Invencibility Time After Revive | Players can't kill or get killed during this time |
 
 **Additional Gamemode Notes:**
 - Each player name color will be the same as the team color.
@@ -779,6 +780,7 @@ Match between red and blue team where each team has to steal the enemy flag and 
 - There are custom messages for match duration, stolen flag and scored point, also the game score is always displayed.
 - Flags positions are marked by a team color corresponding arrow.
 - If the player who has the flag disconnects from the match, the flag stays where that player was.
+- Revive Time value is calculated by subtracting Invencibility Time value from it, for example if Revive Time is 8 and Invencibility Time is 3, players will revive after 5 seconds but will be invencible for another 3 seconds after reviving.
 
 -----------------------
 
@@ -794,6 +796,7 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 | Arrest Cooldown | Police ability to arrest a Thief |
 | Arrest Duration | Police needed time near a Thief to arrest it |
 | Revive Time | Everyone revives on his team base, Thief revive time is multiplied by 1.5 |
+| Thiefs Can Kill | Define if Thief team can or not kill |
 
 **Additional Gamemode Notes:**
 - Police team always win on match time out and capturing all the Thiefs.
