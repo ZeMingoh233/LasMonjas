@@ -31,6 +31,10 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   <summary>Click to show</summary>
 
 \
+  **Version 1.0.4**
+- Increased minimum value for Capture The Flag Revive Time
+- Added new option for Capture The Flag to define Invencibility Time After Reviving for players
+  
 **Version 1.0.3**
 - Reduced minimum Yinyanger cooldown to 15 sec
 - Fixed Fortune Teller revealed names to hide them during the Challenger's duel
