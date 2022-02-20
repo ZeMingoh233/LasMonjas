@@ -2940,7 +2940,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer01currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer01 != null && CaptureTheFlag.redplayer01 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer01IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer01KillButton.Timer = redplayer01KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3008,7 +3008,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer02currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer02 != null && CaptureTheFlag.redplayer02 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer02IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer02KillButton.Timer = redplayer02KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3076,7 +3076,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer03currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer03 != null && CaptureTheFlag.redplayer03 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer03IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer03KillButton.Timer = redplayer03KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3144,7 +3144,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer04currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer04 != null && CaptureTheFlag.redplayer04 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer04IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer04KillButton.Timer = redplayer04KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3212,7 +3212,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer05currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer05 != null && CaptureTheFlag.redplayer05 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer05IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer05KillButton.Timer = redplayer05KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3280,7 +3280,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer06currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer06 != null && CaptureTheFlag.redplayer06 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer06IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer06KillButton.Timer = redplayer06KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3348,7 +3348,7 @@ namespace LasMonjas
                     CaptureTheFlag.redplayer07currentTarget = null;
                 },
                 () => { return CaptureTheFlag.redplayer07 != null && CaptureTheFlag.redplayer07 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.redplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
+                () => { return CaptureTheFlag.redplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.redplayer07IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag; },
                 () => { redplayer07KillButton.Timer = redplayer07KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3416,7 +3416,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer01currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer01 != null && CaptureTheFlag.blueplayer01 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer01IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer01KillButton.Timer = blueplayer01KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3484,7 +3484,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer02currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer02 != null && CaptureTheFlag.blueplayer02 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer02IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer02KillButton.Timer = blueplayer02KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3552,7 +3552,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer03currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer03 != null && CaptureTheFlag.blueplayer03 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer03IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer03KillButton.Timer = blueplayer03KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3620,7 +3620,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer04currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer04 != null && CaptureTheFlag.blueplayer04 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer04IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer04KillButton.Timer = blueplayer04KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3688,7 +3688,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer05currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer05 != null && CaptureTheFlag.blueplayer05 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer05IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer05KillButton.Timer = blueplayer05KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3756,7 +3756,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer06currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer06 != null && CaptureTheFlag.blueplayer06 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer06IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer06KillButton.Timer = blueplayer06KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3824,7 +3824,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer07currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer07 != null && CaptureTheFlag.blueplayer07 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer07IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer07KillButton.Timer = blueplayer07KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3892,7 +3892,7 @@ namespace LasMonjas
                     CaptureTheFlag.blueplayer08currentTarget = null;
                 },
                 () => { return CaptureTheFlag.blueplayer08 != null && CaptureTheFlag.blueplayer08 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
+                () => { return CaptureTheFlag.blueplayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer08IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
                 () => { blueplayer08KillButton.Timer = blueplayer08KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),

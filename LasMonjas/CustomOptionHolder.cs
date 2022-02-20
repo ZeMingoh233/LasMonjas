@@ -39,6 +39,7 @@ namespace LasMonjas
         public static CustomOption requiredFlags;
         public static CustomOption flagKillCooldown;
         public static CustomOption flagReviveTime;
+        public static CustomOption flagInvincibilityTimeAfterRevive;
 
         // Police And Thief
         public static CustomOption policeAndThiefMode;
@@ -294,7 +295,8 @@ namespace LasMonjas
             flagMatchDuration = CustomOption.Create(51, cs(Sheriff.color, "Capture the Flag") + ": Match Duration", 180f, 180f, 300f, 30f, captureTheFlagMode);
             requiredFlags = CustomOption.Create(52, cs(Sheriff.color, "Capture the Flag") + ": Score Number", 3f, 3f, 5f, 1f, captureTheFlagMode);
             flagKillCooldown = CustomOption.Create(53, cs(Sheriff.color, "Capture the Flag") + ": Kill Cooldown", 10f, 5f, 15f, 1f, captureTheFlagMode);
-            flagReviveTime = CustomOption.Create(54, cs(Sheriff.color, "Capture the Flag") + ": Revive Wait Time", 5f, 5f, 10f, 1f, captureTheFlagMode);
+            flagReviveTime = CustomOption.Create(54, cs(Sheriff.color, "Capture the Flag") + ": Revive Wait Time", 8f, 7f, 15f, 1f, captureTheFlagMode);
+            flagInvincibilityTimeAfterRevive = CustomOption.Create(55, cs(Sheriff.color, "Capture the Flag") + ": Invencibility Time After Revive", 3f, 2f, 5f, 1f, captureTheFlagMode);
 
             // Police and Thief mode
             policeAndThiefMode = CustomOption.Create(60, cs(TheChosenOne.color, "Police and Thiefs"), rates, null, true);
