@@ -743,6 +743,68 @@ namespace LasMonjas.Patches {
                 untargetablePolice.Add(player);
             }
 
+            // Prevent killing reviving players
+            if (PoliceAndThief.thiefplayer01IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer01);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer01);
+            }
+            if (PoliceAndThief.thiefplayer02IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer02);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer02);
+            }
+            if (PoliceAndThief.thiefplayer03IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer03);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer03);
+            }
+            if (PoliceAndThief.thiefplayer04IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer04);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer04);
+            }
+            if (PoliceAndThief.thiefplayer05IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer05);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer05);
+            }
+            if (PoliceAndThief.thiefplayer06IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer06);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer06);
+            }
+            if (PoliceAndThief.thiefplayer07IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer07);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer07);
+            }
+            if (PoliceAndThief.thiefplayer08IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer08);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer08);
+            }
+            if (PoliceAndThief.thiefplayer09IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer09);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer09);
+            }
+            if (PoliceAndThief.thiefplayer10IsReviving) {
+                untargetablePolice.Add(PoliceAndThief.thiefplayer10);
+            }
+            else {
+                untargetablePolice.Remove(PoliceAndThief.thiefplayer10);
+            }
+
             if (PoliceAndThief.policeplayer01 != null && PoliceAndThief.policeplayer01 == PlayerControl.LocalPlayer) {
                 PoliceAndThief.policeplayer01currentTarget = setTarget(untargetablePlayers: untargetablePolice);
                 setPlayerOutline(PoliceAndThief.policeplayer01currentTarget, Cheater.color);
@@ -767,6 +829,38 @@ namespace LasMonjas.Patches {
             var untargetableThiefs = new List<PlayerControl>();
             foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
                 untargetableThiefs.Add(player);
+            }
+
+            // Prevent killing reviving players
+            if (PoliceAndThief.policeplayer01IsReviving) {
+                untargetableThiefs.Add(PoliceAndThief.policeplayer01);
+            }
+            else {
+                untargetableThiefs.Remove(PoliceAndThief.policeplayer01);
+            }
+            if (PoliceAndThief.policeplayer02IsReviving) {
+                untargetableThiefs.Add(PoliceAndThief.policeplayer02);
+            }
+            else {
+                untargetableThiefs.Remove(PoliceAndThief.policeplayer02);
+            }
+            if (PoliceAndThief.policeplayer03IsReviving) {
+                untargetableThiefs.Add(PoliceAndThief.policeplayer03);
+            }
+            else {
+                untargetableThiefs.Remove(PoliceAndThief.policeplayer03);
+            }
+            if (PoliceAndThief.policeplayer04IsReviving) {
+                untargetableThiefs.Add(PoliceAndThief.policeplayer04);
+            }
+            else {
+                untargetableThiefs.Remove(PoliceAndThief.policeplayer04);
+            }
+            if (PoliceAndThief.policeplayer05IsReviving) {
+                untargetableThiefs.Add(PoliceAndThief.policeplayer05);
+            }
+            else {
+                untargetableThiefs.Remove(PoliceAndThief.policeplayer05);
             }
 
             if (PoliceAndThief.thiefplayer01 != null && PoliceAndThief.thiefplayer01 == PlayerControl.LocalPlayer) {
@@ -1512,7 +1606,72 @@ namespace LasMonjas.Patches {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[4]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[4]);
-                        HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.reviveTime, new Action<float>((p) => {
+                        if (target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
+                            PoliceAndThief.policeplayer01IsReviving = true;
+                        }
+                        else if (target.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
+                            PoliceAndThief.policeplayer02IsReviving = true;
+                        }
+                        else if (target.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
+                            PoliceAndThief.policeplayer03IsReviving = true;
+                        }
+                        else if (target.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
+                            PoliceAndThief.policeplayer04IsReviving = true;
+                        }
+                        else if (target.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
+                            PoliceAndThief.policeplayer05IsReviving = true;
+                        }
+                        player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
+                        if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                            player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 0.5f);
+                            player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 0.5f);
+                        }
+                        if (player.HatRenderer != null) {
+                            player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 0.5f);
+                            player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 0.5f);
+                            player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 0.5f);
+                        }
+                        if (player.VisorSlot != null) {
+                            player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 0.5f);
+                        }
+                        player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 0.5f);
+
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.policeReviveTime, new Action<float>((p) => {
+                            if (p == 1f && player != null) {
+                                if (target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
+                                    PoliceAndThief.policeplayer01IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
+                                    PoliceAndThief.policeplayer02IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
+                                    PoliceAndThief.policeplayer03IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
+                                    PoliceAndThief.policeplayer04IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
+                                    PoliceAndThief.policeplayer05IsReviving = false;
+                                }
+                                player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
+                                if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                                    player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 1f);
+                                    player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 1f);
+                                }
+                                if (player.HatRenderer != null) {
+                                    player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 1f);
+                                    player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 1f);
+                                    player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 1f);
+                                }
+                                if (player.VisorSlot != null) {
+                                    player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 1f);
+                                }
+                                player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 1f);
+
+                            }
+                        })));
+
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.policeReviveTime - PoliceAndThief.invincibilityTimeAfterRevive, new Action<float>((p) => {
                             if (p == 1f && player != null) {
                                 player.Revive();
                                 switch (PlayerControl.GameOptions.MapId) {
@@ -1560,53 +1719,128 @@ namespace LasMonjas.Patches {
                             if (PoliceAndThief.thiefplayer01IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer01JewelId);
                             }
+                            PoliceAndThief.thiefplayer01IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer02 != null && target.PlayerId == PoliceAndThief.thiefplayer02.PlayerId) {
                             if (PoliceAndThief.thiefplayer02IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer02JewelId);
                             }
+                            PoliceAndThief.thiefplayer02IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer03 != null && target.PlayerId == PoliceAndThief.thiefplayer03.PlayerId) {
                             if (PoliceAndThief.thiefplayer03IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer03JewelId);
                             }
+                            PoliceAndThief.thiefplayer03IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer04 != null && target.PlayerId == PoliceAndThief.thiefplayer04.PlayerId) {
                             if (PoliceAndThief.thiefplayer04IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer04JewelId);
                             }
+                            PoliceAndThief.thiefplayer04IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer05 != null && target.PlayerId == PoliceAndThief.thiefplayer05.PlayerId) {
                             if (PoliceAndThief.thiefplayer05IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer05JewelId);
                             }
+                            PoliceAndThief.thiefplayer05IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer06 != null && target.PlayerId == PoliceAndThief.thiefplayer06.PlayerId) {
                             if (PoliceAndThief.thiefplayer06IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer06JewelId);
                             }
+                            PoliceAndThief.thiefplayer06IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer07 != null && target.PlayerId == PoliceAndThief.thiefplayer07.PlayerId) {
                             if (PoliceAndThief.thiefplayer07IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer07JewelId);
                             }
+                            PoliceAndThief.thiefplayer07IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer08 != null && target.PlayerId == PoliceAndThief.thiefplayer08.PlayerId) {
                             if (PoliceAndThief.thiefplayer08IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer08JewelId);
                             }
+                            PoliceAndThief.thiefplayer08IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer09 != null && target.PlayerId == PoliceAndThief.thiefplayer09.PlayerId) {
                             if (PoliceAndThief.thiefplayer09IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer09JewelId);
                             }
+                            PoliceAndThief.thiefplayer09IsReviving = true;
                         }
                         else if (PoliceAndThief.thiefplayer10 != null && target.PlayerId == PoliceAndThief.thiefplayer10.PlayerId) {
                             if (PoliceAndThief.thiefplayer10IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer10JewelId);
                             }
+                            PoliceAndThief.thiefplayer10IsReviving = true;
                         }
-                        HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.reviveTime * 1.5f, new Action<float>((p) => {
+                        player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
+                        if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                            player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 0.5f);
+                            player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 0.5f);
+                        }
+                        if (player.HatRenderer != null) {
+                            player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 0.5f);
+                            player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 0.5f);
+                            player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 0.5f);
+                        }
+                        if (player.VisorSlot != null) {
+                            player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 0.5f);
+                        }
+                        player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 0.5f);
+
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.thiefReviveTime, new Action<float>((p) => {
+                            if (p == 1f && player != null) {
+                                if (target.PlayerId == PoliceAndThief.thiefplayer01.PlayerId) {
+                                    PoliceAndThief.thiefplayer01IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer02.PlayerId) {
+                                    PoliceAndThief.thiefplayer02IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer03.PlayerId) {
+                                    PoliceAndThief.thiefplayer03IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer04.PlayerId) {
+                                    PoliceAndThief.thiefplayer04IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer05.PlayerId) {
+                                    PoliceAndThief.thiefplayer05IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer06.PlayerId) {
+                                    PoliceAndThief.thiefplayer06IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer07.PlayerId) {
+                                    PoliceAndThief.thiefplayer07IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer08.PlayerId) {
+                                    PoliceAndThief.thiefplayer08IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer09.PlayerId) {
+                                    PoliceAndThief.thiefplayer09IsReviving = false;
+                                }
+                                else if (target.PlayerId == PoliceAndThief.thiefplayer10.PlayerId) {
+                                    PoliceAndThief.thiefplayer10IsReviving = false;
+                                }
+                                player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
+                                if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                                    player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 1f);
+                                    player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 1f);
+                                }
+                                if (player.HatRenderer != null) {
+                                    player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 1f);
+                                    player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 1f);
+                                    player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 1f);
+                                }
+                                if (player.VisorSlot != null) {
+                                    player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 1f);
+                                }
+                                player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 1f);
+
+                            }
+                        })));
+
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.thiefReviveTime - PoliceAndThief.invincibilityTimeAfterRevive, new Action<float>((p) => {
                             if (p == 1f && player != null) {
                                 player.Revive();
                                 switch (PlayerControl.GameOptions.MapId) {

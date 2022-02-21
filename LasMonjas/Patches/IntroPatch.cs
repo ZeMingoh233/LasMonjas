@@ -1233,6 +1233,16 @@ namespace LasMonjas.Patches
                             }
                             break;
                     }
+
+                    if (!PoliceAndThief.policeCanSeeJewels) {
+                        foreach (PlayerControl police in PoliceAndThief.policeTeam) {
+                            if (police == PlayerControl.LocalPlayer) {
+                                foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
+                                    jewel.SetActive(false);
+                                }
+                            }
+                        }
+                    }
                     new CustomMessage("Time Left: ", PoliceAndThief.matchDuration, -1, -1.3f, 6);
                     PoliceAndThief.thiefpointCounter = "Stolen Jewels: " + "<color=#00F7FFFF>" + PoliceAndThief.currentJewelsStoled + "/" + PoliceAndThief.requiredJewels + "</color> | " + "Captured Thiefs: " + "<color=#928B55FF>" + PoliceAndThief.currentThiefsCaptured + "/" + PoliceAndThief.thiefTeam.Count + "</color>";
                     new CustomMessage(PoliceAndThief.thiefpointCounter, PoliceAndThief.matchDuration, -1, 1.9f, 8);

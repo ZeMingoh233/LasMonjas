@@ -328,6 +328,12 @@ namespace LasMonjas.Patches {
 
             // Police and Thief timer, always police team wins if thiefs ran out of time
             if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                PoliceAndThief.policeplayer01lightTimer -= Time.deltaTime;
+                PoliceAndThief.policeplayer02lightTimer -= Time.deltaTime;
+                PoliceAndThief.policeplayer03lightTimer -= Time.deltaTime;
+                PoliceAndThief.policeplayer04lightTimer -= Time.deltaTime;
+                PoliceAndThief.policeplayer05lightTimer -= Time.deltaTime; 
+                
                 PoliceAndThief.matchDuration -= Time.deltaTime;
                 if (PoliceAndThief.matchDuration < 0) {
                     PoliceAndThief.triggerPoliceWin = true;
