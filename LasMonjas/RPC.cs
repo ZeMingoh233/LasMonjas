@@ -2272,62 +2272,77 @@ namespace LasMonjas
                         case 1:
                             PoliceAndThief.jewel01BeingStealed = player;
                             PoliceAndThief.jewel01.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel01.SetActive(true);
                             break;
                         case 2:
                             PoliceAndThief.jewel02BeingStealed = player;
                             PoliceAndThief.jewel02.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel02.SetActive(true);
                             break;
                         case 3:
                             PoliceAndThief.jewel03BeingStealed = player;
                             PoliceAndThief.jewel03.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel03.SetActive(true);
                             break;
                         case 4:
                             PoliceAndThief.jewel04BeingStealed = player;
                             PoliceAndThief.jewel04.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel04.SetActive(true);
                             break;
                         case 5:
                             PoliceAndThief.jewel05BeingStealed = player;
                             PoliceAndThief.jewel05.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel05.SetActive(true);
                             break;
                         case 6:
                             PoliceAndThief.jewel06BeingStealed = player;
                             PoliceAndThief.jewel06.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel06.SetActive(true);
                             break;
                         case 7:
                             PoliceAndThief.jewel07BeingStealed = player;
                             PoliceAndThief.jewel07.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel07.SetActive(true);
                             break;
                         case 8:
                             PoliceAndThief.jewel08BeingStealed = player;
                             PoliceAndThief.jewel08.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel08.SetActive(true);
                             break;
                         case 9:
                             PoliceAndThief.jewel09BeingStealed = player;
                             PoliceAndThief.jewel09.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel09.SetActive(true);
                             break;
                         case 10:
                             PoliceAndThief.jewel10BeingStealed = player;
                             PoliceAndThief.jewel10.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel10.SetActive(true);
                             break;
                         case 11:
                             PoliceAndThief.jewel11BeingStealed = player;
                             PoliceAndThief.jewel11.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel11.SetActive(true);
                             break;
                         case 12:
                             PoliceAndThief.jewel12BeingStealed = player;
                             PoliceAndThief.jewel12.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel12.SetActive(true);
                             break;
                         case 13:
                             PoliceAndThief.jewel13BeingStealed = player;
                             PoliceAndThief.jewel13.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel13.SetActive(true);
                             break;
                         case 14:
                             PoliceAndThief.jewel14BeingStealed = player;
                             PoliceAndThief.jewel14.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel14.SetActive(true);
                             break;
                         case 15:
                             PoliceAndThief.jewel15BeingStealed = player;
                             PoliceAndThief.jewel15.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            PoliceAndThief.jewel15.SetActive(true);
                             break;
                     }
                 }
@@ -2956,6 +2971,59 @@ namespace LasMonjas
                                     break;
                             }
                             break;
+                    }
+
+                    // if police can't see jewels, hide it after jailing a player
+                    if (PlayerControl.LocalPlayer == PoliceAndThief.policeplayer01 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer02 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer03 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer04 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer05) {
+                        if (!PoliceAndThief.policeCanSeeJewels) {
+                            switch (jewelRevertedId) {
+                                case 1:
+                                    PoliceAndThief.jewel01.SetActive(false);
+                                    break;
+                                case 2:
+                                    PoliceAndThief.jewel02.SetActive(false);
+                                    break;
+                                case 3:
+                                    PoliceAndThief.jewel03.SetActive(false);
+                                    break;
+                                case 4:
+                                    PoliceAndThief.jewel04.SetActive(false);
+                                    break;
+                                case 5:
+                                    PoliceAndThief.jewel05.SetActive(false);
+                                    break;
+                                case 6:
+                                    PoliceAndThief.jewel06.SetActive(false);
+                                    break;
+                                case 7:
+                                    PoliceAndThief.jewel07.SetActive(false);
+                                    break;
+                                case 8:
+                                    PoliceAndThief.jewel08.SetActive(false);
+                                    break;
+                                case 9:
+                                    PoliceAndThief.jewel09.SetActive(false);
+                                    break;
+                                case 10:
+                                    PoliceAndThief.jewel10.SetActive(false);
+                                    break;
+                                case 11:
+                                    PoliceAndThief.jewel11.SetActive(false);
+                                    break;
+                                case 12:
+                                    PoliceAndThief.jewel12.SetActive(false);
+                                    break;
+                                case 13:
+                                    PoliceAndThief.jewel13.SetActive(false);
+                                    break;
+                                case 14:
+                                    PoliceAndThief.jewel14.SetActive(false);
+                                    break;
+                                case 15:
+                                    PoliceAndThief.jewel15.SetActive(false);
+                                    break;
+                            }
+                        }
                     }
                 }
             }

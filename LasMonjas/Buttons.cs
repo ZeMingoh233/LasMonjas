@@ -110,14 +110,19 @@ namespace LasMonjas
         // Police and Thief
         private static CustomButton policeplayer01JailButton;
         private static CustomButton policeplayer01KillButton;
+        private static CustomButton policeplayer01LightButton;
         private static CustomButton policeplayer02JailButton;
         private static CustomButton policeplayer02KillButton;
+        private static CustomButton policeplayer02LightButton;
         private static CustomButton policeplayer03JailButton;
         private static CustomButton policeplayer03KillButton;
+        private static CustomButton policeplayer03LightButton;
         private static CustomButton policeplayer04JailButton;
         private static CustomButton policeplayer04KillButton;
+        private static CustomButton policeplayer04LightButton;
         private static CustomButton policeplayer05JailButton;
         private static CustomButton policeplayer05KillButton;
+        private static CustomButton policeplayer05LightButton;
 
         private static CustomButton thiefplayer01KillButton;
         private static CustomButton thiefplayer01FreeThiefButton;
@@ -278,47 +283,57 @@ namespace LasMonjas
             policeplayer01KillButton.MaxTimer = PoliceAndThief.policeKillCooldown;
             policeplayer01JailButton.MaxTimer = PoliceAndThief.policeCatchCooldown;
             policeplayer01JailButton.EffectDuration = PoliceAndThief.captureThiefTime;
+            policeplayer01LightButton.MaxTimer = 20;
+            policeplayer01LightButton.EffectDuration = 10;
             policeplayer02KillButton.MaxTimer = PoliceAndThief.policeKillCooldown;
             policeplayer02JailButton.MaxTimer = PoliceAndThief.policeCatchCooldown;
             policeplayer02JailButton.EffectDuration = PoliceAndThief.captureThiefTime;
+            policeplayer02LightButton.MaxTimer = 20;
+            policeplayer02LightButton.EffectDuration = 10;
             policeplayer03KillButton.MaxTimer = PoliceAndThief.policeKillCooldown;
             policeplayer03JailButton.MaxTimer = PoliceAndThief.policeCatchCooldown;
             policeplayer03JailButton.EffectDuration = PoliceAndThief.captureThiefTime;
+            policeplayer03LightButton.MaxTimer = 20;
+            policeplayer03LightButton.EffectDuration = 10;
             policeplayer04KillButton.MaxTimer = PoliceAndThief.policeKillCooldown;
             policeplayer04JailButton.MaxTimer = PoliceAndThief.policeCatchCooldown;
             policeplayer04JailButton.EffectDuration = PoliceAndThief.captureThiefTime;
+            policeplayer04LightButton.MaxTimer = 20;
+            policeplayer04LightButton.EffectDuration = 10;
             policeplayer05KillButton.MaxTimer = PoliceAndThief.policeKillCooldown;
             policeplayer05JailButton.MaxTimer = PoliceAndThief.policeCatchCooldown;
             policeplayer05JailButton.EffectDuration = PoliceAndThief.captureThiefTime;
+            policeplayer05LightButton.MaxTimer = 20;
+            policeplayer05LightButton.EffectDuration = 10;
 
-            thiefplayer01KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer01KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer01FreeThiefButton.MaxTimer = 20f;
             thiefplayer01TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer02KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer02KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer02FreeThiefButton.MaxTimer = 20f;
             thiefplayer02TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer03KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer03KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer03FreeThiefButton.MaxTimer = 20f;
             thiefplayer03TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer04KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer04KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer04FreeThiefButton.MaxTimer = 20f;
             thiefplayer04TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer05KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer05KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer05FreeThiefButton.MaxTimer = 20f;
             thiefplayer05TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer06KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer06KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer06FreeThiefButton.MaxTimer = 20f;
             thiefplayer06TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer07KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer07KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer07FreeThiefButton.MaxTimer = 20f;
             thiefplayer07TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer08KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer08KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer08FreeThiefButton.MaxTimer = 20f;
             thiefplayer08TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer09KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer09KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer09FreeThiefButton.MaxTimer = 20f;
             thiefplayer09TakeDeliverJewelButton.MaxTimer = 5f;
-            thiefplayer10KillButton.MaxTimer = PoliceAndThief.policeKillCooldown * 1.5f;
+            thiefplayer10KillButton.MaxTimer = PoliceAndThief.thiefKillCooldown;
             thiefplayer10FreeThiefButton.MaxTimer = 20f;
             thiefplayer10TakeDeliverJewelButton.MaxTimer = 5f;
 
@@ -3961,7 +3976,13 @@ namespace LasMonjas
                     PoliceAndThief.policeplayer01currentTarget = null;
                 },
                 () => { return PoliceAndThief.policeplayer01 != null && PoliceAndThief.policeplayer01 == PlayerControl.LocalPlayer; },
-                () => { return PoliceAndThief.policeplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool CanUse = true;
+                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                        CanUse = false;
+                    }
+                    return CanUse && PoliceAndThief.policeplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
                 () => { policeplayer01KillButton.Timer = policeplayer01KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -3984,7 +4005,7 @@ namespace LasMonjas
                         policeplayer01JailButton.Timer = 0f;
                         policeplayer01JailButton.isEffectActive = false;
                     }
-                    return PlayerControl.LocalPlayer.CanMove && PoliceAndThief.policeplayer01currentTarget != null;
+                    return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer01IsReviving && PoliceAndThief.policeplayer01currentTarget != null;
                 },
                 () => {
                     PoliceAndThief.policeplayer01targetedPlayer = null;
@@ -4010,6 +4031,27 @@ namespace LasMonjas
                 }
             );
 
+            // Policeplayer01 Light
+            policeplayer01LightButton = new CustomButton(
+                () => {
+                    PoliceAndThief.policeplayer01lightTimer = 10;
+                },
+                () => { return PoliceAndThief.policeplayer01 != null && PoliceAndThief.policeplayer01 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => { return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer01IsReviving; },
+                () => {
+                    policeplayer01LightButton.Timer = policeplayer01LightButton.MaxTimer;
+                    policeplayer01LightButton.isEffectActive = false;
+                    policeplayer01LightButton.actionButton.graphic.color = Palette.EnabledColor;
+                },
+                PoliceAndThief.getLightButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.F,
+                true,
+                10,
+                () => { policeplayer01LightButton.Timer = policeplayer01LightButton.MaxTimer; }
+            );
+
             // Policeplayer02 Kill
             policeplayer02KillButton = new CustomButton(
                 () => {
@@ -4023,7 +4065,13 @@ namespace LasMonjas
                     PoliceAndThief.policeplayer02currentTarget = null;
                 },
                 () => { return PoliceAndThief.policeplayer02 != null && PoliceAndThief.policeplayer02 == PlayerControl.LocalPlayer; },
-                () => { return PoliceAndThief.policeplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool CanUse = true;
+                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                        CanUse = false;
+                    }
+                    return CanUse && PoliceAndThief.policeplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
                 () => { policeplayer02KillButton.Timer = policeplayer02KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4046,7 +4094,7 @@ namespace LasMonjas
                         policeplayer02JailButton.Timer = 0f;
                         policeplayer02JailButton.isEffectActive = false;
                     }
-                    return PlayerControl.LocalPlayer.CanMove && PoliceAndThief.policeplayer02currentTarget != null;
+                    return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer02IsReviving && PoliceAndThief.policeplayer02currentTarget != null;
                 },
                 () => {
                     PoliceAndThief.policeplayer02targetedPlayer = null;
@@ -4072,6 +4120,27 @@ namespace LasMonjas
                 }
             );
 
+            // Policeplayer02 Light
+            policeplayer02LightButton = new CustomButton(
+                () => {
+                    PoliceAndThief.policeplayer02lightTimer = 10;
+                },
+                () => { return PoliceAndThief.policeplayer02 != null && PoliceAndThief.policeplayer02 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => { return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer02IsReviving; },
+                () => {
+                    policeplayer02LightButton.Timer = policeplayer02LightButton.MaxTimer;
+                    policeplayer02LightButton.isEffectActive = false;
+                    policeplayer02LightButton.actionButton.graphic.color = Palette.EnabledColor;
+                },
+                PoliceAndThief.getLightButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.F,
+                true,
+                10,
+                () => { policeplayer02LightButton.Timer = policeplayer02LightButton.MaxTimer; }
+            );
+
             // Policeplayer03 Kill
             policeplayer03KillButton = new CustomButton(
                 () => {
@@ -4085,7 +4154,13 @@ namespace LasMonjas
                     PoliceAndThief.policeplayer03currentTarget = null;
                 },
                 () => { return PoliceAndThief.policeplayer03 != null && PoliceAndThief.policeplayer03 == PlayerControl.LocalPlayer; },
-                () => { return PoliceAndThief.policeplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool CanUse = true;
+                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                        CanUse = false;
+                    }
+                    return CanUse && PoliceAndThief.policeplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
                 () => { policeplayer03KillButton.Timer = policeplayer03KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4109,7 +4184,7 @@ namespace LasMonjas
                         policeplayer03JailButton.isEffectActive = false;
                     }
 
-                    return PlayerControl.LocalPlayer.CanMove && PoliceAndThief.policeplayer03currentTarget != null;
+                    return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer03IsReviving && PoliceAndThief.policeplayer03currentTarget != null;
                 },
                 () => {
                     PoliceAndThief.policeplayer03targetedPlayer = null;
@@ -4135,6 +4210,27 @@ namespace LasMonjas
                 }
             );
 
+            // Policeplayer03 Light
+            policeplayer03LightButton = new CustomButton(
+                () => {
+                    PoliceAndThief.policeplayer03lightTimer = 10;
+                },
+                () => { return PoliceAndThief.policeplayer03 != null && PoliceAndThief.policeplayer03 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => { return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer03IsReviving; },
+                () => {
+                    policeplayer03LightButton.Timer = policeplayer03LightButton.MaxTimer;
+                    policeplayer03LightButton.isEffectActive = false;
+                    policeplayer03LightButton.actionButton.graphic.color = Palette.EnabledColor;
+                },
+                PoliceAndThief.getLightButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.F,
+                true,
+                10,
+                () => { policeplayer03LightButton.Timer = policeplayer03LightButton.MaxTimer; }
+            );
+
             // Policeplayer04 Kill
             policeplayer04KillButton = new CustomButton(
                 () => {
@@ -4148,7 +4244,13 @@ namespace LasMonjas
                     PoliceAndThief.policeplayer04currentTarget = null;
                 },
                 () => { return PoliceAndThief.policeplayer04 != null && PoliceAndThief.policeplayer04 == PlayerControl.LocalPlayer; },
-                () => { return PoliceAndThief.policeplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool CanUse = true;
+                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                        CanUse = false;
+                    }
+                    return CanUse && PoliceAndThief.policeplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
                 () => { policeplayer04KillButton.Timer = policeplayer04KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4172,7 +4274,7 @@ namespace LasMonjas
                         policeplayer04JailButton.isEffectActive = false;
                     }
 
-                    return PlayerControl.LocalPlayer.CanMove && PoliceAndThief.policeplayer04currentTarget != null;
+                    return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer04IsReviving && PoliceAndThief.policeplayer04currentTarget != null;
                 },
                 () => {
                     PoliceAndThief.policeplayer04targetedPlayer = null;
@@ -4198,6 +4300,27 @@ namespace LasMonjas
                 }
             );
 
+            // Policeplayer04 Light
+            policeplayer04LightButton = new CustomButton(
+                () => {
+                    PoliceAndThief.policeplayer04lightTimer = 10;
+                },
+                () => { return PoliceAndThief.policeplayer04 != null && PoliceAndThief.policeplayer04 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => { return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer04IsReviving; },
+                () => {
+                    policeplayer04LightButton.Timer = policeplayer04LightButton.MaxTimer;
+                    policeplayer04LightButton.isEffectActive = false;
+                    policeplayer04LightButton.actionButton.graphic.color = Palette.EnabledColor;
+                },
+                PoliceAndThief.getLightButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.F,
+                true,
+                10,
+                () => { policeplayer04LightButton.Timer = policeplayer04LightButton.MaxTimer; }
+            );
+
             // Policeplayer05 Kill
             policeplayer05KillButton = new CustomButton(
                 () => {
@@ -4211,7 +4334,13 @@ namespace LasMonjas
                     PoliceAndThief.policeplayer05currentTarget = null;
                 },
                 () => { return PoliceAndThief.policeplayer05 != null && PoliceAndThief.policeplayer05 == PlayerControl.LocalPlayer; },
-                () => { return PoliceAndThief.policeplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool CanUse = true;
+                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                        CanUse = false;
+                    }
+                    return CanUse && PoliceAndThief.policeplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
                 () => { policeplayer05KillButton.Timer = policeplayer05KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4235,7 +4364,7 @@ namespace LasMonjas
                         policeplayer05JailButton.isEffectActive = false;
                     }
 
-                    return PlayerControl.LocalPlayer.CanMove && PoliceAndThief.policeplayer05currentTarget != null;
+                    return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer05IsReviving && PoliceAndThief.policeplayer05currentTarget != null;
                 },
                 () => {
                     PoliceAndThief.policeplayer05targetedPlayer = null;
@@ -4261,6 +4390,27 @@ namespace LasMonjas
                 }
             );
 
+            // Policeplayer05 Light
+            policeplayer05LightButton = new CustomButton(
+                () => {
+                    PoliceAndThief.policeplayer05lightTimer = 10;
+                },
+                () => { return PoliceAndThief.policeplayer05 != null && PoliceAndThief.policeplayer05 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => { return PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer05IsReviving; },
+                () => {
+                    policeplayer05LightButton.Timer = policeplayer05LightButton.MaxTimer;
+                    policeplayer05LightButton.isEffectActive = false;
+                    policeplayer05LightButton.actionButton.graphic.color = Palette.EnabledColor;
+                },
+                PoliceAndThief.getLightButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.F,
+                true,
+                10,
+                () => { policeplayer05LightButton.Timer = policeplayer05LightButton.MaxTimer; }
+            );
+
             // Thiefplayer01 Kill
             thiefplayer01KillButton = new CustomButton(
                 () => {
@@ -4273,7 +4423,7 @@ namespace LasMonjas
                     thiefplayer01KillButton.Timer = thiefplayer01KillButton.MaxTimer;
                     PoliceAndThief.thiefplayer01currentTarget = null;
                 },
-                () => { return PoliceAndThief.thiefplayer01 != null && PoliceAndThief.thiefplayer01 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
+                () => { return PoliceAndThief.thiefplayer01 != null && PoliceAndThief.thiefplayer01 == PlayerControl.LocalPlayer && !PoliceAndThief.thiefplayer01IsReviving && PoliceAndThief.thiefTeamCanKill; },
                 () => { return PoliceAndThief.thiefplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer01IsStealing; },
                 () => { thiefplayer01KillButton.Timer = thiefplayer01KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -4298,7 +4448,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer01FreeThiefButton.Timer = thiefplayer01FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -4340,6 +4490,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer01IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer01JewelId = 1;
@@ -4409,7 +4560,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer01TakeDeliverJewelButton.Timer = thiefplayer01TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -4431,7 +4582,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer02currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer02 != null && PoliceAndThief.thiefplayer02 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer02IsStealing; },
+                () => { return PoliceAndThief.thiefplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer02IsStealing; },
                 () => { thiefplayer02KillButton.Timer = thiefplayer02KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4455,7 +4606,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer02FreeThiefButton.Timer = thiefplayer02FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -4497,6 +4648,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer02IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer02JewelId = 1;
@@ -4566,7 +4718,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer02TakeDeliverJewelButton.Timer = thiefplayer02TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -4588,7 +4740,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer03currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer03 != null && PoliceAndThief.thiefplayer03 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer03IsStealing; },
+                () => { return PoliceAndThief.thiefplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer03IsStealing; },
                 () => { thiefplayer03KillButton.Timer = thiefplayer03KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4612,7 +4764,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer03FreeThiefButton.Timer = thiefplayer03FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -4654,6 +4806,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer03IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer03JewelId = 1;
@@ -4723,7 +4876,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer03TakeDeliverJewelButton.Timer = thiefplayer03TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -4745,7 +4898,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer04currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer04 != null && PoliceAndThief.thiefplayer04 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer04IsStealing; },
+                () => { return PoliceAndThief.thiefplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer04IsStealing; },
                 () => { thiefplayer04KillButton.Timer = thiefplayer04KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4769,7 +4922,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer04FreeThiefButton.Timer = thiefplayer04FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -4811,6 +4964,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer04IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer04JewelId = 1;
@@ -4880,7 +5034,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer04TakeDeliverJewelButton.Timer = thiefplayer04TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -4902,7 +5056,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer05currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer05 != null && PoliceAndThief.thiefplayer05 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer05IsStealing; },
+                () => { return PoliceAndThief.thiefplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer05IsStealing; },
                 () => { thiefplayer05KillButton.Timer = thiefplayer05KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -4926,7 +5080,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer05FreeThiefButton.Timer = thiefplayer05FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -4968,6 +5122,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer05IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer05JewelId = 1;
@@ -5037,7 +5192,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer05TakeDeliverJewelButton.Timer = thiefplayer05TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -5059,7 +5214,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer06currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer06 != null && PoliceAndThief.thiefplayer06 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer06IsStealing; },
+                () => { return PoliceAndThief.thiefplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer06IsStealing; },
                 () => { thiefplayer06KillButton.Timer = thiefplayer06KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -5083,7 +5238,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer06FreeThiefButton.Timer = thiefplayer06FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -5125,6 +5280,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer06IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer06JewelId = 1;
@@ -5194,7 +5350,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer06TakeDeliverJewelButton.Timer = thiefplayer06TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -5216,7 +5372,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer07currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer07 != null && PoliceAndThief.thiefplayer07 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer07IsStealing; },
+                () => { return PoliceAndThief.thiefplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer07IsStealing; },
                 () => { thiefplayer07KillButton.Timer = thiefplayer07KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -5240,7 +5396,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer07FreeThiefButton.Timer = thiefplayer07FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -5282,6 +5438,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer07IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer07JewelId = 1;
@@ -5351,7 +5508,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer07TakeDeliverJewelButton.Timer = thiefplayer07TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -5373,7 +5530,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer08currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer08 != null && PoliceAndThief.thiefplayer08 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer08IsStealing; },
+                () => { return PoliceAndThief.thiefplayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer08IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer08IsStealing; },
                 () => { thiefplayer08KillButton.Timer = thiefplayer08KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -5397,7 +5554,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer08IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer08FreeThiefButton.Timer = thiefplayer08FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -5439,6 +5596,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer08IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer08JewelId = 1;
@@ -5508,7 +5666,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer08IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer08TakeDeliverJewelButton.Timer = thiefplayer08TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -5530,7 +5688,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer09currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer09 != null && PoliceAndThief.thiefplayer09 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer09currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer09IsStealing; },
+                () => { return PoliceAndThief.thiefplayer09currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer09IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer09IsStealing; },
                 () => { thiefplayer09KillButton.Timer = thiefplayer09KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -5554,7 +5712,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer09IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer09FreeThiefButton.Timer = thiefplayer09FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -5596,6 +5754,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer09IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer09JewelId = 1;
@@ -5665,7 +5824,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer09IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer09TakeDeliverJewelButton.Timer = thiefplayer09TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),
@@ -5687,7 +5846,7 @@ namespace LasMonjas
                     PoliceAndThief.thiefplayer10currentTarget = null;
                 },
                 () => { return PoliceAndThief.thiefplayer10 != null && PoliceAndThief.thiefplayer10 == PlayerControl.LocalPlayer && PoliceAndThief.thiefTeamCanKill; },
-                () => { return PoliceAndThief.thiefplayer10currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer10IsStealing; },
+                () => { return PoliceAndThief.thiefplayer10currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer10IsReviving && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.thiefplayer10IsStealing; },
                 () => { thiefplayer10KillButton.Timer = thiefplayer10KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
@@ -5711,7 +5870,7 @@ namespace LasMonjas
                             CanUse = true;
                         }
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer10IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer10FreeThiefButton.Timer = thiefplayer10FreeThiefButton.MaxTimer; },
                 PoliceAndThief.getFreeThiefButtonSprite(),
@@ -5753,6 +5912,7 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer10IsStealing) {
+                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer10JewelId = 1;
@@ -5822,7 +5982,7 @@ namespace LasMonjas
                         }
 
                     }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.thiefplayer10IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => { thiefplayer10TakeDeliverJewelButton.Timer = thiefplayer10TakeDeliverJewelButton.MaxTimer; },
                 PoliceAndThief.getTakeJewelButtonSprite(),

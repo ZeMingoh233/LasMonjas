@@ -46,10 +46,16 @@ namespace LasMonjas
         public static CustomOption thiefModeMatchDuration;
         public static CustomOption thiefModerequiredJewels;
         public static CustomOption thiefModePoliceKillCooldown;
-        public static CustomOption thiefModePoliceCathCooldown;
+        public static CustomOption thiefModePoliceCanKillNearPrison;
+        public static CustomOption thiefModePoliceCanSeeJewels;
+        public static CustomOption thiefModePoliceCatchCooldown;
         public static CustomOption thiefModecaptureThiefTime;
-        public static CustomOption thiefModeReviveTime;
+        public static CustomOption thiefModepolicevision;
+        public static CustomOption thiefModePoliceReviveTime;
         public static CustomOption thiefModeCanKill;
+        public static CustomOption thiefModeKillCooldown;
+        public static CustomOption thiefModeThiefReviveTime;
+        public static CustomOption thiefModeInvincibilityTimeAfterRevive;
 
         // Impostors configurable options
 
@@ -296,17 +302,23 @@ namespace LasMonjas
             requiredFlags = CustomOption.Create(52, cs(Sheriff.color, "Capture the Flag") + ": Score Number", 3f, 3f, 5f, 1f, captureTheFlagMode);
             flagKillCooldown = CustomOption.Create(53, cs(Sheriff.color, "Capture the Flag") + ": Kill Cooldown", 10f, 5f, 15f, 1f, captureTheFlagMode);
             flagReviveTime = CustomOption.Create(54, cs(Sheriff.color, "Capture the Flag") + ": Revive Wait Time", 8f, 7f, 15f, 1f, captureTheFlagMode);
-            flagInvincibilityTimeAfterRevive = CustomOption.Create(55, cs(Sheriff.color, "Capture the Flag") + ": Invencibility Time After Revive", 3f, 2f, 5f, 1f, captureTheFlagMode);
+            flagInvincibilityTimeAfterRevive = CustomOption.Create(55, cs(Sheriff.color, "Capture the Flag") + ": Invincibility Time After Revive", 3f, 2f, 5f, 1f, captureTheFlagMode);
 
             // Police and Thief mode
             policeAndThiefMode = CustomOption.Create(60, cs(TheChosenOne.color, "Police and Thiefs"), rates, null, true);
-            thiefModeMatchDuration = CustomOption.Create(61, cs(TheChosenOne.color, "Police and Thiefs") + ": Match Duration", 450f, 300f, 450f, 30f, policeAndThiefMode);
+            thiefModeMatchDuration = CustomOption.Create(61, cs(TheChosenOne.color, "Police and Thiefs") + ": Match Duration", 300f, 300f, 450f, 30f, policeAndThiefMode);
             thiefModerequiredJewels = CustomOption.Create(62, cs(TheChosenOne.color, "Police and Thiefs") + ": Jewel Number", 15f, 10f, 15f, 1f, policeAndThiefMode);
-            thiefModePoliceKillCooldown = CustomOption.Create(63, cs(TheChosenOne.color, "Police and Thiefs") + ": Kill Cooldown", 15f, 15f, 20f, 1f, policeAndThiefMode);
-            thiefModePoliceCathCooldown = CustomOption.Create(64, cs(TheChosenOne.color, "Police and Thiefs") + ": Arrest Cooldown", 10f, 5f, 15f, 1f, policeAndThiefMode);
-            thiefModecaptureThiefTime = CustomOption.Create(65, cs(TheChosenOne.color, "Police and Thiefs") + ": Time to Arrest", 3f, 3f, 5f, 1f, policeAndThiefMode);
-            thiefModeReviveTime = CustomOption.Create(66, cs(TheChosenOne.color, "Police and Thiefs") + ": Revive Wait Time", 7f, 5f, 10f, 1f, policeAndThiefMode);
-            thiefModeCanKill = CustomOption.Create(67, cs(TheChosenOne.color, "Police and Thiefs") + ": Thiefs Can Kill", false, policeAndThiefMode);
+            thiefModePoliceKillCooldown = CustomOption.Create(63, cs(TheChosenOne.color, "Police and Thiefs") + ": Police Kill Cooldown", 15f, 10f, 20f, 1f, policeAndThiefMode);
+            thiefModePoliceCanKillNearPrison = CustomOption.Create(64, cs(TheChosenOne.color, "Police and Thiefs") + ": Police can Kill near prison", false, policeAndThiefMode);
+            thiefModePoliceCanSeeJewels = CustomOption.Create(65, cs(TheChosenOne.color, "Police and Thiefs") + ": Police can see Jewels", false, policeAndThiefMode);
+            thiefModePoliceCatchCooldown = CustomOption.Create(66, cs(TheChosenOne.color, "Police and Thiefs") + ": Arrest Cooldown", 10f, 5f, 15f, 1f, policeAndThiefMode);
+            thiefModecaptureThiefTime = CustomOption.Create(67, cs(TheChosenOne.color, "Police and Thiefs") + ": Time to Arrest", 3f, 3f, 5f, 1f, policeAndThiefMode);
+            thiefModepolicevision = CustomOption.Create(68, cs(TheChosenOne.color, "Police and Thiefs") + ": Police vision range", 0.8f, 0.4f, 1.4f, 0.2f, policeAndThiefMode);
+            thiefModePoliceReviveTime = CustomOption.Create(69, cs(TheChosenOne.color, "Police and Thiefs") + ": Police Revive Wait Time", 8f, 8f, 13f, 1f, policeAndThiefMode);
+            thiefModeCanKill = CustomOption.Create(70, cs(TheChosenOne.color, "Police and Thiefs") + ": Thiefs Can Kill", false, policeAndThiefMode);
+            thiefModeKillCooldown = CustomOption.Create(71, cs(TheChosenOne.color, "Police and Thiefs") + ": Thiefs Kill Cooldown", 25f, 20f, 30f, 1f, policeAndThiefMode);
+            thiefModeThiefReviveTime = CustomOption.Create(72, cs(TheChosenOne.color, "Police and Thiefs") + ": Thiefs Revive Wait Time", 13f, 13f, 23f, 1f, policeAndThiefMode);
+            thiefModeInvincibilityTimeAfterRevive = CustomOption.Create(73, cs(TheChosenOne.color, "Police and Thiefs") + ": Invincibility Time After Revive", 3f, 2f, 5f, 1f, policeAndThiefMode);
 
             // Modifiers
             activateModifiers = CustomOption.Create(10, cs(Modifiers.color, "Modifiers"), rates, null, true);
