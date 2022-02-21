@@ -32,7 +32,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 \
   
-  **Version 1.0.5
+**Version 1.0.5**
 - Added kill cooldown option for both teams separately on Police and Thiefs
 - Added a new option to define if Police can or not kill near the prison
 - Added an option to define Police vision range with a button to increase vision during the game
@@ -40,7 +40,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 - Added revivie time option for both teams separately on Police and Thiefs
 - Added invincibility time after reviving for Police and Thief
   
-  **Version 1.0.4**
+**Version 1.0.4**
 - Increased minimum value for Capture The Flag Revive Time
 - Added new option for Capture The Flag to define Invencibility Time After Reviving for players
   
