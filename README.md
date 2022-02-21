@@ -31,6 +31,15 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   <summary>Click to show</summary>
 
 \
+  
+  **Version 1.0.5
+- Added kill cooldown option for both teams separately on Police and Thiefs
+- Added a new option to define if Police can or not kill near the prison
+- Added an option to define Police vision range with a button to increase vision during the game
+- Added an option to define if Police can see Jewels on the map (they'll only see when the Thiefs has it)
+- Added revivie time option for both teams separately on Police and Thiefs
+- Added invincibility time after reviving for Police and Thief
+  
   **Version 1.0.4**
 - Increased minimum value for Capture The Flag Revive Time
 - Added new option for Capture The Flag to define Invencibility Time After Reviving for players
@@ -796,26 +805,33 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 |----------|-------------|
 | Match Duration | From 5 to 7 and half minutes |
 | Jewel Number | Jewels needed for Thief team to win, from 10 to 15 |
-| Kill Cooldown | Everyone can kill, Thief team cooldown is multiplied by 1.5 |
+| Police Kill Cooldown | Police team kill cooldown |
+| Police Can Kill Near Prison | Define if police team can kill near the prison |
+| Police Can See Jewels | Define if police team can see jewels on the map |
 | Arrest Cooldown | Police ability to arrest a Thief |
-| Arrest Duration | Police needed time near a Thief to arrest it |
-| Revive Time | Everyone revives on his team base, Thief revive time is multiplied by 1.5 |
+| Time to Arrest | Police needed time near a Thief to arrest it |
+| Police Revive Time | Wait time for Police team to revive |
 | Thiefs Can Kill | Define if Thief team can or not kill |
+| Thiefs Kill Cooldown | Thief team kill cooldown if they can kill |
+| Thiefs Revive Time | Wait time for Thief team to revive |
+| Invencibility Time After Revive | Players can't use their abilities or get killed during this time |
 
 **Additional Gamemode Notes:**
 - Police team always win on match time out and capturing all the Thiefs.
-- Thief team only win if they manager to steal all the Jewels.
+- Thief team only win if they manage to steal all the Jewels.
 - Each player name color will be the same as the team color.
 - Capturing a Thief teleports him to the Prison, another Thief have to push the button outside the prison to release it.
 - Releasing a Thief only release the one who's been more time in Prison, that Thief gets teleported to the Thief spawm base.
-- Everyone can kill, but the Thiefs can also use vents.
+- Thiefs team can use vents.
 - You can't kill (or arrest if you're Police) your teammates.
 - After taking a Jewel, the Thief can't put it back, he has to deliver it and can only take 1 Jewel per time.
 - While taking a Jewel, the Thief can't kill or use vents.
 - Killing or capturing a Thief who has a Jewel makes the Jewel teleports back to its original position.
+- If Police team can't see jewels, they will see only if a Thief is delivering one
 - There are custom messages for match duration, delivered jewel, captured Thief and released Thief, also the game score is always displayed.
 - If a Thief who has a Jewel disconnects from the match, the Jewel stays where that player was.
 - Also if a Thief disconnects, the required captured Thief updates too.
+- Revive Time value is calculated by subtracting Invencibility Time value from it, for example if Revive Time is 8 and Invencibility Time is 3, players will revive after 5 seconds but will be invencible for another 3 seconds after reviving.
 
 -----------------------
 
