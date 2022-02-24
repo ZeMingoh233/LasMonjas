@@ -61,6 +61,22 @@ namespace LasMonjas
         public static RoleInfo thiefplayer09 = new RoleInfo("Thief", Mechanic.color, "Steal all the jewels without getting captured", "Steal all the jewels without getting captured", RoleId.ThiefPlayer09);
         public static RoleInfo thiefplayer10 = new RoleInfo("Thief", Mechanic.color, "Steal all the jewels without getting captured", "Steal all the jewels without getting captured", RoleId.ThiefPlayer10);
 
+        // King of the hill Teams
+        public static RoleInfo greenKing = new RoleInfo("Green King", Color.green, "Capture the zones", "Capture the zones", RoleId.GreenKing);
+        public static RoleInfo greenplayer01 = new RoleInfo("Green Team", Color.green, "Protect your King and green zones", "Protect your King and green zones", RoleId.GreenPlayer01);
+        public static RoleInfo greenplayer02 = new RoleInfo("Green Team", Color.green, "Protect your King and green zones", "Protect your King and green zones", RoleId.GreenPlayer02);
+        public static RoleInfo greenplayer03 = new RoleInfo("Green Team", Color.green, "Protect your King and green zones", "Protect your King and green zones", RoleId.GreenPlayer03);
+        public static RoleInfo greenplayer04 = new RoleInfo("Green Team", Color.green, "Protect your King and green zones", "Protect your King and green zones", RoleId.GreenPlayer04);
+        public static RoleInfo greenplayer05 = new RoleInfo("Green Team", Color.green, "Protect your King and green zones", "Protect your King and green zones", RoleId.GreenPlayer05);
+        public static RoleInfo greenplayer06 = new RoleInfo("Green Team", Color.green, "Protect your King and green zones", "Protect your King and green zones", RoleId.GreenPlayer06);
+        public static RoleInfo yellowKing = new RoleInfo("Yellow King", Color.yellow, "Capture the zones", "Capture the zones", RoleId.YellowKing);
+        public static RoleInfo yellowplayer01 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer01);
+        public static RoleInfo yellowplayer02 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer02);
+        public static RoleInfo yellowplayer03 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer03);
+        public static RoleInfo yellowplayer04 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer04);
+        public static RoleInfo yellowplayer05 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer05);
+        public static RoleInfo yellowplayer06 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer06);
+        public static RoleInfo yellowplayer07 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer07);
 
         // Impostor roles
         public static RoleInfo mimic = new RoleInfo("Mimic", Mimic.color, "Mimic the look of other player", "Mimic the look of other player", RoleId.Mimic);
@@ -201,7 +217,22 @@ namespace LasMonjas
             thiefplayer07,
             thiefplayer08,
             thiefplayer09,
-            thiefplayer10
+            thiefplayer10,
+            greenKing,
+            greenplayer01,
+            greenplayer02,
+            greenplayer03,
+            greenplayer04,
+            greenplayer05,
+            greenplayer06,
+            yellowKing,
+            yellowplayer01,
+            yellowplayer02,
+            yellowplayer03,
+            yellowplayer04,
+            yellowplayer05,
+            yellowplayer06,
+            yellowplayer07
         };
 
         public static List<RoleInfo> getRoleInfoForPlayer(PlayerControl p) {
@@ -241,6 +272,23 @@ namespace LasMonjas
             if (p == PoliceAndThief.thiefplayer08) infos.Add(thiefplayer08);
             if (p == PoliceAndThief.thiefplayer09) infos.Add(thiefplayer09);
             if (p == PoliceAndThief.thiefplayer10) infos.Add(thiefplayer10);
+
+            // King of the hill
+            if (p == KingOfTheHill.greenKingplayer) infos.Add(greenKing);
+            if (p == KingOfTheHill.greenplayer01) infos.Add(greenplayer01);
+            if (p == KingOfTheHill.greenplayer02) infos.Add(greenplayer02);
+            if (p == KingOfTheHill.greenplayer03) infos.Add(greenplayer03);
+            if (p == KingOfTheHill.greenplayer04) infos.Add(greenplayer04);
+            if (p == KingOfTheHill.greenplayer05) infos.Add(greenplayer05);
+            if (p == KingOfTheHill.greenplayer06) infos.Add(greenplayer06);
+            if (p == KingOfTheHill.yellowKingplayer) infos.Add(yellowKing);
+            if (p == KingOfTheHill.yellowplayer01) infos.Add(yellowplayer01);
+            if (p == KingOfTheHill.yellowplayer02) infos.Add(yellowplayer02);
+            if (p == KingOfTheHill.yellowplayer03) infos.Add(yellowplayer03);
+            if (p == KingOfTheHill.yellowplayer04) infos.Add(yellowplayer04);
+            if (p == KingOfTheHill.yellowplayer05) infos.Add(yellowplayer05);
+            if (p == KingOfTheHill.yellowplayer06) infos.Add(yellowplayer06);
+            if (p == KingOfTheHill.yellowplayer07) infos.Add(yellowplayer07);
 
 
             // Impostor roles

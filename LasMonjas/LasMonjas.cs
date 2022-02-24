@@ -35,6 +35,8 @@ namespace LasMonjas
 
         public static bool createdpoliceandthief = false;
 
+        public static bool createdkingofthehill = false;
+        
         public static bool activatedReportButtonAfterCustomMode = false;
 
         public static int quackNumber = 0;
@@ -93,6 +95,8 @@ namespace LasMonjas
 
             PoliceAndThief.clearAndReload();
 
+            KingOfTheHill.clearAndReload();
+            
             removedSwipe = false;
             removedAirshipDoors = false;
             activatedSensei = false;
@@ -101,6 +105,7 @@ namespace LasMonjas
             createdduelarena = false;
             createdcapturetheflag = false;
             createdpoliceandthief = false;
+            createdkingofthehill = false;
             activatedReportButtonAfterCustomMode = false;
             quackNumber = 0;
             alivePlayers = 15;
@@ -2212,6 +2217,224 @@ namespace LasMonjas
         }
     }
 
+    public static class KingOfTheHill
+    {
+        public static List<PlayerControl> greenTeam = new List<PlayerControl>();
+        public static byte whichGreenKingplayerzone = 0;
+        public static int totalGreenKingzonescaptured = 0;
+        public static bool greenKinghaszoneone = false;
+        public static bool greenKinghaszonetwo = false;
+        public static bool greenKinghaszonethree = false;
+        public static PlayerControl greenKingplayer = null;
+        public static PlayerControl greenKingplayercurrentTarget = null;
+        public static bool greenKingIsReviving = false;
+        public static PlayerControl greenplayer01 = null;
+        public static PlayerControl greenplayer01currentTarget = null;
+        public static bool greenplayer01IsReviving = false;
+        public static PlayerControl greenplayer02 = null;
+        public static PlayerControl greenplayer02currentTarget = null;
+        public static bool greenplayer02IsReviving = false;
+        public static PlayerControl greenplayer03 = null;
+        public static PlayerControl greenplayer03currentTarget = null;
+        public static bool greenplayer03IsReviving = false;
+        public static PlayerControl greenplayer04 = null;
+        public static PlayerControl greenplayer04currentTarget = null;
+        public static bool greenplayer04IsReviving = false;
+        public static PlayerControl greenplayer05 = null;
+        public static PlayerControl greenplayer05currentTarget = null;
+        public static bool greenplayer05IsReviving = false;
+        public static PlayerControl greenplayer06 = null;
+        public static PlayerControl greenplayer06currentTarget = null;
+        public static bool greenplayer06IsReviving = false;
+
+        public static List<PlayerControl> yellowTeam = new List<PlayerControl>();
+        public static byte whichYellowKingplayerzone = 0;
+        public static int totalYellowKingzonescaptured = 0;
+        public static bool yellowKinghaszoneone = false;
+        public static bool yellowKinghaszonetwo = false;
+        public static bool yellowKinghaszonethree = false;
+        public static PlayerControl yellowKingplayer = null;
+        public static PlayerControl yellowKingplayercurrentTarget = null;
+        public static bool yellowKingIsReviving = false;
+        public static PlayerControl yellowplayer01 = null;
+        public static PlayerControl yellowplayer01currentTarget = null;
+        public static bool yellowplayer01IsReviving = false;
+        public static PlayerControl yellowplayer02 = null;
+        public static PlayerControl yellowplayer02currentTarget = null;
+        public static bool yellowplayer02IsReviving = false;
+        public static PlayerControl yellowplayer03 = null;
+        public static PlayerControl yellowplayer03currentTarget = null;
+        public static bool yellowplayer03IsReviving = false;
+        public static PlayerControl yellowplayer04 = null;
+        public static PlayerControl yellowplayer04currentTarget = null;
+        public static bool yellowplayer04IsReviving = false;
+        public static PlayerControl yellowplayer05 = null;
+        public static PlayerControl yellowplayer05currentTarget = null;
+        public static bool yellowplayer05IsReviving = false;
+        public static PlayerControl yellowplayer06 = null;
+        public static PlayerControl yellowplayer06currentTarget = null;
+        public static bool yellowplayer06IsReviving = false;
+        public static PlayerControl yellowplayer07 = null;
+        public static PlayerControl yellowplayer07currentTarget = null;
+        public static bool yellowplayer07IsReviving = false;
+
+        public static bool kingOfTheHillMode = false;
+        public static float requiredPoints = 150;
+        public static float captureCooldown = 10f;
+        public static float killCooldown = 10f;
+        public static float matchDuration = 300f;
+        public static bool kingCanKill = false;
+        public static float reviveTime = 5f;
+        public static float kingInvincibilityTimeAfterRevive = 3f;
+
+        public static GameObject greenflag = null;
+        public static float currentGreenTeamPoints = 0;
+        public static bool greenteamAlerted = false;
+
+        public static GameObject yellowflag = null;
+        public static float currentYellowTeamPoints = 0;
+        public static bool yellowteamAlerted = false;
+
+        public static List<GameObject> kingZones = new List<GameObject>();
+        public static GameObject flagzoneone = null;
+        public static GameObject flagzonetwo = null;
+        public static GameObject flagzonethree = null;
+        public static GameObject zoneone = null;
+        public static GameObject zonetwo = null;
+        public static GameObject zonethree = null;
+        public static Color zoneonecolor = Color.white;
+        public static Color zonetwocolor = Color.white;
+        public static Color zonethreecolor = Color.white;
+        public static List<Arrow> localArrows = new List<Arrow>();
+        public static GameObject greenkingaura = null;
+        public static GameObject yellowkingaura = null;
+
+        public static bool triggerGreenTeamWin = false;
+        public static bool triggerYellowTeamWin = false;
+        public static bool triggerDrawWin = false;
+
+        public static string kingpointCounter = "Puntuacion: " + "<color=#00FF00FF>" + currentGreenTeamPoints.ToString("F0") + "</color> - " + "<color=#FFFF00FF>" + currentYellowTeamPoints.ToString("F0") + "</color>";
+
+        private static Sprite buttonSpritePlaceGreenFlag;
+
+        public static Sprite getPlaceGreenFlagButtonSprite() {
+            if (buttonSpritePlaceGreenFlag) return buttonSpritePlaceGreenFlag;
+            buttonSpritePlaceGreenFlag = Helpers.loadSpriteFromResources("LasMonjas.Images.KingOfTheHillGreenCapture.png", 90f);
+            return buttonSpritePlaceGreenFlag;
+        }
+
+        private static Sprite buttonSpritePlaceYellowFlag;
+
+        public static Sprite getPlaceYellowFlagButtonSprite() {
+            if (buttonSpritePlaceYellowFlag) return buttonSpritePlaceYellowFlag;
+            buttonSpritePlaceYellowFlag = Helpers.loadSpriteFromResources("LasMonjas.Images.KingOfTheHillYellowCapture.png", 90f);
+            return buttonSpritePlaceYellowFlag;
+        }
+
+        public static void clearAndReload() {
+            greenTeam.Clear();
+            whichGreenKingplayerzone = 0;
+            totalGreenKingzonescaptured = 0;
+            greenKinghaszoneone = false;
+            greenKinghaszonetwo = false;
+            greenKinghaszonethree = false;
+            greenKingplayer = null;
+            greenKingplayercurrentTarget = null;
+            greenKingIsReviving = false;
+            greenplayer01 = null;
+            greenplayer01currentTarget = null;
+            greenplayer01IsReviving = false;
+            greenplayer02 = null;
+            greenplayer02currentTarget = null;
+            greenplayer02IsReviving = false;
+            greenplayer03 = null;
+            greenplayer03currentTarget = null;
+            greenplayer03IsReviving = false;
+            greenplayer04 = null;
+            greenplayer04currentTarget = null;
+            greenplayer04IsReviving = false;
+            greenplayer05 = null;
+            greenplayer05currentTarget = null;
+            greenplayer05IsReviving = false;
+            greenplayer06 = null;
+            greenplayer06currentTarget = null;
+            greenplayer06IsReviving = false;
+
+            yellowTeam.Clear();
+            whichYellowKingplayerzone = 0;
+            totalYellowKingzonescaptured = 0;
+            yellowKinghaszoneone = false;
+            yellowKinghaszonetwo = false;
+            yellowKinghaszonethree = false;
+            yellowKingplayer = null;
+            yellowKingplayercurrentTarget = null;
+            yellowKingIsReviving = false;
+            yellowplayer01 = null;
+            yellowplayer01currentTarget = null;
+            yellowplayer01IsReviving = false;
+            yellowplayer02 = null;
+            yellowplayer02currentTarget = null;
+            yellowplayer02IsReviving = false;
+            yellowplayer03 = null;
+            yellowplayer03currentTarget = null;
+            yellowplayer03IsReviving = false;
+            yellowplayer04 = null;
+            yellowplayer04currentTarget = null;
+            yellowplayer04IsReviving = false;
+            yellowplayer05 = null;
+            yellowplayer05currentTarget = null;
+            yellowplayer05IsReviving = false;
+            yellowplayer06 = null;
+            yellowplayer06currentTarget = null;
+            yellowplayer06IsReviving = false;
+            yellowplayer07 = null;
+            yellowplayer07currentTarget = null;
+            yellowplayer07IsReviving = false;
+
+            if (CustomOptionHolder.kingOfTheHillMode.getSelection() == 1) {
+                kingOfTheHillMode = true;
+            }
+            else {
+                kingOfTheHillMode = false;
+            }
+
+            requiredPoints = CustomOptionHolder.kingRequiredPoints.getFloat();
+            captureCooldown = CustomOptionHolder.kingCaptureCooldown.getFloat();
+            killCooldown = CustomOptionHolder.kingKillCooldown.getFloat();
+            matchDuration = CustomOptionHolder.kingMatchDuration.getFloat() + 10f;
+            kingCanKill = CustomOptionHolder.kingCanKill.getBool();
+            reviveTime = CustomOptionHolder.kingReviveTime.getFloat();
+            kingInvincibilityTimeAfterRevive = CustomOptionHolder.kingInvincibilityTimeAfterRevive.getFloat();
+
+            greenflag = null;
+            currentGreenTeamPoints = 0;
+            greenteamAlerted = false;
+
+            yellowflag = null;
+            currentYellowTeamPoints = 0;
+            yellowteamAlerted = false;
+
+            kingZones.Clear();
+            flagzoneone = null;
+            flagzonetwo = null;
+            flagzonethree = null;
+            zoneone = null;
+            zonetwo = null;
+            zonethree = null;
+            zoneonecolor = Color.white;
+            zonetwocolor = Color.white;
+            zonethreecolor = Color.white;
+            greenkingaura = null;
+            yellowkingaura = null;
+            triggerGreenTeamWin = false;
+            triggerYellowTeamWin = false;
+            triggerDrawWin = false;
+
+            localArrows = new List<Arrow>();
+            kingpointCounter = "Puntuacion: " + "<color=#00FF00FF>" + currentGreenTeamPoints.ToString("F0") + "</color> - " + "<color=#FFFF00FF>" + currentYellowTeamPoints.ToString("F0") + "</color>";
+        }
+    }
+
     public static class CustomMain
     {
         public static CustomAssets customAssets = new CustomAssets();
@@ -2269,6 +2492,19 @@ namespace LasMonjas
         public GameObject jewelruby;
         public GameObject thiefspaceship;
         public GameObject thiefspaceshiphatch;
+
+        // Custom Bundle King Of The Hill Assets
+        public AudioClip kingOfTheHillMusic;
+        public GameObject whiteflag;
+        public GameObject greenflag;
+        public GameObject yellowflag;
+        public GameObject whitebase;
+        public GameObject greenbase;
+        public GameObject yellowbase;
+        public GameObject greenaura;
+        public GameObject yellowaura;
+        public GameObject greenfloor;
+        public GameObject yellowfloor;
 
         // Custom Map
         public GameObject customMap;

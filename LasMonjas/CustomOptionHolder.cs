@@ -14,7 +14,7 @@ namespace LasMonjas
 {
     public class CustomOptionHolder {
         public static string[] rates = new string[]{"0%", "100%"}; 
-        public static string[] presets = new string[]{"Roles", "Capture the Flag", "Police and Thiefs", "Preset 4", "Preset 5" };
+        public static string[] presets = new string[]{"Roles", "Capture the Flag", "Police and Thiefs", "King of the Hill", "Preset 5" };
 
         // Game Options 
         public static CustomOption presetSelection;
@@ -57,6 +57,16 @@ namespace LasMonjas
         public static CustomOption thiefModeThiefReviveTime;
         public static CustomOption thiefModeInvincibilityTimeAfterRevive;
 
+        // King of the hill
+        public static CustomOption kingOfTheHillMode;
+        public static CustomOption kingMatchDuration;
+        public static CustomOption kingRequiredPoints;
+        public static CustomOption kingCaptureCooldown;
+        public static CustomOption kingKillCooldown;
+        public static CustomOption kingCanKill;
+        public static CustomOption kingReviveTime;
+        public static CustomOption kingInvincibilityTimeAfterRevive;
+        
         // Impostors configurable options
 
         // Mimic
@@ -320,6 +330,16 @@ namespace LasMonjas
             thiefModeThiefReviveTime = CustomOption.Create(72, cs(TheChosenOne.color, "Police and Thiefs") + ": Thiefs Revive Wait Time", 13f, 13f, 23f, 1f, policeAndThiefMode);
             thiefModeInvincibilityTimeAfterRevive = CustomOption.Create(73, cs(TheChosenOne.color, "Police and Thiefs") + ": Invincibility Time After Revive", 3f, 2f, 5f, 1f, policeAndThiefMode);
 
+            // King of the hill mode
+            kingOfTheHillMode = CustomOption.Create(80, cs(Squire.color, "King of the Hill"), rates, null, true);
+            kingMatchDuration = CustomOption.Create(81, cs(Squire.color, "King of the Hill") + ": Match Duration", 180f, 180f, 300f, 30f, kingOfTheHillMode);
+            kingRequiredPoints = CustomOption.Create(82, cs(Squire.color, "King of the Hill") + ": Score Number", 150f, 100f, 200f, 10f, kingOfTheHillMode);
+            kingCaptureCooldown = CustomOption.Create(83, cs(Squire.color, "King of the Hill") + ": Capture Cooldown", 10f, 10f, 20f, 1f, kingOfTheHillMode);
+            kingKillCooldown = CustomOption.Create(84, cs(Squire.color, "King of the Hill") + ": Kill Cooldown", 10f, 10f, 20f, 1f, kingOfTheHillMode);
+            kingCanKill = CustomOption.Create(85, cs(Squire.color, "King of the Hill") + ": Kings can Kill", false, kingOfTheHillMode);
+            kingReviveTime = CustomOption.Create(86, cs(Squire.color, "King of the Hill") + ": Revive Wait Time", 13f, 13f, 18f, 1f, kingOfTheHillMode);
+            kingInvincibilityTimeAfterRevive = CustomOption.Create(87, cs(Squire.color, "King of the Hill") + ": Invincibility Time After Revive", 3f, 2f, 5f, 1f, kingOfTheHillMode);
+            
             // Modifiers
             activateModifiers = CustomOption.Create(10, cs(Modifiers.color, "Modifiers"), rates, null, true);
             activateRoles = CustomOption.Create(11, cs(Modifiers.color, "Roles") + ": Activate mod roles and deactivate vanilla ones", true, activateModifiers);

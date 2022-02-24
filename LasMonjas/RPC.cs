@@ -100,7 +100,24 @@ namespace LasMonjas
         ThiefPlayer07,
         ThiefPlayer08,
         ThiefPlayer09,
-        ThiefPlayer10
+        ThiefPlayer10,
+
+        // King of the Hill
+        GreenKing,
+        GreenPlayer01,
+        GreenPlayer02,
+        GreenPlayer03,
+        GreenPlayer04,
+        GreenPlayer05,
+        GreenPlayer06,
+        YellowKing,
+        YellowPlayer01,
+        YellowPlayer02,
+        YellowPlayer03,
+        YellowPlayer04,
+        YellowPlayer05,
+        YellowPlayer06,
+        YellowPlayer07
     }
 
     enum CustomRPC
@@ -189,7 +206,11 @@ namespace LasMonjas
         PoliceandThiefFreeThief,
         PoliceandThiefTakeJewel,
         PoliceandThiefDeliverJewel,
-        PoliceandThiefRevertedJewelPosition
+        PoliceandThiefRevertedJewelPosition,
+
+        // King of the hill
+        KingoftheHillKills,
+        KingoftheHillCapture
     }
 
     public static class RPCProcedure
@@ -503,6 +524,68 @@ namespace LasMonjas
                         case RoleId.ThiefPlayer10:
                             PoliceAndThief.thiefplayer10 = player;
                             PoliceAndThief.thiefTeam.Add(player);
+                            break;
+
+                        // King of the Hill
+                        case RoleId.GreenKing:
+                            KingOfTheHill.greenKingplayer = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.GreenPlayer01:
+                            KingOfTheHill.greenplayer01 = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.GreenPlayer02:
+                            KingOfTheHill.greenplayer02 = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.GreenPlayer03:
+                            KingOfTheHill.greenplayer03 = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.GreenPlayer04:
+                            KingOfTheHill.greenplayer04 = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.GreenPlayer05:
+                            KingOfTheHill.greenplayer05 = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.GreenPlayer06:
+                            KingOfTheHill.greenplayer06 = player;
+                            KingOfTheHill.greenTeam.Add(player);
+                            break;
+                        case RoleId.YellowKing:
+                            KingOfTheHill.yellowKingplayer = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer01:
+                            KingOfTheHill.yellowplayer01 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer02:
+                            KingOfTheHill.yellowplayer02 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer03:
+                            KingOfTheHill.yellowplayer03 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer04:
+                            KingOfTheHill.yellowplayer04 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer05:
+                            KingOfTheHill.yellowplayer05 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer06:
+                            KingOfTheHill.yellowplayer06 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
+                            break;
+                        case RoleId.YellowPlayer07:
+                            KingOfTheHill.yellowplayer07 = player;
+                            KingOfTheHill.yellowTeam.Add(player);
                             break;
                     }
                 }
@@ -1785,7 +1868,7 @@ namespace LasMonjas
         public static void changeMusic(byte whichmusic) {
             SoundManager.Instance.StopSound(CustomMain.customAssets.bombermanBombMusic);
             SoundManager.Instance.StopSound(CustomMain.customAssets.challengerDuelMusic);
-            if (MapOptions.activateMusic && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode))) {
+            if (MapOptions.activateMusic && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))) {
                 int alivePlayers = 0;
                 int totalPlayers = 0;
                 foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
@@ -3028,6 +3111,168 @@ namespace LasMonjas
                 }
             }
         }
+
+        public static void kingOfTheHillKills(byte targetId, int whichplayer) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId) {
+                    switch (whichplayer) {
+                        case 1:
+                            KingOfTheHill.greenplayer01.MurderPlayer(player);
+                            break;
+                        case 2:
+                            KingOfTheHill.greenplayer02.MurderPlayer(player);
+                            break;
+                        case 3:
+                            KingOfTheHill.greenplayer03.MurderPlayer(player);
+                            break;
+                        case 4:
+                            KingOfTheHill.greenplayer04.MurderPlayer(player);
+                            break;
+                        case 5:
+                            KingOfTheHill.greenplayer05.MurderPlayer(player);
+                            break;
+                        case 6:
+                            KingOfTheHill.greenplayer06.MurderPlayer(player);
+                            break;
+                        case 7:
+                            KingOfTheHill.greenKingplayer.MurderPlayer(player);
+                            break;
+                        case 9:
+                            KingOfTheHill.yellowplayer01.MurderPlayer(player);
+                            break;
+                        case 10:
+                            KingOfTheHill.yellowplayer02.MurderPlayer(player);
+                            break;
+                        case 11:
+                            KingOfTheHill.yellowplayer03.MurderPlayer(player);
+                            break;
+                        case 12:
+                            KingOfTheHill.yellowplayer04.MurderPlayer(player);
+                            break;
+                        case 13:
+                            KingOfTheHill.yellowplayer05.MurderPlayer(player);
+                            break;
+                        case 14:
+                            KingOfTheHill.yellowplayer06.MurderPlayer(player);
+                            break;
+                        case 15:
+                            KingOfTheHill.yellowplayer07.MurderPlayer(player);
+                            break;
+                        case 16:
+                            KingOfTheHill.yellowKingplayer.MurderPlayer(player);
+                            break;
+                    }
+                    return;
+                }
+            }
+        }
+
+        public static void kingoftheHillCapture(int whichzone, int whichking) {
+
+            // Green team
+            if (whichking == 1) {
+                switch (whichzone) {
+                    case 1:
+                        if (KingOfTheHill.yellowKinghaszoneone) {
+                            KingOfTheHill.yellowKinghaszoneone = false;
+                            KingOfTheHill.totalYellowKingzonescaptured -= 1;
+                        }
+                        KingOfTheHill.flagzoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.greenflag.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.greenbase.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zoneonecolor = Color.green;
+                        KingOfTheHill.greenKinghaszoneone = true;
+                        KingOfTheHill.yellowteamAlerted = false;
+                        KingOfTheHill.totalGreenKingzonescaptured += 1;
+                        break;
+                    case 2:
+                        if (KingOfTheHill.yellowKinghaszonetwo) {
+                            KingOfTheHill.yellowKinghaszonetwo = false;
+                            KingOfTheHill.totalYellowKingzonescaptured -= 1;
+                        }
+                        KingOfTheHill.flagzonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.greenflag.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.greenbase.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonetwocolor = Color.green;
+                        KingOfTheHill.greenKinghaszonetwo = true;
+                        KingOfTheHill.yellowteamAlerted = false;
+                        KingOfTheHill.totalGreenKingzonescaptured += 1;
+                        break;
+                    case 3:
+                        if (KingOfTheHill.yellowKinghaszonethree) {
+                            KingOfTheHill.yellowKinghaszonethree = false;
+                            KingOfTheHill.totalYellowKingzonescaptured -= 1;
+                        }
+                        KingOfTheHill.flagzonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.greenflag.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.greenbase.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonethreecolor = Color.green;
+                        KingOfTheHill.greenKinghaszonethree = true;
+                        KingOfTheHill.yellowteamAlerted = false;
+                        KingOfTheHill.totalGreenKingzonescaptured += 1;
+                        break;
+                }
+
+                // Alert yellow team players
+                if (!KingOfTheHill.yellowteamAlerted) {
+                    KingOfTheHill.yellowteamAlerted = true;
+                    foreach (PlayerControl yellowplayer in KingOfTheHill.yellowTeam) {
+                        if (yellowplayer == PlayerControl.LocalPlayer && yellowplayer != null) {
+                            new CustomMessage("<color=#00FF00FF>Green King</color> has captured a zone!", 5, -1, 1.3f, 11);
+                        }
+                    }
+                }
+            }
+
+            // Yellow team
+            if (whichking == 2) {
+                switch (whichzone) {
+                    case 1:
+                        if (KingOfTheHill.greenKinghaszoneone) {
+                            KingOfTheHill.greenKinghaszoneone = false;
+                            KingOfTheHill.totalGreenKingzonescaptured -= 1;
+                        }
+                        KingOfTheHill.flagzoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.yellowflag.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.yellowbase.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zoneonecolor = Color.yellow;
+                        KingOfTheHill.yellowKinghaszoneone = true;
+                        KingOfTheHill.greenteamAlerted = false;
+                        KingOfTheHill.totalYellowKingzonescaptured += 1;
+                        break;
+                    case 2:
+                        if (KingOfTheHill.greenKinghaszonetwo) {
+                            KingOfTheHill.greenKinghaszonetwo = false;
+                            KingOfTheHill.totalGreenKingzonescaptured -= 1;
+                        }
+                        KingOfTheHill.flagzonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.yellowflag.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.yellowbase.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonetwocolor = Color.yellow;
+                        KingOfTheHill.yellowKinghaszonetwo = true;
+                        KingOfTheHill.greenteamAlerted = false;
+                        KingOfTheHill.totalYellowKingzonescaptured += 1;
+                        break;
+                    case 3:
+                        if (KingOfTheHill.greenKinghaszonethree) {
+                            KingOfTheHill.greenKinghaszonethree = false;
+                            KingOfTheHill.totalGreenKingzonescaptured -= 1;
+                        }
+                        KingOfTheHill.flagzonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.yellowflag.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.yellowbase.GetComponent<SpriteRenderer>().sprite;
+                        KingOfTheHill.zonethreecolor = Color.yellow;
+                        KingOfTheHill.yellowKinghaszonethree = true;
+                        KingOfTheHill.greenteamAlerted = false;
+                        KingOfTheHill.totalYellowKingzonescaptured += 1;
+                        break;
+                }
+
+                // Alert green team players
+                if (!KingOfTheHill.greenteamAlerted) {
+                    KingOfTheHill.greenteamAlerted = true;
+                    foreach (PlayerControl greenplayer in KingOfTheHill.greenTeam) {
+                        if (greenplayer == PlayerControl.LocalPlayer && greenplayer != null) {
+                            new CustomMessage("<color=#FFFF00FF>Yellow King</color> has captured a zone!", 5, -1, 1.3f, 11);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
@@ -3318,6 +3563,18 @@ namespace LasMonjas
                     byte thiefWhoLostJewel = reader.ReadByte();
                     byte jewelRevertedId = reader.ReadByte();
                     RPCProcedure.policeandThiefRevertedJewelPosition(thiefWhoLostJewel, jewelRevertedId);
+                    break;
+
+                // King of the hill funtionality
+                case (byte)CustomRPC.KingoftheHillKills:
+                    byte killerId = reader.ReadByte();
+                    byte whichteamplayer = reader.ReadByte();
+                    RPCProcedure.kingOfTheHillKills(killerId, whichteamplayer);
+                    break;
+                case (byte)CustomRPC.KingoftheHillCapture:
+                    byte capturedId = reader.ReadByte();
+                    byte whichKingCaptured = reader.ReadByte();
+                    RPCProcedure.kingoftheHillCapture(capturedId, whichKingCaptured);
                     break;
             }
         }

@@ -155,6 +155,25 @@ namespace LasMonjas
         private static CustomButton thiefplayer10FreeThiefButton;
         private static CustomButton thiefplayer10TakeDeliverJewelButton;
 
+        // King of the hill buttons
+        private static CustomButton greenKingplayerKillButton;
+        private static CustomButton greenKingplayerCaptureZoneButton;
+        private static CustomButton greenplayer01KillButton;
+        private static CustomButton greenplayer02KillButton;
+        private static CustomButton greenplayer03KillButton;
+        private static CustomButton greenplayer04KillButton;
+        private static CustomButton greenplayer05KillButton;
+        private static CustomButton greenplayer06KillButton;
+        private static CustomButton yellowKingplayerKillButton;
+        private static CustomButton yellowKingplayerCaptureZoneButton;
+        private static CustomButton yellowplayer01KillButton;
+        private static CustomButton yellowplayer02KillButton;
+        private static CustomButton yellowplayer03KillButton;
+        private static CustomButton yellowplayer04KillButton;
+        private static CustomButton yellowplayer05KillButton;
+        private static CustomButton yellowplayer06KillButton;
+        private static CustomButton yellowplayer07KillButton;
+
         public static void setCustomButtonCooldowns() {
             // Impostor buttons
             mimicTransformButton.MaxTimer = Mimic.cooldown;
@@ -337,6 +356,24 @@ namespace LasMonjas
             thiefplayer10FreeThiefButton.MaxTimer = 20f;
             thiefplayer10TakeDeliverJewelButton.MaxTimer = 5f;
 
+            // King of the hill buttons
+            greenKingplayerCaptureZoneButton.MaxTimer = KingOfTheHill.captureCooldown;
+            greenKingplayerKillButton.MaxTimer = KingOfTheHill.killCooldown;
+            greenplayer01KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            greenplayer02KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            greenplayer03KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            greenplayer04KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            greenplayer05KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            greenplayer06KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowKingplayerCaptureZoneButton.MaxTimer = KingOfTheHill.captureCooldown;
+            yellowKingplayerKillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer01KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer02KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer03KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer04KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer05KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer06KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            yellowplayer07KillButton.MaxTimer = KingOfTheHill.killCooldown;
         }
 
         public static void resetBomberBombButton() {
@@ -5989,6 +6026,547 @@ namespace LasMonjas
                 new Vector3(-0.9f, -0.06f, 0),
                 __instance,
                 KeyCode.T
+            );
+
+            // King of the hill buttons
+            // greenplayer01 Kill
+            greenplayer01KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenplayer01currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(1);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 1);
+                    greenplayer01KillButton.Timer = greenplayer01KillButton.MaxTimer;
+                    KingOfTheHill.greenplayer01currentTarget = null;
+                },
+                () => { return KingOfTheHill.greenplayer01 != null && KingOfTheHill.greenplayer01 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.greenplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenplayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenplayer01KillButton.Timer = greenplayer01KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenplayer02 Kill
+            greenplayer02KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenplayer02currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(2);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 2);
+                    greenplayer02KillButton.Timer = greenplayer02KillButton.MaxTimer;
+                    KingOfTheHill.greenplayer02currentTarget = null;
+                },
+                () => { return KingOfTheHill.greenplayer02 != null && KingOfTheHill.greenplayer02 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.greenplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenplayer02KillButton.Timer = greenplayer02KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenplayer03 Kill
+            greenplayer03KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenplayer03currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(3);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 3);
+                    greenplayer03KillButton.Timer = greenplayer03KillButton.MaxTimer;
+                    KingOfTheHill.greenplayer03currentTarget = null;
+                },
+                () => { return KingOfTheHill.greenplayer03 != null && KingOfTheHill.greenplayer03 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.greenplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenplayer03KillButton.Timer = greenplayer03KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenplayer04 Kill
+            greenplayer04KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenplayer04currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(4);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 4);
+                    greenplayer04KillButton.Timer = greenplayer04KillButton.MaxTimer;
+                    KingOfTheHill.greenplayer04currentTarget = null;
+                },
+                () => { return KingOfTheHill.greenplayer04 != null && KingOfTheHill.greenplayer04 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.greenplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenplayer04KillButton.Timer = greenplayer04KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenplayer05 Kill
+            greenplayer05KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenplayer05currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(5);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 5);
+                    greenplayer05KillButton.Timer = greenplayer05KillButton.MaxTimer;
+                    KingOfTheHill.greenplayer05currentTarget = null;
+                },
+                () => { return KingOfTheHill.greenplayer05 != null && KingOfTheHill.greenplayer05 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.greenplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenplayer05KillButton.Timer = greenplayer05KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenplayer06 Kill
+            greenplayer06KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenplayer06currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(6);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 6);
+                    greenplayer06KillButton.Timer = greenplayer06KillButton.MaxTimer;
+                    KingOfTheHill.greenplayer06currentTarget = null;
+                },
+                () => { return KingOfTheHill.greenplayer06 != null && KingOfTheHill.greenplayer06 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.greenplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenplayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenplayer06KillButton.Timer = greenplayer06KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenKingplayer Kill
+            greenKingplayerKillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.greenKingplayercurrentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(7);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 7);
+                    greenKingplayerKillButton.Timer = greenKingplayerKillButton.MaxTimer;
+                    KingOfTheHill.greenKingplayercurrentTarget = null;
+                },
+                () => { return KingOfTheHill.greenKingplayer != null && KingOfTheHill.greenKingplayer == PlayerControl.LocalPlayer && KingOfTheHill.kingCanKill; },
+                () => { return KingOfTheHill.greenKingplayercurrentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenKingIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenKingplayerKillButton.Timer = greenKingplayerKillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowplayer01 Kill
+            yellowplayer01KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer01currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(9);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 9);
+                    yellowplayer01KillButton.Timer = yellowplayer01KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer01currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer01 != null && KingOfTheHill.yellowplayer01 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer01KillButton.Timer = yellowplayer01KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+
+            // yellowplayer02 Kill
+            yellowplayer02KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer02currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(10);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 10);
+                    yellowplayer02KillButton.Timer = yellowplayer02KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer02currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer02 != null && KingOfTheHill.yellowplayer02 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer02KillButton.Timer = yellowplayer02KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowplayer03 Kill
+            yellowplayer03KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer03currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(11);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 11);
+                    yellowplayer03KillButton.Timer = yellowplayer03KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer03currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer03 != null && KingOfTheHill.yellowplayer03 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer03KillButton.Timer = yellowplayer03KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowplayer04 Kill
+            yellowplayer04KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer04currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(12);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 12);
+                    yellowplayer04KillButton.Timer = yellowplayer04KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer04currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer04 != null && KingOfTheHill.yellowplayer04 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer04KillButton.Timer = yellowplayer04KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowplayer05 Kill
+            yellowplayer05KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer05currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(13);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 13);
+                    yellowplayer05KillButton.Timer = yellowplayer05KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer05currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer05 != null && KingOfTheHill.yellowplayer05 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer05KillButton.Timer = yellowplayer05KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowplayer06 Kill
+            yellowplayer06KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer06currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(14);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 14);
+                    yellowplayer06KillButton.Timer = yellowplayer06KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer06currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer06 != null && KingOfTheHill.yellowplayer06 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer06KillButton.Timer = yellowplayer06KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowplayer07 Kill
+            yellowplayer07KillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowplayer07currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(15);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 15);
+                    yellowplayer07KillButton.Timer = yellowplayer07KillButton.MaxTimer;
+                    KingOfTheHill.yellowplayer07currentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowplayer07 != null && KingOfTheHill.yellowplayer07 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    return KingOfTheHill.yellowplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowplayer07KillButton.Timer = yellowplayer07KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // yellowKingplayer Kill
+            yellowKingplayerKillButton = new CustomButton(
+                () => {
+                    byte targetId = KingOfTheHill.yellowKingplayercurrentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(16);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.kingOfTheHillKills(targetId, 16);
+                    yellowKingplayerKillButton.Timer = yellowKingplayerKillButton.MaxTimer;
+                    KingOfTheHill.yellowKingplayercurrentTarget = null;
+                },
+                () => { return KingOfTheHill.yellowKingplayer != null && KingOfTheHill.yellowKingplayer == PlayerControl.LocalPlayer && KingOfTheHill.kingCanKill; },
+                () => { return KingOfTheHill.yellowKingplayercurrentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowKingIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowKingplayerKillButton.Timer = yellowKingplayerKillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // greenKingplayer Capture
+            greenKingplayerCaptureZoneButton = new CustomButton(
+                () => {
+
+                    if (KingOfTheHill.whichGreenKingplayerzone != 0) {
+                        greenKingplayerCaptureZoneButton.HasEffect = true;
+                    }
+
+                },
+                () => { return KingOfTheHill.greenKingplayer != null && KingOfTheHill.greenKingplayer == PlayerControl.LocalPlayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    bool CanUse = false;
+                    KingOfTheHill.whichGreenKingplayerzone = 0;
+                    if (KingOfTheHill.kingZones.Count != 0) {
+                        foreach (GameObject zone in KingOfTheHill.kingZones) {
+                            if (zone != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, zone.transform.position) < 0.5f) {
+                                switch (zone.name) {
+                                    case "zoneone":
+                                        KingOfTheHill.whichGreenKingplayerzone = 1;
+                                        CanUse = !KingOfTheHill.greenKinghaszoneone;
+                                        break;
+                                    case "zonetwo":
+                                        KingOfTheHill.whichGreenKingplayerzone = 2;
+                                        CanUse = !KingOfTheHill.greenKinghaszonetwo;
+                                        break;
+                                    case "zonethree":
+                                        KingOfTheHill.whichGreenKingplayerzone = 3;
+                                        CanUse = !KingOfTheHill.greenKinghaszonethree;
+                                        break;
+                                }
+                            }
+                        }
+                        if (greenKingplayerCaptureZoneButton.isEffectActive && KingOfTheHill.whichGreenKingplayerzone == 0) {
+                            greenKingplayerCaptureZoneButton.Timer = 0f;
+                            greenKingplayerCaptureZoneButton.isEffectActive = false;
+                        }
+
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.greenKingIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { greenKingplayerCaptureZoneButton.Timer = greenKingplayerCaptureZoneButton.MaxTimer; },
+                KingOfTheHill.getPlaceGreenFlagButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                true,
+                3,
+                () => {
+                    if (KingOfTheHill.whichGreenKingplayerzone != 0) {
+                        byte zoneId = KingOfTheHill.whichGreenKingplayerzone;
+                        MessageWriter greenKingCaptured = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillCapture, Hazel.SendOption.Reliable, -1);
+                        greenKingCaptured.Write(zoneId);
+                        greenKingCaptured.Write(1);
+                        AmongUsClient.Instance.FinishRpcImmediately(greenKingCaptured);
+                        RPCProcedure.kingoftheHillCapture(zoneId, 1);
+
+                        greenKingplayerCaptureZoneButton.Timer = greenKingplayerCaptureZoneButton.MaxTimer;
+                    }
+                }
+            );
+
+            // yellowKingplayer Capture
+            yellowKingplayerCaptureZoneButton = new CustomButton(
+                () => {
+
+                    if (KingOfTheHill.whichYellowKingplayerzone != 0) {
+                        yellowKingplayerCaptureZoneButton.HasEffect = true;
+                    }
+
+                },
+                () => { return KingOfTheHill.yellowKingplayer != null && KingOfTheHill.yellowKingplayer == PlayerControl.LocalPlayer; },
+                () => {
+                    if (KingOfTheHill.localArrows.Count != 0) {
+                        KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
+                        KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
+                        KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
+                    }
+                    bool CanUse = false;
+                    KingOfTheHill.whichYellowKingplayerzone = 0;
+                    if (KingOfTheHill.kingZones.Count != 0) {
+                        foreach (GameObject zone in KingOfTheHill.kingZones) {
+                            if (zone != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, zone.transform.position) < 0.5f) {
+                                switch (zone.name) {
+                                    case "zoneone":
+                                        KingOfTheHill.whichYellowKingplayerzone = 1;
+                                        CanUse = !KingOfTheHill.yellowKinghaszoneone;
+                                        break;
+                                    case "zonetwo":
+                                        KingOfTheHill.whichYellowKingplayerzone = 2;
+                                        CanUse = !KingOfTheHill.yellowKinghaszonetwo;
+                                        break;
+                                    case "zonethree":
+                                        KingOfTheHill.whichYellowKingplayerzone = 3;
+                                        CanUse = !KingOfTheHill.yellowKinghaszonethree;
+                                        break;
+                                }
+                            }
+                        }
+                        if (yellowKingplayerCaptureZoneButton.isEffectActive && KingOfTheHill.whichYellowKingplayerzone == 0) {
+                            yellowKingplayerCaptureZoneButton.Timer = 0f;
+                            yellowKingplayerCaptureZoneButton.isEffectActive = false;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowKingIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { yellowKingplayerCaptureZoneButton.Timer = yellowKingplayerCaptureZoneButton.MaxTimer; },
+                KingOfTheHill.getPlaceYellowFlagButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                true,
+                3,
+                () => {
+                    if (KingOfTheHill.whichYellowKingplayerzone != 0) {
+                        byte zoneId = KingOfTheHill.whichYellowKingplayerzone;
+                        MessageWriter yellowKingCaptured = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillCapture, Hazel.SendOption.Reliable, -1);
+                        yellowKingCaptured.Write(zoneId);
+                        yellowKingCaptured.Write(2);
+                        AmongUsClient.Instance.FinishRpcImmediately(yellowKingCaptured);
+                        RPCProcedure.kingoftheHillCapture(zoneId, 2);
+
+                        yellowKingplayerCaptureZoneButton.Timer = yellowKingplayerCaptureZoneButton.MaxTimer;
+                    }
+                }
             );
 
             setCustomButtonCooldowns();

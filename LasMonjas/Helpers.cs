@@ -253,16 +253,61 @@ namespace LasMonjas
 
         public static bool roleCanUseVents(this PlayerControl player) {
             bool roleCouldUse = false;
-            if (CaptureTheFlag.captureTheFlagMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode) {
-                if (PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+            if (CaptureTheFlag.captureTheFlagMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+                if (PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag
+                    && (PlayerControl.LocalPlayer == CaptureTheFlag.redplayer01 && !CaptureTheFlag.redplayer01IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer02 && !CaptureTheFlag.redplayer02IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer03 && !CaptureTheFlag.redplayer03IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer04 && !CaptureTheFlag.redplayer04IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer05 && !CaptureTheFlag.redplayer05IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer06 && !CaptureTheFlag.redplayer06IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer07 && !CaptureTheFlag.redplayer07IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer01 && !CaptureTheFlag.blueplayer01IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer02 && !CaptureTheFlag.blueplayer02IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer03 && !CaptureTheFlag.blueplayer03IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer04 && !CaptureTheFlag.blueplayer04IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer05 && !CaptureTheFlag.blueplayer05IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer06 && !CaptureTheFlag.blueplayer06IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer07 && !CaptureTheFlag.blueplayer07IsReviving
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer08 && !CaptureTheFlag.blueplayer08IsReviving)) {
                     roleCouldUse = true;
                 }
                 else {
                     roleCouldUse = false;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && PlayerControl.LocalPlayer == player && !CaptureTheFlag.captureTheFlagMode) {
-                if (PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer01 && !PoliceAndThief.thiefplayer01IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer02 && !PoliceAndThief.thiefplayer02IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer03 && !PoliceAndThief.thiefplayer03IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer04 && !PoliceAndThief.thiefplayer04IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer05 && !PoliceAndThief.thiefplayer05IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer06 && !PoliceAndThief.thiefplayer06IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer07 && !PoliceAndThief.thiefplayer07IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer08 && !PoliceAndThief.thiefplayer08IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer09 && !PoliceAndThief.thiefplayer09IsStealing || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer10 && !PoliceAndThief.thiefplayer10IsStealing) {
+            else if (PoliceAndThief.policeAndThiefMode && PlayerControl.LocalPlayer == player && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+                if (PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer01 && !PoliceAndThief.thiefplayer01IsStealing && !PoliceAndThief.thiefplayer01IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer02 && !PoliceAndThief.thiefplayer02IsStealing && !PoliceAndThief.thiefplayer02IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer03 && !PoliceAndThief.thiefplayer03IsStealing && !PoliceAndThief.thiefplayer03IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer04 && !PoliceAndThief.thiefplayer04IsStealing && !PoliceAndThief.thiefplayer04IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer05 && !PoliceAndThief.thiefplayer05IsStealing && !PoliceAndThief.thiefplayer05IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer06 && !PoliceAndThief.thiefplayer06IsStealing && !PoliceAndThief.thiefplayer06IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer07 && !PoliceAndThief.thiefplayer07IsStealing && !PoliceAndThief.thiefplayer07IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer08 && !PoliceAndThief.thiefplayer08IsStealing && !PoliceAndThief.thiefplayer08IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer09 && !PoliceAndThief.thiefplayer09IsStealing && !PoliceAndThief.thiefplayer09IsReviving 
+                    || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer10 && !PoliceAndThief.thiefplayer10IsStealing && !PoliceAndThief.thiefplayer10IsReviving) {
+                    roleCouldUse = true;
+                }
+                else {
+                    roleCouldUse = false;
+                }
+            }
+            else if (KingOfTheHill.kingOfTheHillMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                if (PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer
+                    && (PlayerControl.LocalPlayer == KingOfTheHill.greenplayer01 && !KingOfTheHill.greenplayer01IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer02 && !KingOfTheHill.greenplayer02IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer03 && !KingOfTheHill.greenplayer03IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer04 && !KingOfTheHill.greenplayer04IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer05 && !KingOfTheHill.greenplayer05IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer06 && !KingOfTheHill.greenplayer06IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer01 && !KingOfTheHill.yellowplayer01IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer02 && !KingOfTheHill.yellowplayer02IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer03 && !KingOfTheHill.yellowplayer03IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer04 && !KingOfTheHill.yellowplayer04IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 && !KingOfTheHill.yellowplayer05IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06 && !KingOfTheHill.yellowplayer06IsReviving
+                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer07 && !KingOfTheHill.yellowplayer07IsReviving)) {
                     roleCouldUse = true;
                 }
                 else {
