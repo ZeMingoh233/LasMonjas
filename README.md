@@ -844,12 +844,12 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 
 ## KingOfTheHill
 
-Match between green and yellow team. There's a total of 3 capturable zones in the map and team has a King who can capture them. Among us support 15 players, which is an odd number. On this gamemode yellow team will always have an extra player if you're playing with an odd player number, in order to balance this, green team is a little closer to the zones.
+Match between green and yellow team. There's a total of 3 capturable zones in the map and each team has a King who can capture them. Among us support 15 players, which is an odd number. On this gamemode yellow team will always have an extra player if you're playing with an odd player number, in order to balance this, green team is a little closer to the zones.
 
 | Option  | Description |
 |----------|-------------|
 | Match Duration | From 3 to 5 minutes |
-| Required Points | Poitns required to win, from 100 to 200 |
+| Required Points | Points required to win, from 100 to 200 |
 | Capture Cooldown | King capture ability cooldown |
 | Kill Cooldown | Player's kill coooldown |
 | Kings can Kill | Define if Kings can also kill |
