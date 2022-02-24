@@ -6,7 +6,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   1. [40 roles](#roles)
   2. [11 modifiers](#modifiers)
   3. [1 custom map](#modifiers)
-  4. [2 custom gamemodes](#gamemodes)
+  4. [3 custom gamemodes](#gamemodes)
   5. [2 new colors](#settings)
   6. [Custom Music](#settings)
   7. [Custom Lobby](#settings)
@@ -32,6 +32,11 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 \
   
+**Version 1.1.0**
+- You can no longer vent on custom gamemodes while reviving
+- Squire's shield is no longer visible during Challenger's duel
+- New Gamemode: King Of The Hill
+  
 **Version 1.0.5**
 - Added kill cooldown option for both teams separately on Police and Thiefs
 - Added a new option to define if Police can or not kill near the prison
@@ -42,7 +47,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   
 **Version 1.0.4**
 - Increased minimum value for Capture The Flag Revive Time
-- Added new option for Capture The Flag to define Invencibility Time After Reviving for players
+- Added new option for Capture The Flag to define Invincibility Time After Reviving for players
   
 **Version 1.0.3**
 - Reduced minimum Yinyanger cooldown to 15 sec
@@ -770,7 +775,7 @@ This mod also features some game mechanic modifiers, one of them being a custom 
 
 # GameModes
 
-This mods adds two gamemodes, which can be played on everymap including the custom one. Mod roles won't spawn and map abilities (admin, sabotage, reports, emergency button...) can't be used on custom gamemodes.
+This mods adds three gamemodes, which can be played on everymap including the custom one. Mod roles won't spawn and map abilities (admin, sabotage, reports, emergency button...) can't be used on custom gamemodes.
 
 ## CaptureTheFlag
 
@@ -782,18 +787,18 @@ Match between red and blue team where each team has to steal the enemy flag and 
 | Score Number | Points needed to win, from 3 to 5 |
 | Kill Cooldown | Everyone can kill with the same cooldown |
 | Revive Time | Everyone revives on his team base after a setted amount of time |
-| Invencibility Time After Revive | Players can't kill or get killed during this time |
+| Invincibility Time After Revive | Players can't use their abilities, vent or get killed during this time |
 
 **Additional Gamemode Notes:**
 - Each player name color will be the same as the team color.
-- Everyone can use vents.
+- Everyone can use vents (can't vent if you're reviving).
 - You can't kill your teammates.
 - The player who has the flag can't kill or use vents.
 - Killing the player who has the flag makes the flag teleport back to his base.
 - There are custom messages for match duration, stolen flag and scored point, also the game score is always displayed.
 - Flags positions are marked by a team color corresponding arrow.
 - If the player who has the flag disconnects from the match, the flag stays where that player was.
-- Revive Time value is calculated by subtracting Invencibility Time value from it, for example if Revive Time is 8 and Invencibility Time is 3, players will revive after 5 seconds but will be invencible for another 3 seconds after reviving.
+- Revive Time value is calculated by subtracting Invincibility Time value from it, for example if Revive Time is 8 and Invincibility Time is 3, players will revive after 5 seconds but will be invincible for another 3 seconds after reviving.
 
 -----------------------
 
@@ -810,11 +815,12 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 | Police Can See Jewels | Define if police team can see jewels on the map |
 | Arrest Cooldown | Police ability to arrest a Thief |
 | Time to Arrest | Police needed time near a Thief to arrest it |
+| Police Vision Range | Define light range for Police |
 | Police Revive Time | Wait time for Police team to revive |
 | Thiefs Can Kill | Define if Thief team can or not kill |
 | Thiefs Kill Cooldown | Thief team kill cooldown if they can kill |
 | Thiefs Revive Time | Wait time for Thief team to revive |
-| Invencibility Time After Revive | Players can't use their abilities or get killed during this time |
+| Invincibility Time After Revive | Players can't use their abilities, vent or get killed during this time |
 
 **Additional Gamemode Notes:**
 - Police team always win on match time out and capturing all the Thiefs.
@@ -822,16 +828,47 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 - Each player name color will be the same as the team color.
 - Capturing a Thief teleports him to the Prison, another Thief have to push the button outside the prison to release it.
 - Releasing a Thief only release the one who's been more time in Prison, that Thief gets teleported to the Thief spawm base.
-- Thiefs team can use vents.
+- Thief team can use vents (can't use while they're reviving).
 - You can't kill (or arrest if you're Police) your teammates.
 - After taking a Jewel, the Thief can't put it back, he has to deliver it and can only take 1 Jewel per time.
 - While taking a Jewel, the Thief can't kill or use vents.
 - Killing or capturing a Thief who has a Jewel makes the Jewel teleports back to its original position.
 - If Police team can't see jewels, they will see only if a Thief is delivering one
+- Police team has a button to increase their light vision for 10 seconds
 - There are custom messages for match duration, delivered jewel, captured Thief and released Thief, also the game score is always displayed.
 - If a Thief who has a Jewel disconnects from the match, the Jewel stays where that player was.
 - Also if a Thief disconnects, the required captured Thief updates too.
-- Revive Time value is calculated by subtracting Invencibility Time value from it, for example if Revive Time is 8 and Invencibility Time is 3, players will revive after 5 seconds but will be invencible for another 3 seconds after reviving.
+- Revive Time value is calculated by subtracting Invincibility Time value from it, for example if Revive Time is 8 and Invincibility Time is 3, players will revive after 5 seconds but will be invincible for another 3 seconds after reviving.
+
+-----------------------
+
+## KingOfTheHill
+
+Match between green and yellow team. There's a total of 3 capturable zones in the map and team has a King who can capture them. Among us support 15 players, which is an odd number. On this gamemode yellow team will always have an extra player if you're playing with an odd player number, in order to balance this, green team is a little closer to the zones.
+
+| Option  | Description |
+|----------|-------------|
+| Match Duration | From 3 to 5 minutes |
+| Required Points | Poitns required to win, from 100 to 200 |
+| Capture Cooldown | King capture ability cooldown |
+| Kill Cooldown | Player's kill coooldown |
+| Kings can Kill | Define if Kings can also kill |
+| Revive Time | Everyone revives on his team base after a setted amount of time |
+| Invincibility Time After Revive | Players can't use their abilities, vent or get killed during this time |
+
+**Additional Gamemode Notes:**
+- Only the Kings can capture zones, the rest of the team have to protect him and the captured zones.
+- Kings are marked with a team color's aura around them.
+- Everyone can vent but the Kings can't.
+- Capturable zones are marked with an arrow colored with the team color who captured it (or white if nobody has it yet)
+- Each captured zone gives 1 point per second to the team who captured it.
+- You can't kill your own teammates.
+- If a King gets killed, his team will lose every captured zone, turning them into white color.
+- A captured zone can be stolen by the other King.
+- If a King disconnects from the game, another King will be assigned randomly between team players.
+- Each player name color will be the same as the team color.
+- There are custom messages for match duration, captured zone, a King died or a King disconnects, also the game score is always displayed.
+- Revive Time value is calculated by subtracting Invincibility Time value from it, for example if Revive Time is 8 and Invincibility Time is 3, players will revive after 5 seconds but will be invincible for another 3 seconds after reviving.
 
 -----------------------
 
@@ -854,9 +891,10 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 [Lunastellia](https://github.com/Lunastellia/Challenger-Among-Us) - Original idea for Hunter\
 [Maartii](https://github.com/Maartii) - Original idea for Jester (Joker)\
 [Cheep](https://cheep-yt.com/home.php) - Original idea for Capture the Flag mod\
-[Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer and Blind and some more that weren't original ideas
+[Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind and some more that weren't original ideas
 
 -----------------------
 
 # Known Bugs
 - On the custom map, you can see player names and do some tasks across the walls (this is a vanilla game bug)
+- On Dleks, vents don't work as intented and host get stuck in there, play on this map at your own risk
