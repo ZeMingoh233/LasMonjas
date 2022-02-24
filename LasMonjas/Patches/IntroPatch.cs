@@ -47,8 +47,8 @@ namespace LasMonjas.Patches
     class IntroPatch
     {
         public static void setupIntroTeamIcons(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam) {
-            
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) {
+
+            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                 if (MapOptions.activateMusic) {
                     SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
                 }
@@ -65,7 +65,7 @@ namespace LasMonjas.Patches
                     yourTeam = blueTeam;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
                 if (MapOptions.activateMusic) {
                     SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
                 }
@@ -80,6 +80,23 @@ namespace LasMonjas.Patches
                 if (PlayerControl.LocalPlayer == PoliceAndThief.policeplayer01 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer02 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer03 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer04 || PlayerControl.LocalPlayer == PoliceAndThief.policeplayer05) {
                     policeTeam.Add(PlayerControl.LocalPlayer);
                     yourTeam = policeTeam;
+                }
+            }
+            else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                if (MapOptions.activateMusic) {
+                    SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
+                }
+                SoundManager.Instance.PlaySound(CustomMain.customAssets.kingOfTheHillMusic, true, 25f);
+                // Intro king of the hill teams
+                var greenTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                if (PlayerControl.LocalPlayer == KingOfTheHill.greenKingplayer || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer01 || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer02 || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer03 || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer04 || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer05 || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer06) {
+                    greenTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = greenTeam;
+                }
+                var yellowTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                if (PlayerControl.LocalPlayer == KingOfTheHill.yellowKingplayer || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer01 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer02 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer03 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer04 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer07) {
+                    yellowTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = yellowTeam;
                 }
             }
             else {
@@ -183,7 +200,7 @@ namespace LasMonjas.Patches
                 activateSenseiMap();
 
                 // Capture the flag
-                if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) {
+                if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                     switch (PlayerControl.GameOptions.MapId) {
                         // Skeld
                         case 0:
@@ -356,6 +373,8 @@ namespace LasMonjas.Patches
                                 adminone.GetComponent<BoxCollider2D>().enabled = false;
                                 GameObject admintwo = GameObject.Find("panel_map (1)");
                                 admintwo.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject ramp = GameObject.Find("ramp");
+                                ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
                             }
                             break;
                         // Dlesk
@@ -471,7 +490,7 @@ namespace LasMonjas.Patches
                     CaptureTheFlag.localBlueFlagArrow[0].arrow.SetActive(true);
                 }
                 // Police And Thief          
-                else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
                     switch (PlayerControl.GameOptions.MapId) {
                         // Skeld
                         case 0:
@@ -884,6 +903,8 @@ namespace LasMonjas.Patches
                                 admintwo.GetComponent<BoxCollider2D>().enabled = false;
                                 GameObject prisonVent = GameObject.Find("ElectricBuildingVent");
                                 prisonVent.transform.position = new Vector3(11.75f, -7.75f, prisonVent.transform.position.z);
+                                GameObject ramp = GameObject.Find("ramp");
+                                ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
 
                                 // Spawn jewels
                                 GameObject jewel01 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
@@ -1246,6 +1267,449 @@ namespace LasMonjas.Patches
                     new CustomMessage("Time Left: ", PoliceAndThief.matchDuration, -1, -1.3f, 6);
                     PoliceAndThief.thiefpointCounter = "Stolen Jewels: " + "<color=#00F7FFFF>" + PoliceAndThief.currentJewelsStoled + "/" + PoliceAndThief.requiredJewels + "</color> | " + "Captured Thiefs: " + "<color=#928B55FF>" + PoliceAndThief.currentThiefsCaptured + "/" + PoliceAndThief.thiefTeam.Count + "</color>";
                     new CustomMessage(PoliceAndThief.thiefpointCounter, PoliceAndThief.matchDuration, -1, 1.9f, 8);
+                }// King of the hill
+                else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                    switch (PlayerControl.GameOptions.MapId) {
+                        // Skeld
+                        case 0:
+                            if (activatedSensei) {
+                                foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(-16.4f, -10.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+                                foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(7f, -14.15f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+                                if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                    GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                    greenteamfloor.name = "greenteamfloor";
+                                    greenteamfloor.transform.position = new Vector3(-16.4f, -10.5f, 0.5f);
+                                    GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                    yellowteamfloor.name = "yellowteamfloor";
+                                    yellowteamfloor.transform.position = new Vector3(7f, -14.4f, 0.5f); 
+                                    GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                    greenkingaura.name = "greenkingaura";
+                                    greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                    KingOfTheHill.greenkingaura = greenkingaura;
+                                    GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                    yellowkingaura.name = "yellowkingaura";
+                                    yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                    KingOfTheHill.yellowkingaura = yellowkingaura;
+                                    GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                    flagzoneone.name = "flagzoneone";
+                                    flagzoneone.transform.position = new Vector3(7.85f, -1.5f, 0.4f);
+                                    KingOfTheHill.flagzoneone = flagzoneone;
+                                    GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                    zoneone.name = "zoneone";
+                                    zoneone.transform.position = new Vector3(7.85f, -1.5f, 0.5f);
+                                    KingOfTheHill.zoneone = zoneone;
+                                    GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                    flagzonetwo.name = "flagzonetwo";
+                                    flagzonetwo.transform.position = new Vector3(-6.35f, -1.1f, 0.4f);
+                                    KingOfTheHill.flagzonetwo = flagzonetwo;
+                                    GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                    zonetwo.name = "zonetwo";
+                                    zonetwo.transform.position = new Vector3(-6.35f, -1.1f, 0.5f);
+                                    KingOfTheHill.zonetwo = zonetwo;
+                                    GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                    flagzonethree.name = "flagzonethree";
+                                    flagzonethree.transform.position = new Vector3(-12.15f, 7.35f, 0.4f);
+                                    KingOfTheHill.flagzonethree = flagzonethree;
+                                    GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                    zonethree.name = "zonethree";
+                                    zonethree.transform.position = new Vector3(-12.15f, 7.35f, 0.5f);
+                                    KingOfTheHill.zonethree = zonethree;
+                                    KingOfTheHill.kingZones.Add(zoneone);
+                                    KingOfTheHill.kingZones.Add(zonetwo);
+                                    KingOfTheHill.kingZones.Add(zonethree);
+                                    createdkingofthehill = true;
+
+                                    // Remove camera use and admin table on Skeld
+                                    GameObject cameraStand = GameObject.Find("SurvConsole");
+                                    cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                    GameObject admin = GameObject.Find("MapRoomConsole");
+                                    admin.GetComponent<CircleCollider2D>().enabled = false;
+                                }
+                            }
+                            else {
+                                foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(-7f, -8.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+                                foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(6.25f, -3.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+                                if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                    GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                    greenteamfloor.name = "greenteamfloor";
+                                    greenteamfloor.transform.position = new Vector3(-7f, -8.5f, 0.5f);
+                                    GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                    yellowteamfloor.name = "yellowteamfloor";
+                                    yellowteamfloor.transform.position = new Vector3(6.25f, -3.75f, 0.5f); 
+                                    GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                    greenkingaura.name = "greenkingaura";
+                                    greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                    KingOfTheHill.greenkingaura = greenkingaura;
+                                    GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                    yellowkingaura.name = "yellowkingaura";
+                                    yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                    KingOfTheHill.yellowkingaura = yellowkingaura;
+                                    GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                    flagzoneone.name = "flagzoneone";
+                                    flagzoneone.transform.position = new Vector3(-9.1f, -2.25f, 0.4f);
+                                    KingOfTheHill.flagzoneone = flagzoneone;
+                                    GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                    zoneone.name = "zoneone";
+                                    zoneone.transform.position = new Vector3(-9.1f, -2.25f, 0.5f);
+                                    KingOfTheHill.zoneone = zoneone;
+                                    GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                    flagzonetwo.name = "flagzonetwo";
+                                    flagzonetwo.transform.position = new Vector3(4.5f, -7.5f, 0.4f);
+                                    KingOfTheHill.flagzonetwo = flagzonetwo;
+                                    GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                    zonetwo.name = "zonetwo";
+                                    zonetwo.transform.position = new Vector3(4.5f, -7.5f, 0.5f);
+                                    KingOfTheHill.zonetwo = zonetwo;
+                                    GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                    flagzonethree.name = "flagzonethree";
+                                    flagzonethree.transform.position = new Vector3(3.25f, -15.5f, 0.4f);
+                                    KingOfTheHill.flagzonethree = flagzonethree;
+                                    GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                    zonethree.name = "zonethree";
+                                    zonethree.transform.position = new Vector3(3.25f, -15.5f, 0.5f);
+                                    KingOfTheHill.zonethree = zonethree;
+                                    KingOfTheHill.kingZones.Add(zoneone);
+                                    KingOfTheHill.kingZones.Add(zonetwo);
+                                    KingOfTheHill.kingZones.Add(zonethree);
+                                    createdkingofthehill = true;
+
+                                    // Remove camera use and admin table on Skeld
+                                    GameObject cameraStand = GameObject.Find("SurvConsole");
+                                    cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                    GameObject admin = GameObject.Find("MapRoomConsole");
+                                    admin.GetComponent<CircleCollider2D>().enabled = false;
+                                }
+                            }
+                            break;
+                        // MiraHQ
+                        case 1:
+                            foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-4.45f, 1.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(19.5f, 4.7f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                greenteamfloor.name = "greenteamfloor";
+                                greenteamfloor.transform.position = new Vector3(-4.45f, 1.5f, 0.5f);
+                                GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                yellowteamfloor.name = "yellowteamfloor";
+                                yellowteamfloor.transform.position = new Vector3(19.5f, 4.45f, 0.5f); 
+                                GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                greenkingaura.name = "greenkingaura";
+                                greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.greenkingaura = greenkingaura;
+                                GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                yellowkingaura.name = "yellowkingaura";
+                                yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.yellowkingaura = yellowkingaura;
+                                GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzoneone.name = "flagzoneone";
+                                flagzoneone.transform.position = new Vector3(15.25f, 4f, 0.4f);
+                                KingOfTheHill.flagzoneone = flagzoneone;
+                                GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zoneone.name = "zoneone";
+                                zoneone.transform.position = new Vector3(15.25f, 4f, 0.5f);
+                                KingOfTheHill.zoneone = zoneone;
+                                GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonetwo.name = "flagzonetwo";
+                                flagzonetwo.transform.position = new Vector3(17.85f, 19.5f, 0.4f);
+                                KingOfTheHill.flagzonetwo = flagzonetwo;
+                                GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonetwo.name = "zonetwo";
+                                zonetwo.transform.position = new Vector3(17.85f, 19.5f, 0.5f);
+                                KingOfTheHill.zonetwo = zonetwo;
+                                GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonethree.name = "flagzonethree";
+                                flagzonethree.transform.position = new Vector3(6.15f, 12.5f, 0.4f);
+                                KingOfTheHill.flagzonethree = flagzonethree;
+                                GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonethree.name = "zonethree";
+                                zonethree.transform.position = new Vector3(6.15f, 12.5f, 0.5f);
+                                KingOfTheHill.zonethree = zonethree;
+                                KingOfTheHill.kingZones.Add(zoneone);
+                                KingOfTheHill.kingZones.Add(zonetwo);
+                                KingOfTheHill.kingZones.Add(zonethree);
+                                createdkingofthehill = true;
+
+                                // Remove Doorlog use, Decontamintion doors and admin table on MiraHQ
+                                GameObject DoorLog = GameObject.Find("SurvLogConsole");
+                                DoorLog.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject deconUpperDoor = GameObject.Find("UpperDoor");
+                                deconUpperDoor.SetActive(false);
+                                GameObject deconLowerDoor = GameObject.Find("LowerDoor");
+                                deconLowerDoor.SetActive(false);
+                                GameObject deconUpperDoorPanelTop = GameObject.Find("DeconDoorPanel-Top");
+                                deconUpperDoorPanelTop.SetActive(false);
+                                GameObject deconUpperDoorPanelHigh = GameObject.Find("DeconDoorPanel-High");
+                                deconUpperDoorPanelHigh.SetActive(false);
+                                GameObject deconUpperDoorPanelBottom = GameObject.Find("DeconDoorPanel-Bottom");
+                                deconUpperDoorPanelBottom.SetActive(false);
+                                GameObject deconUpperDoorPanelLow = GameObject.Find("DeconDoorPanel-Low");
+                                deconUpperDoorPanelLow.SetActive(false);
+                                GameObject admin = GameObject.Find("AdminMapConsole");
+                                admin.GetComponent<CircleCollider2D>().enabled = false;
+                            }
+                            break;
+                        // Polus
+                        case 2:
+                            foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(2.25f, -23.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(36.35f, -6.15f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                greenteamfloor.name = "greenteamfloor";
+                                greenteamfloor.transform.position = new Vector3(2.25f, -24f, 0.5f);
+                                GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                yellowteamfloor.name = "yellowteamfloor";
+                                yellowteamfloor.transform.position = new Vector3(36.35f, -6.4f, 0.5f); 
+                                GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                greenkingaura.name = "greenkingaura";
+                                greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.greenkingaura = greenkingaura;
+                                GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                yellowkingaura.name = "yellowkingaura";
+                                yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.yellowkingaura = yellowkingaura;
+                                GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzoneone.name = "flagzoneone";
+                                flagzoneone.transform.position = new Vector3(15f, -13.5f, 0.4f);
+                                KingOfTheHill.flagzoneone = flagzoneone;
+                                GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zoneone.name = "zoneone";
+                                zoneone.transform.position = new Vector3(15f, -13.5f, 0.5f);
+                                KingOfTheHill.zoneone = zoneone;
+                                GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonetwo.name = "flagzonetwo";
+                                flagzonetwo.transform.position = new Vector3(20.75f, -22.75f, 0.4f);
+                                KingOfTheHill.flagzonetwo = flagzonetwo;
+                                GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonetwo.name = "zonetwo";
+                                zonetwo.transform.position = new Vector3(20.75f, -22.75f, 0.5f);
+                                KingOfTheHill.zonetwo = zonetwo;
+                                GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonethree.name = "flagzonethree";
+                                flagzonethree.transform.position = new Vector3(16.65f, -1.5f, 0.4f);
+                                KingOfTheHill.flagzonethree = flagzonethree;
+                                GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonethree.name = "zonethree";
+                                zonethree.transform.position = new Vector3(16.65f, -1.5f, 0.5f);
+                                KingOfTheHill.zonethree = zonethree;
+                                KingOfTheHill.kingZones.Add(zoneone);
+                                KingOfTheHill.kingZones.Add(zonetwo);
+                                KingOfTheHill.kingZones.Add(zonethree);
+                                createdkingofthehill = true;
+
+                                // Remove Decon doors, camera use, vitals, admin tables on Polus
+                                GameObject lowerdecon = GameObject.Find("LowerDecon");
+                                lowerdecon.SetActive(false);
+                                GameObject upperdecon = GameObject.Find("UpperDecon");
+                                upperdecon.SetActive(false);
+                                GameObject survCameras = GameObject.Find("Surv_Panel");
+                                survCameras.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals");
+                                vitals.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("panel_map");
+                                adminone.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("panel_map (1)");
+                                admintwo.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject ramp = GameObject.Find("ramp");
+                                ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
+                            }
+                            break;
+                        // Dlesk
+                        case 3:
+                            foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(7f, -8.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-6.25f, -3.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                greenteamfloor.name = "greenteamfloor";
+                                greenteamfloor.transform.position = new Vector3(7f, -8.5f, 0.5f);
+                                GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                yellowteamfloor.name = "yellowteamfloor";
+                                yellowteamfloor.transform.position = new Vector3(-6.25f, -3.75f, 0.5f); 
+                                GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                greenkingaura.name = "greenkingaura";
+                                greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.greenkingaura = greenkingaura;
+                                GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                yellowkingaura.name = "yellowkingaura";
+                                yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.yellowkingaura = yellowkingaura;
+                                GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzoneone.name = "flagzoneone";
+                                flagzoneone.transform.position = new Vector3(9.1f, -2.25f, 0.4f);
+                                KingOfTheHill.flagzoneone = flagzoneone;
+                                GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zoneone.name = "zoneone";
+                                zoneone.transform.position = new Vector3(9.1f, -2.25f, 0.5f);
+                                KingOfTheHill.zoneone = zoneone;
+                                GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonetwo.name = "flagzonetwo";
+                                flagzonetwo.transform.position = new Vector3(-4.5f, -7.5f, 0.4f);
+                                KingOfTheHill.flagzonetwo = flagzonetwo;
+                                GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonetwo.name = "zonetwo";
+                                zonetwo.transform.position = new Vector3(-4.5f, -7.5f, 0.5f);
+                                KingOfTheHill.zonetwo = zonetwo;
+                                GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonethree.name = "flagzonethree";
+                                flagzonethree.transform.position = new Vector3(-3.25f, -15.5f, 0.4f);
+                                KingOfTheHill.flagzonethree = flagzonethree;
+                                GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonethree.name = "zonethree";
+                                zonethree.transform.position = new Vector3(-3.25f, -15.5f, 0.5f);
+                                KingOfTheHill.zonethree = zonethree;
+                                KingOfTheHill.kingZones.Add(zoneone);
+                                KingOfTheHill.kingZones.Add(zonetwo);
+                                KingOfTheHill.kingZones.Add(zonethree);
+                                createdkingofthehill = true;
+
+                                // Remove camera use and admin table on Dleks
+                                GameObject cameraStand = GameObject.Find("SurvConsole");
+                                cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject admin = GameObject.Find("MapRoomConsole");
+                                admin.GetComponent<CircleCollider2D>().enabled = false;
+                            }
+                            break;
+                        // Airship
+                        case 4:
+                            foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-13.9f, -14.45f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(37.35f, -3.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                greenteamfloor.name = "greenteamfloor";
+                                greenteamfloor.transform.position = new Vector3(-13.9f, -14.7f, 0.5f);
+                                GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                yellowteamfloor.name = "yellowteamfloor";
+                                yellowteamfloor.transform.position = new Vector3(37.35f, -3.5f, 0.5f); 
+                                GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                greenkingaura.name = "greenkingaura";
+                                greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.greenkingaura = greenkingaura;
+                                GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                yellowkingaura.name = "yellowkingaura";
+                                yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.yellowkingaura = yellowkingaura;
+                                GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzoneone.name = "flagzoneone";
+                                flagzoneone.transform.position = new Vector3(-8.75f, 5.1f, 0.4f);
+                                KingOfTheHill.flagzoneone = flagzoneone;
+                                GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zoneone.name = "zoneone";
+                                zoneone.transform.position = new Vector3(-8.75f, 5.1f, 0.5f);
+                                KingOfTheHill.zoneone = zoneone;
+                                GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonetwo.name = "flagzonetwo";
+                                flagzonetwo.transform.position = new Vector3(19.9f, 11.25f, 0.4f);
+                                KingOfTheHill.flagzonetwo = flagzonetwo;
+                                GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonetwo.name = "zonetwo";
+                                zonetwo.transform.position = new Vector3(19.9f, 11.25f, 0.5f);
+                                KingOfTheHill.zonetwo = zonetwo;
+                                GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonethree.name = "flagzonethree";
+                                flagzonethree.transform.position = new Vector3(16.3f, -8.6f, 0.4f);
+                                KingOfTheHill.flagzonethree = flagzonethree;
+                                GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonethree.name = "zonethree";
+                                zonethree.transform.position = new Vector3(16.3f, -8.6f, 0.5f);
+                                KingOfTheHill.zonethree = zonethree;
+                                KingOfTheHill.kingZones.Add(zoneone);
+                                KingOfTheHill.kingZones.Add(zonetwo);
+                                KingOfTheHill.kingZones.Add(zonethree);
+                                createdkingofthehill = true;
+
+                                // Remove camera use, admin table, vitals, electrical doors on Airship
+                                GameObject cameras = GameObject.Find("task_cams");
+                                cameras.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject admin = GameObject.Find("panel_cockpit_map");
+                                admin.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject LeftDoorTop = GameObject.Find("LeftDoorTop");
+                                LeftDoorTop.SetActive(false);
+                                GameObject TopLeftVert = GameObject.Find("TopLeftVert");
+                                TopLeftVert.SetActive(false);
+                                GameObject TopLeftHort = GameObject.Find("TopLeftHort");
+                                TopLeftHort.SetActive(false);
+                                GameObject BottomHort = GameObject.Find("BottomHort");
+                                BottomHort.SetActive(false);
+                                GameObject TopCenterHort = GameObject.Find("TopCenterHort");
+                                TopCenterHort.SetActive(false);
+                                GameObject LeftVert = GameObject.Find("LeftVert");
+                                LeftVert.SetActive(false);
+                                GameObject RightVert = GameObject.Find("RightVert");
+                                RightVert.SetActive(false);
+                                GameObject TopRightVert = GameObject.Find("TopRightVert");
+                                TopRightVert.SetActive(false);
+                                GameObject TopRightHort = GameObject.Find("TopRightHort");
+                                TopRightHort.SetActive(false);
+                                GameObject BottomRightHort = GameObject.Find("BottomRightHort");
+                                BottomRightHort.SetActive(false);
+                                GameObject BottomRightVert = GameObject.Find("BottomRightVert");
+                                BottomRightVert.SetActive(false);
+                                GameObject LeftDoorBottom = GameObject.Find("LeftDoorBottom");
+                                LeftDoorBottom.SetActive(false);
+                            }
+                            break;
+                    }
+                    new CustomMessage("Time Left: ", KingOfTheHill.matchDuration, -1, -1.3f, 10);
+                    new CustomMessage(KingOfTheHill.kingpointCounter, KingOfTheHill.matchDuration, -1, 1.9f, 12);
+
+                    // Add Arrows pointing the zones
+                    if (KingOfTheHill.localArrows.Count == 0 && KingOfTheHill.localArrows.Count < 3) {
+                        KingOfTheHill.localArrows.Add(new Arrow(KingOfTheHill.zoneonecolor));
+                        KingOfTheHill.localArrows.Add(new Arrow(KingOfTheHill.zonetwocolor));
+                        KingOfTheHill.localArrows.Add(new Arrow(KingOfTheHill.zonethreecolor));
+                    }
+                    KingOfTheHill.localArrows[0].arrow.SetActive(true);
+                    KingOfTheHill.localArrows[1].arrow.SetActive(true);
+                    KingOfTheHill.localArrows[2].arrow.SetActive(true);
                 }
             }
         }

@@ -25,8 +25,10 @@ namespace LasMonjas.Patches {
 
         private static List<int> myCapturetheflag = new List<int>();
 
-        private static List<int> myPoliceandthief = new List<int>(); 
-        
+        private static List<int> myPoliceandthief = new List<int>();
+
+        private static List<int> myKingoftheHill = new List<int>();
+
         public static void Postfix() {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ResetVaribles, Hazel.SendOption.Reliable, -1);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -45,7 +47,7 @@ namespace LasMonjas.Patches {
             List<PlayerControl> modifiers = PlayerControl.AllPlayerControls.ToArray().ToList().OrderBy(x => Guid.NewGuid()).ToList();
 
             // Assign roles only if the game won't be a custom gamemode
-            if ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode)) {
+            if ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode)) {
 
                 // If randomRoles setting isn't random, assign roles by list order
                 if (CustomOptionHolder.randomRoles.getSelection() != 0) {
@@ -354,7 +356,7 @@ namespace LasMonjas.Patches {
                     }
                 }
             }
-            else if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) {
+            else if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                 // Capture the flag    
                 myCapturetheflag.Clear();
                 int myflag = 1;
@@ -417,7 +419,7 @@ namespace LasMonjas.Patches {
                     myblueflag += 1;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
                 // Police and Thief    
                 myPoliceandthief.Clear();
                 int mypolice = 1;
@@ -478,6 +480,69 @@ namespace LasMonjas.Patches {
                     }
                     myPoliceandthief.Add(mythief);
                     mythief += 1;
+                }
+            }
+            else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                // King of the hill    
+                myKingoftheHill.Clear();
+                int myking = 1;
+                while (myKingoftheHill.Count < (Mathf.Round(PlayerControl.AllPlayerControls.Count / 2))) {
+                    switch (myking) {
+                        case 1:
+                            setRoleToRandomPlayer((byte)RoleId.GreenKing, modifiers);
+                            break;
+                        case 2:
+                            setRoleToRandomPlayer((byte)RoleId.GreenPlayer01, modifiers);
+                            break;
+                        case 3:
+                            setRoleToRandomPlayer((byte)RoleId.GreenPlayer02, modifiers);
+                            break;
+                        case 4:
+                            setRoleToRandomPlayer((byte)RoleId.GreenPlayer03, modifiers);
+                            break;
+                        case 5:
+                            setRoleToRandomPlayer((byte)RoleId.GreenPlayer04, modifiers);
+                            break;
+                        case 6:
+                            setRoleToRandomPlayer((byte)RoleId.GreenPlayer05, modifiers);
+                            break;
+                        case 7:
+                            setRoleToRandomPlayer((byte)RoleId.GreenPlayer06, modifiers);
+                            break;
+                    }
+                    myKingoftheHill.Add(myking);
+                    myking += 1;
+                }
+                int myyellowking = 9;
+                while (myKingoftheHill.Count < PlayerControl.AllPlayerControls.Count) {
+                    switch (myyellowking) {
+                        case 9:
+                            setRoleToRandomPlayer((byte)RoleId.YellowKing, modifiers);
+                            break;
+                        case 10:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer01, modifiers);
+                            break;
+                        case 11:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer02, modifiers);
+                            break;
+                        case 12:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer03, modifiers);
+                            break;
+                        case 13:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer04, modifiers);
+                            break;
+                        case 14:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer05, modifiers);
+                            break;
+                        case 15:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer06, modifiers);
+                            break;
+                        case 16:
+                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer07, modifiers);
+                            break;
+                    }
+                    myKingoftheHill.Add(myyellowking);
+                    myyellowking += 1;
                 }
             }
         }      

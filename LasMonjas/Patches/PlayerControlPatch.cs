@@ -9,6 +9,7 @@ using static LasMonjas.LasMonjas;
 using static LasMonjas.GameHistory;
 using LasMonjas.Objects;
 using UnityEngine;
+using LasMonjas.Core;
 
 namespace LasMonjas.Patches {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
@@ -58,7 +59,7 @@ namespace LasMonjas.Patches {
 
                 bool isTransformedMimic = target == Mimic.mimic && Mimic.transformTarget != null && Mimic.transformTimer > 0f;
                 bool hasVisibleShield = false;
-                if (Painter.painterTimer <= 0f && Squire.shielded != null && ((target == Squire.shielded && !isTransformedMimic) || (isTransformedMimic && Mimic.transformTarget == Squire.shielded))) {
+                if (Painter.painterTimer <= 0f && Squire.shielded != null && !Challenger.isDueling && ((target == Squire.shielded && !isTransformedMimic) || (isTransformedMimic && !Challenger.isDueling && Mimic.transformTarget == Squire.shielded))) {
                     hasVisibleShield = Squire.showShielded == 0 && PlayerControl.LocalPlayer == Squire.squire // Squire only
                         || (Squire.showShielded == 1 && (PlayerControl.LocalPlayer == Squire.shielded || PlayerControl.LocalPlayer == Squire.squire)) // Shielded + Squire
                         || (Squire.showShielded == 2); // Everyone
@@ -565,7 +566,7 @@ namespace LasMonjas.Patches {
         
         static void captureTheFlagSetTarget() {
 
-            if ((!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode))
+            if (((!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode) || (!CaptureTheFlag.captureTheFlagMode && KingOfTheHill.kingOfTheHillMode)) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))
                 return;
 
             var untargetableRedPlayers = new List<PlayerControl>();
@@ -735,7 +736,7 @@ namespace LasMonjas.Patches {
 
         static void policeandThiefSetTarget() {
 
-            if ((!PoliceAndThief.policeAndThiefMode && CaptureTheFlag.captureTheFlagMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode))
+            if (((!PoliceAndThief.policeAndThiefMode && CaptureTheFlag.captureTheFlagMode) || (!PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode)) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))
                 return;
 
             var untargetablePolice = new List<PlayerControl>();
@@ -905,6 +906,178 @@ namespace LasMonjas.Patches {
             }
         }
 
+        static void kingOfTheHillSetTarget() {
+
+            if (((!KingOfTheHill.kingOfTheHillMode && CaptureTheFlag.captureTheFlagMode) || (!KingOfTheHill.kingOfTheHillMode && PoliceAndThief.policeAndThiefMode)) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))
+                return;
+
+            var untargetableGreenPlayers = new List<PlayerControl>();
+            foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                untargetableGreenPlayers.Add(player);
+            }
+
+            // Prevent killing reviving players
+            if (KingOfTheHill.yellowplayer01IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer01);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer01);
+            }
+            if (KingOfTheHill.yellowplayer02IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer02);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer02);
+            }
+            if (KingOfTheHill.yellowplayer03IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer03);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer03);
+            }
+            if (KingOfTheHill.yellowplayer04IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer04);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer04);
+            }
+            if (KingOfTheHill.yellowplayer05IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer05);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer05);
+            }
+            if (KingOfTheHill.yellowplayer06IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer06);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer06);
+            }
+            if (KingOfTheHill.yellowplayer07IsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer07);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer07);
+            }
+            if (KingOfTheHill.yellowKingIsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.yellowKingplayer);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.yellowKingplayer);
+            }
+
+            if (KingOfTheHill.greenKingplayer != null && KingOfTheHill.greenKingplayer == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenKingplayercurrentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenKingplayercurrentTarget, Color.green);
+            }
+            if (KingOfTheHill.greenplayer01 != null && KingOfTheHill.greenplayer01 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenplayer01currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenplayer01currentTarget, Color.green);
+            }
+            if (KingOfTheHill.greenplayer02 != null && KingOfTheHill.greenplayer02 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenplayer02currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenplayer02currentTarget, Color.green);
+            }
+            if (KingOfTheHill.greenplayer03 != null && KingOfTheHill.greenplayer03 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenplayer03currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenplayer03currentTarget, Color.green);
+            }
+            if (KingOfTheHill.greenplayer04 != null && KingOfTheHill.greenplayer04 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenplayer04currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenplayer04currentTarget, Color.green);
+            }
+            if (KingOfTheHill.greenplayer05 != null && KingOfTheHill.greenplayer05 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenplayer05currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenplayer05currentTarget, Color.green);
+            }
+            if (KingOfTheHill.greenplayer06 != null && KingOfTheHill.greenplayer06 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.greenplayer06currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
+                setPlayerOutline(KingOfTheHill.greenplayer06currentTarget, Color.green);
+            }
+
+            var untargetableYellowPlayers = new List<PlayerControl>();
+            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                untargetableYellowPlayers.Add(player);
+            }
+
+            // Prevent killing reviving players
+            if (KingOfTheHill.greenplayer01IsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenplayer01);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenplayer01);
+            }
+            if (KingOfTheHill.greenplayer02IsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenplayer02);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenplayer02);
+            }
+            if (KingOfTheHill.greenplayer03IsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenplayer03);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenplayer03);
+            }
+            if (KingOfTheHill.greenplayer04IsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenplayer04);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenplayer04);
+            }
+            if (KingOfTheHill.greenplayer05IsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenplayer05);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenplayer05);
+            }
+            if (KingOfTheHill.greenplayer06IsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenplayer06);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenplayer06);
+            }
+            if (KingOfTheHill.greenKingIsReviving) {
+                untargetableYellowPlayers.Add(KingOfTheHill.greenKingplayer);
+            }
+            else {
+                untargetableYellowPlayers.Remove(KingOfTheHill.greenKingplayer);
+            }
+
+            if (KingOfTheHill.yellowKingplayer != null && KingOfTheHill.yellowKingplayer == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowKingplayercurrentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowKingplayercurrentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer01 != null && KingOfTheHill.yellowplayer01 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer01currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer01currentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer02 != null && KingOfTheHill.yellowplayer02 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer02currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer02currentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer03 != null && KingOfTheHill.yellowplayer03 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer03currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer03currentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer04 != null && KingOfTheHill.yellowplayer04 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer04currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer04currentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer05 != null && KingOfTheHill.yellowplayer05 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer05currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer05currentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer06 != null && KingOfTheHill.yellowplayer06 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer06currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer06currentTarget, Color.yellow);
+            }
+            if (KingOfTheHill.yellowplayer07 != null && KingOfTheHill.yellowplayer07 == PlayerControl.LocalPlayer) {
+                KingOfTheHill.yellowplayer07currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
+                setPlayerOutline(KingOfTheHill.yellowplayer07currentTarget, Color.yellow);
+            }
+        }
+
         public static void Postfix(PlayerControl __instance) {
             if (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started) return;
 
@@ -1015,6 +1188,9 @@ namespace LasMonjas.Patches {
 
                 // Police and Thief update
                 policeandThiefSetTarget();
+
+                // King of the hill update
+                kingOfTheHillSetTarget();
             }
         }
     }
@@ -1347,7 +1523,7 @@ namespace LasMonjas.Patches {
             }
 
             // Capture the flag revive player
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) {
+            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
@@ -1600,7 +1776,7 @@ namespace LasMonjas.Patches {
 
 
             // Police and Thief revive player
-            if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
                 foreach (PlayerControl player in PoliceAndThief.policeTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
@@ -1880,6 +2056,332 @@ namespace LasMonjas.Patches {
                     }
                 }
             }
+
+            // King of the hill revive player
+            if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                    if (player.PlayerId == target.PlayerId) {
+                        var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
+                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[0]);
+                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[0]);
+                        // Restore zones
+                        if (target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
+                            KingOfTheHill.greenteamAlerted = false;
+                            if (KingOfTheHill.greenKinghaszoneone) {
+                                KingOfTheHill.greenKinghaszoneone = false;
+                                KingOfTheHill.flagzoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whiteflag.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whitebase.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zoneonecolor = Color.white;
+                            }
+                            if (KingOfTheHill.greenKinghaszonetwo) {
+                                KingOfTheHill.greenKinghaszonetwo = false;
+                                KingOfTheHill.flagzonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whiteflag.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whitebase.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonetwocolor = Color.white;
+                            }
+                            if (KingOfTheHill.greenKinghaszonethree) {
+                                KingOfTheHill.greenKinghaszonethree = false;
+                                KingOfTheHill.flagzonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whiteflag.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whitebase.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonethreecolor = Color.white;
+                            }
+                            // Alert green team players
+                            if (!KingOfTheHill.greenteamAlerted) {
+                                KingOfTheHill.greenteamAlerted = true;
+                                foreach (PlayerControl greenplayer in KingOfTheHill.greenTeam) {
+                                    if (greenplayer == PlayerControl.LocalPlayer && greenplayer != null) {
+                                        new CustomMessage("Your King has been killed!", 5, -1, 1f, 11);
+                                    }
+                                }
+                            }
+                            KingOfTheHill.totalGreenKingzonescaptured = 0;
+                            KingOfTheHill.greenKingIsReviving = true;
+                            // Hide aura while dead
+                            KingOfTheHill.greenkingaura.SetActive(false);
+                            HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                                if (p == 1f) {
+                                    KingOfTheHill.greenkingaura.SetActive(true);
+                                }
+                            })));
+                        }
+                        else if (target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
+                            KingOfTheHill.greenplayer01IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.greenplayer02.PlayerId) {
+                            KingOfTheHill.greenplayer02IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.greenplayer03.PlayerId) {
+                            KingOfTheHill.greenplayer03IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.greenplayer04.PlayerId) {
+                            KingOfTheHill.greenplayer04IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.greenplayer05.PlayerId) {
+                            KingOfTheHill.greenplayer05IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.greenplayer06.PlayerId) {
+                            KingOfTheHill.greenplayer06IsReviving = true;
+                        }
+                        player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
+                        if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                            player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 0.5f);
+                            player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 0.5f);
+                        }
+                        if (player.HatRenderer != null) {
+                            player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 0.5f);
+                            player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 0.5f);
+                            player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 0.5f);
+                        }
+                        if (player.VisorSlot != null) {
+                            player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 0.5f);
+                        }
+                        player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 0.5f);
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime, new Action<float>((p) => {
+                            if (p == 1f && player != null) {
+                                if (target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
+                                    KingOfTheHill.greenKingIsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
+                                    KingOfTheHill.greenplayer01IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.greenplayer02.PlayerId) {
+                                    KingOfTheHill.greenplayer02IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.greenplayer03.PlayerId) {
+                                    KingOfTheHill.greenplayer03IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.greenplayer04.PlayerId) {
+                                    KingOfTheHill.greenplayer04IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.greenplayer05.PlayerId) {
+                                    KingOfTheHill.greenplayer05IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.greenplayer06.PlayerId) {
+                                    KingOfTheHill.greenplayer06IsReviving = false;
+                                }
+                                player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
+                                if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                                    player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 1f);
+                                    player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 1f);
+                                }
+                                if (player.HatRenderer != null) {
+                                    player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 1f);
+                                    player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 1f);
+                                    player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 1f);
+                                }
+                                if (player.VisorSlot != null) {
+                                    player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 1f);
+                                }
+                                player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 1f);
+
+                            }
+                        })));
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                            if (p == 1f && player != null) {
+                                player.Revive();
+                                switch (PlayerControl.GameOptions.MapId) {
+                                    // Skeld
+                                    case 0:
+                                        if (activatedSensei) {
+                                            player.transform.position = new Vector3(-16.4f, -10.25f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-7f, -8.25f, player.transform.position.z);
+                                        }
+                                        break;
+                                    // MiraHQ
+                                    case 1:
+                                        player.transform.position = new Vector3(-4.45f, 1.75f, player.transform.position.z);
+                                        break;
+                                    // Polus
+                                    case 2:
+                                        player.transform.position = new Vector3(2.25f, -23.75f, player.transform.position.z);
+                                        break;
+                                    // Dleks
+                                    case 3:
+                                        player.transform.position = new Vector3(7f, -8.25f, player.transform.position.z);
+                                        break;
+                                    // Airship
+                                    case 4:
+                                        player.transform.position = new Vector3(-13.9f, -14.45f, player.transform.position.z);
+                                        break;
+                                }
+                                DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
+                                if (body != null) UnityEngine.Object.Destroy(body.gameObject);
+                                if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
+                            }
+
+                        })));
+
+                    }
+                }
+                foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                    if (player.PlayerId == target.PlayerId) {
+                        var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
+                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[1]);
+                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[1]);
+
+                        // Restore zones
+                        if (target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
+                            KingOfTheHill.yellowteamAlerted = false;
+                            if (KingOfTheHill.yellowKinghaszoneone) {
+                                KingOfTheHill.yellowKinghaszoneone = false;
+                                KingOfTheHill.flagzoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whiteflag.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zoneone.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whitebase.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zoneonecolor = Color.white;
+                            }
+                            if (KingOfTheHill.yellowKinghaszonetwo) {
+                                KingOfTheHill.yellowKinghaszonetwo = false;
+                                KingOfTheHill.flagzonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whiteflag.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonetwo.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whitebase.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonetwocolor = Color.white;
+                            }
+                            if (KingOfTheHill.yellowKinghaszonethree) {
+                                KingOfTheHill.yellowKinghaszonethree = false;
+                                KingOfTheHill.flagzonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whiteflag.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonethree.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.whitebase.GetComponent<SpriteRenderer>().sprite;
+                                KingOfTheHill.zonethreecolor = Color.white;
+                            }
+                            // Alert yellow team players
+                            if (!KingOfTheHill.yellowteamAlerted) {
+                                KingOfTheHill.yellowteamAlerted = true;
+                                foreach (PlayerControl yellowplayer in KingOfTheHill.yellowTeam) {
+                                    if (yellowplayer == PlayerControl.LocalPlayer && yellowplayer != null) {
+                                        new CustomMessage("Your King has been killed!", 5, -1, 1f, 11);
+                                    }
+                                }
+                            }
+                            KingOfTheHill.totalYellowKingzonescaptured = 0;
+                            KingOfTheHill.yellowKingIsReviving = true;
+                            // Hide aura while dead
+                            KingOfTheHill.yellowkingaura.SetActive(false);
+                            HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                                if (p == 1f) {
+                                    KingOfTheHill.yellowkingaura.SetActive(true);
+                                }
+                            })));
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
+                            KingOfTheHill.yellowplayer01IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer02.PlayerId) {
+                            KingOfTheHill.yellowplayer02IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer03.PlayerId) {
+                            KingOfTheHill.yellowplayer03IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer04.PlayerId) {
+                            KingOfTheHill.yellowplayer04IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer05.PlayerId) {
+                            KingOfTheHill.yellowplayer05IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
+                            KingOfTheHill.yellowplayer06IsReviving = true;
+                        }
+                        else if (target.PlayerId == KingOfTheHill.yellowplayer07.PlayerId) {
+                            KingOfTheHill.yellowplayer07IsReviving = true;
+                        }
+                        player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
+                        if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                            player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 0.5f);
+                            player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 0.5f);
+                        }
+                        if (player.HatRenderer != null) {
+                            player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 0.5f);
+                            player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 0.5f);
+                            player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 0.5f);
+                        }
+                        if (player.VisorSlot != null) {
+                            player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 0.5f);
+                        }
+                        player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 0.5f);
+
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime, new Action<float>((p) => {
+                            if (p == 1f && player != null) {
+                                if (target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
+                                    KingOfTheHill.yellowKingIsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
+                                    KingOfTheHill.yellowplayer01IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer02.PlayerId) {
+                                    KingOfTheHill.yellowplayer02IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer03.PlayerId) {
+                                    KingOfTheHill.yellowplayer03IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer04.PlayerId) {
+                                    KingOfTheHill.yellowplayer04IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer05.PlayerId) {
+                                    KingOfTheHill.yellowplayer05IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
+                                    KingOfTheHill.yellowplayer06IsReviving = false;
+                                }
+                                else if (target.PlayerId == KingOfTheHill.yellowplayer07.PlayerId) {
+                                    KingOfTheHill.yellowplayer07IsReviving = false;
+                                }
+                                player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
+                                if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
+                                    player.CurrentPet.rend.color = new Color(player.CurrentPet.rend.color.r, player.CurrentPet.rend.color.g, player.CurrentPet.rend.color.b, 1f);
+                                    player.CurrentPet.shadowRend.color = new Color(player.CurrentPet.shadowRend.color.r, player.CurrentPet.shadowRend.color.g, player.CurrentPet.shadowRend.color.b, 1f);
+                                }
+                                if (player.HatRenderer != null) {
+                                    player.HatRenderer.Parent.color = new Color(player.HatRenderer.Parent.color.r, player.HatRenderer.Parent.color.g, player.HatRenderer.Parent.color.b, 1f);
+                                    player.HatRenderer.BackLayer.color = new Color(player.HatRenderer.BackLayer.color.r, player.HatRenderer.BackLayer.color.g, player.HatRenderer.BackLayer.color.b, 1f);
+                                    player.HatRenderer.FrontLayer.color = new Color(player.HatRenderer.FrontLayer.color.r, player.HatRenderer.FrontLayer.color.g, player.HatRenderer.FrontLayer.color.b, 1f);
+                                }
+                                if (player.VisorSlot != null) {
+                                    player.VisorSlot.Image.color = new Color(player.VisorSlot.Image.color.r, player.VisorSlot.Image.color.g, player.VisorSlot.Image.color.b, 1f);
+                                }
+                                player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 1f);
+
+                            }
+                        })));
+
+                        HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                            if (p == 1f && player != null) {
+                                player.Revive();
+                                switch (PlayerControl.GameOptions.MapId) {
+                                    // Skeld
+                                    case 0:
+                                        if (activatedSensei) {
+                                            player.transform.position = new Vector3(7f, -14.15f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(6.25f, -3.5f, player.transform.position.z);
+                                        }
+                                        break;
+                                    // MiraHQ
+                                    case 1:
+                                        player.transform.position = new Vector3(19.5f, 4.7f, player.transform.position.z);
+                                        break;
+                                    // Polus
+                                    case 2:
+                                        player.transform.position = new Vector3(36.35f, -6.15f, player.transform.position.z);
+                                        break;
+                                    // Dleks
+                                    case 3:
+                                        player.transform.position = new Vector3(-6.25f, -3.5f, player.transform.position.z);
+                                        break;
+                                    // Airship
+                                    case 4:
+                                        player.transform.position = new Vector3(37.35f, -3.25f, player.transform.position.z);
+                                        break;
+                                }
+                                DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
+                                if (body != null) UnityEngine.Object.Destroy(body.gameObject);
+                                if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
+                            }
+
+                        })));
+
+                    }
+                }
+            }
+                
 
             // Check alive players for disable sabotage button if game result in 1vs1 special condition (impostor + rebel / impostor + captain / rebel + captain)
             alivePlayers = 0;

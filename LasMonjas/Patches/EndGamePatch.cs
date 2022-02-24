@@ -28,7 +28,10 @@ namespace LasMonjas.Patches {
         BlueTeamFlagWin = 23,
         DrawTeamWin = 24,
         ThiefModeThiefWin = 25,
-        ThiefModePoliceWin = 26
+        ThiefModePoliceWin = 26, 
+        GreenTeamHillWin = 27,
+        YellowTeamHillWin = 28,
+        TeamHillDraw = 29
     }
 
     enum WinCondition {
@@ -50,7 +53,10 @@ namespace LasMonjas.Patches {
         BlueTeamFlagWin,
         DrawTeamWin,
         ThiefModeThiefWin,
-        ThiefModePoliceWin
+        ThiefModePoliceWin,
+        GreenTeamHillWin,
+        YellowTeamHillWin,
+        TeamHillDraw
     }
 
     static class AdditionalTempData {
@@ -127,6 +133,9 @@ namespace LasMonjas.Patches {
             bool drawTeamWin = CaptureTheFlag.captureTheFlagMode && gameOverReason == (GameOverReason)CustomGameOverReason.DrawTeamWin;
             bool thiefModeThiefWin = PoliceAndThief.policeAndThiefMode && gameOverReason == (GameOverReason)CustomGameOverReason.ThiefModeThiefWin;
             bool thiefModePoliceWin = PoliceAndThief.policeAndThiefMode && gameOverReason == (GameOverReason)CustomGameOverReason.ThiefModePoliceWin;
+            bool greenTeamHillWin = KingOfTheHill.kingOfTheHillMode && gameOverReason == (GameOverReason)CustomGameOverReason.GreenTeamHillWin;
+            bool yellowTeamHillWin = KingOfTheHill.kingOfTheHillMode && gameOverReason == (GameOverReason)CustomGameOverReason.YellowTeamHillWin;
+            bool teamHillDraw = KingOfTheHill.kingOfTheHillMode && gameOverReason == (GameOverReason)CustomGameOverReason.TeamHillDraw;
 
             // Kid lose
             if (kidLose) {
@@ -310,6 +319,35 @@ namespace LasMonjas.Patches {
                 AdditionalTempData.winCondition = WinCondition.ThiefModePoliceWin;
             }
 
+            // King Game Mode Win
+            // Draw
+            else if (teamHillDraw) {
+                TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
+                foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                    WinningPlayerData wpd = new WinningPlayerData(player.Data);
+                    TempData.winners.Add(wpd);
+                }
+                AdditionalTempData.winCondition = WinCondition.TeamHillDraw;
+            }
+            // Green Team Win
+            else if (greenTeamHillWin) {
+                TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
+                foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                    WinningPlayerData wpd = new WinningPlayerData(player.Data);
+                    TempData.winners.Add(wpd);
+                }
+                AdditionalTempData.winCondition = WinCondition.GreenTeamHillWin;
+            }
+            // Yellow Team Win
+            else if (yellowTeamHillWin) {
+                TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
+                foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                    WinningPlayerData wpd = new WinningPlayerData(player.Data);
+                    TempData.winners.Add(wpd);
+                }
+                AdditionalTempData.winCondition = WinCondition.YellowTeamHillWin;
+            }
+
             // Reset Settings
             RPCProcedure.resetVariables();
         }
@@ -431,7 +469,7 @@ namespace LasMonjas.Patches {
                 AmongUsClient.Instance.FinishRpcImmediately(writermusic);
                 RPCProcedure.changeMusic(4);
             }
-            else if (AdditionalTempData.winCondition == WinCondition.DrawTeamWin) {
+            else if (AdditionalTempData.winCondition == WinCondition.DrawTeamWin || AdditionalTempData.winCondition == WinCondition.TeamHillDraw) {
                 textRenderer.text = "Draw";
                 textRenderer.color = new Color32(255, 128, 0, byte.MaxValue); 
             }
@@ -451,6 +489,14 @@ namespace LasMonjas.Patches {
                 textRenderer.text = "Thief Team Win";
                 textRenderer.color = Mechanic.color;
             }
+            else if (AdditionalTempData.winCondition == WinCondition.GreenTeamHillWin) {
+                textRenderer.text = "Green Team Win";
+                textRenderer.color = Color.green;
+            }
+            else if (AdditionalTempData.winCondition == WinCondition.YellowTeamHillWin) {
+                textRenderer.text = "Yellow Team Win";
+                textRenderer.color = Color.yellow;
+            }
             else {
                 MessageWriter writermusic = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ChangeMusic, Hazel.SendOption.Reliable, -1);
                 writermusic.Write(5);
@@ -458,7 +504,7 @@ namespace LasMonjas.Patches {
                 RPCProcedure.changeMusic(5);
             }
 
-            if (MapOptions.showRoleSummary && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode))) {
+            if (MapOptions.showRoleSummary && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))) {
                 var position = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane));
                 GameObject roleSummary = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
                 roleSummary.transform.position = new Vector3(__instance.Navigation.ExitButton.transform.position.x + 0.1f, position.y - 0.1f, -14f);
@@ -514,6 +560,9 @@ namespace LasMonjas.Patches {
             if (CheckAndEndGameForDrawFlagWin(__instance)) return false;
             if (CheckAndEndGameForThiefModeThiefWin(__instance)) return false;
             if (CheckAndEndGameForThiefModePoliceWin(__instance)) return false;
+            if (CheckAndEndGameForGreenTeamHillWin(__instance)) return false;
+            if (CheckAndEndGameForYellowTeamHillWin(__instance)) return false;
+            if (CheckAndEndGameForDrawHillWin(__instance)) return false;
             return false;
         }
 
@@ -595,7 +644,7 @@ namespace LasMonjas.Patches {
         }
 
         private static bool CheckAndEndGameForTaskWin(ShipStatus __instance) {
-            if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode))) {
+            if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))) {
                 __instance.enabled = false;
                 ShipStatus.RpcEndGame(GameOverReason.HumansByTask, false);
                 return true;
@@ -646,7 +695,7 @@ namespace LasMonjas.Patches {
         }
 
         private static bool CheckAndEndGameForImpostorWin(ShipStatus __instance, PlayerStatistics statistics) {
-            if (((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode)) && statistics.TeamImpostorsAlive >= statistics.TotalAlive - statistics.TeamImpostorsAlive + statistics.TeamCaptainAlive && statistics.TeamRenegadeAlive == 0 && statistics.TeamBountyHunterAlive == 0 && statistics.TeamTrapperAlive == 0 && statistics.TeamYinyangerAlive == 0 && statistics.TeamChallengerAlive == 0 && statistics.TeamCaptainAlive != statistics.TeamImpostorsAlive && !(statistics.TeamImpostorHasAliveLover && statistics.TeamLoversAlive == 2)) {
+            if (((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode)) && statistics.TeamImpostorsAlive >= statistics.TotalAlive - statistics.TeamImpostorsAlive + statistics.TeamCaptainAlive && statistics.TeamRenegadeAlive == 0 && statistics.TeamBountyHunterAlive == 0 && statistics.TeamTrapperAlive == 0 && statistics.TeamYinyangerAlive == 0 && statistics.TeamChallengerAlive == 0 && statistics.TeamCaptainAlive != statistics.TeamImpostorsAlive && !(statistics.TeamImpostorHasAliveLover && statistics.TeamLoversAlive == 2)) {
                 __instance.enabled = false;
                 GameOverReason endReason;
                 switch (TempData.LastDeathReason) {
@@ -667,7 +716,7 @@ namespace LasMonjas.Patches {
         }
 
         private static bool CheckAndEndGameForCrewmateWin(ShipStatus __instance, PlayerStatistics statistics) {
-            if (((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode)) && statistics.TeamImpostorsAlive == 0 && statistics.TeamRenegadeAlive == 0 && statistics.TeamBountyHunterAlive == 0 && statistics.TeamTrapperAlive == 0 && statistics.TeamYinyangerAlive == 0 && statistics.TeamChallengerAlive == 0) {
+            if (((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode)) && statistics.TeamImpostorsAlive == 0 && statistics.TeamRenegadeAlive == 0 && statistics.TeamBountyHunterAlive == 0 && statistics.TeamTrapperAlive == 0 && statistics.TeamYinyangerAlive == 0 && statistics.TeamChallengerAlive == 0) {
                 __instance.enabled = false;
                 ShipStatus.RpcEndGame(GameOverReason.HumansByVote, false);
                 return true;
@@ -724,6 +773,30 @@ namespace LasMonjas.Patches {
             if (PoliceAndThief.triggerPoliceWin) {
                 __instance.enabled = false;
                 ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ThiefModePoliceWin, false);
+                return true;
+            }
+            return false;
+        }
+        private static bool CheckAndEndGameForGreenTeamHillWin(ShipStatus __instance) {
+            if (KingOfTheHill.triggerGreenTeamWin) {
+                __instance.enabled = false;
+                ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.GreenTeamHillWin, false);
+                return true;
+            }
+            return false;
+        }
+        private static bool CheckAndEndGameForYellowTeamHillWin(ShipStatus __instance) {
+            if (KingOfTheHill.triggerYellowTeamWin) {
+                __instance.enabled = false;
+                ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.YellowTeamHillWin, false);
+                return true;
+            }
+            return false;
+        }
+        private static bool CheckAndEndGameForDrawHillWin(ShipStatus __instance) {
+            if (KingOfTheHill.triggerDrawWin) {
+                __instance.enabled = false;
+                ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.TeamHillDraw, false);
                 return true;
             }
             return false;

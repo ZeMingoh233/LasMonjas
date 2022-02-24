@@ -100,10 +100,13 @@ namespace LasMonjas.Patches {
         static void Postfix(PlayerControl __instance) {
             if (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started) return;
 
-            if (__instance.AmOwner && __instance.roleCanUseVents() && CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) {
+            if (__instance.AmOwner && __instance.roleCanUseVents() && CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                 HudManager.Instance.ImpostorVentButton.Show();
             }
-            else if (__instance.AmOwner && __instance.roleCanUseVents() && PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (__instance.AmOwner && __instance.roleCanUseVents() && PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+                HudManager.Instance.ImpostorVentButton.Show();
+            }
+            else if (__instance.AmOwner && __instance.roleCanUseVents() && KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
                 HudManager.Instance.ImpostorVentButton.Show();
             }
             else if (__instance.AmOwner && __instance.roleCanUseVents() && HudManager.Instance.ReportButton.isActiveAndEnabled || __instance.AmOwner && __instance.roleCanUseVents() && HudManager.Instance.ReportButton.isActiveAndEnabled && PoliceAndThief.policeAndThiefMode && CaptureTheFlag.captureTheFlagMode) {
@@ -156,10 +159,11 @@ namespace LasMonjas.Patches {
         static bool Prefix(SabotageButton __instance) {
 
             // Block sabotage button on custom gamemodes
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode || !CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode) {
+            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) {
                 bool blockFlagSabotage = PlayerControl.LocalPlayer.Data.Role.IsImpostor && CaptureTheFlag.captureTheFlagMode;
                 bool blockPoliceSabotage = PlayerControl.LocalPlayer.Data.Role.IsImpostor && PoliceAndThief.policeAndThiefMode;
-                if (blockFlagSabotage || blockPoliceSabotage) return false;
+                bool blockKingSabotage = PlayerControl.LocalPlayer.Data.Role.IsImpostor && KingOfTheHill.kingOfTheHillMode;
+                if (blockFlagSabotage || blockPoliceSabotage || blockKingSabotage) return false;
             }
             else {
                 
@@ -183,10 +187,11 @@ namespace LasMonjas.Patches {
         static void Postfix() {
 
             // Change sabotage button image and block sabotages if capture the flag mode or police and thief mode
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode || !CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode) {
+            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) {
                 bool blockFlagSabotage = CaptureTheFlag.captureTheFlagMode;
                 bool blockPoliceSabotage = PoliceAndThief.policeAndThiefMode;
-                if (blockFlagSabotage || blockPoliceSabotage) {
+                bool blockKingSabotage = KingOfTheHill.kingOfTheHillMode;
+                if (blockFlagSabotage || blockPoliceSabotage || blockKingSabotage) {
                     HudManager.Instance.SabotageButton.Hide();
                 }
             }
@@ -217,7 +222,7 @@ namespace LasMonjas.Patches {
         static bool Prefix(ReportButton __instance) {
 
             // Block report button if dueling or gamemodes)
-            bool blockReport = Challenger.isDueling || Spiritualist.preventReport || (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode);
+            bool blockReport = Challenger.isDueling || Spiritualist.preventReport || (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode);
             if (blockReport) return false;
 
             return true;
@@ -231,7 +236,7 @@ namespace LasMonjas.Patches {
             var statusText = "";
 
             // Deactivate emergency button for capture the flag mode and police and thief
-            if ((CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode)) {
+            if ((CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode)) {
                 roleCanCallEmergency = false;
                 statusText = "Can't use the emergency button \non custom gamemodes!";
             }
