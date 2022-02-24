@@ -64,6 +64,18 @@ namespace LasMonjas.Core
             CustomMain.customAssets.thiefspaceship = assetBundleBundle.LoadAsset<GameObject>("thief_spaceship.prefab").DontUnload();
             CustomMain.customAssets.thiefspaceshiphatch = assetBundleBundle.LoadAsset<GameObject>("thief_spaceship_hatch.prefab").DontUnload();
 
+            // King of the hill
+            CustomMain.customAssets.whiteflag = assetBundleBundle.LoadAsset<GameObject>("whiteFlag.prefab").DontUnload();
+            CustomMain.customAssets.greenflag = assetBundleBundle.LoadAsset<GameObject>("greenFlag.prefab").DontUnload();
+            CustomMain.customAssets.yellowflag = assetBundleBundle.LoadAsset<GameObject>("yellowFlag.prefab").DontUnload();
+            CustomMain.customAssets.whitebase = assetBundleBundle.LoadAsset<GameObject>("whitebase.prefab").DontUnload();
+            CustomMain.customAssets.greenbase = assetBundleBundle.LoadAsset<GameObject>("greenbase.prefab").DontUnload();
+            CustomMain.customAssets.yellowbase = assetBundleBundle.LoadAsset<GameObject>("yellowbase.prefab").DontUnload();
+            CustomMain.customAssets.greenaura = assetBundleBundle.LoadAsset<GameObject>("greenkingaura.prefab").DontUnload();
+            CustomMain.customAssets.yellowaura = assetBundleBundle.LoadAsset<GameObject>("yellowkingaura.prefab").DontUnload();
+            CustomMain.customAssets.greenfloor = assetBundleBundle.LoadAsset<GameObject>("greenfloorbase.prefab").DontUnload();
+            CustomMain.customAssets.yellowfloor = assetBundleBundle.LoadAsset<GameObject>("yellowfloorbase.prefab").DontUnload();
+
             // Custom Lobby Assets
             var resourceStreamLobby = allulCustomLobby.GetManifestResourceStream("LasMonjas.Images.MyAssets.allulcustomlobby");
             var assetBundleLobby = AssetBundle.LoadFromMemory(resourceStreamLobby.ReadFully());
@@ -87,6 +99,7 @@ namespace LasMonjas.Core
             CustomMain.customAssets.performerMusic = assetBundleMusic.LoadAsset<AudioClip>("PerformerTheme_Spazzmatica Polka.mp3").DontUnload();
             CustomMain.customAssets.captureTheFlagMusic = assetBundleMusic.LoadAsset<AudioClip>("CaptureTheFlagMusic_BeachfrontCelebration.mp3").DontUnload();
             CustomMain.customAssets.policeAndThiefMusic = assetBundleMusic.LoadAsset<AudioClip>("PoliceAndThief_Unity.mp3").DontUnload();
+            CustomMain.customAssets.kingOfTheHillMusic = assetBundleMusic.LoadAsset<AudioClip>("KingOfTheHill_Bama Country.mp3").DontUnload();
             CustomMain.customAssets.lobbyMusic = assetBundleMusic.LoadAsset<AudioClip>("Lobby_Hyperfun.mp3").DontUnload();
             CustomMain.customAssets.tasksCalmMusic = assetBundleMusic.LoadAsset<AudioClip>("TasksCalm_Sneaky Adventure.mp3").DontUnload();
             CustomMain.customAssets.tasksCoreMusic = assetBundleMusic.LoadAsset<AudioClip>("TasksCore_Investigations.mp3").DontUnload();

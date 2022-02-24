@@ -118,6 +118,36 @@ namespace LasMonjas.Core {
                                 text.text = "";
                             }
                             break;
+                        case 10:
+                            // King of the hill timer
+                            if (KingOfTheHill.kingOfTheHillMode && KingOfTheHill.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + KingOfTheHill.matchDuration.ToString("F0") + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 11:
+                            // King of the hill which team captures
+                            if (KingOfTheHill.kingOfTheHillMode && KingOfTheHill.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 12:
+                            // King of the hill point counter
+                            if (KingOfTheHill.kingOfTheHillMode && KingOfTheHill.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + KingOfTheHill.kingpointCounter + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
                     }
                     if (text != null) text.color = even ? Color.yellow : Color.red;
                     if (p == 1f && text != null && text.gameObject != null) {
