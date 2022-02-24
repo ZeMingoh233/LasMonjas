@@ -6475,7 +6475,7 @@ namespace LasMonjas
                                 }
                             }
                         }
-                        if (greenKingplayerCaptureZoneButton.isEffectActive && KingOfTheHill.whichGreenKingplayerzone == 0) {
+                        if (greenKingplayerCaptureZoneButton.isEffectActive && (KingOfTheHill.whichGreenKingplayerzone == 0 || PlayerControl.LocalPlayer.Data.IsDead)) {
                             greenKingplayerCaptureZoneButton.Timer = 0f;
                             greenKingplayerCaptureZoneButton.isEffectActive = false;
                         }
@@ -6541,7 +6541,7 @@ namespace LasMonjas
                                 }
                             }
                         }
-                        if (yellowKingplayerCaptureZoneButton.isEffectActive && KingOfTheHill.whichYellowKingplayerzone == 0) {
+                        if (yellowKingplayerCaptureZoneButton.isEffectActive && (KingOfTheHill.whichYellowKingplayerzone == 0 || PlayerControl.LocalPlayer.Data.IsDead)) {
                             yellowKingplayerCaptureZoneButton.Timer = 0f;
                             yellowKingplayerCaptureZoneButton.isEffectActive = false;
                         }
