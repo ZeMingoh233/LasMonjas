@@ -76,7 +76,7 @@ namespace LasMonjas
         public static RoleInfo yellowplayer04 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer04);
         public static RoleInfo yellowplayer05 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer05);
         public static RoleInfo yellowplayer06 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer06);
-        public static RoleInfo yellowplayer07 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer07);
+        public static RoleInfo usurperplayer = new RoleInfo("Usurper", Color.grey, "Kill a King to become one", "Kill a King to become one", RoleId.UsurperPlayer);
 
         // Impostor roles
         public static RoleInfo mimic = new RoleInfo("Mimic", Mimic.color, "Mimic the look of other player", "Mimic the look of other player", RoleId.Mimic);
@@ -232,7 +232,7 @@ namespace LasMonjas
             yellowplayer04,
             yellowplayer05,
             yellowplayer06,
-            yellowplayer07
+            usurperplayer
         };
 
         public static List<RoleInfo> getRoleInfoForPlayer(PlayerControl p) {
@@ -288,7 +288,7 @@ namespace LasMonjas
             if (p == KingOfTheHill.yellowplayer04) infos.Add(yellowplayer04);
             if (p == KingOfTheHill.yellowplayer05) infos.Add(yellowplayer05);
             if (p == KingOfTheHill.yellowplayer06) infos.Add(yellowplayer06);
-            if (p == KingOfTheHill.yellowplayer07) infos.Add(yellowplayer07);
+            if (p == KingOfTheHill.usurperPlayer) infos.Add(usurperplayer);
 
 
             // Impostor roles

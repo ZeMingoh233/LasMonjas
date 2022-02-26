@@ -172,7 +172,7 @@ namespace LasMonjas
         private static CustomButton yellowplayer04KillButton;
         private static CustomButton yellowplayer05KillButton;
         private static CustomButton yellowplayer06KillButton;
-        private static CustomButton yellowplayer07KillButton;
+        private static CustomButton usurperPlayerKillButton;
 
         public static void setCustomButtonCooldowns() {
             // Impostor buttons
@@ -373,7 +373,7 @@ namespace LasMonjas
             yellowplayer04KillButton.MaxTimer = KingOfTheHill.killCooldown;
             yellowplayer05KillButton.MaxTimer = KingOfTheHill.killCooldown;
             yellowplayer06KillButton.MaxTimer = KingOfTheHill.killCooldown;
-            yellowplayer07KillButton.MaxTimer = KingOfTheHill.killCooldown;
+            usurperPlayerKillButton.MaxTimer = KingOfTheHill.killCooldown;
         }
 
         public static void resetBomberBombButton() {
@@ -6388,28 +6388,28 @@ namespace LasMonjas
                 KeyCode.Q
             );
 
-            // yellowplayer07 Kill
-            yellowplayer07KillButton = new CustomButton(
+            // UsurperPlayer Kill
+            usurperPlayerKillButton = new CustomButton(
                 () => {
-                    byte targetId = KingOfTheHill.yellowplayer07currentTarget.PlayerId;
+                    byte targetId = KingOfTheHill.usurperPlayercurrentTarget.PlayerId;
                     MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.KingoftheHillKills, Hazel.SendOption.Reliable, -1);
                     killWriter.Write(targetId);
                     killWriter.Write(15);
                     AmongUsClient.Instance.FinishRpcImmediately(killWriter);
                     RPCProcedure.kingOfTheHillKills(targetId, 15);
-                    yellowplayer07KillButton.Timer = yellowplayer07KillButton.MaxTimer;
-                    KingOfTheHill.yellowplayer07currentTarget = null;
+                    usurperPlayerKillButton.Timer = usurperPlayerKillButton.MaxTimer;
+                    KingOfTheHill.usurperPlayercurrentTarget = null;
                 },
-                () => { return KingOfTheHill.yellowplayer07 != null && KingOfTheHill.yellowplayer07 == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer; },
+                () => { return KingOfTheHill.usurperPlayer != null && KingOfTheHill.usurperPlayer == PlayerControl.LocalPlayer; },
                 () => {
                     if (KingOfTheHill.localArrows.Count != 0) {
                         KingOfTheHill.localArrows[0].Update(KingOfTheHill.zoneone.transform.position, KingOfTheHill.zoneonecolor);
                         KingOfTheHill.localArrows[1].Update(KingOfTheHill.zonetwo.transform.position, KingOfTheHill.zonetwocolor);
                         KingOfTheHill.localArrows[2].Update(KingOfTheHill.zonethree.transform.position, KingOfTheHill.zonethreecolor);
                     }
-                    return KingOfTheHill.yellowplayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.yellowplayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return KingOfTheHill.usurperPlayercurrentTarget && PlayerControl.LocalPlayer.CanMove && !KingOfTheHill.usurperPlayerIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
-                () => { yellowplayer07KillButton.Timer = yellowplayer07KillButton.MaxTimer; },
+                () => { usurperPlayerKillButton.Timer = usurperPlayerKillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1f, 0),
                 __instance,

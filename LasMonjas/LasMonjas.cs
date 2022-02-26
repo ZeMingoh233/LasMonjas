@@ -2274,9 +2274,9 @@ namespace LasMonjas
         public static PlayerControl yellowplayer06 = null;
         public static PlayerControl yellowplayer06currentTarget = null;
         public static bool yellowplayer06IsReviving = false;
-        public static PlayerControl yellowplayer07 = null;
-        public static PlayerControl yellowplayer07currentTarget = null;
-        public static bool yellowplayer07IsReviving = false;
+        public static PlayerControl usurperPlayer = null;
+        public static PlayerControl usurperPlayercurrentTarget = null;
+        public static bool usurperPlayerIsReviving = false;
 
         public static bool kingOfTheHillMode = false;
         public static float requiredPoints = 150;
@@ -2387,9 +2387,9 @@ namespace LasMonjas
             yellowplayer06 = null;
             yellowplayer06currentTarget = null;
             yellowplayer06IsReviving = false;
-            yellowplayer07 = null;
-            yellowplayer07currentTarget = null;
-            yellowplayer07IsReviving = false;
+            usurperPlayer = null;
+            usurperPlayercurrentTarget = null;
+            usurperPlayerIsReviving = false;
 
             if (CustomOptionHolder.kingOfTheHillMode.getSelection() == 1) {
                 kingOfTheHillMode = true;

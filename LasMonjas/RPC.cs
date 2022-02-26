@@ -117,7 +117,7 @@ namespace LasMonjas
         YellowPlayer04,
         YellowPlayer05,
         YellowPlayer06,
-        YellowPlayer07
+        UsurperPlayer
     }
 
     enum CustomRPC
@@ -583,9 +583,8 @@ namespace LasMonjas
                             KingOfTheHill.yellowplayer06 = player;
                             KingOfTheHill.yellowTeam.Add(player);
                             break;
-                        case RoleId.YellowPlayer07:
-                            KingOfTheHill.yellowplayer07 = player;
-                            KingOfTheHill.yellowTeam.Add(player);
+                        case RoleId.UsurperPlayer:
+                            KingOfTheHill.usurperPlayer = player;
                             break;
                     }
                 }
@@ -3156,7 +3155,30 @@ namespace LasMonjas
                             KingOfTheHill.yellowplayer06.MurderPlayer(player);
                             break;
                         case 15:
-                            KingOfTheHill.yellowplayer07.MurderPlayer(player);
+                            if (player.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
+                                KingOfTheHill.greenTeam.Remove(KingOfTheHill.greenKingplayer);
+                                KingOfTheHill.greenKingplayer = KingOfTheHill.usurperPlayer;
+                                KingOfTheHill.greenTeam.Add(KingOfTheHill.usurperPlayer);
+                                KingOfTheHill.usurperPlayer = player;
+                                KingOfTheHill.greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.greenkingaura.transform.parent = KingOfTheHill.greenKingplayer.transform;
+                                if (PlayerControl.LocalPlayer == KingOfTheHill.greenKingplayer) {
+                                    new CustomMessage("You're the new <color=#00FF00FF>Green King</color>!", 5, -1, 1.6f, 11);
+                                }
+                                KingOfTheHill.greenKingplayer.MurderPlayer(KingOfTheHill.usurperPlayer);
+                            }
+                            if (player.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
+                                KingOfTheHill.yellowTeam.Remove(KingOfTheHill.yellowKingplayer);
+                                KingOfTheHill.yellowKingplayer = KingOfTheHill.usurperPlayer;
+                                KingOfTheHill.yellowTeam.Add(KingOfTheHill.usurperPlayer);
+                                KingOfTheHill.usurperPlayer = player;
+                                KingOfTheHill.yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                                KingOfTheHill.yellowkingaura.transform.parent = KingOfTheHill.yellowKingplayer.transform;
+                                if (PlayerControl.LocalPlayer == KingOfTheHill.yellowKingplayer) {
+                                    new CustomMessage("You're the new <color=#FFFF00FF>Yellow King</color>!", 5, -1, 1.6f, 11);
+                                }
+                                KingOfTheHill.yellowKingplayer.MurderPlayer(KingOfTheHill.usurperPlayer);
+                            }
                             break;
                         case 16:
                             KingOfTheHill.yellowKingplayer.MurderPlayer(player);

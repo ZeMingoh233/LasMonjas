@@ -307,7 +307,7 @@ namespace LasMonjas
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer04 && !KingOfTheHill.yellowplayer04IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 && !KingOfTheHill.yellowplayer05IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06 && !KingOfTheHill.yellowplayer06IsReviving
-                    || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer07 && !KingOfTheHill.yellowplayer07IsReviving)) {
+                    || PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer && !KingOfTheHill.usurperPlayerIsReviving)) {
                     roleCouldUse = true;
                 }
                 else {
