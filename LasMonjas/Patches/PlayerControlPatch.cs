@@ -916,6 +916,11 @@ namespace LasMonjas.Patches {
                 untargetableGreenPlayers.Add(player);
             }
 
+            var untargetableYellowPlayers = new List<PlayerControl>();
+            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                untargetableYellowPlayers.Add(player);
+            }
+
             // Prevent killing reviving players
             if (KingOfTheHill.yellowplayer01IsReviving) {
                 untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer01);
@@ -952,18 +957,21 @@ namespace LasMonjas.Patches {
             }
             else {
                 untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer06);
-            }
-            if (KingOfTheHill.yellowplayer07IsReviving) {
-                untargetableGreenPlayers.Add(KingOfTheHill.yellowplayer07);
-            }
-            else {
-                untargetableGreenPlayers.Remove(KingOfTheHill.yellowplayer07);
-            }
+            }            
             if (KingOfTheHill.yellowKingIsReviving) {
                 untargetableGreenPlayers.Add(KingOfTheHill.yellowKingplayer);
             }
             else {
                 untargetableGreenPlayers.Remove(KingOfTheHill.yellowKingplayer);
+            }
+
+            if (KingOfTheHill.usurperPlayerIsReviving) {
+                untargetableGreenPlayers.Add(KingOfTheHill.usurperPlayer);
+                untargetableYellowPlayers.Add(KingOfTheHill.usurperPlayer);
+            }
+            else {
+                untargetableGreenPlayers.Remove(KingOfTheHill.usurperPlayer);
+                untargetableYellowPlayers.Remove(KingOfTheHill.usurperPlayer);
             }
 
             if (KingOfTheHill.greenKingplayer != null && KingOfTheHill.greenKingplayer == PlayerControl.LocalPlayer) {
@@ -994,12 +1002,7 @@ namespace LasMonjas.Patches {
                 KingOfTheHill.greenplayer06currentTarget = setTarget(untargetablePlayers: untargetableGreenPlayers);
                 setPlayerOutline(KingOfTheHill.greenplayer06currentTarget, Color.green);
             }
-
-            var untargetableYellowPlayers = new List<PlayerControl>();
-            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
-                untargetableYellowPlayers.Add(player);
-            }
-
+           
             // Prevent killing reviving players
             if (KingOfTheHill.greenplayer01IsReviving) {
                 untargetableYellowPlayers.Add(KingOfTheHill.greenplayer01);
@@ -1072,9 +1075,10 @@ namespace LasMonjas.Patches {
                 KingOfTheHill.yellowplayer06currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
                 setPlayerOutline(KingOfTheHill.yellowplayer06currentTarget, Color.yellow);
             }
-            if (KingOfTheHill.yellowplayer07 != null && KingOfTheHill.yellowplayer07 == PlayerControl.LocalPlayer) {
-                KingOfTheHill.yellowplayer07currentTarget = setTarget(untargetablePlayers: untargetableYellowPlayers);
-                setPlayerOutline(KingOfTheHill.yellowplayer07currentTarget, Color.yellow);
+
+            if (KingOfTheHill.usurperPlayer != null && KingOfTheHill.usurperPlayer == PlayerControl.LocalPlayer) {
+                KingOfTheHill.usurperPlayercurrentTarget = setTarget();
+                setPlayerOutline(KingOfTheHill.usurperPlayercurrentTarget, Color.grey);
             }
         }
 
@@ -1780,8 +1784,8 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in PoliceAndThief.policeTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[4]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[4]);
+                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[10]);
+                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[10]);
                         if (target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
                             PoliceAndThief.policeplayer01IsReviving = true;
                         }
@@ -2059,11 +2063,89 @@ namespace LasMonjas.Patches {
 
             // King of the hill revive player
             if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                if (KingOfTheHill.usurperPlayer.PlayerId == target.PlayerId) {
+                    var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
+                    body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[15]);
+                    body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[15]);
+                    KingOfTheHill.usurperPlayerIsReviving = true;
+                    KingOfTheHill.usurperPlayer.nameText.color = new Color(KingOfTheHill.usurperPlayer.nameText.color.r, KingOfTheHill.usurperPlayer.nameText.color.g, KingOfTheHill.usurperPlayer.nameText.color.b, 0.5f);
+                    if (KingOfTheHill.usurperPlayer.CurrentPet != null && KingOfTheHill.usurperPlayer.CurrentPet.rend != null && KingOfTheHill.usurperPlayer.CurrentPet.shadowRend != null) {
+                        KingOfTheHill.usurperPlayer.CurrentPet.rend.color = new Color(KingOfTheHill.usurperPlayer.CurrentPet.rend.color.r, KingOfTheHill.usurperPlayer.CurrentPet.rend.color.g, KingOfTheHill.usurperPlayer.CurrentPet.rend.color.b, 0.5f);
+                        KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color = new Color(KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color.r, KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color.g, KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color.b, 0.5f);
+                    }
+                    if (KingOfTheHill.usurperPlayer.HatRenderer != null) {
+                        KingOfTheHill.usurperPlayer.HatRenderer.Parent.color = new Color(KingOfTheHill.usurperPlayer.HatRenderer.Parent.color.r, KingOfTheHill.usurperPlayer.HatRenderer.Parent.color.g, KingOfTheHill.usurperPlayer.HatRenderer.Parent.color.b, 0.5f);
+                        KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color = new Color(KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color.r, KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color.g, KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color.b, 0.5f);
+                        KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color = new Color(KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color.r, KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color.g, KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color.b, 0.5f);
+                    }
+                    if (KingOfTheHill.usurperPlayer.VisorSlot != null) {
+                        KingOfTheHill.usurperPlayer.VisorSlot.Image.color = new Color(KingOfTheHill.usurperPlayer.VisorSlot.Image.color.r, KingOfTheHill.usurperPlayer.VisorSlot.Image.color.g, KingOfTheHill.usurperPlayer.VisorSlot.Image.color.b, 0.5f);
+                    }
+                    KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color = new Color(KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color.r, KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color.g, KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color.b, 0.5f);
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime, new Action<float>((p) => {
+                        if (p == 1f && KingOfTheHill.usurperPlayer != null) {
+                            KingOfTheHill.usurperPlayerIsReviving = false;
+                            KingOfTheHill.usurperPlayer.nameText.color = new Color(KingOfTheHill.usurperPlayer.nameText.color.r, KingOfTheHill.usurperPlayer.nameText.color.g, KingOfTheHill.usurperPlayer.nameText.color.b, 1f);
+                            if (KingOfTheHill.usurperPlayer.CurrentPet != null && KingOfTheHill.usurperPlayer.CurrentPet.rend != null && KingOfTheHill.usurperPlayer.CurrentPet.shadowRend != null) {
+                                KingOfTheHill.usurperPlayer.CurrentPet.rend.color = new Color(KingOfTheHill.usurperPlayer.CurrentPet.rend.color.r, KingOfTheHill.usurperPlayer.CurrentPet.rend.color.g, KingOfTheHill.usurperPlayer.CurrentPet.rend.color.b, 1f);
+                                KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color = new Color(KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color.r, KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color.g, KingOfTheHill.usurperPlayer.CurrentPet.shadowRend.color.b, 1f);
+                            }
+                            if (KingOfTheHill.usurperPlayer.HatRenderer != null) {
+                                KingOfTheHill.usurperPlayer.HatRenderer.Parent.color = new Color(KingOfTheHill.usurperPlayer.HatRenderer.Parent.color.r, KingOfTheHill.usurperPlayer.HatRenderer.Parent.color.g, KingOfTheHill.usurperPlayer.HatRenderer.Parent.color.b, 1f);
+                                KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color = new Color(KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color.r, KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color.g, KingOfTheHill.usurperPlayer.HatRenderer.BackLayer.color.b, 1f);
+                                KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color = new Color(KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color.r, KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color.g, KingOfTheHill.usurperPlayer.HatRenderer.FrontLayer.color.b, 1f);
+                            }
+                            if (KingOfTheHill.usurperPlayer.VisorSlot != null) {
+                                KingOfTheHill.usurperPlayer.VisorSlot.Image.color = new Color(KingOfTheHill.usurperPlayer.VisorSlot.Image.color.r, KingOfTheHill.usurperPlayer.VisorSlot.Image.color.g, KingOfTheHill.usurperPlayer.VisorSlot.Image.color.b, 1f);
+                            }
+                            KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color = new Color(KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color.r, KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color.g, KingOfTheHill.usurperPlayer.MyPhysics.Skin.layer.color.b, 1f);
+
+                        }
+                    })));
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                        if (p == 1f && KingOfTheHill.usurperPlayer != null) {
+                            KingOfTheHill.usurperPlayer.Revive();
+                            switch (PlayerControl.GameOptions.MapId) {
+                                // Skeld
+                                case 0:
+                                    if (activatedSensei) {
+                                        KingOfTheHill.usurperPlayer.transform.position = new Vector3(-6.8f, 10.75f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    }
+                                    else {
+                                        KingOfTheHill.usurperPlayer.transform.position = new Vector3(-1f, 5.35f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    }
+                                    break;
+                                // MiraHQ
+                                case 1:
+                                    KingOfTheHill.usurperPlayer.transform.position = new Vector3(2.5f, 11f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    break;
+                                // Polus
+                                case 2:
+                                    KingOfTheHill.usurperPlayer.transform.position = new Vector3(20.5f, -12f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    break;
+                                // Dleks
+                                case 3:
+                                    KingOfTheHill.usurperPlayer.transform.position = new Vector3(1f, 5.35f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    break;
+                                // Airship
+                                case 4:
+                                    KingOfTheHill.usurperPlayer.transform.position = new Vector3(12.25f, 2f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    break;
+                            }
+                            DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
+                            if (body != null) UnityEngine.Object.Destroy(body.gameObject);
+                            if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
+                        }
+
+                    })));
+
+                }
+                
                 foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[0]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[0]);
+                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[2]);
+                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[2]);
                         // Restore zones
                         if (target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
                             KingOfTheHill.greenteamAlerted = false;
@@ -2097,12 +2179,17 @@ namespace LasMonjas.Patches {
                             KingOfTheHill.totalGreenKingzonescaptured = 0;
                             KingOfTheHill.greenKingIsReviving = true;
                             // Hide aura while dead
-                            KingOfTheHill.greenkingaura.SetActive(false);
-                            HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
-                                if (p == 1f) {
-                                    KingOfTheHill.greenkingaura.SetActive(true);
+                            DeadPlayer kinggreenPlayer = deadPlayers?.Where(x => x.player?.PlayerId == target?.PlayerId)?.FirstOrDefault();
+                            if (kinggreenPlayer != null && kinggreenPlayer.killerIfExisting != null) {
+                                if (kinggreenPlayer.player == KingOfTheHill.greenKingplayer && kinggreenPlayer.killerIfExisting != KingOfTheHill.usurperPlayer) {
+                                    KingOfTheHill.greenkingaura.SetActive(false);
+                                    HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                                        if (p == 1f) {
+                                            KingOfTheHill.greenkingaura.SetActive(true);
+                                        }
+                                    })));
                                 }
-                            })));
+                            }
                         }
                         else if (target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
                             KingOfTheHill.greenplayer01IsReviving = true;
@@ -2218,8 +2305,8 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[1]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[1]);
+                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[5]);
+                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[5]);
 
                         // Restore zones
                         if (target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
@@ -2254,12 +2341,17 @@ namespace LasMonjas.Patches {
                             KingOfTheHill.totalYellowKingzonescaptured = 0;
                             KingOfTheHill.yellowKingIsReviving = true;
                             // Hide aura while dead
-                            KingOfTheHill.yellowkingaura.SetActive(false);
-                            HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
-                                if (p == 1f) {
-                                    KingOfTheHill.yellowkingaura.SetActive(true);
+                            DeadPlayer kingyellowPlayer = deadPlayers?.Where(x => x.player?.PlayerId == target?.PlayerId)?.FirstOrDefault();
+                            if (kingyellowPlayer != null && kingyellowPlayer.killerIfExisting != null) {
+                                if (kingyellowPlayer.player == KingOfTheHill.yellowKingplayer && kingyellowPlayer.killerIfExisting != KingOfTheHill.usurperPlayer) {
+                                    KingOfTheHill.yellowkingaura.SetActive(false);
+                                    HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime - KingOfTheHill.kingInvincibilityTimeAfterRevive, new Action<float>((p) => {
+                                        if (p == 1f) {
+                                            KingOfTheHill.yellowkingaura.SetActive(true);
+                                        }
+                                    })));
                                 }
-                            })));
+                            }
                         }
                         else if (target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
                             KingOfTheHill.yellowplayer01IsReviving = true;
@@ -2278,9 +2370,6 @@ namespace LasMonjas.Patches {
                         }
                         else if (target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
                             KingOfTheHill.yellowplayer06IsReviving = true;
-                        }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer07.PlayerId) {
-                            KingOfTheHill.yellowplayer07IsReviving = true;
                         }
                         player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
                         if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {
@@ -2319,9 +2408,6 @@ namespace LasMonjas.Patches {
                                 }
                                 else if (target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
                                     KingOfTheHill.yellowplayer06IsReviving = false;
-                                }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer07.PlayerId) {
-                                    KingOfTheHill.yellowplayer07IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
                                 if (player.CurrentPet != null && player.CurrentPet.rend != null && player.CurrentPet.shadowRend != null) {

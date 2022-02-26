@@ -122,6 +122,10 @@ namespace LasMonjas.Patches {
                 }
             }
             else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                if (KingOfTheHill.usurperPlayer != null) {
+                    setPlayerNameColor(KingOfTheHill.usurperPlayer, Palette.PlayerColors[15]);
+                }
+                
                 foreach (PlayerControl greenplayer in KingOfTheHill.greenTeam) {
                     if (greenplayer != null) {
                         setPlayerNameColor(greenplayer, Palette.PlayerColors[2]);
@@ -365,13 +369,8 @@ namespace LasMonjas.Patches {
             if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
                 KingOfTheHill.matchDuration -= Time.deltaTime;
                 if (KingOfTheHill.matchDuration < 0) {
-                    // Draw + green team have less players than yellow team = green team win
-                    if (KingOfTheHill.currentGreenTeamPoints == KingOfTheHill.currentYellowTeamPoints && KingOfTheHill.greenTeam.Count < KingOfTheHill.yellowTeam.Count) {
-                        KingOfTheHill.triggerGreenTeamWin = true;
-                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.GreenTeamHillWin, false);
-                    }
-                    // Draw + same team number = draw
-                    else if (KingOfTheHill.currentGreenTeamPoints == KingOfTheHill.currentYellowTeamPoints && KingOfTheHill.greenTeam.Count == KingOfTheHill.yellowTeam.Count) {
+                    // both teams with same points = draw
+                    if (KingOfTheHill.currentGreenTeamPoints == KingOfTheHill.currentYellowTeamPoints) {
                         KingOfTheHill.triggerDrawWin = true;
                         ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.TeamHillDraw, false);
                     }

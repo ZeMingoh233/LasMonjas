@@ -108,6 +108,9 @@ namespace LasMonjas.Patches {
             if (Yinyanger.yinyanger != null) notWinners.Add(Yinyanger.yinyanger);
             if (Challenger.challenger != null) notWinners.Add(Challenger.challenger);
 
+            // Remove usurperplayer from winners on king of the hill
+            if (KingOfTheHill.usurperPlayer != null) notWinners.Add(KingOfTheHill.usurperPlayer);
+
             notWinners.AddRange(Renegade.formerRenegades);
 
             List<WinningPlayerData> winnersToRemove = new List<WinningPlayerData>();

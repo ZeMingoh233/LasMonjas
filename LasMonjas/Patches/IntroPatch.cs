@@ -94,9 +94,14 @@ namespace LasMonjas.Patches
                     yourTeam = greenTeam;
                 }
                 var yellowTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
-                if (PlayerControl.LocalPlayer == KingOfTheHill.yellowKingplayer || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer01 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer02 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer03 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer04 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer07) {
+                if (PlayerControl.LocalPlayer == KingOfTheHill.yellowKingplayer || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer01 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer02 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer03 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer04 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06) {
                     yellowTeam.Add(PlayerControl.LocalPlayer);
                     yourTeam = yellowTeam;
+                }
+                if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                    var greyTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                    greyTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = greyTeam;
                 }
             }
             else {
@@ -1273,6 +1278,11 @@ namespace LasMonjas.Patches
                         // Skeld
                         case 0:
                             if (activatedSensei) {
+                                if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                    KingOfTheHill.usurperPlayer.transform.position = new Vector3(-6.8f, 10.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                                }
+                                
                                 foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-16.4f, -10.25f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1335,6 +1345,11 @@ namespace LasMonjas.Patches
                                 }
                             }
                             else {
+                                if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                    KingOfTheHill.usurperPlayer.transform.position = new Vector3(-1f, 5.35f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                                }
+                                
                                 foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-7f, -8.25f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1399,6 +1414,11 @@ namespace LasMonjas.Patches
                             break;
                         // MiraHQ
                         case 1:
+                            if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                KingOfTheHill.usurperPlayer.transform.position = new Vector3(2.5f, 11f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                            }
+                            
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(-4.45f, 1.75f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1474,6 +1494,11 @@ namespace LasMonjas.Patches
                             break;
                         // Polus
                         case 2:
+                            if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                KingOfTheHill.usurperPlayer.transform.position = new Vector3(20.5f, -12f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                            }
+                            
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(2.25f, -23.75f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1547,6 +1572,11 @@ namespace LasMonjas.Patches
                             break;
                         // Dlesk
                         case 3:
+                            if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                KingOfTheHill.usurperPlayer.transform.position = new Vector3(1f, 5.35f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                            }
+                            
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(7f, -8.25f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1610,6 +1640,11 @@ namespace LasMonjas.Patches
                             break;
                         // Airship
                         case 4:
+                            if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                KingOfTheHill.usurperPlayer.transform.position = new Vector3(12.25f, 2f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                            }
+                            
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(-13.9f, -14.45f, PlayerControl.LocalPlayer.transform.position.z);

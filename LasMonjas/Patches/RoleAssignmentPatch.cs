@@ -485,6 +485,11 @@ namespace LasMonjas.Patches {
             else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
                 // King of the hill    
                 myKingoftheHill.Clear();
+                bool oddNumber = false;
+                if (Mathf.Ceil(PlayerControl.AllPlayerControls.Count) % 2 != 0) {
+                    oddNumber = true;
+                    setRoleToRandomPlayer((byte)RoleId.UsurperPlayer, modifiers);
+                }
                 int myking = 1;
                 while (myKingoftheHill.Count < (Mathf.Round(PlayerControl.AllPlayerControls.Count / 2))) {
                     switch (myking) {
@@ -514,7 +519,7 @@ namespace LasMonjas.Patches {
                     myking += 1;
                 }
                 int myyellowking = 9;
-                while (myKingoftheHill.Count < PlayerControl.AllPlayerControls.Count) {
+                while (!oddNumber && myKingoftheHill.Count < PlayerControl.AllPlayerControls.Count || oddNumber && myKingoftheHill.Count < PlayerControl.AllPlayerControls.Count - 1) {
                     switch (myyellowking) {
                         case 9:
                             setRoleToRandomPlayer((byte)RoleId.YellowKing, modifiers);
@@ -536,9 +541,6 @@ namespace LasMonjas.Patches {
                             break;
                         case 15:
                             setRoleToRandomPlayer((byte)RoleId.YellowPlayer06, modifiers);
-                            break;
-                        case 16:
-                            setRoleToRandomPlayer((byte)RoleId.YellowPlayer07, modifiers);
                             break;
                     }
                     myKingoftheHill.Add(myyellowking);
