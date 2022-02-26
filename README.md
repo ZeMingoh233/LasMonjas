@@ -31,7 +31,16 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   <summary>Click to show</summary>
 
 \
+
+**Version 1.1.2**
+- Added a new role (Usurper) on King Of The Hill which only appears on odd player number games
+- The Usurper can kill everyone, but if he kills a King he becomes one and the old King becomes the Usurper
+- The Usurper never wins, the player who ends as Usurper loses
+- Update Reactor.dll to fix compatibility with 2022.2.23s
   
+**Version 1.1.1**
+- Fixed an issue on King Of The Hill where the Kings could still capture a zone while dead
+
 **Version 1.1.0**
 - You can no longer vent on custom gamemodes while reviving
 - Squire's shield is no longer visible during Challenger's duel
@@ -844,7 +853,7 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 
 ## KingOfTheHill
 
-Match between green and yellow team. There's a total of 3 capturable zones in the map and each team has a King who can capture them. Among us support 15 players, which is an odd number. On this gamemode yellow team will always have an extra player if you're playing with an odd player number, in order to balance this, green team is a little closer to the zones.
+Match between green and yellow team. There's a total of 3 capturable zones in the map and each team has a King who can capture them. Among us support 15 players, which is an odd number. On odd player number games a special role called Usurper will appear.
 
 | Option  | Description |
 |----------|-------------|
@@ -866,6 +875,7 @@ Match between green and yellow team. There's a total of 3 capturable zones in th
 - If a King gets killed, his team will lose every captured zone, turning them into white color.
 - A captured zone can be stolen by the other King.
 - If a King disconnects from the game, another King will be assigned randomly between team players.
+- The Usurper always loses, he can kill everyone and if he kills a King he becomes one, making the old King the new Usurper
 - Each player name color will be the same as the team color.
 - There are custom messages for match duration, captured zone, a King died or a King disconnects, also the game score is always displayed.
 - Revive Time value is calculated by subtracting Invincibility Time value from it, for example if Revive Time is 8 and Invincibility Time is 3, players will revive after 5 seconds but will be invincible for another 3 seconds after reviving.
