@@ -2063,7 +2063,7 @@ namespace LasMonjas.Patches {
 
             // King of the hill revive player
             if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
-                if (KingOfTheHill.usurperPlayer.PlayerId == target.PlayerId) {
+                if (KingOfTheHill.usurperPlayer != null && KingOfTheHill.usurperPlayer.PlayerId == target.PlayerId) {
                     var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                     body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[15]);
                     body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[15]);
