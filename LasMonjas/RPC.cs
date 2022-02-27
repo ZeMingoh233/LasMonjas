@@ -3167,7 +3167,7 @@ namespace LasMonjas
                                 }
                                 KingOfTheHill.greenKingplayer.MurderPlayer(KingOfTheHill.usurperPlayer);
                             }
-                            if (player.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
+                            else if (player.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
                                 KingOfTheHill.yellowTeam.Remove(KingOfTheHill.yellowKingplayer);
                                 KingOfTheHill.yellowKingplayer = KingOfTheHill.usurperPlayer;
                                 KingOfTheHill.yellowTeam.Add(KingOfTheHill.usurperPlayer);
@@ -3178,7 +3178,9 @@ namespace LasMonjas
                                     new CustomMessage("You're the new <color=#FFFF00FF>Yellow King</color>!", 5, -1, 1.6f, 11);
                                 }
                                 KingOfTheHill.yellowKingplayer.MurderPlayer(KingOfTheHill.usurperPlayer);
-                            }
+                            } else {
+								KingOfTheHill.usurperPlayer.MurderPlayer(player);
+							}
                             break;
                         case 16:
                             KingOfTheHill.yellowKingplayer.MurderPlayer(player);
