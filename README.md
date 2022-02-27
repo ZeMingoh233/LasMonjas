@@ -32,6 +32,9 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 \
 
+**Version 1.1.3**
+- Fixed Usurper on King Of The Hill, he can now kill everyone
+
 **Version 1.1.2**
 - Added a new role (Usurper) on King Of The Hill which only appears on odd player number games
 - The Usurper can kill everyone, but if he kills a King he becomes one and the old King becomes the Usurper
