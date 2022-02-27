@@ -32,6 +32,9 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 \
 
+**Version 1.1.4**
+-Fixed King Of The Hill games with even player number
+
 **Version 1.1.3**
 - Fixed Usurper on King Of The Hill, he can now kill everyone
 
