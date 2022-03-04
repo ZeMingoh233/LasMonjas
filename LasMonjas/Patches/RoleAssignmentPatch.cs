@@ -105,8 +105,8 @@ namespace LasMonjas.Patches {
                         setRoleToRandomPlayer((byte)RoleId.Welder, crewmates);
                     if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.spiritualistSpawnRate.getSelection()))
                         setRoleToRandomPlayer((byte)RoleId.Spiritualist, crewmates);
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.theChosenOneSpawnRate.getSelection()))
-                        setRoleToRandomPlayer((byte)RoleId.TheChosenOne, crewmates);
+                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.cowardSpawnRate.getSelection()))
+                        setRoleToRandomPlayer((byte)RoleId.Coward, crewmates); 
                     if (PlayerControl.GameOptions.MapId != 1) {
                         if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.vigilantSpawnRate.getSelection()))
                             setRoleToRandomPlayer((byte)RoleId.Vigilant, crewmates);
@@ -115,8 +115,8 @@ namespace LasMonjas.Patches {
                         if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.vigilantSpawnRate.getSelection()))
                             setRoleToRandomPlayer((byte)RoleId.VigilantMira, crewmates);
                     }
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.performerSpawnRate.getSelection()))
-                        setRoleToRandomPlayer((byte)RoleId.Performer, crewmates); 
+                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.medusaSpawnRate.getSelection()))
+                        setRoleToRandomPlayer((byte)RoleId.Medusa, crewmates); 
                     if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.hunterSpawnRate.getSelection())) {
                         setRoleToRandomPlayer((byte)RoleId.Hunter, crewmates);
                     }                                     
@@ -189,6 +189,12 @@ namespace LasMonjas.Patches {
                         }
                         if (mymodifiers.Count > 0 && CustomOptionHolder.bigchungusPlayer.getBool()) {
                             setRoleToRandomPlayer((byte)RoleId.BigChungus, modifiers);
+                        }
+                        if (mymodifiers.Count > 0 && CustomOptionHolder.theChosenOnePlayer.getBool()) {
+                            setRoleToRandomPlayer((byte)RoleId.TheChosenOne, modifiers);
+                        }
+                        if (mymodifiers.Count > 0 && CustomOptionHolder.performerPlayer.getBool()) {
+                            setRoleToRandomPlayer((byte)RoleId.Performer, modifiers);
                         }
                     }
                 }
@@ -264,14 +270,14 @@ namespace LasMonjas.Patches {
                     crewSettings.Add((byte)RoleId.Kid, CustomOptionHolder.kidSpawnRate.getSelection());
                     crewSettings.Add((byte)RoleId.Welder, CustomOptionHolder.welderSpawnRate.getSelection());
                     crewSettings.Add((byte)RoleId.Spiritualist, CustomOptionHolder.spiritualistSpawnRate.getSelection());
-                    crewSettings.Add((byte)RoleId.TheChosenOne, CustomOptionHolder.theChosenOneSpawnRate.getSelection());
+                    crewSettings.Add((byte)RoleId.Coward, CustomOptionHolder.cowardSpawnRate.getSelection());
                     if (PlayerControl.GameOptions.MapId != 1) {
                         crewSettings.Add((byte)RoleId.Vigilant, CustomOptionHolder.vigilantSpawnRate.getSelection());
                     }
                     else {
                         crewSettings.Add((byte)RoleId.VigilantMira, CustomOptionHolder.vigilantSpawnRate.getSelection());
                     }
-                    crewSettings.Add((byte)RoleId.Performer, CustomOptionHolder.performerSpawnRate.getSelection());
+                    crewSettings.Add((byte)RoleId.Medusa, CustomOptionHolder.medusaSpawnRate.getSelection());
                     crewSettings.Add((byte)RoleId.Hunter, CustomOptionHolder.hunterSpawnRate.getSelection());
                     crewSettings.Add((byte)RoleId.Jinx, CustomOptionHolder.jinxSpawnRate.getSelection());
 
@@ -317,9 +323,9 @@ namespace LasMonjas.Patches {
                     mymodifiers.Clear();
                     if (rnd.Next(1, 2) <= CustomOptionHolder.activateModifiers.getSelection()) {
                         foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
-                            int num = rnd.Next(1, 6);
+                            int num = rnd.Next(1, 8);
                             while (mymodifiers.Contains(num) && mymodifiers.Count < CustomOptionHolder.numberOfModifiers.getFloat()) {
-                                num = rnd.Next(1, 6);
+                                num = rnd.Next(1, 8);
                             }
                             if (mymodifiers.Count < CustomOptionHolder.numberOfModifiers.getFloat()) {
                                 switch (num) {
@@ -349,6 +355,16 @@ namespace LasMonjas.Patches {
                                             setRoleToRandomPlayer((byte)RoleId.BigChungus, modifiers);
                                         }
                                         break;
+                                    case 6:
+                                        if (mymodifiers.Count > 0 && CustomOptionHolder.theChosenOnePlayer.getBool()) {
+                                            setRoleToRandomPlayer((byte)RoleId.TheChosenOne, modifiers);
+                                        }
+                                        break;
+                                    case 7:
+                                        if (mymodifiers.Count > 0 && CustomOptionHolder.performerPlayer.getBool()) {
+                                            setRoleToRandomPlayer((byte)RoleId.Performer, modifiers);
+                                        }
+                                        break;
                                 }
                                 mymodifiers.Add(num);
                             }
@@ -359,6 +375,11 @@ namespace LasMonjas.Patches {
             else if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                 // Capture the flag    
                 myCapturetheflag.Clear();
+                bool oddNumber = false;
+                if (Mathf.Ceil(PlayerControl.AllPlayerControls.Count) % 2 != 0) {
+                    oddNumber = true;
+                    setRoleToRandomPlayer((byte)RoleId.StealerPlayer, modifiers);
+                }
                 int myflag = 1;
                 while (myCapturetheflag.Count < (Mathf.Round(PlayerControl.AllPlayerControls.Count / 2))) {
                     switch (myflag) {
@@ -388,7 +409,7 @@ namespace LasMonjas.Patches {
                     myflag += 1;
                 }
                 int myblueflag = 9;
-                while (myCapturetheflag.Count < PlayerControl.AllPlayerControls.Count) {
+                while (!oddNumber && myCapturetheflag.Count < PlayerControl.AllPlayerControls.Count || oddNumber && myCapturetheflag.Count < PlayerControl.AllPlayerControls.Count - 1) {
                     switch (myblueflag) {
                         case 9:
                             setRoleToRandomPlayer((byte)RoleId.BluePlayer01, modifiers);
@@ -410,9 +431,6 @@ namespace LasMonjas.Patches {
                             break;
                         case 15:
                             setRoleToRandomPlayer((byte)RoleId.BluePlayer07, modifiers);
-                            break;
-                        case 16:
-                            setRoleToRandomPlayer((byte)RoleId.BluePlayer08, modifiers);
                             break;
                     }
                     myCapturetheflag.Add(myblueflag);

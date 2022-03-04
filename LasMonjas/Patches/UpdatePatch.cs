@@ -70,6 +70,10 @@ namespace LasMonjas.Patches {
         static void setNameColors() {
 
             if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+                if (CaptureTheFlag.stealerPlayer != null) {
+                    setPlayerNameColor(CaptureTheFlag.stealerPlayer, Palette.PlayerColors[15]);
+                }
+                
                 foreach (PlayerControl redplayer in CaptureTheFlag.redteamFlag) {
                     if (redplayer != null) {
                         setPlayerNameColor(redplayer, Palette.PlayerColors[0]);
@@ -177,14 +181,14 @@ namespace LasMonjas.Patches {
                     setPlayerNameColor(Welder.welder, Welder.color);
                 else if (Spiritualist.spiritualist != null && Spiritualist.spiritualist == PlayerControl.LocalPlayer)
                     setPlayerNameColor(Spiritualist.spiritualist, Spiritualist.color);
-                else if (TheChosenOne.theChosenOne != null && TheChosenOne.theChosenOne == PlayerControl.LocalPlayer)
-                    setPlayerNameColor(TheChosenOne.theChosenOne, TheChosenOne.color);
+                else if (Coward.coward != null && Coward.coward == PlayerControl.LocalPlayer)
+                    setPlayerNameColor(Coward.coward, Coward.color);
                 else if (Vigilant.vigilant != null && Vigilant.vigilant == PlayerControl.LocalPlayer)
                     setPlayerNameColor(Vigilant.vigilant, Vigilant.color);
                 else if (Vigilant.vigilantMira != null && Vigilant.vigilantMira == PlayerControl.LocalPlayer)
                     setPlayerNameColor(Vigilant.vigilantMira, Vigilant.color);
-                else if (Performer.performer != null && Performer.performer == PlayerControl.LocalPlayer)
-                    setPlayerNameColor(Performer.performer, Performer.color);
+                else if (Medusa.medusa != null && Medusa.medusa == PlayerControl.LocalPlayer)
+                    setPlayerNameColor(Medusa.medusa, Medusa.color);
                 else if (Hunter.hunter != null && Hunter.hunter == PlayerControl.LocalPlayer)
                     setPlayerNameColor(Hunter.hunter, Hunter.color);
                 else if (Jinx.jinx != null && Jinx.jinx == PlayerControl.LocalPlayer)
@@ -313,8 +317,8 @@ namespace LasMonjas.Patches {
             if (Bomberman.bomberman != null) {
                 Bomberman.bombTimer -= Time.deltaTime;
             }
-            if (Performer.performer != null) {
-                Performer.duration -= Time.deltaTime;
+            if (Modifiers.performer != null) {
+                Modifiers.performerDuration -= Time.deltaTime;
             }
             if (Ilusionist.ilusionist != null) {
                 Ilusionist.lightsOutTimer -= Time.deltaTime;
@@ -322,18 +326,22 @@ namespace LasMonjas.Patches {
             if (Sleuth.sleuth != null) {
                 Sleuth.corpsesPathfindTimer -= Time.deltaTime;
             }
+            if (Detective.detective != null) {
+                Detective.detectiveTimer -= Time.deltaTime;
+            }
+            if (Fink.fink != null) {
+                Fink.finkTimer -= Time.deltaTime;
+            }
+            if (Medusa.medusa != null) {
+                Medusa.messageTimer -= Time.deltaTime;
+            }
 
             // Capture the flag timer
             if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
                 CaptureTheFlag.matchDuration -= Time.deltaTime;
-                if (CaptureTheFlag.matchDuration < 0) {
-                    // Draw + red team have less players than blue team = red team win
-                    if (CaptureTheFlag.currentRedTeamPoints == CaptureTheFlag.currentBlueTeamPoints && CaptureTheFlag.redteamFlag.Count < CaptureTheFlag.blueteamFlag.Count) {
-                        CaptureTheFlag.triggerRedTeamWin = true;
-                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.RedTeamFlagWin, false);
-                    }
-                    // Draw + same team number = draw
-                    else if (CaptureTheFlag.currentRedTeamPoints == CaptureTheFlag.currentBlueTeamPoints && CaptureTheFlag.redteamFlag.Count == CaptureTheFlag.blueteamFlag.Count) {
+                if (CaptureTheFlag.matchDuration < 0) {                    
+                    // both teams with same points = Draw
+                    if (CaptureTheFlag.currentRedTeamPoints == CaptureTheFlag.currentBlueTeamPoints) {
                         CaptureTheFlag.triggerDrawWin = true;
                         ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.DrawTeamWin, false);
                     }

@@ -48,10 +48,9 @@ namespace LasMonjas.Patches
     {
         public static void setupIntroTeamIcons(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam) {
 
+            SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
+            
             if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
-                if (MapOptions.activateMusic) {
-                    SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
-                }
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.captureTheFlagMusic, true, 25f);
                 // Intro capture the flag teams
                 var redTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
@@ -60,15 +59,17 @@ namespace LasMonjas.Patches
                     yourTeam = redTeam;
                 }
                 var blueTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
-                if (PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer01 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer02 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer03 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer04 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer05 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer06 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer07 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer08) {
+                if (PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer01 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer02 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer03 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer04 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer05 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer06 || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer07) {
                     blueTeam.Add(PlayerControl.LocalPlayer);
                     yourTeam = blueTeam;
                 }
+                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                    var greyTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                    greyTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = greyTeam;
+                }
             }
             else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
-                if (MapOptions.activateMusic) {
-                    SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
-                }
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.policeAndThiefMusic, true, 25f);
                 // Intro police and thiefs teams
                 var thiefTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
@@ -83,9 +84,6 @@ namespace LasMonjas.Patches
                 }
             }
             else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
-                if (MapOptions.activateMusic) {
-                    SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
-                }
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.kingOfTheHillMusic, true, 25f);
                 // Intro king of the hill teams
                 var greenTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
@@ -113,7 +111,6 @@ namespace LasMonjas.Patches
                 }
                 
                 if (MapOptions.activateMusic) {
-                    SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
                     SoundManager.Instance.PlaySound(CustomMain.customAssets.tasksCalmMusic, true, 25f);
                 }
             }
@@ -210,6 +207,11 @@ namespace LasMonjas.Patches
                         // Skeld
                         case 0:
                             if (activatedSensei) {
+                                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                    CaptureTheFlag.stealerPlayer.transform.position = new Vector3(-3.65f, 5f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                                }
+                                
                                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-17.5f, -1.15f, PlayerControl.LocalPlayer.transform.position.z);
@@ -247,6 +249,11 @@ namespace LasMonjas.Patches
                                 }
                             }
                             else {
+                                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                    CaptureTheFlag.stealerPlayer.transform.position = new Vector3(6.35f, -7.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                                }
+                                
                                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-20.5f, -5.15f, PlayerControl.LocalPlayer.transform.position.z);
@@ -286,6 +293,11 @@ namespace LasMonjas.Patches
                             break;
                         // MiraHQ
                         case 1:
+                            if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                CaptureTheFlag.stealerPlayer.transform.position = new Vector3(17.75f, 24f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                            }
+                            
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(2.53f, 10.75f, PlayerControl.LocalPlayer.transform.position.z);
@@ -336,6 +348,11 @@ namespace LasMonjas.Patches
                             break;
                         // Polus
                         case 2:
+                            if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                CaptureTheFlag.stealerPlayer.transform.position = new Vector3(31.75f, -13f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                            }
+                            
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(36.4f, -21.5f, PlayerControl.LocalPlayer.transform.position.z);
@@ -380,10 +397,17 @@ namespace LasMonjas.Patches
                                 admintwo.GetComponent<BoxCollider2D>().enabled = false;
                                 GameObject ramp = GameObject.Find("ramp");
                                 ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
+                                GameObject bathroomVent = GameObject.Find("BathroomVent");
+                                bathroomVent.transform.position = new Vector3(34, -10.3f, bathroomVent.transform.position.z);
                             }
                             break;
                         // Dlesk
                         case 3:
+                            if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                CaptureTheFlag.stealerPlayer.transform.position = new Vector3(-6.35f, -7.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                            }
+                            
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(20.5f, -5.15f, PlayerControl.LocalPlayer.transform.position.z);
@@ -422,6 +446,11 @@ namespace LasMonjas.Patches
                             break;
                         // Airship
                         case 4:
+                            if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                CaptureTheFlag.stealerPlayer.transform.position = new Vector3(10.25f, -15.35f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                            }
+                            
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(-17.5f, -1f, PlayerControl.LocalPlayer.transform.position.z);
@@ -910,6 +939,8 @@ namespace LasMonjas.Patches
                                 prisonVent.transform.position = new Vector3(11.75f, -7.75f, prisonVent.transform.position.z);
                                 GameObject ramp = GameObject.Find("ramp");
                                 ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
+                                GameObject bathroomVent = GameObject.Find("BathroomVent");
+                                bathroomVent.transform.position = new Vector3(34, -10.3f, bathroomVent.transform.position.z);
 
                                 // Spawn jewels
                                 GameObject jewel01 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
@@ -1568,6 +1599,8 @@ namespace LasMonjas.Patches
                                 admintwo.GetComponent<BoxCollider2D>().enabled = false;
                                 GameObject ramp = GameObject.Find("ramp");
                                 ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
+                                GameObject bathroomVent = GameObject.Find("BathroomVent");
+                                bathroomVent.transform.position = new Vector3(34, -10.3f, bathroomVent.transform.position.z);
                             }
                             break;
                         // Dlesk
