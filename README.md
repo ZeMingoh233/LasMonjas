@@ -4,10 +4,10 @@
 Las Monjas is a Spanish mod (translated and published on English) for Among Us made by fans for fans without being affiliated with Among Us or Innersloth Team, all rights reserved to them. This mod features the following:
 
   1. [40 roles](#roles)
-  2. [11 modifiers](#modifiers)
+  2. [13 modifiers](#modifiers)
   3. [1 custom map](#modifiers)
   4. [3 custom gamemodes](#gamemodes)
-  5. [2 new colors](#settings)
+  5. [4 new colors](#settings)
   6. [Custom Music](#settings)
   7. [Custom Lobby](#settings)
 
@@ -32,8 +32,21 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 \
 
+**Version 1.2.0**
+- Changed one vent's position on Polus on every gamemode to fix a vanilla bug
+- Fixed lobby music to not continue playing when the game starts on some cases
+- Fixed Usurper rol on King Of The Hill, can't kill reviving players anymore
+- Increased maximum required points to win on King Of The Hill from 200 to 300
+- Added Flag Stealer rol on Capture the Flag, never wins but can kill everyone and if he kills a player with the Flag he switchs teams with him
+- 2 new colors added: Olive and Mint
+- Detective: added an option to define if his ability is always working or via button use
+- Fink: new ability, zoom out for a short period of time, he can't move while using it
+- The Chosen One and Performer are now Modifiers
+- New role: Coward, crewmate who can call emergency meetings from anywhere while no sabotages are actives
+- New role: Medusa, crewmate who can petrify other player for a short period of time
+
 **Version 1.1.4**
--Fixed King Of The Hill games with even player number
+- Fixed King Of The Hill games with even player number
 
 **Version 1.1.3**
 - Fixed Usurper on King Of The Hill, he can now kill everyone
@@ -105,8 +118,8 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 | [Demon](#demon) | [Sheriff](#sheriff) | [Pyromaniac](#pyromaniac) | [Trapper](#trapper) | [Blind](#blind) |
 | [Janitor](#janitor) | [Detective](#detective) | [Treasure Hunter](#treasurehunter) | [Yinyanger](#yinyanger) | [Flash](#flash) |
 | [Ilusionist](#ilusionist) | [Forensic](#forensic) | [Devourer](#devourer) | [Challenger](#challenger) | [Big Chungus](#bigchungus) |
-| [Manipulator](#manipulator) | [Time Traveler](#timetraveler) |  |  |  |
-| [Bomberman](#bomberman) | [Squire](#squire) |  |  |  |
+| [Manipulator](#manipulator) | [Time Traveler](#timetraveler) |  |  |  [The Chosen One](#thechosenone) |
+| [Bomberman](#bomberman) | [Squire](#squire) |  |  |  [Performer](#performer) |
 | [Chameleon](#chameleon) | [Cheater](#cheater) |  |  |  |
 | [Gambler](#gambler)  | [Fortune Teller](#fortuneteller) |  |  |  |
 | [Sorcerer](#sorcerer) | [Hacker](#hacker) |  |  |  |
@@ -115,9 +128,9 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 |  | [Kid](#kid) |  |  |  |
 |  | [Welder](#welder) |  |  |  |
 |  | [Spiritualist](#spiritualist) |  |  |  |
-|  | [The Chosen One](#thechosenone) |  | |  |
+|  | [Coward](#coward) |  | |  |
 |  |  [Vigilant](#vigilant) |  |  |  |
-|  |  [Performer](#performer) |  | |  |
+|  |  [Medusa](#medusa) |  | |  |
 |  |  [Hunter](#hunter) |  | |  |
 |  |  [Jinx](#jinx) |  | |  |
 
@@ -508,6 +521,9 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can see player's footprints |
+| Show Footprints | Always or via button use |
+| Cooldown | Show footprints cooldown |
+| Duration | Show footprints duration |
 | Anonymous Footprints | This sets the footprints color to grey |
 | Footprint Interval | How often the footprints appear |
 | Footprint Duration | Time it takes the footprints to disappear |
@@ -640,14 +656,17 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 # Fink
 | Team and Options  | Description |
 |----------|-------------|
-| Crewmate | Can reveal who the Impostors are after finishing all his tasks |
+| Crewmate | Can reveal who the Impostors are after finishing all his tasks and zoom out his camera |
 | Tasks for being revealed to Impostors | When the Impostors will know who is the Fink |  
 | Can Reveal Renegade and Minion | Define if Renegade and Minion are revealed too |  
+| Cooldown | Spy cooldown |  
+| Hawk Eye Duration | Time the camera is zoomed out |  
 
 **Additional Ability Notes:**
 - Impostor's reveal arrow for Fink are red.
 - Renegade and Minion arrows for Fink are green.
 - Impostors and Renegade see the Fink with a maroon arrow.
+- While using Hawk Eye, he can't move and impostors will get a warning about the ability is in use
 
 -----------------------
 
@@ -692,15 +711,14 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# TheChosenOne
+# Coward
 | Team and Options  | Description |
 |----------|-------------|
-| Crewmate | Uppon death will force his killer to report his body |
-| Report Delay | Delayed report time after being killed |
+| Crewmate | Can call meeting from anywhere |
+| Number of Meetings | How many times can call meetings |
 
 **Additional Ability Notes:**
-- Is the only role Spiritualist can't revive.
-- Time Traveler can manage to revive him before the report delay fills in, this will cause that the next time the Chosen One dies it will be reported before the full delayed time since a few second already passed on his first death.
+- He can't call meetings is a sabotage is happening
 
 -----------------------
 
@@ -721,16 +739,17 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Performer
+# Medusa
 | Team and Options  | Description |
 |----------|-------------|
-| Crewmate | His death triggers an alarm and an arrow reveals his corpse position |
+| Crewmate | Can petrify other players  |
+| Petrify Delay | Delay the petrify effect |
 | Duration | Ability Duration |
 
 **Additional Ability Notes:**
-- Time Traveler and Spiritualist don't hear the alarm, they also can't see the arrow pointing to his body.
-- Music will stop after the setted amount of time if nobody found him or someone made a meeting, the Janitor cleans his body or the Devourer devoured his body.
-- A special sprite will appear after killing the Performer so the killer will know he just messed up.
+- A petrified player can't move and a custom message will tell him he's petrified
+- Petrify doesn't affect players inside vents
+- Can only petrify alive players
 
 
 -----------------------
@@ -785,7 +804,13 @@ This mod also features some game mechanic modifiers, one of them being a custom 
   - Player faster than the others.
 ### BigChungus
   - Player bigger and slower than the others.
-  
+### TheChosenOne
+  - Uppon death will force his killer to report his body
+  - It has an option to configure the report delay time
+### Performer
+  - His death triggers an alarm and an arrow reveals his corpse position
+  - It has an option to configure the performance duration
+
 -----------------------
 
 # GameModes
@@ -794,7 +819,7 @@ This mods adds three gamemodes, which can be played on everymap including the cu
 
 ## CaptureTheFlag
 
-Match between red and blue team where each team has to steal the enemy flag and take it to their base while listening to custom music. Among us support 15 players, which is an odd number. On this gamemode blue team will always have an extra player if you're playing with an odd player number, in order to balance this, red team will win if the match results in draw when the blue team have one more player.
+Match between red and blue team where each team has to steal the enemy flag and take it to their base while listening to custom music. Among us support 15 players, which is an odd number. On odd player number games a special role called Flag Stealer will appear.
 
 | Option  | Description |
 |----------|-------------|
@@ -810,6 +835,7 @@ Match between red and blue team where each team has to steal the enemy flag and 
 - You can't kill your teammates.
 - The player who has the flag can't kill or use vents.
 - Killing the player who has the flag makes the flag teleport back to his base.
+- The Flag Stelaer always loses, he can kill everyone and if he kills a player with a flag, he switchs teams with him
 - There are custom messages for match duration, stolen flag and scored point, also the game score is always displayed.
 - Flags positions are marked by a team color corresponding arrow.
 - If the player who has the flag disconnects from the match, the flag stays where that player was.
@@ -864,7 +890,7 @@ Match between green and yellow team. There's a total of 3 capturable zones in th
 | Option  | Description |
 |----------|-------------|
 | Match Duration | From 3 to 5 minutes |
-| Required Points | Points required to win, from 100 to 200 |
+| Required Points | Points required to win, from 100 to 300 |
 | Capture Cooldown | King capture ability cooldown |
 | Kill Cooldown | Player's kill coooldown |
 | Kings can Kill | Define if Kings can also kill |
