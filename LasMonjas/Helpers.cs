@@ -269,7 +269,7 @@ namespace LasMonjas
                     || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer05 && !CaptureTheFlag.blueplayer05IsReviving
                     || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer06 && !CaptureTheFlag.blueplayer06IsReviving
                     || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer07 && !CaptureTheFlag.blueplayer07IsReviving
-                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer08 && !CaptureTheFlag.blueplayer08IsReviving)) {
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer && !CaptureTheFlag.stealerPlayerIsReviving)) {
                     roleCouldUse = true;
                 }
                 else {

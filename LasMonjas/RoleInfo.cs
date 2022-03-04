@@ -42,7 +42,7 @@ namespace LasMonjas
         public static RoleInfo blueplayer05 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer05);
         public static RoleInfo blueplayer06 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer06);
         public static RoleInfo blueplayer07 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer07);
-        public static RoleInfo blueplayer08 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer08);
+        public static RoleInfo stealerplayer = new RoleInfo("Flag Stealer", Color.grey, "Steal the flag from a player to join that team", "Steal the flag from a player to join that team", RoleId.StealerPlayer);
 
         // Police and Thief Teams
         public static RoleInfo policeplayer01 = new RoleInfo("Police Officer", Color.cyan, "Capture all the <color=#D2B48CFF>Thiefs</color>", "Capture all the <color=#D2B48CFF>Thiefs</color>", RoleId.PolicePlayer01);
@@ -121,10 +121,10 @@ namespace LasMonjas
         public static RoleInfo kid = new RoleInfo("Kid", Kid.color, "Everyone lose if you die or get voted out", "Everyone lose if you die or get voted out", RoleId.Kid);
         public static RoleInfo welder = new RoleInfo("Welder", Welder.color, "Seal vents", "Seal vents", RoleId.Welder);
         public static RoleInfo spiritualist = new RoleInfo("Spiritualist", Spiritualist.color, "Sacrifice yourself to revive a player", "Sacrifice yourself to revive a player", RoleId.Spiritualist);
-        public static RoleInfo theChosenOne = new RoleInfo("The Chosen One", TheChosenOne.color, "Force your killer to report your body", "Force your killer to report your body", RoleId.TheChosenOne);
+        public static RoleInfo coward = new RoleInfo("Coward", Coward.color, "Call meetings from anywhere", "Call meetings from anywhere", RoleId.Coward);
         public static RoleInfo vigilant = new RoleInfo("Vigilant", Vigilant.color, "Put additional cameras on the map", "Put additional cameras on the map", RoleId.Vigilant);
         public static RoleInfo vigilantMira = new RoleInfo("Vigilant", Vigilant.color, "Activate remote Doorlog with Q key", "Activate remote Doorlog with Q key", RoleId.VigilantMira);
-        public static RoleInfo performer = new RoleInfo("Performer", Performer.color, "Your dead will trigger an alarm and reveal where your body is", "Your dead will trigger an alarm and reveal where your body is", RoleId.Performer);
+        public static RoleInfo medusa = new RoleInfo("Medusa", Medusa.color, "Petrify suspicious players", "Petrify suspicious players", RoleId.Medusa);
         public static RoleInfo hunter = new RoleInfo("Hunter", Hunter.color, "Mark a player to die if you get killed", "Mark a player to die if you get killed", RoleId.Hunter);
         public static RoleInfo jinx = new RoleInfo("Jinx", Jinx.color, "Jinx players abilities", "Jinx players abilities", RoleId.Jinx);
         public static RoleInfo impostor = new RoleInfo("Impostor", Palette.ImpostorRed, Helpers.cs(Palette.ImpostorRed, "Sabotage and kill everyone"), "Sabotage and kill everyone", RoleId.Impostor);
@@ -133,6 +133,8 @@ namespace LasMonjas
         public static RoleInfo blind = new RoleInfo("Blind", Modifiers.color, "You have less vision", "You have less vision", RoleId.Blind);
         public static RoleInfo flash = new RoleInfo("Flash", Modifiers.color, "You're faster", "You're faster", RoleId.Flash);
         public static RoleInfo bigchungus = new RoleInfo("Big Chungus", Modifiers.color, "You're bigger and slower", "You're bigger and slower", RoleId.BigChungus);
+        public static RoleInfo theChosenOne = new RoleInfo("The Chosen One", Modifiers.color, "Force your killer to report your body", "Force your killer to report your body", RoleId.TheChosenOne);
+        public static RoleInfo performer = new RoleInfo("Performer", Modifiers.color, "Your dead will trigger an alarm and reveal where your body is", "Your dead will trigger an alarm and reveal where your body is", RoleId.Performer);
         public static RoleInfo lover = new RoleInfo("Lover", Modifiers.loverscolor, $"♥Survive as a couple with your partner♥", $"♥Survive as a couple with your partner♥", RoleId.Lover);
         public static RoleInfo badlover = new RoleInfo("Loverstor", Palette.ImpostorRed, $"<color=#FF00D1FF>♥Survive as a couple with your partner♥. </color><color=#FF1919FF>Kill the rest</color>", $"<color=#FF00D1FF>♥Survive as a couple with your partner♥. </color><color=#FF1919FF>Kill the rest</color>", RoleId.Lover);
 
@@ -175,17 +177,19 @@ namespace LasMonjas
             fink,
             welder,
             spiritualist,
-            theChosenOne,
+            coward,         
             vigilant,
             vigilantMira,
-            performer,
             kid,
+            medusa,
             hunter,
             jinx,
             lighter,
             blind,
             flash,
             bigchungus,
+            theChosenOne,
+            performer,
             lover,
             badlover,
             redplayer01,
@@ -202,7 +206,7 @@ namespace LasMonjas
             blueplayer05,
             blueplayer06,
             blueplayer07,
-            blueplayer08,
+            stealerplayer,
             policeplayer01,
             policeplayer02,
             policeplayer03,
@@ -254,7 +258,7 @@ namespace LasMonjas
             if (p == CaptureTheFlag.blueplayer05) infos.Add(blueplayer05);
             if (p == CaptureTheFlag.blueplayer06) infos.Add(blueplayer06);
             if (p == CaptureTheFlag.blueplayer07) infos.Add(blueplayer07);
-            if (p == CaptureTheFlag.blueplayer08) infos.Add(blueplayer08);
+            if (p == CaptureTheFlag.stealerPlayer) infos.Add(stealerplayer);
 
             // Police and Thief
             if (p == PoliceAndThief.policeplayer01) infos.Add(policeplayer01);
@@ -334,10 +338,10 @@ namespace LasMonjas
             if (p == Kid.kid) infos.Add(kid);
             if (p == Welder.welder) infos.Add(welder);
             if (p == Spiritualist.spiritualist) infos.Add(spiritualist);
-            if (p == TheChosenOne.theChosenOne) infos.Add(theChosenOne);
+            if (p == Coward.coward) infos.Add(coward);
             if (p == Vigilant.vigilant) infos.Add(vigilant);
             if (p == Vigilant.vigilantMira) infos.Add(vigilantMira);
-            if (p == Performer.performer) infos.Add(performer);
+            if (p == Medusa.medusa) infos.Add(medusa);
             if (p == Hunter.hunter) infos.Add(hunter);
             if (p == Jinx.jinx) infos.Add(jinx);
 
@@ -346,6 +350,8 @@ namespace LasMonjas
             if (p == Modifiers.blind) infos.Add(blind);
             if (p == Modifiers.flash) infos.Add(flash);
             if (p == Modifiers.bigchungus) infos.Add(bigchungus);
+            if (p == Modifiers.theChosenOne) infos.Add(theChosenOne);
+            if (p == Modifiers.performer) infos.Add(performer);
             if (p == Modifiers.lover1 || p == Modifiers.lover2) infos.Add(p.Data.Role.IsImpostor ? badlover : lover);
 
             // Default roles
@@ -439,9 +445,9 @@ namespace LasMonjas
                     name = "Spiritualist";
                     color = Spiritualist.color;
                 }
-                else if (TheChosenOne.theChosenOne != null && p == TheChosenOne.theChosenOne) {
-                    name = "The Chosen One";
-                    color = TheChosenOne.color;
+                else if (Coward.coward != null && p == Coward.coward) {
+                    name = "Coward";
+                    color = Coward.color;
                 }
                 else if (Vigilant.vigilant != null && p == Vigilant.vigilant) {
                     name = "Vigilant";
@@ -451,9 +457,9 @@ namespace LasMonjas
                     name = "Vigilant";
                     color = Vigilant.color;
                 }
-                else if (Performer.performer != null && p == Performer.performer) {
-                    name = "Performer";
-                    color = Performer.color;
+                else if (Medusa.medusa != null && p == Medusa.medusa) {
+                    name = "Medusa";
+                    color = Medusa.color;
                 }
                 else if (Hunter.hunter != null && p == Hunter.hunter) {
                     name = "Hunter";

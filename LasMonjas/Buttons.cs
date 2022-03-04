@@ -57,6 +57,7 @@ namespace LasMonjas
         public static CustomButton captainCallButton;
         private static CustomButton mechanicRepairButton;
         private static CustomButton sheriffKillButton;
+        private static CustomButton detectiveButton;
         private static CustomButton forensicButton;
         private static CustomButton timeTravelerShieldButton;
         private static CustomButton timeTravelerRewindTimeButton;
@@ -67,10 +68,13 @@ namespace LasMonjas
         private static CustomButton hackerAdminTableButton;
         private static CustomButton sleuthLocatePlayerButton;
         private static CustomButton sleuthLocateCorpsesButton;
+        private static CustomButton finkButton;
         public static CustomButton welderSealButton;
         public static CustomButton spiritualistReviveButton;
+        public static CustomButton cowardCallButton;
         public static CustomButton vigilantButton;
         public static CustomButton vigilantCamButton;
+        private static CustomButton medusaPetrifyButton;
         private static CustomButton hunterButton;
         public static CustomButton jinxButton;
 
@@ -104,8 +108,7 @@ namespace LasMonjas
         private static CustomButton blueplayer06TakeFlagButton;
         private static CustomButton blueplayer07KillButton;
         private static CustomButton blueplayer07TakeFlagButton;
-        private static CustomButton blueplayer08KillButton;
-        private static CustomButton blueplayer08TakeFlagButton;
+        private static CustomButton stealerPlayerKillButton;
 
         // Police and Thief
         private static CustomButton policeplayer01JailButton;
@@ -230,6 +233,8 @@ namespace LasMonjas
             captainCallButton.MaxTimer = 10f;
             mechanicRepairButton.MaxTimer = 10f;
             sheriffKillButton.MaxTimer = Sheriff.cooldown;
+            detectiveButton.MaxTimer = Detective.cooldown;
+            detectiveButton.EffectDuration = Detective.duration; 
             forensicButton.MaxTimer = Forensic.cooldown;
             forensicButton.EffectDuration = Forensic.duration;
             timeTravelerShieldButton.MaxTimer = TimeTraveler.cooldown;
@@ -247,12 +252,17 @@ namespace LasMonjas
             sleuthLocatePlayerButton.MaxTimer = 10f;
             sleuthLocateCorpsesButton.MaxTimer = Sleuth.corpsesPathfindCooldown;
             sleuthLocateCorpsesButton.EffectDuration = Sleuth.corpsesPathfindDuration;
+            finkButton.MaxTimer = Fink.cooldown;
+            finkButton.EffectDuration = Fink.duration; 
             welderSealButton.MaxTimer = Welder.cooldown;
             spiritualistReviveButton.MaxTimer = 30f;
             spiritualistReviveButton.EffectDuration = Spiritualist.spiritualistReviveTime;
+            cowardCallButton.MaxTimer = 10f;
             vigilantButton.MaxTimer = Vigilant.cooldown;
             vigilantCamButton.MaxTimer = Vigilant.cooldown;
-            vigilantCamButton.EffectDuration = Vigilant.duration; 
+            vigilantCamButton.EffectDuration = Vigilant.duration;
+            medusaPetrifyButton.MaxTimer = Medusa.cooldown;
+            medusaPetrifyButton.EffectDuration = Medusa.delay; 
             hunterButton.MaxTimer = 10f;
             jinxButton.MaxTimer = Jinx.cooldown;
 
@@ -265,6 +275,7 @@ namespace LasMonjas
             Jinx.jinxButtonJinxsText.text = $"{Jinx.jinxNumber - Jinx.jinxs} / {Jinx.jinxNumber}";
             Hacker.hackerAdminTableChargesText.text = $"{Hacker.chargesAdminTable} / {Hacker.toolsNumber}";
             Hacker.hackerVitalsChargesText.text = $"{Hacker.chargesVitals} / {Hacker.toolsNumber}";
+            Coward.cowardCallButtonText.text = $"{Coward.numberOfCalls - Coward.timesUsedCalls} / {Coward.numberOfCalls}";
 
             // Capture the flag buttons
             redplayer01KillButton.MaxTimer = CaptureTheFlag.killCooldown;
@@ -295,8 +306,7 @@ namespace LasMonjas
             blueplayer06TakeFlagButton.MaxTimer = 0;
             blueplayer07KillButton.MaxTimer = CaptureTheFlag.killCooldown;
             blueplayer07TakeFlagButton.MaxTimer = 0;
-            blueplayer08KillButton.MaxTimer = CaptureTheFlag.killCooldown;
-            blueplayer08TakeFlagButton.MaxTimer = 0;
+            stealerPlayerKillButton.MaxTimer = CaptureTheFlag.killCooldown;
 
             // Police And Thief buttons
             policeplayer01KillButton.MaxTimer = PoliceAndThief.policeKillCooldown;
@@ -2150,6 +2160,48 @@ namespace LasMonjas
                 KeyCode.Q
             );
 
+            // Detective button
+            detectiveButton = new CustomButton(
+                () => {
+                    if (Jinx.jinxedList.Any(p => p.Data.PlayerId == Detective.detective.Data.PlayerId)) {
+                        MessageWriter writerKiller = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetJinxed, Hazel.SendOption.Reliable, -1);
+                        writerKiller.Write(Detective.detective.PlayerId);
+                        writerKiller.Write((byte)0);
+                        AmongUsClient.Instance.FinishRpcImmediately(writerKiller);
+                        RPCProcedure.setJinxed(Detective.detective.PlayerId, 0);
+
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
+
+                        Detective.duration = quackNumber;
+                        detectiveButton.EffectDuration = Detective.duration;
+                        detectiveButton.Timer = detectiveButton.MaxTimer;
+                        return;
+                    }
+
+                    Detective.duration = Detective.backUpduration;
+                    detectiveButton.EffectDuration = Detective.duration;
+                    detectiveButton.Timer = detectiveButton.MaxTimer;
+
+                    Detective.detectiveTimer = Detective.duration;
+                },
+                () => { return Detective.detective != null && Detective.detective == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead && Detective.showFootPrints == 0; },
+                () => { return PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling; },
+                () => {
+                    detectiveButton.Timer = detectiveButton.MaxTimer;
+                    detectiveButton.isEffectActive = false;
+                    detectiveButton.actionButton.cooldownTimerText.color = Palette.EnabledColor;
+                },
+                Detective.getButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.Q,
+                true,
+                0f,
+                () => {
+                    detectiveButton.Timer = detectiveButton.MaxTimer;
+                }
+            );
+            
             // Forensic button
             forensicButton = new CustomButton(
                 () => {
@@ -2652,6 +2704,75 @@ namespace LasMonjas
                 }
             );
 
+            // Fink button
+            finkButton = new CustomButton(
+                () => {
+                    if (Jinx.jinxedList.Any(p => p.Data.PlayerId == Fink.fink.Data.PlayerId)) {
+                        MessageWriter writerKiller = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetJinxed, Hazel.SendOption.Reliable, -1);
+                        writerKiller.Write(Fink.fink.PlayerId);
+                        writerKiller.Write((byte)0);
+                        AmongUsClient.Instance.FinishRpcImmediately(writerKiller);
+                        RPCProcedure.setJinxed(Fink.fink.PlayerId, 0);
+
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
+
+                        Fink.duration = quackNumber;
+                        finkButton.EffectDuration = Fink.duration;
+                        finkButton.Timer = finkButton.MaxTimer;
+                        return;
+                    }
+
+                    Fink.duration = Fink.backUpduration;
+                    finkButton.EffectDuration = Fink.duration;
+                    finkButton.Timer = finkButton.MaxTimer;
+
+                    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.FinkHawkEye, Hazel.SendOption.Reliable, -1);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+                    RPCProcedure.finkHawkEye();
+
+                    PlayerControl.LocalPlayer.NetTransform.Halt();
+                    PlayerControl.LocalPlayer.moveable = false;
+
+                    if (Fink.finkCamera == null && Fink.fink == PlayerControl.LocalPlayer) {
+                        Fink.finkCamera = GameObject.Find("Main Camera");
+                        Fink.finkShadow = GameObject.Find("ShadowQuad");
+                    }
+                    Fink.finkCamera.GetComponent<Camera>().orthographicSize = 4;
+                    Fink.finkShadow.SetActive(false);
+                },
+                () => { return Fink.fink != null && Fink.fink == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool sabotageActive = false;
+                    if (Bomberman.activeBomb == true || Ilusionist.lightsOutTimer > 0) {
+                        sabotageActive = true;
+                    }
+                    else {
+                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
+                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
+                                sabotageActive = true;
+                    }
+                    return !sabotageActive && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
+                },
+                () => {
+                    finkButton.Timer = finkButton.MaxTimer;
+                    finkButton.isEffectActive = false;
+                    finkButton.actionButton.cooldownTimerText.color = Palette.EnabledColor;
+                    Fink.finkCamera.GetComponent<Camera>().orthographicSize = 3;
+                    Fink.finkShadow.SetActive(true);
+                },
+                Fink.getButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.Q,
+                true,
+                0f,
+                () => {
+                    finkButton.Timer = finkButton.MaxTimer;
+                    Fink.resetCamera();
+                    PlayerControl.LocalPlayer.moveable = true;
+                }
+            );
+            
             // Welder button
             welderSealButton = new CustomButton(
                 () => {
@@ -2775,6 +2896,58 @@ namespace LasMonjas
                 }
             );
 
+            // Coward call button
+            cowardCallButton = new CustomButton(
+                () => {
+                    if (Jinx.jinxedList.Any(p => p.Data.PlayerId == Coward.coward.Data.PlayerId)) {
+                        MessageWriter writerKiller = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetJinxed, Hazel.SendOption.Reliable, -1);
+                        writerKiller.Write(Coward.coward.PlayerId);
+                        writerKiller.Write((byte)0);
+                        AmongUsClient.Instance.FinishRpcImmediately(writerKiller);
+                        RPCProcedure.setJinxed(Coward.coward.PlayerId, 0);
+
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
+                        cowardCallButton.Timer = cowardCallButton.MaxTimer;
+                        return;
+                    }
+
+                    cowardCallButton.Timer = cowardCallButton.MaxTimer;
+                    MessageWriter usedCallWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.CowardUsedCall, Hazel.SendOption.Reliable, -1);
+                    AmongUsClient.Instance.FinishRpcImmediately(usedCallWriter);
+                    RPCProcedure.cowardUsedCall();
+
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(0.1f, new Action<float>((p) => { // Delayed action
+                        if (p == 1f) {
+                            PlayerControl.LocalPlayer.CmdReportDeadBody(null);
+                        }
+                    })));
+                },
+                () => { return Coward.coward != null && Coward.coward == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    bool sabotageActive = false;
+                    if (Bomberman.activeBomb == true || Ilusionist.lightsOutTimer > 0) {
+                        sabotageActive = true;
+                    }
+                    else {
+                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
+                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
+                                sabotageActive = true;
+                    }
+                    return !sabotageActive && !Coward.usedCalls && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
+                },
+                () => { },
+                Coward.getButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Coward button spawn remaining uses text
+            Coward.cowardCallButtonText = GameObject.Instantiate(cowardCallButton.actionButton.cooldownTimerText, cowardCallButton.actionButton.cooldownTimerText.transform.parent);
+            Coward.cowardCallButtonText.enableWordWrapping = false;
+            Coward.cowardCallButtonText.transform.localScale = Vector3.one * 0.5f;
+            Coward.cowardCallButtonText.transform.localPosition += new Vector3(-0.05f, 0.7f, 0);
+            
             // Vigilant camera button
             vigilantButton = new CustomButton(
                 () => {
@@ -2915,6 +3088,56 @@ namespace LasMonjas
             Vigilant.vigilantButtonCameraUsesText.enableWordWrapping = false;
             Vigilant.vigilantButtonCameraUsesText.transform.localScale = Vector3.one * 0.5f;
             Vigilant.vigilantButtonCameraUsesText.transform.localPosition += new Vector3(-0.05f, 0.7f, 0);
+
+            // Medusa petrify
+            medusaPetrifyButton = new CustomButton(
+                () => {
+                    if (Medusa.currentTarget != null) {
+                        Medusa.petrified = Medusa.currentTarget;
+                        medusaPetrifyButton.HasEffect = true;
+                    }
+                },
+                () => { return Medusa.medusa != null && Medusa.medusa == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    return PlayerControl.LocalPlayer.CanMove && Medusa.currentTarget != null && !Challenger.isDueling;
+                },
+                () => {
+                    Medusa.petrified = null;
+                    medusaPetrifyButton.isEffectActive = false;
+                    medusaPetrifyButton.Timer = medusaPetrifyButton.MaxTimer;
+                    medusaPetrifyButton.actionButton.cooldownTimerText.color = Palette.EnabledColor;
+                },
+                Medusa.getButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.Q,
+                true,
+                Medusa.duration,
+                () => {
+                    if (Jinx.jinxedList.Any(p => p.Data.PlayerId == Medusa.medusa.Data.PlayerId)) {
+                        MessageWriter writerKiller = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SetJinxed, Hazel.SendOption.Reliable, -1);
+                        writerKiller.Write(Medusa.medusa.PlayerId);
+                        writerKiller.Write((byte)0);
+                        AmongUsClient.Instance.FinishRpcImmediately(writerKiller);
+                        RPCProcedure.setJinxed(Medusa.medusa.PlayerId, 0);
+
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
+                        Medusa.petrified = null;
+                        medusaPetrifyButton.Timer = medusaPetrifyButton.MaxTimer;
+                        return;
+                    }
+
+                    if (Medusa.petrified != null && !Medusa.petrified.Data.IsDead) {
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.medusaPetrify, false, 100f);
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.MedusaPetrify, Hazel.SendOption.Reliable, -1);
+                        writer.Write(Medusa.petrified.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.medusaPetrify(Medusa.petrified.PlayerId);
+                        Medusa.petrified = null;
+                    }
+                    medusaPetrifyButton.Timer = medusaPetrifyButton.MaxTimer;
+                }
+            );
             
             // Hunter button
             hunterButton = new CustomButton(
@@ -3931,47 +4154,19 @@ namespace LasMonjas
                 KeyCode.T
             );
 
-            // Blueplayer08 Kill
-            blueplayer08KillButton = new CustomButton(
+            // stealer Kill
+            stealerPlayerKillButton = new CustomButton(
                 () => {
-                    byte targetId = CaptureTheFlag.blueplayer08currentTarget.PlayerId;
+                    byte targetId = CaptureTheFlag.stealerPlayercurrentTarget.PlayerId;
                     MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.CapturetheFlagKills, Hazel.SendOption.Reliable, -1);
                     killWriter.Write(targetId);
                     killWriter.Write(16);
                     AmongUsClient.Instance.FinishRpcImmediately(killWriter);
                     RPCProcedure.capturetheFlagKills(targetId, 16);
-                    blueplayer08KillButton.Timer = blueplayer08KillButton.MaxTimer;
-                    CaptureTheFlag.blueplayer08currentTarget = null;
+                    stealerPlayerKillButton.Timer = stealerPlayerKillButton.MaxTimer;
+                    CaptureTheFlag.stealerPlayercurrentTarget = null;
                 },
-                () => { return CaptureTheFlag.blueplayer08 != null && CaptureTheFlag.blueplayer08 == PlayerControl.LocalPlayer; },
-                () => { return CaptureTheFlag.blueplayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.blueplayer08IsReviving && PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag; },
-                () => { blueplayer08KillButton.Timer = blueplayer08KillButton.MaxTimer; },
-                __instance.KillButton.graphic.sprite,
-                new Vector3(0, 1f, 0),
-                __instance,
-                KeyCode.Q
-            );
-
-            // Blueplayer08 TakeFlag Button
-            blueplayer08TakeFlagButton = new CustomButton(
-                () => {
-                    if (PlayerControl.LocalPlayer == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
-                        MessageWriter whichTeamScored = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.CaptureTheFlagWhichTeamScored, Hazel.SendOption.Reliable, -1);
-                        whichTeamScored.Write(2);
-                        AmongUsClient.Instance.FinishRpcImmediately(whichTeamScored);
-                        RPCProcedure.captureTheFlagWhichTeamScored(2);
-                    }
-                    else {
-                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
-                        MessageWriter bluePlayerStoleRedFlag = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.CaptureTheFlagWhoTookTheFlag, Hazel.SendOption.Reliable, -1);
-                        bluePlayerStoleRedFlag.Write(targetId);
-                        bluePlayerStoleRedFlag.Write(2);
-                        AmongUsClient.Instance.FinishRpcImmediately(bluePlayerStoleRedFlag);
-                        RPCProcedure.captureTheFlagWhoTookTheFlag(targetId, 2);
-                    }
-                    blueplayer08TakeFlagButton.Timer = blueplayer08TakeFlagButton.MaxTimer;
-                },
-                () => { return CaptureTheFlag.blueplayer08 != null && CaptureTheFlag.blueplayer08 == PlayerControl.LocalPlayer; },
+                () => { return CaptureTheFlag.stealerPlayer != null && CaptureTheFlag.stealerPlayer == PlayerControl.LocalPlayer; },
                 () => {
                     if (CaptureTheFlag.localRedFlagArrow.Count != 0) {
                         CaptureTheFlag.localRedFlagArrow[0].Update(CaptureTheFlag.redflag.transform.position);
@@ -3979,24 +4174,13 @@ namespace LasMonjas
                     if (CaptureTheFlag.localBlueFlagArrow.Count != 0) {
                         CaptureTheFlag.localBlueFlagArrow[0].Update(CaptureTheFlag.blueflag.transform.position);
                     }
-                    if (CaptureTheFlag.blueplayer08 == CaptureTheFlag.bluePlayerWhoHasRedFlag)
-                        blueplayer08TakeFlagButton.actionButton.graphic.sprite = CaptureTheFlag.getDeliverRedFlagButtonSprite();
-                    else
-                        blueplayer08TakeFlagButton.actionButton.graphic.sprite = CaptureTheFlag.getTakeRedFlagButtonSprite();
-                    bool CanUse = false;
-                    if (CaptureTheFlag.redflag != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, CaptureTheFlag.redflag.transform.position) < 0.5f && !PlayerControl.LocalPlayer.Data.IsDead && CaptureTheFlag.bluePlayerWhoHasRedFlag == null) {
-                        CanUse = true;
-                    }
-                    else if (CaptureTheFlag.blueflagbase != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, CaptureTheFlag.blueflagbase.transform.position) < 0.5f && PlayerControl.LocalPlayer == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
-                        CanUse = true;
-                    }
-                    return CanUse && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead;
+                    return CaptureTheFlag.stealerPlayercurrentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !CaptureTheFlag.stealerPlayerIsReviving;
                 },
-                () => { blueplayer08TakeFlagButton.Timer = blueplayer08TakeFlagButton.MaxTimer; },
-                CaptureTheFlag.getTakeRedFlagButtonSprite(),
-                new Vector3(-1.9f, -0.06f, 0),
+                () => { stealerPlayerKillButton.Timer = stealerPlayerKillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
                 __instance,
-                KeyCode.T
+                KeyCode.Q
             );
 
             // Police and Thief Mode

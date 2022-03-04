@@ -83,9 +83,9 @@ namespace LasMonjas
             Kid.clearAndReload();
             Welder.clearAndReload();
             Spiritualist.clearAndReload();
-            TheChosenOne.clearAndReload();
+            Coward.clearAndReload();
             Vigilant.clearAndReload();
-            Performer.clearAndReload();
+            Medusa.clearAndReload();
             Hunter.clearAndReload();
             Jinx.clearAndReload();
 
@@ -1031,16 +1031,32 @@ namespace LasMonjas
         public static float footprintDuration = 1f;
         public static bool anonymousFootprints = false;
         public static float timer = 1f;
-
+        public static int showFootPrints = 0;
+        public static float cooldown = 30f;
+        public static float duration = 10f;
+        public static float detectiveTimer = 0f;
+        public static float backUpduration = 10f;
         public static int footprintcolor = 6;
+
+        private static Sprite buttonSprite;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.DetectiveFootPrintButton.png", 90f);
+            return buttonSprite;
+        }
 
         public static void clearAndReload() {
             detective = null;
+            detectiveTimer = 0f;
+            showFootPrints = CustomOptionHolder.detectiveShowFootprints.getSelection();
+            cooldown = CustomOptionHolder.detectiveCooldown.getFloat();
+            duration = CustomOptionHolder.detectiveShowFootPrintDuration.getFloat();
             anonymousFootprints = CustomOptionHolder.detectiveAnonymousFootprints.getBool();
             footprintIntervall = CustomOptionHolder.detectiveFootprintIntervall.getFloat();
             footprintDuration = CustomOptionHolder.detectiveFootprintDuration.getFloat();
             timer = footprintIntervall;
             footprintcolor = 6;
+            backUpduration = duration;
         }
     }
 
@@ -1376,6 +1392,19 @@ namespace LasMonjas
         public static List<Arrow> localArrows = new List<Arrow>();
         public static int taskCountForImpostors = 1;
         public static bool includeTeamRenegade = false;
+        public static float cooldown = 30f;
+        public static float duration = 10f;
+        public static float finkTimer = 0f;
+        public static float backUpduration = 10f;
+        public static GameObject finkCamera = null;
+        public static GameObject finkShadow = null;
+
+        private static Sprite buttonSprite;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.FinkEyeButton.png", 90f);
+            return buttonSprite;
+        }
 
         public static void clearAndReload() {
             if (localArrows != null) {
@@ -1387,6 +1416,20 @@ namespace LasMonjas
             taskCountForImpostors = Mathf.RoundToInt(CustomOptionHolder.finkLeftTasksForImpostors.getFloat());
             includeTeamRenegade = CustomOptionHolder.finkIncludeTeamRenegade.getBool();
             fink = null;
+            finkTimer = 0f;
+            cooldown = CustomOptionHolder.finkCooldown.getFloat();
+            duration = CustomOptionHolder.finkDuration.getFloat();
+            backUpduration = duration;
+            finkCamera = null;
+            finkShadow = null;
+        }
+
+        public static void resetCamera() {
+            finkTimer = 0f;
+            if (finkCamera != null && finkShadow != null) {
+                finkCamera.GetComponent<Camera>().orthographicSize = 3;
+                finkShadow.SetActive(true);
+            }
         }
     }
 
@@ -1478,19 +1521,29 @@ namespace LasMonjas
         }
     }
 
-    public static class TheChosenOne
+    public static class Coward
     {
-        public static PlayerControl theChosenOne;
+
+        public static PlayerControl coward;
         public static Color color = new Color32(0, 247, 255, byte.MaxValue);
 
-        public static float reportDelay = 0f;
+        public static bool usedCalls;
+        public static int numberOfCalls;
+        public static int timesUsedCalls;
+        public static TMPro.TMP_Text cowardCallButtonText;
+        private static Sprite buttonSprite;
 
-        public static bool reported = false;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.CowardCallButton.png", 90f);
+            return buttonSprite;
+        }
 
         public static void clearAndReload() {
-            theChosenOne = null;
-            reported = false;
-            reportDelay = CustomOptionHolder.theChosenOneReportDelay.getFloat();
+            coward = null;
+            usedCalls = false;
+            timesUsedCalls = 0;
+            numberOfCalls = (int)CustomOptionHolder.cowardNumberOfCalls.getFloat();
         }
     }
 
@@ -1556,26 +1609,6 @@ namespace LasMonjas
         }
     }
 
-    public static class Performer
-    {
-        public static PlayerControl performer;
-        public static Color color = new Color32(242, 190, 255, byte.MaxValue);
-
-        public static float duration = 15f;
-
-        public static List<Arrow> localPerformerArrows = new List<Arrow>();
-        public static bool reported = false;
-        public static bool musicStop = false;
-
-        public static void clearAndReload() {
-            performer = null;
-            duration = CustomOptionHolder.performerDuration.getFloat();
-            localPerformerArrows = new List<Arrow>();
-            reported = false;
-            musicStop = false;
-        }
-    }
-
     public static class Hunter
     {
         public static PlayerControl hunter;
@@ -1603,6 +1636,37 @@ namespace LasMonjas
             hunter = null;
             resetHunted();
             resetTargetAfterMeeting = CustomOptionHolder.hunterResetTargetAfterMeeting.getBool();
+        }
+    }
+
+    public static class Medusa
+    {
+        public static PlayerControl medusa;
+        public static Color color = new Color32(242, 190, 255, byte.MaxValue);
+
+        public static float cooldown = 20f;
+        public static float delay = 10f;
+        public static float duration = 10f;
+        public static float messageTimer = 0f;
+
+        public static PlayerControl currentTarget;
+        public static PlayerControl petrified;
+
+        private static Sprite buttonSprite;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.MedusaPetrifyButton.png", 90f);
+            return buttonSprite;
+        }
+
+        public static void clearAndReload() {
+            medusa = null;
+            petrified = null;
+            currentTarget = null;
+            cooldown = CustomOptionHolder.medusaCooldown.getFloat();
+            delay = CustomOptionHolder.medusaDelay.getFloat();
+            duration = CustomOptionHolder.medusaDuration.getFloat();
+            messageTimer = 0f;
         }
     }
 
@@ -1649,6 +1713,14 @@ namespace LasMonjas
         public static PlayerControl blind;
         public static PlayerControl flash;
         public static PlayerControl bigchungus;
+        public static PlayerControl theChosenOne;
+        public static float chosenOneReportDelay = 0f;
+        public static bool chosenOneReported = false;
+        public static PlayerControl performer;
+        public static float performerDuration = 15f;
+        public static List<Arrow> performerLocalPerformerArrows = new List<Arrow>();
+        public static bool performerReported = false;
+        public static bool performerMusicStop = false;
 
         // Lovers save if next to be exiled is a lover, because RPC of ending game comes before RPC of exiled
         public static bool notAckedExiledIsLover = false;
@@ -1679,7 +1751,15 @@ namespace LasMonjas
             notAckedExiledIsLover = false;
             blind = null;
             flash = null;
-            bigchungus = null;
+            bigchungus = null; 
+            theChosenOne = null;
+            chosenOneReported = false;
+            chosenOneReportDelay = CustomOptionHolder.theChosenOneReportDelay.getFloat();
+            performer = null;
+            performerDuration = CustomOptionHolder.performerDuration.getFloat();
+            performerLocalPerformerArrows = new List<Arrow>();
+            performerReported = false;
+            performerMusicStop = false;
         }
 
         public static void ClearLovers() {
@@ -1747,9 +1827,9 @@ namespace LasMonjas
         public static PlayerControl blueplayer07 = null;
         public static bool blueplayer07IsReviving = false;
         public static PlayerControl blueplayer07currentTarget = null;
-        public static PlayerControl blueplayer08 = null;
-        public static bool blueplayer08IsReviving = false;
-        public static PlayerControl blueplayer08currentTarget = null;
+        public static PlayerControl stealerPlayer = null;
+        public static bool stealerPlayerIsReviving = false;
+        public static PlayerControl stealerPlayercurrentTarget = null;
 
         public static bool captureTheFlagMode = false;
         public static float requiredFlags = 3;
@@ -1855,9 +1935,9 @@ namespace LasMonjas
             blueplayer07 = null;
             blueplayer07IsReviving = false;
             blueplayer07currentTarget = null;
-            blueplayer08 = null;
-            blueplayer08IsReviving = false;
-            blueplayer08currentTarget = null;
+            stealerPlayer = null;
+            stealerPlayerIsReviving = false;
+            stealerPlayercurrentTarget = null;
             if (CustomOptionHolder.captureTheFlagMode.getSelection() == 1) {
                 captureTheFlagMode = true;
             }
@@ -2475,6 +2555,7 @@ namespace LasMonjas
         public GameObject performerDio;
         public AudioClip performerMusic;
         public AudioClip jinxQuack;
+        public AudioClip medusaPetrify;
 
         // Custom Bundle Capture the flag Assets
         public AudioClip captureTheFlagMusic;

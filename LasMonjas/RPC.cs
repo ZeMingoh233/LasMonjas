@@ -54,10 +54,10 @@ namespace LasMonjas
         Kid,
         Welder,
         Spiritualist,
-        TheChosenOne,
+        Coward,
         Vigilant,
         VigilantMira,
-        Performer,
+        Medusa,
         Hunter,
         Jinx,
         Lover,
@@ -65,6 +65,8 @@ namespace LasMonjas
         Blind,
         Flash,
         BigChungus,
+        TheChosenOne,
+        Performer,
         Crewmate,
         Impostor,
 
@@ -83,7 +85,7 @@ namespace LasMonjas
         BluePlayer05,
         BluePlayer06,
         BluePlayer07,
-        BluePlayer08,
+        StealerPlayer,
 
         // Police and Thief
         PolicePlayer01,
@@ -182,14 +184,17 @@ namespace LasMonjas
         FortuneTellerReveal,
         HackerAbilityUses,
         SleuthUsedLocate,
+        FinkHawkEye,
         SealVent,
         SpiritualistRevive,
         SendSpiritualistIsReviving,
         MurderSpiritualistIfReportWhileReviving,
         ResetSpiritualistReviveValues,
+        CowardUsedCall,
         PlaceCamera,
         VigilantAbilityUses,
         PerformerIsReported,
+        MedusaPetrify,
         HunterUsedHunted,
         SetJinxed,
 
@@ -365,8 +370,8 @@ namespace LasMonjas
                         case RoleId.Spiritualist:
                             Spiritualist.spiritualist = player;
                             break;
-                        case RoleId.TheChosenOne:
-                            TheChosenOne.theChosenOne = player;
+                        case RoleId.Coward:
+                            Coward.coward = player;
                             break;
                         case RoleId.Vigilant:
                             Vigilant.vigilant = player;
@@ -374,8 +379,8 @@ namespace LasMonjas
                         case RoleId.VigilantMira:
                             Vigilant.vigilantMira = player;
                             break;
-                        case RoleId.Performer:
-                            Performer.performer = player;
+                        case RoleId.Medusa:
+                            Medusa.medusa = player;
                             break;
                         case RoleId.Hunter:
                             Hunter.hunter = player;
@@ -400,6 +405,12 @@ namespace LasMonjas
                             break;
                         case RoleId.BigChungus:
                             Modifiers.bigchungus = player;
+                            break;
+                        case RoleId.TheChosenOne:
+                            Modifiers.theChosenOne = player;
+                            break;
+                        case RoleId.Performer:
+                            Modifiers.performer = player;
                             break;
 
                         // Capture the Flag
@@ -459,9 +470,8 @@ namespace LasMonjas
                             CaptureTheFlag.blueplayer07 = player;
                             CaptureTheFlag.blueteamFlag.Add(player);
                             break;
-                        case RoleId.BluePlayer08:
-                            CaptureTheFlag.blueplayer08 = player;
-                            CaptureTheFlag.blueteamFlag.Add(player);
+                        case RoleId.StealerPlayer:
+                            CaptureTheFlag.stealerPlayer = player;
                             break;
 
                         // Police and Thief
@@ -675,7 +685,7 @@ namespace LasMonjas
                     UnityEngine.Object.Destroy(array[i].gameObject);
                 }
             }
-            if (Performer.performer != null && playerId == Performer.performer.PlayerId)
+            if (Modifiers.performer != null && playerId == Modifiers.performer.PlayerId)
                 performerIsReported(0);
         }
 
@@ -903,10 +913,10 @@ namespace LasMonjas
             if (player == Kid.kid) Kid.clearAndReload();
             if (player == Welder.welder) Welder.clearAndReload();
             if (player == Spiritualist.spiritualist) Spiritualist.clearAndReload();
-            if (player == TheChosenOne.theChosenOne) TheChosenOne.clearAndReload();
+            if (player == Coward.coward) Coward.clearAndReload();
             if (player == Vigilant.vigilant) Vigilant.clearAndReload();
             if (player == Vigilant.vigilantMira) Vigilant.clearAndReload();
-            if (player == Performer.performer) Performer.clearAndReload();
+            if (player == Medusa.medusa) Medusa.clearAndReload();
             if (player == Hunter.hunter) Hunter.clearAndReload();
             if (player == Jinx.jinx) Jinx.clearAndReload();
 
@@ -1009,8 +1019,8 @@ namespace LasMonjas
                 else if (BountyHunter.hasToKill == Spiritualist.spiritualist) {
                     BountyHunter.rolName = ": <color=#FFC5E1FF>Spiritualist</color>";
                 }
-                else if (BountyHunter.hasToKill == TheChosenOne.theChosenOne) {
-                    BountyHunter.rolName = ": <color=#00F7E1FF>The Chosen One</color>";
+                else if (BountyHunter.hasToKill == Coward.coward) {
+                    BountyHunter.rolName = ": <color=#00F7E1FF>Coward</color>";
                 }
                 else if (BountyHunter.hasToKill == Vigilant.vigilant) {
                     BountyHunter.rolName = ": <color=#E3E15AFF>Vigilant</color>";
@@ -1018,8 +1028,8 @@ namespace LasMonjas
                 else if (BountyHunter.hasToKill == Vigilant.vigilantMira) {
                     BountyHunter.rolName = ": <color=#E3E15AFF>Vigilant</color>";
                 }
-                else if (BountyHunter.hasToKill == Performer.performer) {
-                    BountyHunter.rolName = ": <color=#F2BEFFFF>Performer</color>";
+                else if (BountyHunter.hasToKill == Medusa.medusa) {
+                    BountyHunter.rolName = ": <color=#F2BEFFFF>Medusa</color>";
                 }
                 else if (BountyHunter.hasToKill == Hunter.hunter) {
                     BountyHunter.rolName = ": <color=#E1EB90FF>Hunter</color>";
@@ -1349,6 +1359,8 @@ namespace LasMonjas
                         Sleuth.sleuth = oldRoleThief;
                     }
                     else if (Fink.fink != null && Fink.fink == player) {
+                        Fink.resetCamera();
+                        Fink.fink.moveable = true; 
                         Fink.fink = oldRoleThief;
                     }
                     else if (Kid.kid != null && Kid.kid == player) {
@@ -1360,9 +1372,8 @@ namespace LasMonjas
                     else if (Spiritualist.spiritualist != null && Spiritualist.spiritualist == player) {
                         Spiritualist.spiritualist = oldRoleThief;
                     }
-                    else if (TheChosenOne.theChosenOne != null && TheChosenOne.theChosenOne == player) {
-                        TheChosenOne.theChosenOne = oldRoleThief;
-                        if (TheChosenOne.theChosenOne.Data.IsDead) TheChosenOne.reported = true;
+                    else if (Coward.coward != null && Coward.coward == player) {
+                        Coward.coward = oldRoleThief;
                     }
                     else if (Vigilant.vigilant != null && Vigilant.vigilant == player) {
                         if (Vigilant.minigame != null) {
@@ -1387,8 +1398,8 @@ namespace LasMonjas
                             Vigilant.doorLog.transform.localPosition = new Vector2(0, -0.5f);
                         }
                     }
-                    else if (Performer.performer != null && Performer.performer == player) {
-                        Performer.performer = oldRoleThief;
+                    else if (Medusa.medusa != null && Medusa.medusa == player) {
+                        Medusa.medusa = oldRoleThief;
                     }
                     else if (Hunter.hunter != null && Hunter.hunter == player) {
                         Hunter.hunter = oldRoleThief;
@@ -1442,7 +1453,7 @@ namespace LasMonjas
                     }
                 }
             }
-            if (Performer.performer != null && playerId == Performer.performer.PlayerId)
+            if (Modifiers.performer != null && playerId == Modifiers.performer.PlayerId)
                 performerIsReported(0);
             if (PlayerControl.LocalPlayer == Devourer.devourer) {
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.devourerDevourClip, false, 100f);
@@ -1519,7 +1530,7 @@ namespace LasMonjas
                     DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == playerId).FirstOrDefault();
                     if (body != null) UnityEngine.Object.Destroy(body.gameObject);
                     if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
-                    if (Performer.performer != null && player.PlayerId == Performer.performer.PlayerId) {
+                    if (Modifiers.performer != null && player.PlayerId == Modifiers.performer.PlayerId) {
                         performerIsReported(1);
                     }
                     if (Vigilant.vigilantMira != null && player.PlayerId == Vigilant.vigilantMira.PlayerId) {
@@ -1613,6 +1624,13 @@ namespace LasMonjas
                     Sleuth.located = player;
         }
 
+        public static void finkHawkEye() {
+            Fink.finkTimer = Fink.duration;
+            if (PlayerControl.LocalPlayer.Data.Role.IsImpostor || Renegade.renegade != null && PlayerControl.LocalPlayer == Renegade.renegade || Minion.minion != null && PlayerControl.LocalPlayer == Minion.minion) {
+                new CustomMessage("Fink is using Hawkeye!", Fink.duration, -1, -1f, 13);
+            }
+        }
+        
         public static void sealVent(int ventId) {
             Vent vent = ShipStatus.Instance.AllVents.FirstOrDefault((x) => x != null && x.Id == ventId);
             if (vent == null) return;
@@ -1639,7 +1657,7 @@ namespace LasMonjas
                     if (body != null) UnityEngine.Object.Destroy(body.gameObject);
                     if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
                     spiritualistPinkScreen(player.PlayerId);
-                    if (Performer.performer != null && player == Performer.performer)
+                    if (Modifiers.performer != null && player == Modifiers.performer)
                         performerIsReported(1);
                     if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                         vigilantMiraRestoreDoorlogItem();
@@ -1658,7 +1676,7 @@ namespace LasMonjas
                         if (bodytwo != null) UnityEngine.Object.Destroy(bodytwo.gameObject);
                         if (deadPlayerEntrytwo != null) deadPlayers.Remove(deadPlayerEntrytwo);
                         spiritualistPinkScreen(lovertwo.PlayerId);
-                        if (Performer.performer != null && player == Performer.performer)
+                        if (Modifiers.performer != null && player == Modifiers.performer)
                             performerIsReported(1);
                         if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                             vigilantMiraRestoreDoorlogItem();
@@ -1677,7 +1695,7 @@ namespace LasMonjas
                         if (bodytwo != null) UnityEngine.Object.Destroy(bodytwo.gameObject);
                         if (deadPlayerEntrytwo != null) deadPlayers.Remove(deadPlayerEntrytwo);
                         spiritualistPinkScreen(loverone.PlayerId);
-                        if (Performer.performer != null && player == Performer.performer)
+                        if (Modifiers.performer != null && player == Modifiers.performer)
                             performerIsReported(1);
                         if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                             vigilantMiraRestoreDoorlogItem();
@@ -1698,7 +1716,7 @@ namespace LasMonjas
                         if (bodybountyhunter != null) UnityEngine.Object.Destroy(bodybountyhunter.gameObject);
                         if (deadPlayerEntrytwo != null) deadPlayers.Remove(deadPlayerEntrytwo);
                         spiritualistPinkScreen(bountyhunter.PlayerId);
-                        if (Performer.performer != null && player == Performer.performer)
+                        if (Modifiers.performer != null && player == Modifiers.performer)
                             performerIsReported(1);
                         if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                             vigilantMiraRestoreDoorlogItem();
@@ -1772,6 +1790,16 @@ namespace LasMonjas
             resetSpiritualistReviveButton();
         }
 
+        public static void cowardUsedCall() {
+            if (Coward.timesUsedCalls < Coward.numberOfCalls) {
+                Coward.timesUsedCalls += 1;
+                if (Coward.timesUsedCalls == Coward.numberOfCalls) {
+                    Coward.usedCalls = true;
+                }
+            }
+            Coward.cowardCallButtonText.text = $"{Coward.numberOfCalls - Coward.timesUsedCalls} / {Coward.numberOfCalls}";
+        }
+        
         public static void placeCamera(byte[] buff) {
             var referenceCamera = UnityEngine.Object.FindObjectOfType<SurvCamera>();
             if (referenceCamera == null) return; // Mira HQ
@@ -1810,14 +1838,34 @@ namespace LasMonjas
 
         public static void performerIsReported(byte check) {
             if (check == 0) {
-                Performer.reported = true;
+                Modifiers.performerReported = true;
             }
             else {
-                Performer.reported = false;
+                Modifiers.performerReported = false;
             }
             SoundManager.Instance.StopSound(CustomMain.customAssets.performerMusic);
         }
 
+        public static void medusaPetrify(byte targetId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId) {
+                    Medusa.messageTimer = Medusa.duration;
+                    if (PlayerControl.LocalPlayer == player) {
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.medusaPetrify, false, 100f);
+                        new CustomMessage("Petrified!", Medusa.duration, -1, 1.6f, 14);
+                    }
+                    player.moveable = false;
+                    player.NetTransform.Halt(); // Stop current movement
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(Medusa.duration, new Action<float>((p) => { // Delayed action
+                        if (p == 1f) {
+                            player.moveable = true;
+                        }
+                    })));
+                    return;
+                }
+            }
+        }
+        
         public static void hunterUsedHunted(byte targetId) {
             Hunter.usedHunted = true;
             foreach (PlayerControl player in PlayerControl.AllPlayerControls)
@@ -1983,7 +2031,117 @@ namespace LasMonjas
                             CaptureTheFlag.blueplayer07.MurderPlayer(player);
                             break;
                         case 16:
-                            CaptureTheFlag.blueplayer08.MurderPlayer(player);
+                            if (CaptureTheFlag.redPlayerWhoHasBlueFlag != null && player.PlayerId == CaptureTheFlag.redPlayerWhoHasBlueFlag.PlayerId) {
+                                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                    new CustomMessage("You're the new <color=#FF0000FF>Red Team</color> player now!", 5, -1, 1.6f, 4);
+                                }
+                                if (CaptureTheFlag.redplayer01 != null && CaptureTheFlag.redplayer01 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer01);
+                                    CaptureTheFlag.redplayer01 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer01.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer02 != null && CaptureTheFlag.redplayer02 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer02);
+                                    CaptureTheFlag.redplayer02 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer02.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer03 != null && CaptureTheFlag.redplayer03 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer03);
+                                    CaptureTheFlag.redplayer03 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer03.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer04 != null && CaptureTheFlag.redplayer04 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer04);
+                                    CaptureTheFlag.redplayer04 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer04.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer05 != null && CaptureTheFlag.redplayer05 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer05);
+                                    CaptureTheFlag.redplayer05 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer05.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer06 != null && CaptureTheFlag.redplayer06 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer06);
+                                    CaptureTheFlag.redplayer06 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer06.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer07 != null && CaptureTheFlag.redplayer07 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer07);
+                                    CaptureTheFlag.redplayer07 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer07.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                            }
+                            else if (CaptureTheFlag.bluePlayerWhoHasRedFlag != null && player.PlayerId == CaptureTheFlag.bluePlayerWhoHasRedFlag.PlayerId) {
+                                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                    new CustomMessage("You're the new <color=#0000FFFF>Blue Team</color> player now!", 5, -1, 1.6f, 4);
+                                }
+                                if (CaptureTheFlag.blueplayer01 != null && CaptureTheFlag.blueplayer01 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer01);
+                                    CaptureTheFlag.blueplayer01 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer01.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer02 != null && CaptureTheFlag.blueplayer02 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer02);
+                                    CaptureTheFlag.blueplayer02 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer02.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer03 != null && CaptureTheFlag.blueplayer03 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer03);
+                                    CaptureTheFlag.blueplayer03 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer03.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer04 != null && CaptureTheFlag.blueplayer04 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer04);
+                                    CaptureTheFlag.blueplayer04 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer04.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer05 != null && CaptureTheFlag.blueplayer05 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer05);
+                                    CaptureTheFlag.blueplayer05 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer05.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer06 != null && CaptureTheFlag.blueplayer06 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer06);
+                                    CaptureTheFlag.blueplayer06 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer06.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer07 != null && CaptureTheFlag.blueplayer07 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer07);
+                                    CaptureTheFlag.blueplayer07 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer07.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                            }
+                            else {
+                                CaptureTheFlag.stealerPlayer.MurderPlayer(player);
+                            }
                             break;
                     }
                     return;
@@ -3501,6 +3659,9 @@ namespace LasMonjas
                 case (byte)CustomRPC.SleuthUsedLocate:
                     RPCProcedure.sleuthUsedLocate(reader.ReadByte());
                     break;
+                case (byte)CustomRPC.FinkHawkEye:
+                    RPCProcedure.finkHawkEye();
+                    break;
                 case (byte)CustomRPC.SealVent:
                     RPCProcedure.sealVent(reader.ReadPackedInt32());
                     break;
@@ -3516,6 +3677,9 @@ namespace LasMonjas
                 case (byte)CustomRPC.ResetSpiritualistReviveValues:
                     RPCProcedure.resetSpiritualistReviveValues();
                     break;
+                case (byte)CustomRPC.CowardUsedCall:
+                    RPCProcedure.cowardUsedCall();
+                    break;
                 case (byte)CustomRPC.PlaceCamera:
                     RPCProcedure.placeCamera(reader.ReadBytesAndSize());
                     break;
@@ -3526,6 +3690,9 @@ namespace LasMonjas
                 case (byte)CustomRPC.PerformerIsReported:
                     byte check = reader.ReadByte();
                     RPCProcedure.performerIsReported(check);
+                    break;
+                case (byte)CustomRPC.MedusaPetrify:
+                    RPCProcedure.medusaPetrify(reader.ReadByte());
                     break;
                 case (byte)CustomRPC.HunterUsedHunted:
                     RPCProcedure.hunterUsedHunted(reader.ReadByte());
