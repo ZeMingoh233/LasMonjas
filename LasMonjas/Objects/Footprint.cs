@@ -38,8 +38,22 @@ namespace LasMonjas.Objects {
             spriteRenderer.sprite = getFootprintSprite();
             spriteRenderer.color = color;
 
-            footprint.SetActive(true);
             footprints.Add(this);
+            if (Detective.showFootPrints == 0) {
+                if (Detective.detectiveTimer >= 0) {
+                    foreach (Footprint myfootpint in footprints) {
+                        myfootpint.footprint.SetActive(true);
+                    }
+                }
+                else {
+                    foreach (Footprint myfootpint in footprints) {
+                        myfootpint.footprint.SetActive(false);
+                    }
+                }
+            }
+            else {
+                footprint.SetActive(true);
+            }
 
             Color c = color;
             if (!anonymousFootprints && owner != null) {
