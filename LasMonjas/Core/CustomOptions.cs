@@ -331,10 +331,10 @@ namespace LasMonjas.Core
 
             int defaultSettingsLines = 23;
             int roleSettingsLines = defaultSettingsLines + 45;
-            int detailedSettingsP1 = roleSettingsLines + 40;
+            int detailedSettingsP1 = roleSettingsLines + 44;
             int detailedSettingsP2 = detailedSettingsP1 + 34;
             int detailedSettingsP3 = detailedSettingsP2 + 31;
-            int detailedSettingsP4 = detailedSettingsP3 + 39;
+            int detailedSettingsP4 = detailedSettingsP3 + 37;
             int end1 = hudString.TakeWhile(c => (defaultSettingsLines -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end2 = hudString.TakeWhile(c => (roleSettingsLines -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end3 = hudString.TakeWhile(c => (detailedSettingsP1 -= (c == '\n' ? 1 : 0)) > 0).Count();

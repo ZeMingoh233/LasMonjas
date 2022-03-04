@@ -148,6 +148,26 @@ namespace LasMonjas.Core {
                                 text.text = "";
                             }
                             break;
+                        case 13:
+                            // Fink camera use for other impostors
+                            if (Fink.finkTimer > 0) {
+                                string prefix = (even ? "<color=#FCBA03FF>" : "<color=#FF0000FF>");
+                                text.text = prefix + message + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 14:
+                            // Petrify text
+                            if (Medusa.messageTimer > 0) {
+                                string prefix = (even ? "<color=#FCBA03FF>" : "<color=#FF0000FF>");
+                                text.text = prefix + message + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
                     }
                     if (text != null) text.color = even ? Color.yellow : Color.red;
                     if (p == 1f && text != null && text.gameObject != null) {
