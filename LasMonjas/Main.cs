@@ -23,7 +23,7 @@ namespace LasMonjas
     {
         public const string Id = "me.allul.lasmonjas";
 
-        public const string VersionString = "1.2.0";
+        public const string VersionString = "1.2.1";
 
         public static System.Version Version = System.Version.Parse(VersionString);
         internal static BepInEx.Logging.ManualLogSource Logger;
@@ -46,7 +46,7 @@ namespace LasMonjas
             ServerManager serverManager = DestroyableSingleton<ServerManager>.Instance;
             IRegionInfo[] regions = defaultRegions;
 
-            var CustomRegionCustom = new DnsRegionInfo(IpCustom.Value, "Custom", StringNames.NoTranslation, IpCustom.Value, PortCustom.Value);
+            var CustomRegionCustom = new DnsRegionInfo(IpCustom.Value, "Custom", StringNames.NoTranslation, IpCustom.Value, PortCustom.Value, false);
             regions = regions.Concat(new IRegionInfo[] { CustomRegionCustom.Cast<IRegionInfo>() }).ToArray();
             ServerManager.DefaultRegions = regions;
             serverManager.AvailableRegions = regions;

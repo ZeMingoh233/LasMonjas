@@ -14,7 +14,7 @@ namespace LasMonjas
 {
     public class CustomOptionHolder {
         public static string[] rates = new string[]{"0%", "100%"}; 
-        public static string[] presets = new string[]{"Roles", "Capture the Flag", "Police and Thiefs", "King of the Hill", "Preset 5" };
+        public static string[] presets = new string[]{"Roles", "Capture the Flag", "Police and Thiefs", "King of the Hill", "Preset 5", "Preset 6", "Preset 7", "Preset 8", "Preset 9", "Preset 10" };
 
         // Game Options 
         public static CustomOption presetSelection;
