@@ -32,6 +32,11 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
 \
 
+**Version 1.2.1**
+- Removed innecessary patches (thanks to miniduikboot)
+- Updated Reactor 1.2.3 to ci-3 in order to fix localhost/freeplay 
+- Increased maximum presets from 5 to 10 (thanks to GD for the petition)
+
 **Version 1.2.0**
 - Changed one vent's position on Polus on every gamemode to fix a vanilla bug
 - Fixed lobby music to not continue playing when the game starts on some cases
@@ -805,7 +810,7 @@ This mod also features some game mechanic modifiers, one of them being a custom 
 ### BigChungus
   - Player bigger and slower than the others.
 ### TheChosenOne
-  - Uppon death will force his killer to report his body
+  - Upon death will force his killer to report his body
   - It has an option to configure the report delay time
 ### Performer
   - His death triggers an alarm and an arrow reveals his corpse position
@@ -933,7 +938,7 @@ Match between green and yellow team. There's a total of 3 capturable zones in th
 [Lunastellia](https://github.com/Lunastellia/Challenger-Among-Us) - Original idea for Hunter\
 [Maartii](https://github.com/Maartii) - Original idea for Jester (Joker)\
 [Cheep](https://cheep-yt.com/home.php) - Original idea for Capture the Flag mod\
-[Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind and some more that weren't original ideas
+[Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind, Coward, Medusa and some more that weren't original ideas
 
 -----------------------
 
