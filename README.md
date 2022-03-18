@@ -977,7 +977,7 @@ A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/Ha
 [Cheep](https://cheep-yt.com/home.php) - Original idea for Capture the Flag mod\
 [Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind, Coward, Medusa and some more that weren't original ideas\
 [Sensei](https://github.com/TheCollectionMod) - Made button sprites, custom map sprite and some hats\
-[xxomega77](https://github.com/xxomega77xx/HatPack) - Adaptaed Custom Hats System
+[xxomega77](https://github.com/xxomega77xx/HatPack) - Adapted Custom Hats System
 
 -----------------------
 
@@ -985,3 +985,4 @@ A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/Ha
 - On the custom map, you can see player names and do some tasks across the walls (this is a vanilla game bug)
 - On Dleks, vents don't work as intented and host gets stuck in there, play on this map at your own risk
 - Sometimes when playing with modifiers, people can get a modifier as a primary role
+- On rare occasion, you can report a body during KOTH games, I think this is due to lag
