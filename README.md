@@ -6,10 +6,11 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   1. [40 roles](#roles)
   2. [13 modifiers](#modifiers)
   3. [1 custom map](#modifiers)
-  4. [3 custom gamemodes](#gamemodes)
+  4. [4 custom gamemodes](#gamemodes)
   5. [4 new colors](#settings)
   6. [Custom Music](#settings)
   7. [Custom Lobby](#settings)
+  8. [Custom Hats](#customhats)
 
 -----------------------
 
@@ -30,7 +31,14 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
-\
+**Version 1.3.0**
+- Updated Reactor to 1.2.4
+- Optimized code to improve mod's performance
+- Reduced lag on Capture the Flag games
+- Fixed some Spanish texts that weren't translated
+- Fixed a bug in King Of The Hill that happened when a dead King disconnected, making the new King unable to capture zones or get killed.
+- New Gamemode: Hot Potato (also works as Hide and Seek)
+- New Custom Hat System (thanks to xxomega77xx)
 
 **Version 1.2.1**
 - Removed innecessary patches (thanks to miniduikboot)
@@ -105,7 +113,7 @@ I recommend to play this mod only on custom servers (for example [Impostor](http
 -----------------------
 
 # Settings
-This mod adds a custom lobby which I won't spoil to you, it also adds two colors (Lavender and Turquoise) and three setting to the client option tab:
+This mod adds a custom lobby which I won't spoil to you, it also adds four colors (Lavender, Petrol, Mint and Olive) and three setting to the client option tab:
 - **Hide Room Code:** More like streamer mode, activating this option will hide the room code and replace it with "Las Monjas"
 - **Game Summary:** Activating this option will create a list containing which role and task progress had the players after the game ends.
 - **Activate Music:** Music pack containing 7 songs from Kevin MacLeod (1 for Lobby, 3 for Tasks and 3 for Meeting depending of how many players are alive)
@@ -141,7 +149,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Mimic
+## Mimic
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Mimic the appearance of a player for a set amount of time |
@@ -158,7 +166,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Painter
+## Painter
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Hide everything the players have and paint them with a random game color for a set amount of time |
@@ -174,7 +182,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Demon
+## Demon
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Bite players to delay their deaths |
@@ -192,7 +200,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Janitor
+## Janitor
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Clean and move dead bodies |
@@ -206,7 +214,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Ilusionist
+## Ilusionist
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Can make his own vent network and turn off the lights from anywhere |
@@ -223,7 +231,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Manipulator
+## Manipulator
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Can manipulate a player to kill his adjacent from anywhere |
@@ -236,7 +244,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Bomberman
+## Bomberman
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Can use a new sabotage, place bomb on the map |
@@ -254,7 +262,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Chameleon
+## Chameleon
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Can become invisible for other players |
@@ -269,7 +277,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Gambler
+## Gambler
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Can Shoot a player choosing their role during the meeting |
@@ -286,7 +294,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Sorcerer
+## Sorcerer
 | Team and Options  | Description |
 |----------|-------------|
 | Impostors | Can cast Spells on a player |
@@ -304,7 +312,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Renegade
+## Renegade
 | Team and Options  | Description |
 |----------|-------------|
 | Rebel | Can recruit a minion and have to kill everyone to win |
@@ -325,7 +333,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# BountyHunter
+## BountyHunter
 | Team and Options  | Description |
 |----------|-------------|
 | Rebel | Have to kill a specific player to win |
@@ -342,7 +350,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Trapper
+## Trapper
 | Team and Options  | Description |
 |----------|-------------|
 | Rebel | Have to kill everyone with traps and mines |
@@ -366,7 +374,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Yinyanger
+## Yinyanger
 | Team and Options  | Description |
 |----------|-------------|
 | Rebel | Have to kill everyone marking two players |
@@ -385,7 +393,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Challenger
+## Challenger
 | Team and Options  | Description |
 |----------|-------------|
 | Rebel | Have to kill everyone challenging players to a rock-paper-scissors duel |
@@ -407,7 +415,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Joker
+## Joker
 | Team and Options  | Description |
 |----------|-------------|
 | Neutral | Have to get voted out to win |
@@ -421,7 +429,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# RoleThief
+## RoleThief
 | Team and Options  | Description |
 |----------|-------------|
 | Neutral | Can steal the role of other players |
@@ -435,7 +443,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Pyromaniac
+## Pyromaniac
 | Team and Options  | Description |
 |----------|-------------|
 | Neutral | Have to ignite everyone to win |
@@ -452,7 +460,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# TreasureHunter
+## TreasureHunter
 | Team and Options  | Description |
 |----------|-------------|
 | Neutral | Have to find treasures to win |
@@ -470,7 +478,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Devourer
+## Devourer
 | Team and Options  | Description |
 |----------|-------------|
 | Neutral | Have to eat corpses to win |
@@ -485,7 +493,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Captain
+## Captain
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | His vote counts double |
@@ -496,7 +504,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Mechanic
+## Mechanic
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can fix sabotages from anywhere |
@@ -508,7 +516,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Sheriff
+## Sheriff
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can try to kill other players |
@@ -522,7 +530,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Detective
+## Detective
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can see player's footprints |
@@ -540,7 +548,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Forensic
+## Forensic
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can get clues about who is the Impostor by reporting bodies or asking their ghosts |
@@ -562,7 +570,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# TimeTraveler
+## TimeTraveler
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can rewind the time two times per game |
@@ -581,7 +589,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Squire
+## Squire
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can put a shield to protect a player |
@@ -596,7 +604,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Cheater
+## Cheater
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can switch the votes of two players |
@@ -609,7 +617,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# FortuneTeller
+## FortuneTeller
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can reveal which player is good or bad |
@@ -627,7 +635,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Hacker
+## Hacker
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can use admin and vitals from anywhere |
@@ -642,7 +650,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Sleuth
+## Sleuth
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can track one player position and corpses |
@@ -658,7 +666,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Fink
+## Fink
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can reveal who the Impostors are after finishing all his tasks and zoom out his camera |
@@ -675,7 +683,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Kid
+## Kid
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Immortal crewmate, if he gets voted out or killed everyone lose |
@@ -685,7 +693,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Welder
+## Welder
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can seal vents |
@@ -699,7 +707,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Spiritualist
+## Spiritualist
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can revive another player at the cost of his own life |
@@ -716,7 +724,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Coward
+## Coward
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can call meeting from anywhere |
@@ -727,7 +735,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Vigilant
+## Vigilant
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can place 4 additional cameras on the map |
@@ -744,7 +752,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Medusa
+## Medusa
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can petrify other players  |
@@ -759,7 +767,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Hunter
+## Hunter
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can mark other player who will die if the Hunter gets killed |
@@ -771,7 +779,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 -----------------------
 
-# Jinx
+## Jinx
 | Team and Options  | Description |
 |----------|-------------|
 | Crewmate | Can block other player abilities |
@@ -799,20 +807,20 @@ This mod also features some game mechanic modifiers, one of them being a custom 
 | Remove Airship Doors | After reading what is written above this, you can guess why this option is here |
 | Modifiers Number | How many role modifiers will be on the game |
 
-### Lovers
+## Lovers
   - Two player linked, can be Impostor + Crewmate or both Crewmates, they also die and gets exiled together.
-### Lighter
+## Lighter
   - Player with more vision than the others.
-### Blind
+## Blind
   - Player with less vision than the others.
-### Flash
+## Flash
   - Player faster than the others.
-### BigChungus
+## BigChungus
   - Player bigger and slower than the others.
-### TheChosenOne
+## TheChosenOne
   - Upon death will force his killer to report his body
   - It has an option to configure the report delay time
-### Performer
+## Performer
   - His death triggers an alarm and an arrow reveals his corpse position
   - It has an option to configure the performance duration
 
@@ -820,7 +828,7 @@ This mod also features some game mechanic modifiers, one of them being a custom 
 
 # GameModes
 
-This mods adds three gamemodes, which can be played on everymap including the custom one. Mod roles won't spawn and map abilities (admin, sabotage, reports, emergency button...) can't be used on custom gamemodes.
+This mods adds four gamemodes, which can be played on everymap including the custom one. Mod roles won't spawn and map abilities (admin, sabotage, reports, emergency button...) can't be used on custom gamemodes.
 
 ## CaptureTheFlag
 
@@ -843,7 +851,7 @@ Match between red and blue team where each team has to steal the enemy flag and 
 - The Flag Stelaer always loses, he can kill everyone and if he kills a player with a flag, he switchs teams with him
 - There are custom messages for match duration, stolen flag and scored point, also the game score is always displayed.
 - Flags positions are marked by a team color corresponding arrow.
-- If the player who has the flag disconnects from the match, the flag stays where that player was.
+- If the player who has the flag disconnects from the match, the flag goes back to its base.
 - Revive Time value is calculated by subtracting Invincibility Time value from it, for example if Revive Time is 8 and Invincibility Time is 3, players will revive after 5 seconds but will be invincible for another 3 seconds after reviving.
 
 -----------------------
@@ -919,6 +927,35 @@ Match between green and yellow team. There's a total of 3 capturable zones in th
 
 -----------------------
 
+## HotPotato
+
+A random player gets the Hot Potato role, that player has to give the hot potato to another player before the time runs out, otherwise the hot potato player will die. It can be only 1 Hot Potato on the game, the rest will be Cold Potato or Burnt Potato if they died. This gamemode also works as Hide and Seek gamemode because Cold Potato will try to hide from the Hot Potato, I highly recommend to play it on MiraHQ.
+
+| Option  | Description |
+|----------|-------------|
+| Match Duration | From 5 to 7 and half minutes |
+| Hot Potato Time Limit | Time before the Hot Potato explodes |
+| Hot Potato Cooldown | Give Hot Potato Cooldown |
+| Cold Potatoes Vision | Light range for Cold Potato players |
+
+**Additional Gamemode Notes:**
+- First round doesn't have a time limit, this way when the Hot Potato transfers for the first time, every player get the timer synchronized.
+- Each player name color will be the same as the team color.
+- Only Hot Potato player can use vents.
+- Nobody can kill on this gamemode.
+- Hot Potato player will have a potato above his player.
+- When the Hot Potato explodes or disconnects from the game, another random alive player will get the Hot Potato role.
+- Giving the Hot Potato to another player makes that player unable to move for the next 3 seconds, also Hot Potato Time Limit resets.
+- There are custom messages for match duration, who is the Hot Potato, how many Cold Potatoes are alive and time for giving the Hot Potato.
+
+-----------------------
+
+# CustomHats
+
+A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/HatPack)) has been added. They don't replace visors and some have adaptative color and. Right now there's only 20 and may have some color or position bugs, we'll try to fix them in the future while also adding new hats.
+
+-----------------------
+
 # Credits and Code snips
 [Reactor](https://github.com/NuclearPowered/Reactor) - The main framework used\
 [BepInEx](https://github.com/BepInEx) - Used to hook game functions\
@@ -938,10 +975,13 @@ Match between green and yellow team. There's a total of 3 capturable zones in th
 [Lunastellia](https://github.com/Lunastellia/Challenger-Among-Us) - Original idea for Hunter\
 [Maartii](https://github.com/Maartii) - Original idea for Jester (Joker)\
 [Cheep](https://cheep-yt.com/home.php) - Original idea for Capture the Flag mod\
-[Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind, Coward, Medusa and some more that weren't original ideas
+[Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind, Coward, Medusa and some more that weren't original ideas\
+[Sensei](https://github.com/TheCollectionMod) - Made button sprites, custom map sprite and some hats\
+[xxomega77](https://github.com/xxomega77xx/HatPack) - Adaptaed Custom Hats System
 
 -----------------------
 
 # Known Bugs
 - On the custom map, you can see player names and do some tasks across the walls (this is a vanilla game bug)
-- On Dleks, vents don't work as intented and host get stuck in there, play on this map at your own risk
+- On Dleks, vents don't work as intented and host gets stuck in there, play on this map at your own risk
+- Sometimes when playing with modifiers, people can get a modifier as a primary role
