@@ -31,6 +31,11 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
+**Version 1.3.1**
+- Fixed Hot Potato games, you can play a game after another now without restarting the game
+- Decreased minimum hot potato time limit from 20 to 10
+- Dead bodies don't spawn anymore on custom gamemodes
+  
 **Version 1.3.0**
 - Updated Reactor to 1.2.4
 - Optimized code to improve mod's performance
