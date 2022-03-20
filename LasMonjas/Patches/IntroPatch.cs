@@ -122,15 +122,27 @@ namespace LasMonjas.Patches
             if (roleInfo == null) return;
             if (roleInfo.isNeutral) {
                 var neutralColor = new Color32(76, 84, 78, 255);
-                __instance.BackgroundBar.material.color = neutralColor;
+                __instance.BackgroundBar.material.color = roleInfo.Color;
                 __instance.TeamTitle.text = "Neutral";
                 __instance.TeamTitle.color = neutralColor;
             }
             else if (roleInfo.isRebel) {
                 var rebelColor = new Color32(79, 125, 0, 255);
-                __instance.BackgroundBar.material.color = rebelColor;
+                __instance.BackgroundBar.material.color = roleInfo.Color;
                 __instance.TeamTitle.text = "Rebel";
                 __instance.TeamTitle.color = rebelColor;
+            } else {
+                bool isCrew = true;
+                if (roleInfo.color == Palette.ImpostorRed) isCrew = false;
+                if (isCrew) {
+                    __instance.BackgroundBar.material.color = roleInfo.color;
+                    __instance.TeamTitle.text = "Crewmate";
+                    __instance.TeamTitle.color = Color.white;
+                } else {
+                    __instance.BackgroundBar.material.color = roleInfo.color;
+                    __instance.TeamTitle.text = "Impostor";
+                    __instance.TeamTitle.color = Palette.ImpostorRed;
+                }
             }
         }
 
