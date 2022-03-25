@@ -21,7 +21,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 # Installation
 
   1. Download the latest [Release](https://github.com/KiraYamato94/LasMonjas/releases) of Las Monjas.
-  2. Find where your Among Us game is installed (make sure to have a clean game installation)
+  2. Find where your Among Us game is installed (make sure you have a clean game installation)
   3. Extract the files on the game folder (where the Among Us.exe file is)
   4. Open Among Us.exe, the first time takes a bit to load, don't worry.
 
@@ -30,6 +30,14 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 # Changelog
 <details>
   <summary>Click to show</summary>
+
+**Version 1.3.2**
+- Fixed a bug on gamemodes where Impostor could kill anyone
+- Removed "how many impostors are in game" text from the load screen for all gamemodes and added the gamemode name instead
+- 5 new hats and upgraded old ones
+- Added a client option to define if ghosts can see role names (only after being reported)
+- Reduced lag on Police And Thiefs games
+- Added two options for Hot Potato, one to define if hot potato time limit resets after giving it to other player and another to define the new extra time for hot potato timit limit
 
 **Version 1.3.1**
 - Fixed Hot Potato games, you can play a game after another now without restarting the game
@@ -118,10 +126,11 @@ I recommend to play this mod only on custom servers (for example [Impostor](http
 -----------------------
 
 # Settings
-This mod adds a custom lobby which I won't spoil to you, it also adds four colors (Lavender, Petrol, Mint and Olive) and three setting to the client option tab:
+This mod adds a custom lobby which I won't spoil to you, it also adds four colors (Lavender, Petrol, Mint and Olive) and four settings to the client option tab:
 - **Hide Room Code:** More like streamer mode, activating this option will hide the room code and replace it with "Las Monjas"
-- **Game Summary:** Activating this option will create a list containing which role and task progress had the players after the game ends.
+- **Game Summary:** Activating this option will create a list containing which role and task progress the players had after the game ends.
 - **Activate Music:** Music pack containing 7 songs from Kevin MacLeod (1 for Lobby, 3 for Tasks and 3 for Meeting depending of how many players are alive)
+- **Ghost Can See Roles:** Only after being reported, ghosts would be able to see which role the players have.
 
 -----------------------
 
@@ -942,6 +951,8 @@ A random player gets the Hot Potato role, that player has to give the hot potato
 | Hot Potato Time Limit | Time before the Hot Potato explodes |
 | Hot Potato Cooldown | Give Hot Potato Cooldown |
 | Cold Potatoes Vision | Light range for Cold Potato players |
+| Reset Hot Potato timer after Transfer | Hot Potato Time Limit doesn't reset |
+| Extra Time when timer doesn't reset | Hot Potato Extra Time Limit if it doesn't reset |
 
 **Additional Gamemode Notes:**
 - First round doesn't have a time limit, this way when the Hot Potato transfers for the first time, every player get the timer synchronized.
@@ -957,7 +968,7 @@ A random player gets the Hot Potato role, that player has to give the hot potato
 
 # CustomHats
 
-A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/HatPack)) has been added. They don't replace visors and some have adaptative color and. Right now there's only 20 and may have some color or position bugs, we'll try to fix them in the future while also adding new hats.
+A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/HatPack)) has been added. They don't replace visors and some have adaptative color. Right now there's only 25 and may have some color or position bugs, we'll try to fix them in the future while also adding new hats.
 
 -----------------------
 
@@ -990,4 +1001,3 @@ A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/Ha
 - On the custom map, you can see player names and do some tasks across the walls (this is a vanilla game bug)
 - On Dleks, vents don't work as intented and host gets stuck in there, play on this map at your own risk
 - Sometimes when playing with modifiers, people can get a modifier as a primary role
-- On rare occasion, you can report a body during KOTH games, I think this is due to lag
