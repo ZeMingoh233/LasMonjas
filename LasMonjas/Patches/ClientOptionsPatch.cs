@@ -17,6 +17,7 @@ namespace LasMonjas.Patches
             new SelectionBehaviour("Hide Room Code", () => LasMonjasPlugin.StreamerMode.Value = !LasMonjasPlugin.StreamerMode.Value, LasMonjasPlugin.StreamerMode.Value),
             new SelectionBehaviour("Game Summary", () => MapOptions.showRoleSummary = LasMonjasPlugin.ShowRoleSummary.Value = !LasMonjasPlugin.ShowRoleSummary.Value, LasMonjasPlugin.ShowRoleSummary.Value),
             new SelectionBehaviour("Activate Music", () => MapOptions.activateMusic = LasMonjasPlugin.ActivateMusic.Value = !LasMonjasPlugin.ActivateMusic.Value, LasMonjasPlugin.ActivateMusic.Value),
+            new SelectionBehaviour("Ghosts Can \nSee Roles", () => MapOptions.ghostsSeeRoles = LasMonjasPlugin.GhostsSeeRoles.Value = !LasMonjasPlugin.GhostsSeeRoles.Value, LasMonjasPlugin.GhostsSeeRoles.Value),
         };
         
         private static GameObject popUp;

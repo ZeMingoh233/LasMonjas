@@ -29,6 +29,8 @@ namespace LasMonjas.Patches {
 
         private static List<int> myKingoftheHill = new List<int>();
 
+        private static List<int> myHotPotato = new List<int>();
+
         public static void Postfix() {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ResetVaribles, Hazel.SendOption.Reliable, -1);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -46,8 +48,21 @@ namespace LasMonjas.Patches {
             impostors.RemoveAll(x => !x.Data.Role.IsImpostor);
             List<PlayerControl> modifiers = PlayerControl.AllPlayerControls.ToArray().ToList().OrderBy(x => Guid.NewGuid()).ToList();
 
+            if (CaptureTheFlag.captureTheFlagMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (PoliceAndThief.policeAndThiefMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (KingOfTheHill.kingOfTheHillMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (HotPotato.hotPotatoMode) {
+                howmanygamemodesareon += 1;
+            }
+
             // Assign roles only if the game won't be a custom gamemode
-            if ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode)) {
+            if (howmanygamemodesareon != 1) {
 
                 // If randomRoles setting isn't random, assign roles by list order
                 if (CustomOptionHolder.randomRoles.getSelection() != 0) {
@@ -372,7 +387,7 @@ namespace LasMonjas.Patches {
                     }
                 }
             }
-            else if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+            else if (CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon == 1) {
                 // Capture the flag    
                 myCapturetheflag.Clear();
                 bool oddNumber = false;
@@ -437,7 +452,7 @@ namespace LasMonjas.Patches {
                     myblueflag += 1;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+            else if (PoliceAndThief.policeAndThiefMode && howmanygamemodesareon == 1) {
                 // Police and Thief    
                 myPoliceandthief.Clear();
                 int mypolice = 1;
@@ -500,7 +515,7 @@ namespace LasMonjas.Patches {
                     mythief += 1;
                 }
             }
-            else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (KingOfTheHill.kingOfTheHillMode && howmanygamemodesareon == 1) {
                 // King of the hill    
                 myKingoftheHill.Clear();
                 bool oddNumber = false;
@@ -563,6 +578,62 @@ namespace LasMonjas.Patches {
                     }
                     myKingoftheHill.Add(myyellowking);
                     myyellowking += 1;
+                }
+            }
+            else if (HotPotato.hotPotatoMode && howmanygamemodesareon == 1) {
+                // Hot Potato   
+                myHotPotato.Clear();
+                int mypotato = 1;
+                while (myHotPotato.Count < PlayerControl.AllPlayerControls.Count) {
+                    switch (mypotato) {
+                        case 1:
+                            setRoleToRandomPlayer((byte)RoleId.HotPotato, modifiers);
+                            break;
+                        case 2:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato01, modifiers);
+                            break;
+                        case 3:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato02, modifiers);
+                            break;
+                        case 4:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato03, modifiers);
+                            break;
+                        case 5:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato04, modifiers);
+                            break;
+                        case 6:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato05, modifiers);
+                            break;
+                        case 7:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato06, modifiers);
+                            break;
+                        case 8:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato07, modifiers);
+                            break;
+                        case 9:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato08, modifiers);
+                            break;
+                        case 10:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato09, modifiers);
+                            break;
+                        case 11:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato10, modifiers);
+                            break;
+                        case 12:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato11, modifiers);
+                            break;
+                        case 13:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato12, modifiers);
+                            break;
+                        case 14:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato13, modifiers);
+                            break;
+                        case 15:
+                            setRoleToRandomPlayer((byte)RoleId.NotPotato14, modifiers);
+                            break;
+                    }
+                    myHotPotato.Add(mypotato);
+                    mypotato += 1;
                 }
             }
         }      

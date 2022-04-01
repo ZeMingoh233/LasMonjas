@@ -49,8 +49,23 @@ namespace LasMonjas.Patches
         public static void setupIntroTeamIcons(IntroCutscene __instance, ref Il2CppSystem.Collections.Generic.List<PlayerControl> yourTeam) {
 
             SoundManager.Instance.StopSound(CustomMain.customAssets.lobbyMusic);
-            
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+
+            howmanygamemodesareon = 0;
+
+            if (CaptureTheFlag.captureTheFlagMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (PoliceAndThief.policeAndThiefMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (KingOfTheHill.kingOfTheHillMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (HotPotato.hotPotatoMode) {
+                howmanygamemodesareon += 1;
+            }
+
+            if (CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon == 1) {
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.captureTheFlagMusic, true, 25f);
                 // Intro capture the flag teams
                 var redTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
@@ -69,7 +84,7 @@ namespace LasMonjas.Patches
                     yourTeam = greyTeam;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+            else if (PoliceAndThief.policeAndThiefMode && howmanygamemodesareon == 1) {
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.policeAndThiefMusic, true, 25f);
                 // Intro police and thiefs teams
                 var thiefTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
@@ -83,7 +98,7 @@ namespace LasMonjas.Patches
                     yourTeam = policeTeam;
                 }
             }
-            else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (KingOfTheHill.kingOfTheHillMode && howmanygamemodesareon == 1) {
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.kingOfTheHillMusic, true, 25f);
                 // Intro king of the hill teams
                 var greenTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
@@ -100,6 +115,21 @@ namespace LasMonjas.Patches
                     var greyTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
                     greyTeam.Add(PlayerControl.LocalPlayer);
                     yourTeam = greyTeam;
+                }
+            }
+            else if (HotPotato.hotPotatoMode && howmanygamemodesareon == 1) {
+                SoundManager.Instance.PlaySound(CustomMain.customAssets.hotPotatoMusic, true, 25f);
+                // Intro hot potato teams
+                if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                    var greyTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                    greyTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = greyTeam;
+                }
+
+                var notPotatoTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                if (PlayerControl.LocalPlayer == HotPotato.notPotato01 || PlayerControl.LocalPlayer == HotPotato.notPotato02 || PlayerControl.LocalPlayer == HotPotato.notPotato03 || PlayerControl.LocalPlayer == HotPotato.notPotato04 || PlayerControl.LocalPlayer == HotPotato.notPotato05 || PlayerControl.LocalPlayer == HotPotato.notPotato06 || PlayerControl.LocalPlayer == HotPotato.notPotato07 || PlayerControl.LocalPlayer == HotPotato.notPotato08 || PlayerControl.LocalPlayer == HotPotato.notPotato09 || PlayerControl.LocalPlayer == HotPotato.notPotato10 || PlayerControl.LocalPlayer == HotPotato.notPotato11 || PlayerControl.LocalPlayer == HotPotato.notPotato12 || PlayerControl.LocalPlayer == HotPotato.notPotato13 || PlayerControl.LocalPlayer == HotPotato.notPotato14) {
+                    notPotatoTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = notPotatoTeam;
                 }
             }
             else {
@@ -120,17 +150,42 @@ namespace LasMonjas.Patches
             List<RoleInfo> infos = RoleInfo.getRoleInfoForPlayer(PlayerControl.LocalPlayer);
             RoleInfo roleInfo = infos.Where(info => info.roleId != RoleId.Lover).FirstOrDefault();
             if (roleInfo == null) return;
-            if (roleInfo.isNeutral) {
-                var neutralColor = new Color32(76, 84, 78, 255);
-                __instance.BackgroundBar.material.color = roleInfo.Color;
-                __instance.TeamTitle.text = "Neutral";
-                __instance.TeamTitle.color = neutralColor;
+            if (howmanygamemodesareon == 1) {
+                __instance.ImpostorText.text = "";
+                if (CaptureTheFlag.captureTheFlagMode) {
+                    __instance.BackgroundBar.material.color = Sheriff.color;
+                    __instance.TeamTitle.text = "Capture \nThe Flag";
+                    __instance.TeamTitle.color = Sheriff.color;
+                }
+                else if (PoliceAndThief.policeAndThiefMode) {
+                    __instance.BackgroundBar.material.color = Coward.color;
+                    __instance.TeamTitle.text = "Police \nAnd Thiefs";
+                    __instance.TeamTitle.color = Coward.color;
+                }
+                else if (KingOfTheHill.kingOfTheHillMode) {
+                    __instance.BackgroundBar.material.color = Squire.color;
+                    __instance.TeamTitle.text = "King Of \nThe Hill";
+                    __instance.TeamTitle.color = Squire.color;
+                }
+                else if (HotPotato.hotPotatoMode) {
+                    __instance.BackgroundBar.material.color = Medusa.color;
+                    __instance.TeamTitle.text = "Hot Potato";
+                    __instance.TeamTitle.color = Medusa.color;
+                }
             }
-            else if (roleInfo.isRebel) {
-                var rebelColor = new Color32(79, 125, 0, 255);
-                __instance.BackgroundBar.material.color = roleInfo.Color;
-                __instance.TeamTitle.text = "Rebel";
-                __instance.TeamTitle.color = rebelColor;
+            else {
+                if (roleInfo.isNeutral) {
+                    var neutralColor = new Color32(76, 84, 78, 255);
+                    __instance.BackgroundBar.material.color = neutralColor;
+                    __instance.TeamTitle.text = "Neutral";
+                    __instance.TeamTitle.color = neutralColor;
+                }
+                else if (roleInfo.isRebel) {
+                    var rebelColor = new Color32(79, 125, 0, 255);
+                    __instance.BackgroundBar.material.color = rebelColor;
+                    __instance.TeamTitle.text = "Rebel";
+                    __instance.TeamTitle.color = rebelColor;
+                }
             }
         }
 
@@ -202,7 +257,7 @@ namespace LasMonjas.Patches
                 activateSenseiMap();
 
                 // Capture the flag
-                if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+                if (CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon == 1) {
                     switch (PlayerControl.GameOptions.MapId) {
                         // Skeld
                         case 0:
@@ -211,7 +266,7 @@ namespace LasMonjas.Patches
                                     CaptureTheFlag.stealerPlayer.transform.position = new Vector3(-3.65f, 5f, PlayerControl.LocalPlayer.transform.position.z);
                                     Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
                                 }
-                                
+
                                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-17.5f, -1.15f, PlayerControl.LocalPlayer.transform.position.z);
@@ -253,7 +308,7 @@ namespace LasMonjas.Patches
                                     CaptureTheFlag.stealerPlayer.transform.position = new Vector3(6.35f, -7.5f, PlayerControl.LocalPlayer.transform.position.z);
                                     Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
                                 }
-                                
+
                                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-20.5f, -5.15f, PlayerControl.LocalPlayer.transform.position.z);
@@ -297,7 +352,7 @@ namespace LasMonjas.Patches
                                 CaptureTheFlag.stealerPlayer.transform.position = new Vector3(17.75f, 24f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(2.53f, 10.75f, PlayerControl.LocalPlayer.transform.position.z);
@@ -352,7 +407,7 @@ namespace LasMonjas.Patches
                                 CaptureTheFlag.stealerPlayer.transform.position = new Vector3(31.75f, -13f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(36.4f, -21.5f, PlayerControl.LocalPlayer.transform.position.z);
@@ -407,7 +462,7 @@ namespace LasMonjas.Patches
                                 CaptureTheFlag.stealerPlayer.transform.position = new Vector3(-6.35f, -7.5f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(20.5f, -5.15f, PlayerControl.LocalPlayer.transform.position.z);
@@ -450,7 +505,7 @@ namespace LasMonjas.Patches
                                 CaptureTheFlag.stealerPlayer.transform.position = new Vector3(10.25f, -15.35f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(-17.5f, -1f, PlayerControl.LocalPlayer.transform.position.z);
@@ -524,7 +579,7 @@ namespace LasMonjas.Patches
                     CaptureTheFlag.localBlueFlagArrow[0].arrow.SetActive(true);
                 }
                 // Police And Thief          
-                else if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+                else if (PoliceAndThief.policeAndThiefMode && howmanygamemodesareon == 1) {
                     switch (PlayerControl.GameOptions.MapId) {
                         // Skeld
                         case 0:
@@ -659,7 +714,7 @@ namespace LasMonjas.Patches
                                     cell.name = "cell";
                                     cell.transform.position = new Vector3(-10.25f, 3.38f, 0.5f);
                                     cell.gameObject.layer = 9;
-                                    cell.transform.GetChild(0).gameObject.layer = 9; 
+                                    cell.transform.GetChild(0).gameObject.layer = 9;
                                     PoliceAndThief.cell = cell;
                                     GameObject cellbutton = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
                                     cellbutton.name = "cellbutton";
@@ -779,7 +834,7 @@ namespace LasMonjas.Patches
                                 cell.name = "cell";
                                 cell.transform.position = new Vector3(1.75f, 1.125f, 0.5f);
                                 cell.gameObject.layer = 9;
-                                cell.transform.GetChild(0).gameObject.layer = 9; 
+                                cell.transform.GetChild(0).gameObject.layer = 9;
                                 PoliceAndThief.cell = cell;
                                 GameObject cellbutton = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
                                 cellbutton.name = "cellbutton";
@@ -907,7 +962,7 @@ namespace LasMonjas.Patches
                                 cell.name = "cell";
                                 cell.transform.position = new Vector3(8.25f, -5.15f, 0.5f);
                                 cell.gameObject.layer = 9;
-                                cell.transform.GetChild(0).gameObject.layer = 9; 
+                                cell.transform.GetChild(0).gameObject.layer = 9;
                                 PoliceAndThief.cell = cell;
                                 GameObject cellbutton = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
                                 cellbutton.name = "cellbutton";
@@ -1037,7 +1092,7 @@ namespace LasMonjas.Patches
                                 cell.name = "cell";
                                 cell.transform.position = new Vector3(10.25f, 3.38f, 0.5f);
                                 cell.gameObject.layer = 9;
-                                cell.transform.GetChild(0).gameObject.layer = 9; 
+                                cell.transform.GetChild(0).gameObject.layer = 9;
                                 PoliceAndThief.cell = cell;
                                 GameObject cellbutton = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
                                 cellbutton.name = "cellbutton";
@@ -1156,7 +1211,7 @@ namespace LasMonjas.Patches
                                 cell.name = "cell";
                                 cell.transform.position = new Vector3(-18.45f, 3.55f, 0.5f);
                                 cell.gameObject.layer = 9;
-                                cell.transform.GetChild(0).gameObject.layer = 9; 
+                                cell.transform.GetChild(0).gameObject.layer = 9;
                                 PoliceAndThief.cell = cell;
                                 GameObject cellbutton = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
                                 cellbutton.name = "cellbutton";
@@ -1303,8 +1358,9 @@ namespace LasMonjas.Patches
                     new CustomMessage("Time Left: ", PoliceAndThief.matchDuration, -1, -1.3f, 6);
                     PoliceAndThief.thiefpointCounter = "Stolen Jewels: " + "<color=#00F7FFFF>" + PoliceAndThief.currentJewelsStoled + "/" + PoliceAndThief.requiredJewels + "</color> | " + "Captured Thiefs: " + "<color=#928B55FF>" + PoliceAndThief.currentThiefsCaptured + "/" + PoliceAndThief.thiefTeam.Count + "</color>";
                     new CustomMessage(PoliceAndThief.thiefpointCounter, PoliceAndThief.matchDuration, -1, 1.9f, 8);
-                }// King of the hill
-                else if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+                }
+                // King of the hill
+                else if (KingOfTheHill.kingOfTheHillMode && howmanygamemodesareon == 1) {
                     switch (PlayerControl.GameOptions.MapId) {
                         // Skeld
                         case 0:
@@ -1313,7 +1369,7 @@ namespace LasMonjas.Patches
                                     KingOfTheHill.usurperPlayer.transform.position = new Vector3(-6.8f, 10.75f, PlayerControl.LocalPlayer.transform.position.z);
                                     Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
                                 }
-                                
+
                                 foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-16.4f, -10.25f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1330,7 +1386,7 @@ namespace LasMonjas.Patches
                                     greenteamfloor.transform.position = new Vector3(-16.4f, -10.5f, 0.5f);
                                     GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
                                     yellowteamfloor.name = "yellowteamfloor";
-                                    yellowteamfloor.transform.position = new Vector3(7f, -14.4f, 0.5f); 
+                                    yellowteamfloor.transform.position = new Vector3(7f, -14.4f, 0.5f);
                                     GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
                                     greenkingaura.name = "greenkingaura";
                                     greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
@@ -1380,7 +1436,7 @@ namespace LasMonjas.Patches
                                     KingOfTheHill.usurperPlayer.transform.position = new Vector3(-1f, 5.35f, PlayerControl.LocalPlayer.transform.position.z);
                                     Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
                                 }
-                                
+
                                 foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                     if (player == PlayerControl.LocalPlayer)
                                         player.transform.position = new Vector3(-7f, -8.25f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1397,7 +1453,7 @@ namespace LasMonjas.Patches
                                     greenteamfloor.transform.position = new Vector3(-7f, -8.5f, 0.5f);
                                     GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
                                     yellowteamfloor.name = "yellowteamfloor";
-                                    yellowteamfloor.transform.position = new Vector3(6.25f, -3.75f, 0.5f); 
+                                    yellowteamfloor.transform.position = new Vector3(6.25f, -3.75f, 0.5f);
                                     GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
                                     greenkingaura.name = "greenkingaura";
                                     greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
@@ -1449,7 +1505,7 @@ namespace LasMonjas.Patches
                                 KingOfTheHill.usurperPlayer.transform.position = new Vector3(2.5f, 11f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(-4.45f, 1.75f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1466,7 +1522,7 @@ namespace LasMonjas.Patches
                                 greenteamfloor.transform.position = new Vector3(-4.45f, 1.5f, 0.5f);
                                 GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
                                 yellowteamfloor.name = "yellowteamfloor";
-                                yellowteamfloor.transform.position = new Vector3(19.5f, 4.45f, 0.5f); 
+                                yellowteamfloor.transform.position = new Vector3(19.5f, 4.45f, 0.5f);
                                 GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
                                 greenkingaura.name = "greenkingaura";
                                 greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
@@ -1529,7 +1585,7 @@ namespace LasMonjas.Patches
                                 KingOfTheHill.usurperPlayer.transform.position = new Vector3(20.5f, -12f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(2.25f, -23.75f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1546,7 +1602,7 @@ namespace LasMonjas.Patches
                                 greenteamfloor.transform.position = new Vector3(2.25f, -24f, 0.5f);
                                 GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
                                 yellowteamfloor.name = "yellowteamfloor";
-                                yellowteamfloor.transform.position = new Vector3(36.35f, -6.4f, 0.5f); 
+                                yellowteamfloor.transform.position = new Vector3(36.35f, -6.4f, 0.5f);
                                 GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
                                 greenkingaura.name = "greenkingaura";
                                 greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
@@ -1609,7 +1665,7 @@ namespace LasMonjas.Patches
                                 KingOfTheHill.usurperPlayer.transform.position = new Vector3(1f, 5.35f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(7f, -8.25f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1626,7 +1682,7 @@ namespace LasMonjas.Patches
                                 greenteamfloor.transform.position = new Vector3(7f, -8.5f, 0.5f);
                                 GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
                                 yellowteamfloor.name = "yellowteamfloor";
-                                yellowteamfloor.transform.position = new Vector3(-6.25f, -3.75f, 0.5f); 
+                                yellowteamfloor.transform.position = new Vector3(-6.25f, -3.75f, 0.5f);
                                 GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
                                 greenkingaura.name = "greenkingaura";
                                 greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
@@ -1677,7 +1733,7 @@ namespace LasMonjas.Patches
                                 KingOfTheHill.usurperPlayer.transform.position = new Vector3(12.25f, 2f, PlayerControl.LocalPlayer.transform.position.z);
                                 Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
                             }
-                            
+
                             foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                                 if (player == PlayerControl.LocalPlayer)
                                     player.transform.position = new Vector3(-13.9f, -14.45f, PlayerControl.LocalPlayer.transform.position.z);
@@ -1694,7 +1750,7 @@ namespace LasMonjas.Patches
                                 greenteamfloor.transform.position = new Vector3(-13.9f, -14.7f, 0.5f);
                                 GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
                                 yellowteamfloor.name = "yellowteamfloor";
-                                yellowteamfloor.transform.position = new Vector3(37.35f, -3.5f, 0.5f); 
+                                yellowteamfloor.transform.position = new Vector3(37.35f, -3.5f, 0.5f);
                                 GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
                                 greenkingaura.name = "greenkingaura";
                                 greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
@@ -1778,6 +1834,224 @@ namespace LasMonjas.Patches
                     KingOfTheHill.localArrows[0].arrow.SetActive(true);
                     KingOfTheHill.localArrows[1].arrow.SetActive(true);
                     KingOfTheHill.localArrows[2].arrow.SetActive(true);
+                }
+                // Hot Potato
+                else if (HotPotato.hotPotatoMode && howmanygamemodesareon == 1) {
+                    switch (PlayerControl.GameOptions.MapId) {
+                        // Skeld
+                        case 0:
+                            if (activatedSensei) {
+                                if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                    HotPotato.hotPotatoPlayer.transform.position = new Vector3(-6.5f, -2.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                                }
+
+                                foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(12.5f, -0.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+
+                                if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                    GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                    hotpotato.name = "hotpotato";
+                                    hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                    HotPotato.hotPotato = hotpotato;
+                                    createdhotpotato = true;
+
+                                    // Remove camera use and admin table on Skeld
+                                    GameObject cameraStand = GameObject.Find("SurvConsole");
+                                    cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                    GameObject admin = GameObject.Find("MapRoomConsole");
+                                    admin.GetComponent<CircleCollider2D>().enabled = false;
+                                }
+                            }
+                            else {
+                                if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                    HotPotato.hotPotatoPlayer.transform.position = new Vector3(-0.75f, -7f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                                }
+
+                                foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(6.25f, -3.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+
+                                if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                    GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                    hotpotato.name = "hotpotato";
+                                    hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                    HotPotato.hotPotato = hotpotato;
+                                    createdhotpotato = true;
+
+                                    // Remove camera use and admin table on Skeld
+                                    GameObject cameraStand = GameObject.Find("SurvConsole");
+                                    cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                    GameObject admin = GameObject.Find("MapRoomConsole");
+                                    admin.GetComponent<CircleCollider2D>().enabled = false;
+                                }
+                            }
+                            break;
+                        // MiraHQ
+                        case 1:
+                            if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                HotPotato.hotPotatoPlayer.transform.position = new Vector3(6.15f, 6.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                            }
+
+                            foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(17.75f, 11.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                hotpotato.name = "hotpotato";
+                                hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                HotPotato.hotPotato = hotpotato;
+                                createdhotpotato = true;
+
+                                // Remove Doorlog use, Decontamintion doors and admin table on MiraHQ
+                                GameObject DoorLog = GameObject.Find("SurvLogConsole");
+                                DoorLog.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject deconUpperDoor = GameObject.Find("UpperDoor");
+                                deconUpperDoor.SetActive(false);
+                                GameObject deconLowerDoor = GameObject.Find("LowerDoor");
+                                deconLowerDoor.SetActive(false);
+                                GameObject deconUpperDoorPanelTop = GameObject.Find("DeconDoorPanel-Top");
+                                deconUpperDoorPanelTop.SetActive(false);
+                                GameObject deconUpperDoorPanelHigh = GameObject.Find("DeconDoorPanel-High");
+                                deconUpperDoorPanelHigh.SetActive(false);
+                                GameObject deconUpperDoorPanelBottom = GameObject.Find("DeconDoorPanel-Bottom");
+                                deconUpperDoorPanelBottom.SetActive(false);
+                                GameObject deconUpperDoorPanelLow = GameObject.Find("DeconDoorPanel-Low");
+                                deconUpperDoorPanelLow.SetActive(false);
+                                GameObject admin = GameObject.Find("AdminMapConsole");
+                                admin.GetComponent<CircleCollider2D>().enabled = false;
+                            }
+                            break;
+                        // Polus
+                        case 2:
+                            if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                HotPotato.hotPotatoPlayer.transform.position = new Vector3(20.5f, -11.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                            }
+
+                            foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(12.25f, -16f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                hotpotato.name = "hotpotato";
+                                hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                HotPotato.hotPotato = hotpotato;
+                                createdhotpotato = true;
+
+                                // Remove Decon doors, camera use, vitals, admin tables on Polus
+                                GameObject lowerdecon = GameObject.Find("LowerDecon");
+                                lowerdecon.SetActive(false);
+                                GameObject upperdecon = GameObject.Find("UpperDecon");
+                                upperdecon.SetActive(false);
+                                GameObject survCameras = GameObject.Find("Surv_Panel");
+                                survCameras.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals");
+                                vitals.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("panel_map");
+                                adminone.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("panel_map (1)");
+                                admintwo.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject ramp = GameObject.Find("ramp");
+                                ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
+                                GameObject bathroomVent = GameObject.Find("BathroomVent");
+                                bathroomVent.transform.position = new Vector3(34, -10.3f, bathroomVent.transform.position.z);
+                            }
+                            break;
+                        // Dlesk
+                        case 3:
+                            if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                HotPotato.hotPotatoPlayer.transform.position = new Vector3(0.75f, -7f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                            }
+
+                            foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-6.25f, -3.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                hotpotato.name = "hotpotato";
+                                hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                HotPotato.hotPotato = hotpotato;
+                                createdhotpotato = true;
+
+                                // Remove camera use and admin table on Dleks
+                                GameObject cameraStand = GameObject.Find("SurvConsole");
+                                cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject admin = GameObject.Find("MapRoomConsole");
+                                admin.GetComponent<CircleCollider2D>().enabled = false;
+                            }
+                            break;
+                        // Airship
+                        case 4:
+                            if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                HotPotato.hotPotatoPlayer.transform.position = new Vector3(12.25f, 2f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                            }
+
+                            foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(6.25f, 2.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                hotpotato.name = "hotpotato";
+                                hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                HotPotato.hotPotato = hotpotato;
+                                createdhotpotato = true;
+
+                                // Remove camera use, admin table, vitals, electrical doors on Airship
+                                GameObject cameras = GameObject.Find("task_cams");
+                                cameras.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject admin = GameObject.Find("panel_cockpit_map");
+                                admin.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject LeftDoorTop = GameObject.Find("LeftDoorTop");
+                                LeftDoorTop.SetActive(false);
+                                GameObject TopLeftVert = GameObject.Find("TopLeftVert");
+                                TopLeftVert.SetActive(false);
+                                GameObject TopLeftHort = GameObject.Find("TopLeftHort");
+                                TopLeftHort.SetActive(false);
+                                GameObject BottomHort = GameObject.Find("BottomHort");
+                                BottomHort.SetActive(false);
+                                GameObject TopCenterHort = GameObject.Find("TopCenterHort");
+                                TopCenterHort.SetActive(false);
+                                GameObject LeftVert = GameObject.Find("LeftVert");
+                                LeftVert.SetActive(false);
+                                GameObject RightVert = GameObject.Find("RightVert");
+                                RightVert.SetActive(false);
+                                GameObject TopRightVert = GameObject.Find("TopRightVert");
+                                TopRightVert.SetActive(false);
+                                GameObject TopRightHort = GameObject.Find("TopRightHort");
+                                TopRightHort.SetActive(false);
+                                GameObject BottomRightHort = GameObject.Find("BottomRightHort");
+                                BottomRightHort.SetActive(false);
+                                GameObject BottomRightVert = GameObject.Find("BottomRightVert");
+                                BottomRightVert.SetActive(false);
+                                GameObject LeftDoorBottom = GameObject.Find("LeftDoorBottom");
+                                LeftDoorBottom.SetActive(false);
+                            }
+                            break;
+                    }
                 }
             }
         }

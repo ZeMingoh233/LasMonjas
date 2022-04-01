@@ -86,6 +86,7 @@ namespace LasMonjas.Patches
                 CaptureTheFlag.captureTheFlagMode = false;
                 PoliceAndThief.policeAndThiefMode = false;
                 KingOfTheHill.kingOfTheHillMode = false;
+                HotPotato.hotPotatoMode = false;
 
                 if (prefab == null) {
                     LoadPrefab();

@@ -232,7 +232,7 @@ namespace LasMonjas.Patches {
         }
 
         static void impostorSetTarget() {
-            if (!PlayerControl.LocalPlayer.Data.Role.IsImpostor || !PlayerControl.LocalPlayer.CanMove || PlayerControl.LocalPlayer.Data.IsDead) {
+            if (!PlayerControl.LocalPlayer.Data.Role.IsImpostor || !PlayerControl.LocalPlayer.CanMove || PlayerControl.LocalPlayer.Data.IsDead || howmanygamemodesareon == 1) {
                 HudManager.Instance.KillButton.SetTarget(null);
                 return;
             }
@@ -568,11 +568,47 @@ namespace LasMonjas.Patches {
                 RPCProcedure.vigilantAbilityUses(2); 
             }
         }
-        
+
+        // Show player roles on meeting for dead players
+        public static void ghostsSeePlayerRoles() {
+            if (howmanygamemodesareon != 1) {
+                foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
+                    if (p == PlayerControl.LocalPlayer || PlayerControl.LocalPlayer.Data.IsDead) {
+
+                        PlayerVoteArea playerVoteArea = MeetingHud.Instance?.playerStates?.FirstOrDefault(x => x.TargetPlayerId == p.PlayerId);
+                        Transform meetingInfoTransform = playerVoteArea != null ? playerVoteArea.NameText.transform.parent.FindChild("Info") : null;
+                        TMPro.TextMeshPro meetingInfo = meetingInfoTransform != null ? meetingInfoTransform.GetComponent<TMPro.TextMeshPro>() : null;
+                        if (meetingInfo == null && playerVoteArea != null) {
+                            meetingInfo = UnityEngine.Object.Instantiate(playerVoteArea.NameText, playerVoteArea.NameText.transform.parent);
+                            meetingInfo.transform.localPosition += Vector3.down * 0.10f;
+                            meetingInfo.fontSize *= 0.60f;
+                            meetingInfo.gameObject.name = "Info";
+                        }
+
+                        // Set player name higher to align in middle
+                        if (meetingInfo != null && playerVoteArea != null) {
+                            var playerName = playerVoteArea.NameText;
+                            playerName.transform.localPosition = new Vector3(0.3384f, (0.0311f + 0.0683f), -0.1f);
+                        }
+
+                        string roleNames = RoleInfo.GetRolesString(p, true);
+
+                        string playerInfoText = "";
+                        string meetingInfoText = "";
+                        if (MapOptions.ghostsSeeRoles && PlayerControl.LocalPlayer.Data.IsDead) {
+                            playerInfoText = $"{roleNames}";
+                            meetingInfoText = playerInfoText;
+                        }
+
+                        if (meetingInfo != null) meetingInfo.text = MeetingHud.Instance.state == MeetingHud.VoteStates.Results ? "" : meetingInfoText;
+                    }
+                }
+            }
+        }
         
         static void captureTheFlagSetTarget() {
 
-            if (((!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode) || (!CaptureTheFlag.captureTheFlagMode && KingOfTheHill.kingOfTheHillMode)) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))
+            if (!CaptureTheFlag.captureTheFlagMode || CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon != 1)
                 return;
 
             var untargetableAllPlayers = new List<PlayerControl>();
@@ -776,7 +812,7 @@ namespace LasMonjas.Patches {
 
         static void policeandThiefSetTarget() {
 
-            if (((!PoliceAndThief.policeAndThiefMode && CaptureTheFlag.captureTheFlagMode) || (!PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode)) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))
+            if (!PoliceAndThief.policeAndThiefMode || PoliceAndThief.policeAndThiefMode && howmanygamemodesareon != 1)
                 return;
 
             var untargetablePolice = new List<PlayerControl>();
@@ -948,7 +984,7 @@ namespace LasMonjas.Patches {
 
         static void kingOfTheHillSetTarget() {
 
-            if (((!KingOfTheHill.kingOfTheHillMode && CaptureTheFlag.captureTheFlagMode) || (!KingOfTheHill.kingOfTheHillMode && PoliceAndThief.policeAndThiefMode)) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))
+            if (!KingOfTheHill.kingOfTheHillMode || KingOfTheHill.kingOfTheHillMode && howmanygamemodesareon != 1)
                 return;
 
             var untargetableAllPlayers = new List<PlayerControl>();
@@ -1151,6 +1187,17 @@ namespace LasMonjas.Patches {
             }
         }
 
+        static void hotPotatoSetTarget() {
+
+            if (!HotPotato.hotPotatoMode || HotPotato.hotPotatoMode && howmanygamemodesareon != 1)
+                return;
+
+            if (HotPotato.hotPotatoPlayer != null && HotPotato.hotPotatoPlayer == PlayerControl.LocalPlayer) {
+                HotPotato.hotPotatoPlayerCurrentTarget = setTarget();
+                setPlayerOutline(HotPotato.hotPotatoPlayerCurrentTarget, Color.grey);
+            }
+        }
+
         public static void Postfix(PlayerControl __instance) {
             if (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started) return;
 
@@ -1161,6 +1208,9 @@ namespace LasMonjas.Patches {
                 // Update Role Description
                 Helpers.refreshRoleDescription(__instance);
 
+                // Show roles for dead players on meeting
+                ghostsSeePlayerRoles();
+                
                 // TimeTraveler
                 bendTimeUpdate();
 
@@ -1267,6 +1317,9 @@ namespace LasMonjas.Patches {
 
                 // King of the hill update
                 kingOfTheHillSetTarget();
+
+                // Hot Potato update
+                hotPotatoSetTarget();
             }
         }
     }
@@ -1534,81 +1587,83 @@ namespace LasMonjas.Patches {
                 Forensic.featureDeadBodies.Add(new Tuple<DeadPlayer, Vector3>(deadPlayer, target.transform.position));
             }
 
-            // Capture the flag reset flag position if killed while having it
-            if (CaptureTheFlag.redPlayerWhoHasBlueFlag != null && target == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
-                CaptureTheFlag.blueflagtaken = false;
-                CaptureTheFlag.blueteamAlerted = false;
-                CaptureTheFlag.redPlayerWhoHasBlueFlag = null;
-                CaptureTheFlag.blueflag.transform.parent = CaptureTheFlag.blueflagbase.transform.parent;
-                switch (PlayerControl.GameOptions.MapId) {
-                    // Skeld
-                    case 0:
-                        if (activatedSensei) {
-                            CaptureTheFlag.blueflag.transform.position = new Vector3(7.7f, -1.15f, 0.5f);
-                        }
-                        else {
-                            CaptureTheFlag.blueflag.transform.position = new Vector3(16.5f, -4.65f, 0.5f);
-                        }
-                        break;
-                    // MiraHQ
-                    case 1:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(23.25f, 5.05f, 0.5f);
-                        break;
-                    // Polus
-                    case 2:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(5.4f, -9.65f, 0.5f);
-                        break;
-                    // Dleks
-                    case 3:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(-16.5f, -4.65f, 0.5f);
-                        break;
-                    // Airship
-                    case 4:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(33.6f, 1.25f, 0.5f);
-                        break;
-                }
-            }
-
-            if (CaptureTheFlag.bluePlayerWhoHasRedFlag != null && target == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
-                CaptureTheFlag.redflagtaken = false;
-                CaptureTheFlag.redteamAlerted = false;
-                CaptureTheFlag.bluePlayerWhoHasRedFlag = null;
-                CaptureTheFlag.redflag.transform.parent = CaptureTheFlag.redflagbase.transform.parent;
-                switch (PlayerControl.GameOptions.MapId) {
-                    // Skeld
-                    case 0:
-                        if (activatedSensei) {
-                            CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.35f, 0.5f);
-                        }
-                        else {
-                            CaptureTheFlag.redflag.transform.position = new Vector3(-20.5f, -5.35f, 0.5f);
-                        }
-                        break;
-                    // MiraHQ
-                    case 1:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(2.525f, 10.55f, 0.5f);
-                        break;
-                    // Polus
-                    case 2:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(36.4f, -21.7f, 0.5f);
-                        break;
-                    // Dlesk
-                    case 3:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(20.5f, -5.35f, 0.5f);
-                        break;
-                    // Airship
-                    case 4:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.2f, 0.5f);
-                        break;
-                }
-            }
-
             // Capture the flag revive player
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+            if (CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon == 1) {
+                // Capture the flag reset flag position if killed while having it
+                if (CaptureTheFlag.redPlayerWhoHasBlueFlag != null && target == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                    CaptureTheFlag.blueflagtaken = false;
+                    CaptureTheFlag.blueteamAlerted = false;
+                    CaptureTheFlag.redPlayerWhoHasBlueFlag = null;
+                    CaptureTheFlag.blueflag.transform.parent = CaptureTheFlag.blueflagbase.transform.parent;
+                    switch (PlayerControl.GameOptions.MapId) {
+                        // Skeld
+                        case 0:
+                            if (activatedSensei) {
+                                CaptureTheFlag.blueflag.transform.position = new Vector3(7.7f, -1.15f, 0.5f);
+                            }
+                            else {
+                                CaptureTheFlag.blueflag.transform.position = new Vector3(16.5f, -4.65f, 0.5f);
+                            }
+                            break;
+                        // MiraHQ
+                        case 1:
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(23.25f, 5.05f, 0.5f);
+                            break;
+                        // Polus
+                        case 2:
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(5.4f, -9.65f, 0.5f);
+                            break;
+                        // Dleks
+                        case 3:
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(-16.5f, -4.65f, 0.5f);
+                            break;
+                        // Airship
+                        case 4:
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(33.6f, 1.25f, 0.5f);
+                            break;
+                    }
+                }
+
+                if (CaptureTheFlag.bluePlayerWhoHasRedFlag != null && target == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                    CaptureTheFlag.redflagtaken = false;
+                    CaptureTheFlag.redteamAlerted = false;
+                    CaptureTheFlag.bluePlayerWhoHasRedFlag = null;
+                    CaptureTheFlag.redflag.transform.parent = CaptureTheFlag.redflagbase.transform.parent;
+                    switch (PlayerControl.GameOptions.MapId) {
+                        // Skeld
+                        case 0:
+                            if (activatedSensei) {
+                                CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.35f, 0.5f);
+                            }
+                            else {
+                                CaptureTheFlag.redflag.transform.position = new Vector3(-20.5f, -5.35f, 0.5f);
+                            }
+                            break;
+                        // MiraHQ
+                        case 1:
+                            CaptureTheFlag.redflag.transform.position = new Vector3(2.525f, 10.55f, 0.5f);
+                            break;
+                        // Polus
+                        case 2:
+                            CaptureTheFlag.redflag.transform.position = new Vector3(36.4f, -21.7f, 0.5f);
+                            break;
+                        // Dlesk
+                        case 3:
+                            CaptureTheFlag.redflag.transform.position = new Vector3(20.5f, -5.35f, 0.5f);
+                            break;
+                        // Airship
+                        case 4:
+                            CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.2f, 0.5f);
+                            break;
+                    }
+                }
+
+                // Capture the flag revive player
                 if (CaptureTheFlag.stealerPlayer != null && CaptureTheFlag.stealerPlayer.PlayerId == target.PlayerId) {
                     var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                     body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[15]);
                     body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[15]);
+                    body.transform.position = new Vector3(50, 50, 1);
                     CaptureTheFlag.stealerPlayerIsReviving = true;
                     CaptureTheFlag.stealerPlayer.nameText.color = new Color(CaptureTheFlag.stealerPlayer.nameText.color.r, CaptureTheFlag.stealerPlayer.nameText.color.g, CaptureTheFlag.stealerPlayer.nameText.color.b, 0.5f);
                     if (CaptureTheFlag.stealerPlayer.CurrentPet != null && CaptureTheFlag.stealerPlayer.CurrentPet.rend != null && CaptureTheFlag.stealerPlayer.CurrentPet.shadowRend != null) {
@@ -1682,12 +1737,13 @@ namespace LasMonjas.Patches {
                     })));
 
                 }
-                
+
                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[0]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[0]);
+                        body.transform.position = new Vector3(50, 50, 1);
                         if (target.PlayerId == CaptureTheFlag.redplayer01.PlayerId) {
                             CaptureTheFlag.redplayer01IsReviving = true;
                         }
@@ -1809,6 +1865,7 @@ namespace LasMonjas.Patches {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[1]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[1]);
+                        body.transform.position = new Vector3(50, 50, 1);
                         if (target.PlayerId == CaptureTheFlag.blueplayer01.PlayerId) {
                             CaptureTheFlag.blueplayer01IsReviving = true;
                         }
@@ -1929,12 +1986,13 @@ namespace LasMonjas.Patches {
 
 
             // Police and Thief revive player
-            if (PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+            if (PoliceAndThief.policeAndThiefMode && howmanygamemodesareon == 1) {
                 foreach (PlayerControl player in PoliceAndThief.policeTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[10]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[10]);
+                        body.transform.position = new Vector3(50, 50, 1);
                         if (target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
                             PoliceAndThief.policeplayer01IsReviving = true;
                         }
@@ -2044,6 +2102,7 @@ namespace LasMonjas.Patches {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[16]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[16]);
+                        body.transform.position = new Vector3(50, 50, 1);
                         if (PoliceAndThief.thiefplayer01 != null && target.PlayerId == PoliceAndThief.thiefplayer01.PlayerId) {
                             if (PoliceAndThief.thiefplayer01IsStealing) {
                                 RPCProcedure.policeandThiefRevertedJewelPosition(target.PlayerId, PoliceAndThief.thiefplayer01JewelId);
@@ -2211,11 +2270,12 @@ namespace LasMonjas.Patches {
             }
 
             // King of the hill revive player
-            if (KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            if (KingOfTheHill.kingOfTheHillMode && howmanygamemodesareon == 1) {
                 if (KingOfTheHill.usurperPlayer != null && KingOfTheHill.usurperPlayer.PlayerId == target.PlayerId) {
                     var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                     body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[15]);
                     body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[15]);
+                    body.transform.position = new Vector3(50, 50, 1);
                     KingOfTheHill.usurperPlayerIsReviving = true;
                     KingOfTheHill.usurperPlayer.nameText.color = new Color(KingOfTheHill.usurperPlayer.nameText.color.r, KingOfTheHill.usurperPlayer.nameText.color.g, KingOfTheHill.usurperPlayer.nameText.color.b, 0.5f);
                     if (KingOfTheHill.usurperPlayer.CurrentPet != null && KingOfTheHill.usurperPlayer.CurrentPet.rend != null && KingOfTheHill.usurperPlayer.CurrentPet.shadowRend != null) {
@@ -2295,6 +2355,8 @@ namespace LasMonjas.Patches {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[2]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[2]);
+                        body.transform.position = new Vector3(50, 50, 1);
+
                         // Restore zones
                         if (target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
                             KingOfTheHill.greenteamAlerted = false;
@@ -2456,6 +2518,7 @@ namespace LasMonjas.Patches {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
                         body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[5]);
                         body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[5]);
+                        body.transform.position = new Vector3(50, 50, 1);
 
                         // Restore zones
                         if (target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
@@ -2616,7 +2679,156 @@ namespace LasMonjas.Patches {
                     }
                 }
             }
-                
+
+            // Hot Potato new potato on murder
+            if (HotPotato.hotPotatoMode && howmanygamemodesareon == 1) {
+                if (HotPotato.hotPotatoPlayer != null && HotPotato.hotPotatoPlayer.PlayerId == target.PlayerId) {
+
+                    var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
+                    body.transform.position = new Vector3(50, 50, 1); 
+                    
+                    HotPotato.timeforTransfer = HotPotato.savedtimeforTransfer + 4f;
+
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(1, new Action<float>((p) => { // Delayed action
+                        if (p == 1f) {
+
+                            if (HotPotato.explodedPotato01 == null) {
+                                HotPotato.explodedPotato01 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato01);
+                            }
+                            else if (HotPotato.explodedPotato02 == null) {
+                                HotPotato.explodedPotato02 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato02);
+                            }
+                            else if (HotPotato.explodedPotato03 == null) {
+                                HotPotato.explodedPotato03 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato03);
+                            }
+                            else if (HotPotato.explodedPotato04 == null) {
+                                HotPotato.explodedPotato04 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato04);
+                            }
+                            else if (HotPotato.explodedPotato05 == null) {
+                                HotPotato.explodedPotato05 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato05);
+                            }
+                            else if (HotPotato.explodedPotato06 == null) {
+                                HotPotato.explodedPotato06 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato06);
+                            }
+                            else if (HotPotato.explodedPotato07 == null) {
+                                HotPotato.explodedPotato07 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato07);
+                            }
+                            else if (HotPotato.explodedPotato08 == null) {
+                                HotPotato.explodedPotato08 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato08);
+                            }
+                            else if (HotPotato.explodedPotato09 == null) {
+                                HotPotato.explodedPotato09 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato09);
+                            }
+                            else if (HotPotato.explodedPotato10 == null) {
+                                HotPotato.explodedPotato10 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato10);
+                            }
+                            else if (HotPotato.explodedPotato11 == null) {
+                                HotPotato.explodedPotato11 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato11);
+                            }
+                            else if (HotPotato.explodedPotato12 == null) {
+                                HotPotato.explodedPotato12 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato12);
+                            }
+                            else if (HotPotato.explodedPotato13 == null) {
+                                HotPotato.explodedPotato13 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato13);
+                            }
+                            else if (HotPotato.explodedPotato14 == null) {
+                                HotPotato.explodedPotato14 = HotPotato.hotPotatoPlayer;
+                                HotPotato.explodedPotatoTeam.Add(HotPotato.explodedPotato14);
+                            }
+
+                            int notPotatosAlives = -1;
+                            HotPotato.notPotatoTeamAlive.Clear();
+                            foreach (PlayerControl notPotato in HotPotato.notPotatoTeam) {
+                                if (!notPotato.Data.IsDead) {
+                                    notPotatosAlives += 1;
+                                    HotPotato.notPotatoTeamAlive.Add(notPotato);
+                                }
+                            }
+
+                            if (notPotatosAlives < 1) {
+                                HotPotato.triggerHotPotatoEnd = true;
+                                ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.HotPotatoEnd, false);
+                                return;
+                            }
+
+                            HotPotato.hotPotatoPlayer = HotPotato.notPotatoTeam[0];
+
+                            // If hot potato timed out, assing new potato
+                            if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato01) {
+                                HotPotato.notPotato01 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato02) {
+                                HotPotato.notPotato02 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato03) {
+                                HotPotato.notPotato03 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato04) {
+                                HotPotato.notPotato04 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato05) {
+                                HotPotato.notPotato05 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato06) {
+                                HotPotato.notPotato06 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato07) {
+                                HotPotato.notPotato07 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato08) {
+                                HotPotato.notPotato08 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato09) {
+                                HotPotato.notPotato09 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato10) {
+                                HotPotato.notPotato10 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato11) {
+                                HotPotato.notPotato11 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato12) {
+                                HotPotato.notPotato12 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato13) {
+                                HotPotato.notPotato13 = null;
+                            }
+                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato14) {
+                                HotPotato.notPotato14 = null;
+                            }
+
+                            HotPotato.notPotatoTeam.RemoveAt(0);
+
+                            HotPotato.hotPotatoPlayer.NetTransform.Halt();
+                            HotPotato.hotPotatoPlayer.moveable = false;
+                            HotPotato.hotPotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                            HotPotato.hotPotato.transform.parent = HotPotato.hotPotatoPlayer.transform;
+
+                            HudManager.Instance.StartCoroutine(Effects.Lerp(3, new Action<float>((p) => { // Delayed action
+                                if (p == 1f) {
+                                    HotPotato.hotPotatoPlayer.moveable = true;
+                                }
+                            })));
+
+                            new CustomMessage("<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> is the new Hot Potato!", 5, -1, 1f, 16);
+                            HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + notPotatosAlives + "</color>";
+                        }
+                    })));
+                }
+            }
 
             // Check alive players for disable sabotage button if game result in 1vs1 special condition (impostor + rebel / impostor + captain / rebel + captain)
             alivePlayers = 0;

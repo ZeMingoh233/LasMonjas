@@ -67,6 +67,21 @@ namespace LasMonjas.Patches
                     __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, num) * PlayerControl.GameOptions.CrewLightMod;
                 return false;
             }
+            else if (HotPotato.hotPotatoMode) {
+                if (player == null || player.IsDead) // IsDead
+                    __result = __instance.MaxLightRadius;
+                else if (HotPotato.hotPotatoPlayer != null && HotPotato.hotPotatoPlayer.PlayerId == player.PlayerId) {
+                    __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, num) * PlayerControl.GameOptions.CrewLightMod;
+                }
+                else {
+                    foreach (PlayerControl notPotato in HotPotato.notPotatoTeam) {
+                        if (notPotato != null && notPotato.PlayerId == player.PlayerId) {
+                            __result = Mathf.Lerp(__instance.MinLightRadius * (HotPotato.notPotatoVision / 2), __instance.MaxLightRadius * (HotPotato.notPotatoVision / 2), num);
+                        }
+                    }
+                }
+                return false;
+            }
             else {
                 if (player == null || player.IsDead) // IsDead
                     __result = __instance.MaxLightRadius;
