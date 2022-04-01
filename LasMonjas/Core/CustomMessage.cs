@@ -168,6 +168,46 @@ namespace LasMonjas.Core {
                                 text.text = "";
                             }
                             break;
+                        case 15:
+                            // Hot potato game timer
+                            if (HotPotato.hotPotatoMode && HotPotato.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + HotPotato.matchDuration.ToString("F0") + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 16:
+                            // Hot potato potato changed
+                            if (HotPotato.hotPotatoMode && HotPotato.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 17:
+                            // Hot potato counter
+                            if (HotPotato.hotPotatoMode && HotPotato.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + HotPotato.hotpotatopointCounter + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 18:
+                            // Hot potato timer
+                            if (HotPotato.hotPotatoMode && HotPotato.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + HotPotato.timeforTransfer.ToString("F0") + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
                     }
                     if (text != null) text.color = even ? Color.yellow : Color.red;
                     if (p == 1f && text != null && text.gameObject != null) {
