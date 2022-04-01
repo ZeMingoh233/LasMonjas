@@ -177,6 +177,9 @@ namespace LasMonjas
         private static CustomButton yellowplayer06KillButton;
         private static CustomButton usurperPlayerKillButton;
 
+        // Hot Potato button
+        public static CustomButton hotPotatoButton;
+
         public static void setCustomButtonCooldowns() {
             // Impostor buttons
             mimicTransformButton.MaxTimer = Mimic.cooldown;
@@ -384,6 +387,9 @@ namespace LasMonjas
             yellowplayer05KillButton.MaxTimer = KingOfTheHill.killCooldown;
             yellowplayer06KillButton.MaxTimer = KingOfTheHill.killCooldown;
             usurperPlayerKillButton.MaxTimer = KingOfTheHill.killCooldown;
+
+            // Hot Potato buttons
+            hotPotatoButton.MaxTimer = HotPotato.transferCooldown;
         }
 
         public static void resetBomberBombButton() {
@@ -6751,6 +6757,29 @@ namespace LasMonjas
                         yellowKingplayerCaptureZoneButton.Timer = yellowKingplayerCaptureZoneButton.MaxTimer;
                     }
                 }
+            );
+
+            // Hot Potato buttons code
+            // Hot Potato transfer
+            hotPotatoButton = new CustomButton(
+                () => {
+
+                    hotPotatoButton.Timer = hotPotatoButton.MaxTimer;
+
+                    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.HotPotatoTransfer, Hazel.SendOption.Reliable, -1);
+                    writer.Write(HotPotato.hotPotatoPlayerCurrentTarget.PlayerId);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+
+                    RPCProcedure.hotPotatoTransfer(HotPotato.hotPotatoPlayerCurrentTarget.PlayerId);
+                },
+                () => { return HotPotato.hotPotatoPlayer != null && HotPotato.hotPotatoPlayer == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => { return HotPotato.hotPotatoPlayerCurrentTarget && PlayerControl.LocalPlayer.CanMove;
+                },
+                () => { hotPotatoButton.Timer = hotPotatoButton.MaxTimer; },
+                HotPotato.getButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.Q
             );
 
             setCustomButtonCooldowns();

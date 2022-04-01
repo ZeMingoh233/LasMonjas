@@ -36,12 +36,16 @@ namespace LasMonjas
         public static bool createdpoliceandthief = false;
 
         public static bool createdkingofthehill = false;
+
+        public static bool createdhotpotato = false;
         
         public static bool activatedReportButtonAfterCustomMode = false;
 
         public static int quackNumber = 0;
 
         public static int alivePlayers = 15;
+
+        public static int howmanygamemodesareon = 0;
 
         public static void clearAndReloadRoles() {
             Mimic.clearAndReload();
@@ -96,7 +100,9 @@ namespace LasMonjas
             PoliceAndThief.clearAndReload();
 
             KingOfTheHill.clearAndReload();
-            
+
+            HotPotato.clearAndReload();
+
             removedSwipe = false;
             removedAirshipDoors = false;
             activatedSensei = false;
@@ -106,9 +112,11 @@ namespace LasMonjas
             createdcapturetheflag = false;
             createdpoliceandthief = false;
             createdkingofthehill = false;
+            createdhotpotato = false;
             activatedReportButtonAfterCustomMode = false;
             quackNumber = 0;
             alivePlayers = 15;
+            howmanygamemodesareon = 0;
         }
 
     }
@@ -2515,6 +2523,127 @@ namespace LasMonjas
         }
     }
 
+    public static class HotPotato
+    {
+        public static List<PlayerControl> notPotatoTeam = new List<PlayerControl>();
+        public static List<PlayerControl> notPotatoTeamAlive = new List<PlayerControl>();
+        public static List<PlayerControl> explodedPotatoTeam = new List<PlayerControl>();
+
+        public static PlayerControl hotPotatoPlayer = null;
+        public static PlayerControl hotPotatoPlayerCurrentTarget = null;
+        public static PlayerControl notPotato01 = null;
+        public static PlayerControl notPotato02 = null;
+        public static PlayerControl notPotato03 = null;
+        public static PlayerControl notPotato04 = null;
+        public static PlayerControl notPotato05 = null;
+        public static PlayerControl notPotato06 = null;
+        public static PlayerControl notPotato07 = null;
+        public static PlayerControl notPotato08 = null;
+        public static PlayerControl notPotato09 = null;
+        public static PlayerControl notPotato10 = null;
+        public static PlayerControl notPotato11 = null;
+        public static PlayerControl notPotato12 = null;
+        public static PlayerControl notPotato13 = null;
+        public static PlayerControl notPotato14 = null;
+
+        public static PlayerControl explodedPotato01 = null;
+        public static PlayerControl explodedPotato02 = null;
+        public static PlayerControl explodedPotato03 = null;
+        public static PlayerControl explodedPotato04 = null;
+        public static PlayerControl explodedPotato05 = null;
+        public static PlayerControl explodedPotato06 = null;
+        public static PlayerControl explodedPotato07 = null;
+        public static PlayerControl explodedPotato08 = null;
+        public static PlayerControl explodedPotato09 = null;
+        public static PlayerControl explodedPotato10 = null;
+        public static PlayerControl explodedPotato11 = null;
+        public static PlayerControl explodedPotato12 = null;
+        public static PlayerControl explodedPotato13 = null;
+        public static PlayerControl explodedPotato14 = null;
+
+        public static GameObject hotPotato = null;
+
+        public static bool hotPotatoMode = false;
+        public static float timeforTransfer = 15;
+        public static float transferCooldown = 10f;
+        public static float matchDuration = 300f;
+        public static float savedtimeforTransfer = 15;
+        public static float notPotatoVision = 1f;
+        public static bool resetTimeForTransfer = true;
+        public static float increaseTimeIfNoReset = 5f; 
+        public static bool firstPotatoTransfered = false;
+
+        public static bool notPotatoTeamAlerted = false;
+
+        public static bool triggerHotPotatoEnd = false;
+
+        public static string hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF></color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + notPotatoTeam.Count + "</color>";
+
+        private static Sprite buttonPotato;
+
+        public static Sprite getButtonSprite() {
+            if (buttonPotato) return buttonPotato;
+            buttonPotato = Helpers.loadSpriteFromResources("LasMonjas.Images.HotPotatoHotPotatusButton.png", 90f);
+            return buttonPotato;
+        }
+
+        public static void clearAndReload() {
+            notPotatoTeam.Clear();
+            notPotatoTeamAlive.Clear();
+            hotPotatoPlayer = null;
+            hotPotatoPlayerCurrentTarget = null;
+            notPotato01 = null;
+            notPotato02 = null;
+            notPotato03 = null;
+            notPotato04 = null;
+            notPotato05 = null;
+            notPotato06 = null;
+            notPotato07 = null;
+            notPotato08 = null;
+            notPotato09 = null;
+            notPotato10 = null;
+            notPotato11 = null;
+            notPotato12 = null;
+            notPotato13 = null;
+            notPotato14 = null;
+
+            explodedPotato01 = null;
+            explodedPotato02 = null;
+            explodedPotato03 = null;
+            explodedPotato04 = null;
+            explodedPotato05 = null;
+            explodedPotato06 = null;
+            explodedPotato07 = null;
+            explodedPotato08 = null;
+            explodedPotato09 = null;
+            explodedPotato10 = null;
+            explodedPotato11 = null;
+            explodedPotato12 = null;
+            explodedPotato13 = null;
+            explodedPotato14 = null;
+
+            if (CustomOptionHolder.hotPotatoMode.getSelection() == 1) {
+                hotPotatoMode = true;
+            }
+            else {
+                hotPotatoMode = false;
+            }
+            timeforTransfer = CustomOptionHolder.hotPotatoTransferLimit.getFloat() + 10f;
+            transferCooldown = CustomOptionHolder.hotPotatoCooldown.getFloat();
+            matchDuration = CustomOptionHolder.hotPotatoMatchDuration.getFloat();
+            notPotatoVision = CustomOptionHolder.hotPotatoNotPotatovision.getFloat();
+            resetTimeForTransfer = CustomOptionHolder.hotPotatoResetTimeForTransfer.getBool();
+            increaseTimeIfNoReset = CustomOptionHolder.hotPotatoIncreaseTimeIfNoReset.getFloat(); 
+            notPotatoTeamAlerted = false;
+            triggerHotPotatoEnd = false;
+            savedtimeforTransfer = timeforTransfer - 10f;
+            firstPotatoTransfered = false;
+            hotPotato = null;
+
+            hotpotatopointCounter = "Hot Potato: " + "<color=#00F7FFFF></color> | " + "Cold Potatoes: " + "<color=#928B55FF>" + notPotatoTeam.Count + "</color>";
+        }
+    }
+
     public static class CustomMain
     {
         public static CustomAssets customAssets = new CustomAssets();
@@ -2587,6 +2716,10 @@ namespace LasMonjas
         public GameObject greenfloor;
         public GameObject yellowfloor;
 
+        // Custom Bundle Hot Potato Assets
+        public AudioClip hotPotatoMusic;
+        public GameObject hotPotato;
+        
         // Custom Map
         public GameObject customMap;
         public GameObject customMinimap;

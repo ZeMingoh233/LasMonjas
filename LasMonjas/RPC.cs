@@ -119,7 +119,38 @@ namespace LasMonjas
         YellowPlayer04,
         YellowPlayer05,
         YellowPlayer06,
-        UsurperPlayer
+        UsurperPlayer,
+
+        // Hot Potato
+        HotPotato,
+        NotPotato01,
+        NotPotato02,
+        NotPotato03,
+        NotPotato04,
+        NotPotato05,
+        NotPotato06,
+        NotPotato07,
+        NotPotato08,
+        NotPotato09,
+        NotPotato10,
+        NotPotato11,
+        NotPotato12,
+        NotPotato13,
+        NotPotato14,
+        ExplodedPotato01,
+        ExplodedPotato02,
+        ExplodedPotato03,
+        ExplodedPotato04,
+        ExplodedPotato05,
+        ExplodedPotato06,
+        ExplodedPotato07,
+        ExplodedPotato08,
+        ExplodedPotato09,
+        ExplodedPotato10,
+        ExplodedPotato11,
+        ExplodedPotato12,
+        ExplodedPotato13,
+        ExplodedPotato14
     }
 
     enum CustomRPC
@@ -215,7 +246,10 @@ namespace LasMonjas
 
         // King of the hill
         KingoftheHillKills,
-        KingoftheHillCapture
+        KingoftheHillCapture,
+
+        // Hot Potato
+        HotPotatoTransfer
     }
 
     public static class RPCProcedure
@@ -595,6 +629,109 @@ namespace LasMonjas
                             break;
                         case RoleId.UsurperPlayer:
                             KingOfTheHill.usurperPlayer = player;
+                            break;
+
+                        // Hot Potato 
+                        case RoleId.HotPotato:
+                            HotPotato.hotPotatoPlayer = player;
+                            break;
+                        case RoleId.NotPotato01:
+                            HotPotato.notPotato01 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato02:
+                            HotPotato.notPotato02 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato03:
+                            HotPotato.notPotato03 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato04:
+                            HotPotato.notPotato04 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato05:
+                            HotPotato.notPotato05 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato06:
+                            HotPotato.notPotato06 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato07:
+                            HotPotato.notPotato07 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato08:
+                            HotPotato.notPotato08 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato09:
+                            HotPotato.notPotato09 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato10:
+                            HotPotato.notPotato10 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato11:
+                            HotPotato.notPotato11 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato12:
+                            HotPotato.notPotato12 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato13:
+                            HotPotato.notPotato13 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato14:
+                            HotPotato.notPotato14 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.ExplodedPotato01:
+                            HotPotato.explodedPotato01 = player;
+                            break;
+                        case RoleId.ExplodedPotato02:
+                            HotPotato.explodedPotato02 = player;
+                            break;
+                        case RoleId.ExplodedPotato03:
+                            HotPotato.explodedPotato03 = player;
+                            break;
+                        case RoleId.ExplodedPotato04:
+                            HotPotato.explodedPotato04 = player;
+                            break;
+                        case RoleId.ExplodedPotato05:
+                            HotPotato.explodedPotato05 = player;
+                            break;
+                        case RoleId.ExplodedPotato06:
+                            HotPotato.explodedPotato06 = player;
+                            break;
+                        case RoleId.ExplodedPotato07:
+                            HotPotato.explodedPotato07 = player;
+                            break;
+                        case RoleId.ExplodedPotato08:
+                            HotPotato.explodedPotato08 = player;
+                            break;
+                        case RoleId.ExplodedPotato09:
+                            HotPotato.explodedPotato09 = player;
+                            break;
+                        case RoleId.ExplodedPotato10:
+                            HotPotato.explodedPotato10 = player;
+                            break;
+                        case RoleId.ExplodedPotato11:
+                            HotPotato.explodedPotato11 = player;
+                            break;
+                        case RoleId.ExplodedPotato12:
+                            HotPotato.explodedPotato12 = player;
+                            break;
+                        case RoleId.ExplodedPotato13:
+                            HotPotato.explodedPotato13 = player;
+                            break;
+                        case RoleId.ExplodedPotato14:
+                            HotPotato.explodedPotato14 = player;
                             break;
                     }
                 }
@@ -1915,7 +2052,7 @@ namespace LasMonjas
         public static void changeMusic(byte whichmusic) {
             SoundManager.Instance.StopSound(CustomMain.customAssets.bombermanBombMusic);
             SoundManager.Instance.StopSound(CustomMain.customAssets.challengerDuelMusic);
-            if (MapOptions.activateMusic && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))) {
+            if (MapOptions.activateMusic && howmanygamemodesareon != 1) {
                 int alivePlayers = 0;
                 int totalPlayers = 0;
                 foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
@@ -2156,7 +2293,8 @@ namespace LasMonjas
                     CaptureTheFlag.blueflagtaken = true;
                     CaptureTheFlag.blueteamAlerted = false;
                     CaptureTheFlag.redPlayerWhoHasBlueFlag = player;
-                    CaptureTheFlag.blueflag.transform.position = player.transform.position + new Vector3(0f, 0f, 0.5f);
+                    CaptureTheFlag.blueflag.transform.parent = player.transform;
+                    CaptureTheFlag.blueflag.transform.localPosition = new Vector3(0f, 0f, -0.1f);
                 }
 
                 // Alert red team players
@@ -2174,7 +2312,8 @@ namespace LasMonjas
                     CaptureTheFlag.redflagtaken = true;
                     CaptureTheFlag.redteamAlerted = false;
                     CaptureTheFlag.bluePlayerWhoHasRedFlag = player;
-                    CaptureTheFlag.redflag.transform.position = player.transform.position + new Vector3(0f, 0f, 0.5f);
+                    CaptureTheFlag.redflag.transform.parent = player.transform;
+                    CaptureTheFlag.redflag.transform.localPosition = new Vector3(0f, 0f, -0.1f);
                 }
 
                 // Alert blue team players
@@ -2194,19 +2333,20 @@ namespace LasMonjas
             if (whichteam == 1) {
                 CaptureTheFlag.blueflagtaken = false;
                 CaptureTheFlag.redPlayerWhoHasBlueFlag = null;
+                CaptureTheFlag.blueflag.transform.parent = CaptureTheFlag.blueflagbase.transform.parent;
                 switch (PlayerControl.GameOptions.MapId) {
                     // Skeld
                     case 0:
                         if (activatedSensei) {
-                            CaptureTheFlag.blueflag.transform.position = new Vector3(7.7f, -1.15f, 1f);
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(7.7f, -1.15f, 0.5f);
                         }
                         else {
-                            CaptureTheFlag.blueflag.transform.position = new Vector3(16.5f, -4.65f, 1f);
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(16.5f, -4.65f, 0.5f);
                         }
                         break;
                     // MiraHQ
                     case 1:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(23.25f, 5.05f, 1f);
+                        CaptureTheFlag.blueflag.transform.position = new Vector3(23.25f, 5.05f, 0.5f);
                         break;
                     // Polus
                     case 2:
@@ -2214,7 +2354,7 @@ namespace LasMonjas
                         break;
                     // Dleks
                     case 3:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(-16.5f, -4.65f, 1f);
+                        CaptureTheFlag.blueflag.transform.position = new Vector3(-16.5f, -4.65f, 0.5f);
                         break;
                     // Airship
                     case 4:
@@ -2234,19 +2374,20 @@ namespace LasMonjas
             if (whichteam == 2) {
                 CaptureTheFlag.redflagtaken = false;
                 CaptureTheFlag.bluePlayerWhoHasRedFlag = null;
+                CaptureTheFlag.redflag.transform.parent = CaptureTheFlag.redflagbase.transform.parent;
                 switch (PlayerControl.GameOptions.MapId) {
                     // Skeld
                     case 0:
                         if (activatedSensei) {
-                            CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.35f, 1f);
+                            CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.35f, 0.5f);
                         }
                         else {
-                            CaptureTheFlag.redflag.transform.position = new Vector3(-20.5f, -5.35f, 1f);
+                            CaptureTheFlag.redflag.transform.position = new Vector3(-20.5f, -5.35f, 0.5f);
                         }
                         break;
                     // MiraHQ
                     case 1:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(2.525f, 10.55f, 1f);
+                        CaptureTheFlag.redflag.transform.position = new Vector3(2.525f, 10.55f, 0.5f);
                         break;
                     // Polus
                     case 2:
@@ -2254,7 +2395,7 @@ namespace LasMonjas
                         break;
                     // Dleks
                     case 3:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(20.5f, -5.35f, 1f);
+                        CaptureTheFlag.redflag.transform.position = new Vector3(20.5f, -5.35f, 0.5f);
                         break;
                     // Airship
                     case 4:
@@ -2511,78 +2652,93 @@ namespace LasMonjas
                     switch (jewelId) {
                         case 1:
                             PoliceAndThief.jewel01BeingStealed = player;
-                            PoliceAndThief.jewel01.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel01.SetActive(true);
+                            PoliceAndThief.jewel01.transform.parent = player.transform;
+                            PoliceAndThief.jewel01.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 2:
                             PoliceAndThief.jewel02BeingStealed = player;
-                            PoliceAndThief.jewel02.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel02.SetActive(true);
+                            PoliceAndThief.jewel02.transform.parent = player.transform;
+                            PoliceAndThief.jewel02.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 3:
                             PoliceAndThief.jewel03BeingStealed = player;
-                            PoliceAndThief.jewel03.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel03.SetActive(true);
+                            PoliceAndThief.jewel03.transform.parent = player.transform;
+                            PoliceAndThief.jewel03.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 4:
                             PoliceAndThief.jewel04BeingStealed = player;
-                            PoliceAndThief.jewel04.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel04.SetActive(true);
+                            PoliceAndThief.jewel04.transform.parent = player.transform;
+                            PoliceAndThief.jewel04.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 5:
                             PoliceAndThief.jewel05BeingStealed = player;
-                            PoliceAndThief.jewel05.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel05.SetActive(true);
+                            PoliceAndThief.jewel05.transform.parent = player.transform;
+                            PoliceAndThief.jewel05.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 6:
                             PoliceAndThief.jewel06BeingStealed = player;
-                            PoliceAndThief.jewel06.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel06.SetActive(true);
+                            PoliceAndThief.jewel06.transform.parent = player.transform;
+                            PoliceAndThief.jewel06.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 7:
                             PoliceAndThief.jewel07BeingStealed = player;
-                            PoliceAndThief.jewel07.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel07.SetActive(true);
+                            PoliceAndThief.jewel07.transform.parent = player.transform;
+                            PoliceAndThief.jewel07.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 8:
                             PoliceAndThief.jewel08BeingStealed = player;
-                            PoliceAndThief.jewel08.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel08.SetActive(true);
+                            PoliceAndThief.jewel08.transform.parent = player.transform;
+                            PoliceAndThief.jewel08.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 9:
                             PoliceAndThief.jewel09BeingStealed = player;
-                            PoliceAndThief.jewel09.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel09.SetActive(true);
+                            PoliceAndThief.jewel09.transform.parent = player.transform;
+                            PoliceAndThief.jewel09.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 10:
                             PoliceAndThief.jewel10BeingStealed = player;
-                            PoliceAndThief.jewel10.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel10.SetActive(true);
+                            PoliceAndThief.jewel10.transform.parent = player.transform;
+                            PoliceAndThief.jewel10.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 11:
                             PoliceAndThief.jewel11BeingStealed = player;
-                            PoliceAndThief.jewel11.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel11.SetActive(true);
+                            PoliceAndThief.jewel11.transform.parent = player.transform;
+                            PoliceAndThief.jewel11.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 12:
                             PoliceAndThief.jewel12BeingStealed = player;
-                            PoliceAndThief.jewel12.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel12.SetActive(true);
+                            PoliceAndThief.jewel12.transform.parent = player.transform;
+                            PoliceAndThief.jewel12.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 13:
                             PoliceAndThief.jewel13BeingStealed = player;
-                            PoliceAndThief.jewel13.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel13.SetActive(true);
+                            PoliceAndThief.jewel13.transform.parent = player.transform;
+                            PoliceAndThief.jewel13.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 14:
                             PoliceAndThief.jewel14BeingStealed = player;
-                            PoliceAndThief.jewel14.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel14.SetActive(true);
+                            PoliceAndThief.jewel14.transform.parent = player.transform;
+                            PoliceAndThief.jewel14.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 15:
                             PoliceAndThief.jewel15BeingStealed = player;
-                            PoliceAndThief.jewel15.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel15.SetActive(true);
+                            PoliceAndThief.jewel15.transform.parent = player.transform;
+                            PoliceAndThief.jewel15.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                     }
                 }
@@ -2764,6 +2920,7 @@ namespace LasMonjas
                             }
                             break;
                     }
+                    myJewel.transform.SetParent(null);
                 }
 
             }
@@ -2825,62 +2982,77 @@ namespace LasMonjas
                             if (activatedSensei) {
                                 switch (jewelRevertedId) {
                                     case 1:
+                                        PoliceAndThief.jewel01.transform.SetParent(null);
                                         PoliceAndThief.jewel01.transform.position = new Vector3(6.95f, 4.95f, 1f);
                                         PoliceAndThief.jewel01BeingStealed = null;
                                         break;
                                     case 2:
+                                        PoliceAndThief.jewel02.transform.SetParent(null);
                                         PoliceAndThief.jewel02.transform.position = new Vector3(-3.75f, 5.35f, 1f);
                                         PoliceAndThief.jewel02BeingStealed = null;
                                         break;
                                     case 3:
+                                        PoliceAndThief.jewel03.transform.SetParent(null);
                                         PoliceAndThief.jewel03.transform.position = new Vector3(-7.7f, 11.3f, 1f);
                                         PoliceAndThief.jewel03BeingStealed = null;
                                         break;
                                     case 4:
+                                        PoliceAndThief.jewel04.transform.SetParent(null);
                                         PoliceAndThief.jewel04.transform.position = new Vector3(-19.65f, 5.3f, 1f);
                                         PoliceAndThief.jewel04BeingStealed = null;
                                         break;
                                     case 5:
+                                        PoliceAndThief.jewel05.transform.SetParent(null);
                                         PoliceAndThief.jewel05.transform.position = new Vector3(-19.65f, -8, 1f);
                                         PoliceAndThief.jewel05BeingStealed = null;
                                         break;
                                     case 6:
+                                        PoliceAndThief.jewel06.transform.SetParent(null);
                                         PoliceAndThief.jewel06.transform.position = new Vector3(-5.45f, -13f, 1f);
                                         PoliceAndThief.jewel06BeingStealed = null;
                                         break;
                                     case 7:
+                                        PoliceAndThief.jewel07.transform.SetParent(null);
                                         PoliceAndThief.jewel07.transform.position = new Vector3(-7.65f, -4.2f, 1f);
                                         PoliceAndThief.jewel07BeingStealed = null;
                                         break;
                                     case 8:
+                                        PoliceAndThief.jewel08.transform.SetParent(null);
                                         PoliceAndThief.jewel08.transform.position = new Vector3(2f, -6.75f, 1f);
                                         PoliceAndThief.jewel08BeingStealed = null;
                                         break;
                                     case 9:
+                                        PoliceAndThief.jewel09.transform.SetParent(null);
                                         PoliceAndThief.jewel09.transform.position = new Vector3(8.9f, 1.45f, 1f);
                                         PoliceAndThief.jewel09BeingStealed = null;
                                         break;
                                     case 10:
+                                        PoliceAndThief.jewel10.transform.SetParent(null);
                                         PoliceAndThief.jewel10.transform.position = new Vector3(4.6f, -2.25f, 1f);
                                         PoliceAndThief.jewel10BeingStealed = null;
                                         break;
                                     case 11:
+                                        PoliceAndThief.jewel11.transform.SetParent(null);
                                         PoliceAndThief.jewel11.transform.position = new Vector3(-5.05f, -0.88f, 1f);
                                         PoliceAndThief.jewel11BeingStealed = null;
                                         break;
                                     case 12:
+                                        PoliceAndThief.jewel12.transform.SetParent(null);
                                         PoliceAndThief.jewel12.transform.position = new Vector3(-8.25f, -0.45f, 1f);
                                         PoliceAndThief.jewel12BeingStealed = null;
                                         break;
                                     case 13:
+                                        PoliceAndThief.jewel13.transform.SetParent(null);
                                         PoliceAndThief.jewel13.transform.position = new Vector3(-19.75f, -1.55f, 1f);
                                         PoliceAndThief.jewel13BeingStealed = null;
                                         break;
                                     case 14:
+                                        PoliceAndThief.jewel14.transform.SetParent(null);
                                         PoliceAndThief.jewel14.transform.position = new Vector3(-12.1f, -13.15f, 1f);
                                         PoliceAndThief.jewel14BeingStealed = null;
                                         break;
                                     case 15:
+                                        PoliceAndThief.jewel15.transform.SetParent(null);
                                         PoliceAndThief.jewel15.transform.position = new Vector3(7.15f, -14.45f, 1f);
                                         PoliceAndThief.jewel15BeingStealed = null;
                                         break;
@@ -2889,62 +3061,77 @@ namespace LasMonjas
                             else {
                                 switch (jewelRevertedId) {
                                     case 1:
+                                        PoliceAndThief.jewel01.transform.SetParent(null);
                                         PoliceAndThief.jewel01.transform.position = new Vector3(-18.65f, -9.9f, 1f);
                                         PoliceAndThief.jewel01BeingStealed = null;
                                         break;
                                     case 2:
+                                        PoliceAndThief.jewel02.transform.SetParent(null);
                                         PoliceAndThief.jewel02.transform.position = new Vector3(-21.5f, -2, 1f);
                                         PoliceAndThief.jewel02BeingStealed = null;
                                         break;
                                     case 3:
+                                        PoliceAndThief.jewel03.transform.SetParent(null);
                                         PoliceAndThief.jewel03.transform.position = new Vector3(-5.9f, -8.25f, 1f);
                                         PoliceAndThief.jewel03BeingStealed = null;
                                         break;
                                     case 4:
+                                        PoliceAndThief.jewel04.transform.SetParent(null);
                                         PoliceAndThief.jewel04.transform.position = new Vector3(4.5f, -7.5f, 1f);
                                         PoliceAndThief.jewel04BeingStealed = null;
                                         break;
                                     case 5:
+                                        PoliceAndThief.jewel05.transform.SetParent(null);
                                         PoliceAndThief.jewel05.transform.position = new Vector3(7.85f, -14.45f, 1f);
                                         PoliceAndThief.jewel05BeingStealed = null;
                                         break;
                                     case 6:
+                                        PoliceAndThief.jewel06.transform.SetParent(null);
                                         PoliceAndThief.jewel06.transform.position = new Vector3(6.65f, -4.8f, 1f);
                                         PoliceAndThief.jewel06BeingStealed = null;
                                         break;
                                     case 7:
+                                        PoliceAndThief.jewel07.transform.SetParent(null);
                                         PoliceAndThief.jewel07.transform.position = new Vector3(10.5f, 2.15f, 1f);
                                         PoliceAndThief.jewel07BeingStealed = null;
                                         break;
                                     case 8:
+                                        PoliceAndThief.jewel08.transform.SetParent(null);
                                         PoliceAndThief.jewel08.transform.position = new Vector3(-5.5f, 3.5f, 1f);
                                         PoliceAndThief.jewel08BeingStealed = null;
                                         break;
                                     case 9:
+                                        PoliceAndThief.jewel09.transform.SetParent(null);
                                         PoliceAndThief.jewel09.transform.position = new Vector3(-19, -1.2f, 1f);
                                         PoliceAndThief.jewel09BeingStealed = null;
                                         break;
                                     case 10:
+                                        PoliceAndThief.jewel10.transform.SetParent(null);
                                         PoliceAndThief.jewel10.transform.position = new Vector3(-21.5f, -8.35f, 1f);
                                         PoliceAndThief.jewel10BeingStealed = null;
                                         break;
                                     case 11:
+                                        PoliceAndThief.jewel11.transform.SetParent(null);
                                         PoliceAndThief.jewel11.transform.position = new Vector3(-12.5f, -3.75f, 1f);
                                         PoliceAndThief.jewel11BeingStealed = null;
                                         break;
                                     case 12:
+                                        PoliceAndThief.jewel12.transform.SetParent(null);
                                         PoliceAndThief.jewel12.transform.position = new Vector3(-5.9f, -5.25f, 1f);
                                         PoliceAndThief.jewel12BeingStealed = null;
                                         break;
                                     case 13:
+                                        PoliceAndThief.jewel13.transform.SetParent(null);
                                         PoliceAndThief.jewel13.transform.position = new Vector3(2.65f, -16.5f, 1f);
                                         PoliceAndThief.jewel13BeingStealed = null;
                                         break;
                                     case 14:
+                                        PoliceAndThief.jewel14.transform.SetParent(null);
                                         PoliceAndThief.jewel14.transform.position = new Vector3(16.75f, -4.75f, 1f);
                                         PoliceAndThief.jewel14BeingStealed = null;
                                         break;
                                     case 15:
+                                        PoliceAndThief.jewel15.transform.SetParent(null);
                                         PoliceAndThief.jewel15.transform.position = new Vector3(3.8f, 3.5f, 1f);
                                         PoliceAndThief.jewel15BeingStealed = null;
                                         break;
@@ -2955,62 +3142,77 @@ namespace LasMonjas
                         case 1:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(-4.5f, 2.5f, 1f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(6.25f, 14f, 1f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(9.15f, 4.75f, 1f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(14.75f, 20.5f, 1f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(19.5f, 17.5f, 1f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(21, 24.1f, 1f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(19.5f, 4.75f, 1f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 8:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(28.25f, 0, 1f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 9:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(2.45f, 11.25f, 1f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(4.4f, 1.75f, 1f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(9.25f, 13f, 1f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(13.75f, 23.5f, 1f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(16, 4, 1f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(15.35f, -0.9f, 1f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(19.5f, -1.75f, 1f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -3020,62 +3222,77 @@ namespace LasMonjas
                         case 2:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(16.7f, -2.65f, 0.75f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(25.35f, -7.35f, 0.75f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(34.9f, -9.75f, 0.75f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(36.5f, -21.75f, 0.75f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(17.25f, -17.5f, 0.75f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(10.9f, -20.5f, -0.75f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(1.5f, -20.25f, 0.75f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 08:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(3f, -12f, 0.75f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 09:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(30f, -7.35f, 0.75f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(40.25f, -8f, 0.75f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(26f, -17.15f, 0.75f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(22f, -25.25f, 0.75f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(20.65f, -12f, 0.75f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(9.75f, -12.25f, 0.75f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(2.25f, -24f, 0.75f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -3085,62 +3302,77 @@ namespace LasMonjas
                         case 3:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(18.65f, -9.9f, 1f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(21.5f, -2, 1f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(5.9f, -8.25f, 1f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(-4.5f, -7.5f, 1f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(-7.85f, -14.45f, 1f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(-6.65f, -4.8f, 1f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(-10.5f, 2.15f, 1f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 8:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(5.5f, 3.5f, 1f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 9:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(19, -1.2f, 1f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(21.5f, -8.35f, 1f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(12.5f, -3.75f, 1f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(5.9f, -5.25f, 1f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(-2.65f, -16.5f, 1f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(-16.75f, -4.75f, 1f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(-3.8f, 3.5f, 1f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -3150,62 +3382,77 @@ namespace LasMonjas
                         case 4:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(-23.5f, -1.5f, 1f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(-14.15f, -4.85f, 1f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(-13.9f, -16.25f, 1f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(-0.85f, -2.5f, 1f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(-5, 8.5f, 1f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(19.3f, -4.15f, 1f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(19.85f, 8, 1f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 8:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(28.85f, -1.75f, 1f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 9:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(-14.5f, -8.5f, 1f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(6.3f, -2.75f, 1f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(20.75f, 2.5f, 1f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(29.25f, 7, 1f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(37.5f, -3.5f, 1f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(25.2f, -8.75f, 1f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(16.3f, -11, 1f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -3452,6 +3699,122 @@ namespace LasMonjas
                             new CustomMessage("<color=#FFFF00FF>Yellow King</color> has captured a zone!", 5, -1, 1.3f, 11);
                         }
                     }
+                }
+            }
+        }
+
+        public static PlayerControl oldHotPotato = null;
+
+        public static void hotPotatoTransfer(byte targetId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId && HotPotato.hotPotatoPlayer != null) {
+
+                    if (!HotPotato.firstPotatoTransfered) {
+                        HotPotato.firstPotatoTransfered = true;
+                        new CustomMessage("Hot Potato: ", HotPotato.matchDuration, -1, -1f, 18);
+                        new CustomMessage("Time Left: ", HotPotato.matchDuration, -1, -1.3f, 15);
+                        HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + HotPotato.notPotatoTeam.Count + "</color>";
+                        new CustomMessage(HotPotato.hotpotatopointCounter, HotPotato.matchDuration, -1, 1.9f, 17);
+                    }
+
+                    if (HotPotato.resetTimeForTransfer) {
+                        HotPotato.timeforTransfer = HotPotato.savedtimeforTransfer + 3f;
+                    }
+                    else {
+                        HotPotato.timeforTransfer = (HotPotato.timeforTransfer + HotPotato.increaseTimeIfNoReset + 3f);
+                    }
+
+                    oldHotPotato = HotPotato.hotPotatoPlayer;
+
+                    HotPotato.notPotatoTeam.Add(oldHotPotato);
+
+                    // Switch role
+                    if (HotPotato.notPotato01 != null && HotPotato.notPotato01 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato01);
+                        HotPotato.notPotato01 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato02 != null && HotPotato.notPotato02 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato02);
+                        HotPotato.notPotato02 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato03 != null && HotPotato.notPotato03 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato03);
+                        HotPotato.notPotato03 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato04 != null && HotPotato.notPotato04 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato04);
+                        HotPotato.notPotato04 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato05 != null && HotPotato.notPotato05 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato05);
+                        HotPotato.notPotato05 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato06 != null && HotPotato.notPotato06 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato06);
+                        HotPotato.notPotato06 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato07 != null && HotPotato.notPotato07 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato07);
+                        HotPotato.notPotato07 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato08 != null && HotPotato.notPotato08 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato08);
+                        HotPotato.notPotato08 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato09 != null && HotPotato.notPotato09 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato09);
+                        HotPotato.notPotato09 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato10 != null && HotPotato.notPotato10 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato10);
+                        HotPotato.notPotato10 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato11 != null && HotPotato.notPotato11 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato11);
+                        HotPotato.notPotato11 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato12 != null && HotPotato.notPotato12 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato12);
+                        HotPotato.notPotato12 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato13 != null && HotPotato.notPotato13 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato13);
+                        HotPotato.notPotato13 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato14 != null && HotPotato.notPotato14 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato14);
+                        HotPotato.notPotato14 = oldHotPotato;
+                    }
+
+                    HotPotato.hotPotatoPlayer = player;
+                    HotPotato.hotPotatoPlayer.NetTransform.Halt();
+                    HotPotato.hotPotatoPlayer.moveable = false;
+                    HotPotato.hotPotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                    HotPotato.hotPotato.transform.parent = HotPotato.hotPotatoPlayer.transform;
+
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(3, new Action<float>((p) => { // Delayed action
+                        if (p == 1f) {
+                            HotPotato.hotPotatoPlayer.moveable = true;
+                        }
+                    })));
+
+                    int notPotatosAlives = 0;
+                    HotPotato.notPotatoTeamAlive.Clear();
+                    foreach (PlayerControl notPotato in HotPotato.notPotatoTeam) {
+                        if (!notPotato.Data.IsDead) {
+                            notPotatosAlives += 1;
+                            HotPotato.notPotatoTeamAlive.Add(notPotato);
+                        }
+                    }
+
+                    new CustomMessage("<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> is the new Hot Potato!", 5, -1, 1f, 16);
+
+                    HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + HotPotato.notPotatoTeam.Count + "</color>";
+
+                    // Set custom cooldown to the hotpotato button
+                    hotPotatoButton.Timer = HotPotato.transferCooldown;
+                    if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer || PlayerControl.LocalPlayer == oldHotPotato)
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.roleThiefStealRole, false, 100f);
                 }
             }
         }
@@ -3766,6 +4129,11 @@ namespace LasMonjas
                     byte capturedId = reader.ReadByte();
                     byte whichKingCaptured = reader.ReadByte();
                     RPCProcedure.kingoftheHillCapture(capturedId, whichKingCaptured);
+                    break;
+
+                // Hot Potato
+                case (byte)CustomRPC.HotPotatoTransfer:
+                    RPCProcedure.hotPotatoTransfer(reader.ReadByte());
                     break;
             }
         }

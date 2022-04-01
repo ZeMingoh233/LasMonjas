@@ -78,6 +78,37 @@ namespace LasMonjas
         public static RoleInfo yellowplayer06 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer06);
         public static RoleInfo usurperplayer = new RoleInfo("Usurper", Color.grey, "Kill a King to become one", "Kill a King to become one", RoleId.UsurperPlayer);
 
+        // Hot Potato Teams
+        public static RoleInfo hotPotatoPlayer = new RoleInfo("Hot Potato", Color.grey, "Transfer the hot potato to other player", "Transfer the hot potato to other player", RoleId.HotPotato);
+        public static RoleInfo notPotato01 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato01);
+        public static RoleInfo notPotato02 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato02);
+        public static RoleInfo notPotato03 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato03);
+        public static RoleInfo notPotato04 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato04);
+        public static RoleInfo notPotato05 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato05);
+        public static RoleInfo notPotato06 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato06);
+        public static RoleInfo notPotato07 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato07);
+        public static RoleInfo notPotato08 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato08);
+        public static RoleInfo notPotato09 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato09);
+        public static RoleInfo notPotato10 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato10);
+        public static RoleInfo notPotato11 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato11);
+        public static RoleInfo notPotato12 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato12);
+        public static RoleInfo notPotato13 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato13);
+        public static RoleInfo notPotato14 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato14);
+        public static RoleInfo explodedPotato01 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato01);
+        public static RoleInfo explodedPotato02 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato02);
+        public static RoleInfo explodedPotato03 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato03);
+        public static RoleInfo explodedPotato04 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato04);
+        public static RoleInfo explodedPotato05 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato05);
+        public static RoleInfo explodedPotato06 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato06);
+        public static RoleInfo explodedPotato07 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato07);
+        public static RoleInfo explodedPotato08 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato08);
+        public static RoleInfo explodedPotato09 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato09);
+        public static RoleInfo explodedPotato10 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato10);
+        public static RoleInfo explodedPotato11 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato11);
+        public static RoleInfo explodedPotato12 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato12);
+        public static RoleInfo explodedPotato13 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato13);
+        public static RoleInfo explodedPotato14 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato14);
+        
         // Impostor roles
         public static RoleInfo mimic = new RoleInfo("Mimic", Mimic.color, "Mimic the look of other player", "Mimic the look of other player", RoleId.Mimic);
         public static RoleInfo painter = new RoleInfo("Painter", Painter.color, "Paint players with the same color", "Paint players with the same color", RoleId.Painter);
@@ -236,7 +267,36 @@ namespace LasMonjas
             yellowplayer04,
             yellowplayer05,
             yellowplayer06,
-            usurperplayer
+            usurperplayer,
+            hotPotatoPlayer,
+            notPotato01,
+            notPotato02,
+            notPotato03,
+            notPotato04,
+            notPotato05,
+            notPotato06,
+            notPotato07,
+            notPotato08,
+            notPotato09,
+            notPotato10,
+            notPotato11,
+            notPotato12,
+            notPotato13,
+            notPotato14,
+            explodedPotato01,
+            explodedPotato02,
+            explodedPotato03,
+            explodedPotato04,
+            explodedPotato05,
+            explodedPotato06,
+            explodedPotato07,
+            explodedPotato08,
+            explodedPotato09,
+            explodedPotato10,
+            explodedPotato11,
+            explodedPotato12,
+            explodedPotato13,
+            explodedPotato14
         };
 
         public static List<RoleInfo> getRoleInfoForPlayer(PlayerControl p) {
@@ -293,6 +353,38 @@ namespace LasMonjas
             if (p == KingOfTheHill.yellowplayer05) infos.Add(yellowplayer05);
             if (p == KingOfTheHill.yellowplayer06) infos.Add(yellowplayer06);
             if (p == KingOfTheHill.usurperPlayer) infos.Add(usurperplayer);
+
+            // Hot Potato
+            if (p == HotPotato.hotPotatoPlayer) infos.Add(hotPotatoPlayer);
+            if (p == HotPotato.notPotato01) infos.Add(notPotato01);
+            if (p == HotPotato.notPotato02) infos.Add(notPotato02);
+            if (p == HotPotato.notPotato03) infos.Add(notPotato03);
+            if (p == HotPotato.notPotato04) infos.Add(notPotato04);
+            if (p == HotPotato.notPotato05) infos.Add(notPotato05);
+            if (p == HotPotato.notPotato06) infos.Add(notPotato06);
+            if (p == HotPotato.notPotato07) infos.Add(notPotato07);
+            if (p == HotPotato.notPotato08) infos.Add(notPotato08);
+            if (p == HotPotato.notPotato09) infos.Add(notPotato09);
+            if (p == HotPotato.notPotato10) infos.Add(notPotato10);
+            if (p == HotPotato.notPotato11) infos.Add(notPotato11);
+            if (p == HotPotato.notPotato12) infos.Add(notPotato12);
+            if (p == HotPotato.notPotato13) infos.Add(notPotato13);
+            if (p == HotPotato.notPotato14) infos.Add(notPotato14);
+
+            if (p == HotPotato.explodedPotato01) infos.Add(explodedPotato01);
+            if (p == HotPotato.explodedPotato02) infos.Add(explodedPotato02);
+            if (p == HotPotato.explodedPotato03) infos.Add(explodedPotato03);
+            if (p == HotPotato.explodedPotato04) infos.Add(explodedPotato04);
+            if (p == HotPotato.explodedPotato05) infos.Add(explodedPotato05);
+            if (p == HotPotato.explodedPotato06) infos.Add(explodedPotato06);
+            if (p == HotPotato.explodedPotato07) infos.Add(explodedPotato07);
+            if (p == HotPotato.explodedPotato08) infos.Add(explodedPotato08);
+            if (p == HotPotato.explodedPotato09) infos.Add(explodedPotato09);
+            if (p == HotPotato.explodedPotato10) infos.Add(explodedPotato10);
+            if (p == HotPotato.explodedPotato11) infos.Add(explodedPotato11);
+            if (p == HotPotato.explodedPotato12) infos.Add(explodedPotato12);
+            if (p == HotPotato.explodedPotato13) infos.Add(explodedPotato13);
+            if (p == HotPotato.explodedPotato14) infos.Add(explodedPotato14);
 
 
             // Impostor roles

@@ -253,7 +253,7 @@ namespace LasMonjas
 
         public static bool roleCanUseVents(this PlayerControl player) {
             bool roleCouldUse = false;
-            if (CaptureTheFlag.captureTheFlagMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+            if (CaptureTheFlag.captureTheFlagMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
                 if (PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag
                     && (PlayerControl.LocalPlayer == CaptureTheFlag.redplayer01 && !CaptureTheFlag.redplayer01IsReviving
                     || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer02 && !CaptureTheFlag.redplayer02IsReviving
@@ -276,7 +276,7 @@ namespace LasMonjas
                     roleCouldUse = false;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && PlayerControl.LocalPlayer == player && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+            else if (PoliceAndThief.policeAndThiefMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
                 if (PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer01 && !PoliceAndThief.thiefplayer01IsStealing && !PoliceAndThief.thiefplayer01IsReviving 
                     || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer02 && !PoliceAndThief.thiefplayer02IsStealing && !PoliceAndThief.thiefplayer02IsReviving 
                     || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer03 && !PoliceAndThief.thiefplayer03IsStealing && !PoliceAndThief.thiefplayer03IsReviving 
@@ -293,7 +293,7 @@ namespace LasMonjas
                     roleCouldUse = false;
                 }
             }
-            else if (KingOfTheHill.kingOfTheHillMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (KingOfTheHill.kingOfTheHillMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
                 if (PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer
                     && (PlayerControl.LocalPlayer == KingOfTheHill.greenplayer01 && !KingOfTheHill.greenplayer01IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer02 && !KingOfTheHill.greenplayer02IsReviving
@@ -308,6 +308,14 @@ namespace LasMonjas
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 && !KingOfTheHill.yellowplayer05IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06 && !KingOfTheHill.yellowplayer06IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer && !KingOfTheHill.usurperPlayerIsReviving)) {
+                    roleCouldUse = true;
+                }
+                else {
+                    roleCouldUse = false;
+                }
+            }
+            else if (HotPotato.hotPotatoMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
+                if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
                     roleCouldUse = true;
                 }
                 else {

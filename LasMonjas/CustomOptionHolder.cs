@@ -14,7 +14,7 @@ namespace LasMonjas
 {
     public class CustomOptionHolder {
         public static string[] rates = new string[]{"0%", "100%"}; 
-        public static string[] presets = new string[]{"Roles", "Capture the Flag", "Police and Thiefs", "King of the Hill", "Preset 5", "Preset 6", "Preset 7", "Preset 8", "Preset 9", "Preset 10" };
+        public static string[] presets = new string[]{"Roles", "Capture the Flag", "Police and Thiefs", "King of the Hill", "Hot Potato", "Preset 6", "Preset 7", "Preset 8", "Preset 9", "Preset 10" };
 
         // Game Options 
         public static CustomOption presetSelection;
@@ -70,7 +70,16 @@ namespace LasMonjas
         public static CustomOption kingCanKill;
         public static CustomOption kingReviveTime;
         public static CustomOption kingInvincibilityTimeAfterRevive;
-        
+
+        // Hot Potato
+        public static CustomOption hotPotatoMode;
+        public static CustomOption hotPotatoMatchDuration;
+        public static CustomOption hotPotatoTransferLimit;
+        public static CustomOption hotPotatoCooldown;
+        public static CustomOption hotPotatoNotPotatovision;
+        public static CustomOption hotPotatoResetTimeForTransfer;
+        public static CustomOption hotPotatoIncreaseTimeIfNoReset;
+
         // Impostors configurable options
 
         // Mimic
@@ -316,6 +325,24 @@ namespace LasMonjas
             // Game Options
             presetSelection = CustomOption.Create(0, cs(new Color(204f / 255f, 204f / 255f, 0, 1f), "Preset"), presets, null, true);
 
+            // Modifiers
+            activateModifiers = CustomOption.Create(10, cs(Modifiers.color, "Modifiers"), rates, null, true);
+            activateRoles = CustomOption.Create(11, cs(Modifiers.color, "Roles") + ": Activate mod roles and block vanilla ones", true, activateModifiers);
+            randomRoles = CustomOption.Create(12, cs(Modifiers.color, "Roles") + ": Role Assignment", new string[] { "Random", "List Order" }, activateModifiers);
+            activateSenseiMap = CustomOption.Create(13, cs(Modifiers.color, "Activate Custom Skeld Map"), false, activateModifiers);
+            removeSwipeCard = CustomOption.Create(14, cs(Modifiers.color, "Remove Swipe Card Task"), false, activateModifiers);
+            removeAirshipDoors = CustomOption.Create(15, cs(Modifiers.color, "Remove Airship Doors"), false, activateModifiers);
+            numberOfModifiers = CustomOption.Create(16, cs(Modifiers.color, "Modifiers ") + ": Modifiers Number", 7f, 1f, 7f, 1f, activateModifiers);
+            loverPlayer = CustomOption.Create(17, cs(Modifiers.color, "Lovers") + ": Two players linked", false, activateModifiers);
+            lighterPlayer = CustomOption.Create(18, cs(Modifiers.color, "Lighter") + ": Player with more Vision", false, activateModifiers);
+            blindPlayer = CustomOption.Create(19, cs(Modifiers.color, "Blind") + ": Player with less Vision", false, activateModifiers);
+            flashPlayer = CustomOption.Create(20, cs(Modifiers.color, "Flash") + ": Faster Player", false, activateModifiers);
+            bigchungusPlayer = CustomOption.Create(21, cs(Modifiers.color, "Big Chungus") + ": Bigger and Slower Player", false, activateModifiers);
+            theChosenOnePlayer = CustomOption.Create(22, cs(Modifiers.color, "The Chosen One") + ": Your killer will report your body", false, activateModifiers);
+            theChosenOneReportDelay = CustomOption.Create(23, cs(Modifiers.color, "The Chosen One") + ": Report Delay", 0f, 0f, 5f, 1f, activateModifiers);
+            performerPlayer = CustomOption.Create(24, cs(Modifiers.color, "Performer") + ": Your dead will trigger an alarm", false, activateModifiers);
+            performerDuration = CustomOption.Create(25, cs(Modifiers.color, "Performer") + ": Alarm Duration", 20f, 10f, 30f, 1f, activateModifiers);
+            
             // Capture the flag mode
             captureTheFlagMode = CustomOption.Create(50, cs(Sheriff.color, "Capture the Flag"), rates, null, true);
             flagMatchDuration = CustomOption.Create(51, cs(Sheriff.color, "Capture the Flag") + ": Match Duration", 180f, 180f, 300f, 30f, captureTheFlagMode);
@@ -349,24 +376,15 @@ namespace LasMonjas
             kingCanKill = CustomOption.Create(85, cs(Squire.color, "King of the Hill") + ": Kings can Kill", false, kingOfTheHillMode);
             kingReviveTime = CustomOption.Create(86, cs(Squire.color, "King of the Hill") + ": Revive Wait Time", 13f, 13f, 18f, 1f, kingOfTheHillMode);
             kingInvincibilityTimeAfterRevive = CustomOption.Create(87, cs(Squire.color, "King of the Hill") + ": Invincibility Time After Revive", 3f, 2f, 5f, 1f, kingOfTheHillMode);
-            
-            // Modifiers
-            activateModifiers = CustomOption.Create(10, cs(Modifiers.color, "Modifiers"), rates, null, true);
-            activateRoles = CustomOption.Create(11, cs(Modifiers.color, "Roles") + ": Activate mod roles and deactivate vanilla ones", true, activateModifiers);
-            randomRoles = CustomOption.Create(12, cs(Modifiers.color, "Roles") + ": Role Assignment", new string[] { "Random", "List Order" }, activateModifiers);
-            activateSenseiMap = CustomOption.Create(13, cs(Modifiers.color, "Activate Custom Skeld Map"), false, activateModifiers);
-            removeSwipeCard = CustomOption.Create(14, cs(Modifiers.color, "Remove Swipe Card Task"), false, activateModifiers);
-            removeAirshipDoors = CustomOption.Create(15, cs(Modifiers.color, "Remove Airship Doors"), false, activateModifiers);
-            numberOfModifiers = CustomOption.Create(16, cs(Modifiers.color, "Modifiers ") + ": Modifiers Number", 7f, 1f, 7f, 1f, activateModifiers);
-            loverPlayer = CustomOption.Create(17, cs(Modifiers.color, "Lovers") + ": Two players linked", false, activateModifiers);
-            lighterPlayer = CustomOption.Create(18, cs(Modifiers.color, "Lighter") + ": Player with more Vision", false, activateModifiers);
-            blindPlayer = CustomOption.Create(19, cs(Modifiers.color, "Blind") + ": Player with less Vision", false, activateModifiers);
-            flashPlayer = CustomOption.Create(20, cs(Modifiers.color, "Flash") + ": Faster Player", false, activateModifiers);
-            bigchungusPlayer = CustomOption.Create(21, cs(Modifiers.color, "Big Chungus") + ": Bigger and Slower Player", false, activateModifiers);
-            theChosenOnePlayer = CustomOption.Create(22, cs(Modifiers.color, "The Chosen One") + ": Your killer will report your body", false, activateModifiers);
-            theChosenOneReportDelay = CustomOption.Create(23, cs(Modifiers.color, "The Chosen One") + ": Report Delay", 0f, 0f, 5f, 1f, activateModifiers);
-            performerPlayer = CustomOption.Create(24, cs(Modifiers.color, "Performer") + ": Your dead will trigger an alarm", false, activateModifiers);
-            performerDuration = CustomOption.Create(25, cs(Modifiers.color, "Performer") + ": Alarm Duration", 20f, 10f, 30f, 1f, activateModifiers);
+
+            // Hot Potato
+            hotPotatoMode = CustomOption.Create(90, cs(Medusa.color, "Hot Potato"), rates, null, true);
+            hotPotatoMatchDuration = CustomOption.Create(91, cs(Medusa.color, "Hot Potato") + ": Match Duration", 300f, 300f, 450f, 30f, hotPotatoMode);
+            hotPotatoTransferLimit = CustomOption.Create(92, cs(Medusa.color, "Hot Potato") + ": Hot Potato Time Limit for Transfer", 20f, 10f, 30f, 1f, hotPotatoMode);
+            hotPotatoCooldown = CustomOption.Create(93, cs(Medusa.color, "Hot Potato") + ": Hot Potato Transfer Cooldown", 5f, 5f, 10f, 1f, hotPotatoMode);
+            hotPotatoNotPotatovision = CustomOption.Create(94, cs(Medusa.color, "Hot Potato") + ": Cold Potatoes vision range", 0.8f, 0.7f, 1f, 0.1f, hotPotatoMode);
+            hotPotatoResetTimeForTransfer = CustomOption.Create(95, cs(Medusa.color, "Hot Potato") + ": Reset Hot Potato timer after Transfer", true, hotPotatoMode);
+            hotPotatoIncreaseTimeIfNoReset = CustomOption.Create(96, cs(Medusa.color, "Hot Potato") + ": Extra Time when timer doesn't reset", 5f, 5f, 10f, 1f, hotPotatoMode);
 
             // Mimic options
             mimicSpawnRate = CustomOption.Create(110, cs(Mimic.color, "Mimic"), rates, null, true);
