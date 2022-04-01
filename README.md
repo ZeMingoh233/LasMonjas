@@ -31,20 +31,20 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
-**Version 1.3.2**
+**Version 1.3.2 (25th March 2022)**
 - Fixed a bug on gamemodes where Impostor could kill anyone
-- Removed "how many impostors are in game" text from the load screen for all gamemodes and added the gamemode name instead
+- Removed "how many impostors are in game" text from the load screen for all gamemodes and added the gamemode name instead (thx JustASysAdmin for the idea)
 - 5 new hats and upgraded old ones
 - Added a client option to define if ghosts can see role names (only after being reported)
 - Reduced lag on Police And Thiefs games
 - Added two options for Hot Potato, one to define if hot potato time limit resets after giving it to other player and another to define the new extra time for hot potato timit limit
 
-**Version 1.3.1**
+**Version 1.3.1 (19th March 2022)**
 - Fixed Hot Potato games, you can play a game after another now without restarting the game
 - Decreased minimum hot potato time limit from 20 to 10
 - Dead bodies don't spawn anymore on custom gamemodes
   
-**Version 1.3.0**
+**Version 1.3.0 (18th March 2022)**
 - Updated Reactor to 1.2.4
 - Optimized code to improve mod's performance
 - Reduced lag on Capture the Flag games
@@ -53,12 +53,12 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 - New Gamemode: Hot Potato (also works as Hide and Seek)
 - New Custom Hat System (thanks to xxomega77xx)
 
-**Version 1.2.1**
+**Version 1.2.1 (7th March 2022)**
 - Removed innecessary patches (thanks to miniduikboot)
 - Updated Reactor 1.2.3 to ci-3 in order to fix localhost/freeplay 
 - Increased maximum presets from 5 to 10 (thanks to GD for the petition)
 
-**Version 1.2.0**
+**Version 1.2.0 (4th March 2022)**
 - Changed one vent's position on Polus on every gamemode to fix a vanilla bug
 - Fixed lobby music to not continue playing when the game starts on some cases
 - Fixed Usurper rol on King Of The Hill, can't kill reviving players anymore
@@ -71,27 +71,27 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 - New role: Coward, crewmate who can call emergency meetings from anywhere while no sabotages are actives
 - New role: Medusa, crewmate who can petrify other player for a short period of time
 
-**Version 1.1.4**
+**Version 1.1.4 (27th February 2022)**
 - Fixed King Of The Hill games with even player number
 
-**Version 1.1.3**
+**Version 1.1.3 (27th February 2022)**
 - Fixed Usurper on King Of The Hill, he can now kill everyone
 
-**Version 1.1.2**
+**Version 1.1.2 (26th February 2022)**
 - Added a new role (Usurper) on King Of The Hill which only appears on odd player number games
 - The Usurper can kill everyone, but if he kills a King he becomes one and the old King becomes the Usurper
 - The Usurper never wins, the player who ends as Usurper loses
 - Update Reactor.dll to fix compatibility with 2022.2.23s
   
-**Version 1.1.1**
+**Version 1.1.1 (24th February 2022)**
 - Fixed an issue on King Of The Hill where the Kings could still capture a zone while dead
 
-**Version 1.1.0**
+**Version 1.1.0 (24th February 2022)**
 - You can no longer vent on custom gamemodes while reviving
 - Squire's shield is no longer visible during Challenger's duel
 - New Gamemode: King Of The Hill
   
-**Version 1.0.5**
+**Version 1.0.5 (21th February 2022)**
 - Added kill cooldown option for both teams separately on Police and Thiefs
 - Added a new option to define if Police can or not kill near the prison
 - Added an option to define Police vision range with a button to increase vision during the game
@@ -99,22 +99,22 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 - Added revivie time option for both teams separately on Police and Thiefs
 - Added invincibility time after reviving for Police and Thief
   
-**Version 1.0.4**
+**Version 1.0.4 (20th February 2022)**
 - Increased minimum value for Capture The Flag Revive Time
 - Added new option for Capture The Flag to define Invincibility Time After Reviving for players
   
-**Version 1.0.3**
+**Version 1.0.3 (19th February 2022)**
 - Reduced minimum Yinyanger cooldown to 15 sec
 - Fixed Fortune Teller revealed names to hide them during the Challenger's duel
 - During the Challenger's duel, Flash and Big Chungus speed are set to normal
 
-**Version 1.0.2**
+**Version 1.0.2 (19th February 2022)**
 - Updated Reactor.dll which fixed an issue selecting regions on 2022.2.8s
   
-**Version 1.0.1**
+**Version 1.0.1 (18th February 2022)**
 - Added an option for choosing if Thiefs can or not kill on Police And Thiefs gamemode
 
-**Version 1.0.0**
+**Version 1.0.0 (14th February 2022)**
 - Initial Release
 </details>
 
