@@ -5,7 +5,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 
   1. [40 roles](#roles)
   2. [13 modifiers](#modifiers)
-  3. [1 custom map](#modifiers)
+  3. [1 custom map](https://youtu.be/9tDh9eYqAgk)
   4. [4 custom gamemodes](#gamemodes)
   5. [4 new colors](#settings)
   6. [Custom Music](#settings)
@@ -810,7 +810,7 @@ Roles can be activated by putting them at 100% spawn rate (there's only 0% and 1
 
 # Modifiers
 
-This mod also features some game mechanic modifiers, one of them being a custom map that I won't spoil to you, some of them aren't considered as a separate role, instead they're added as a player attribute which can be good or bad. To activate them, Modifiers spawn rate has to be 100%.
+This mod also features some game mechanic modifiers, one of them being a [custom map](https://youtu.be/9tDh9eYqAgk), some of them aren't considered as a separate role, instead they're added as a player attribute which can be good or bad. To activate them, Modifiers spawn rate has to be 100%.
 
 | Modifier Type  | Description |
 |----------|-------------|
