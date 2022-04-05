@@ -973,6 +973,9 @@ A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/Ha
 -----------------------
 
 # Credits and Code snips
+
+If you use something from Las Monjas on your mod, please credit me on your mod's github page.
+
 [Reactor](https://github.com/NuclearPowered/Reactor) - The main framework used\
 [BepInEx](https://github.com/BepInEx) - Used to hook game functions\
 [KevinMacLeod](https://www.youtube.com/user/kmmusic) - For the music used\
