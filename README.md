@@ -39,7 +39,8 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 - Fixed a bug that prevented the gamemodes to continue if a player disconnected sometimes.
 - Fixed a bug on King Of The Hill where the new assigned King from disconnect would have both King and Minion role.
 - Reduced challenger's minimum cooldown from 20 to 15 sec.
-
+- Added LMJ EU and LMJ NA regions to the mod (huge thanks to [GD](https://github.com/GD825) and [miniduikboot](https://github.com/miniduikboot)).
+  
 Known 1.3.3 BETA issues:
 - Custom Hats don't work right now
 - Show role screen only shows Crewmate or Impostor instead the role name, but you'll have your role in game.
