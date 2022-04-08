@@ -32,7 +32,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   <summary>Click to show</summary>
 
 **Version 1.3.3 BETA (8th April 2022)**
-- This is a BETA for testing in Among Us 2022.3.29s, please take a note only the gamemodes were tested and this isn't the final 1.3.3 version 
+- This is a BETA for testing in Among Us 2022.3.29s, please take a note this isn't the final 1.3.3 version and have some issues.
 - Added Horse Mode as a client option, when enabled remember to take off your player skin, otherwise you'll get a black skin shadow visual bug after being revived.
 - Added same vision range for all players on Capture the Flag and King Of The Hill (based on crewmate's vision option)
 - Added a trigger on Police And Thiefs, if all Police players disconnect, the game will end with the Thiefs winning.
@@ -40,10 +40,12 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 - Fixed a bug on King Of The Hill where the new assigned King from disconnect would have both King and Minion role.
 - Reduced challenger's minimum cooldown from 20 to 15 sec.
 
-Known BETA issues:
+Known 1.3.3 BETA issues:
 - Custom Hats don't work right now
 - Show role screen only shows Crewmate or Impostor instead the role name, but you'll have your role in game.
-  
+- Gambler role doesn't work right now, please put it at 0%
+- Roles who have color screen indicator don't show that screen but their mechanics work 
+
 **Version 1.3.2 (25th March 2022)**
 - Fixed a bug on gamemodes where Impostor could kill anyone
 - Removed "how many impostors are in game" text from the load screen for all gamemodes and added the gamemode name instead (thx JustASysAdmin for the idea)
