@@ -144,6 +144,7 @@ This mod adds a custom lobby which I won't spoil to you, it also adds four color
 - **Game Summary:** Activating this option will create a list containing which role and task progress the players had after the game ends.
 - **Activate Music:** Music pack containing 7 songs from Kevin MacLeod (1 for Lobby, 3 for Tasks and 3 for Meeting depending of how many players are alive)
 - **Ghost Can See Roles:** Only after being reported, ghosts would be able to see which role the players have.
+- **Horse Mode:** Activate 2022 1st April Fools, remember to take of your skin if you activate Horse Mode.
 
 -----------------------
 
