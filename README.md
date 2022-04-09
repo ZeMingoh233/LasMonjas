@@ -31,6 +31,14 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
+**Version 1.3.3 (9th April 2022)**
+- For Among Us 2022.3.29s, fixed 1.3.3 BETA issues:
+- Custom Hats work again, also added 3 new hats by IceCreamGuy
+- Show role screen now shows the role name (still with a little visual bug)
+- Gambler role works again
+- Roles who have color screen indicator show that screen again
+- Fixed map selection on online play, you can change the map again in lobby
+
 **Version 1.3.3 BETA (8th April 2022)**
 - This is a BETA for testing in Among Us 2022.3.29s, please take a note this isn't the final 1.3.3 version and have some issues.
 - Added Horse Mode as a client option, when enabled remember to take off your player skin, otherwise you'll get a black skin shadow visual bug after being revived.
