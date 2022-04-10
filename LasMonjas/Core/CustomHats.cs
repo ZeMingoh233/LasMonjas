@@ -28,31 +28,34 @@ namespace LasMonjas.Core
 
         public static List<AuthorData> authorDatas = new List<AuthorData>()
         {
-            new AuthorData {AuthorName = "Allul", HatName = "Monja", NoBounce = false},
-            new AuthorData {AuthorName = "Allul", HatName = "Minion Monja", FloorHatName ="Minion Monja Climb", ClimbHatName = "Minion Monja Climb", LeftImageName = "Minion Monja", NoBounce = false},
-            new AuthorData {AuthorName = "Sensei", HatName = "Cursed Monja", NoBounce = false},
-            new AuthorData {AuthorName = "Sensei", HatName = "Abombg Man", NoBounce = false, altShader = true},
+            new AuthorData {AuthorName = "Allul", HatName = "Monja", NoBounce = true},
+            new AuthorData {AuthorName = "Allul", HatName = "Minion Monja", FloorHatName ="Minion Monja Climb", ClimbHatName = "Minion Monja Climb", LeftImageName = "Minion Monja", NoBounce = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Cursed Monja", NoBounce = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Abombg Man", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Among Ass", NoBounce = false, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Time To Duel", NoBounce = false, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Time To Duel", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Medusa", NoBounce = false},
-            new AuthorData {AuthorName = "Sensei", HatName = "Mega Hat", NoBounce = false, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Over 9 Sus", NoBounce = false, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Egyptian", NoBounce = false },
+            new AuthorData {AuthorName = "Sensei", HatName = "Mega Hat", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Over 9 Sus", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Egyptian", NoBounce = true },
             new AuthorData {AuthorName = "Sensei", HatName = "Fortune Teller", NoBounce = false, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Joker", NoBounce = false },
-            new AuthorData {AuthorName = "Sensei", HatName = "SrCobra", NoBounce = false, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "The Eye", NoBounce = false, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Alien", NoBounce = false, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Joker", NoBounce = true },
+            new AuthorData {AuthorName = "Sensei", HatName = "SrCobra", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "The Eye", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Alien", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Dinoseto", NoBounce = false, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Red Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Green Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Yellow Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Purple Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Chadsito", NoBounce = true, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Scars", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Scars", NoBounce = false, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Sus Man", NoBounce = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Take It Easy", NoBounce = true},
-            new AuthorData {AuthorName = "Xago", HatName = "World Destroyer", NoBounce = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "World Destroyer", NoBounce = true},
+            new AuthorData {AuthorName = "IceCreamGuy", HatName = "Ice Cream Man", NoBounce = true},
+            new AuthorData {AuthorName = "IceCreamGuy", HatName = "Devious Bling", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "IceCreamGuy", HatName = "Hungry Hat", NoBounce = true},
         };
 
         internal static Dictionary<int, AuthorData> IdToData = new Dictionary<int, AuthorData>();
@@ -61,11 +64,10 @@ namespace LasMonjas.Core
         [HarmonyPatch(typeof(HatManager), nameof(HatManager.GetHatById))]
         public static class AddCustomHats
         {
-
-            public static void Prefix(PlayerControl __instance) {
+            public static void Postfix(HatManager __instance) {
 
                 if (!_customHatsLoaded) {
-                    var allHats = HatManager.Instance.AllHats;
+                    var allHats = __instance.allHats;
 
                     foreach (var data in authorDatas) {
                         HatID++;
@@ -92,13 +94,10 @@ namespace LasMonjas.Core
                                 allHats.Add(CreateHat(GetSprite(data.HatName), data.AuthorName));
                             }
                         }
-                        IdToData.Add(HatManager.Instance.AllHats.Count - 1, data);
+                        IdToData.Add(HatManager.Instance.allHats.Count - 1, data);
 
                         _customHatsLoaded = true;
                     }
-
-
-
                     _customHatsLoaded = true;
                 }
             }
@@ -117,30 +116,30 @@ namespace LasMonjas.Core
             /// <param name="leftimage"></param>
             /// <param name="bounce"></param>
             /// <param name="altshader"></param>
-            /// <returns>HatBehaviour</returns>
-            private static HatBehaviour CreateHat(Sprite sprite, string author, Sprite climb = null, Sprite floor = null, Sprite leftimage = null, bool bounce = false, bool altshader = false) {
-                //Borrowed from Other Roles to get hats alt shaders to work
-                if (MagicShader == null && DestroyableSingleton<HatManager>.InstanceExists) {
-                    foreach (HatBehaviour h in DestroyableSingleton<HatManager>.Instance.AllHats) {
-                        if (h.AltShader != null) {
-                            MagicShader = h.AltShader;
-                            break;
-                        }
-                    }
+            /// <returns>HatData</returns>
+            private static HatData CreateHat(Sprite sprite, string author, Sprite climb = null, Sprite floor = null, Sprite leftimage = null, bool bounce = false, bool altshader = false) {
+
+                if (MagicShader == null) {
+                    Material hatShader = new Material("PlayerMaterial");
+                    hatShader.shader = Shader.Find("Unlit/PlayerShader");
+                    MagicShader = hatShader;
                 }
-                var newHat = ScriptableObject.CreateInstance<HatBehaviour>();
+
+                HatData newHat = ScriptableObject.CreateInstance<HatData>();
+                newHat.hatViewData.viewData = ScriptableObject.CreateInstance<HatViewData>();
                 newHat.name = $"{sprite.name} (by {author})";
-                newHat.MainImage = sprite;
+                newHat.hatViewData.viewData.MainImage = sprite;
                 newHat.ProductId = "hat_" + sprite.name.Replace(' ', '_');
-                newHat.Order = 99 + HatID;
+                newHat.BundleId = "hat_" + sprite.name.Replace(' ', '_');
+                newHat.displayOrder = 99 + HatID;
                 newHat.InFront = true;
                 newHat.NoBounce = bounce;
-                newHat.FloorImage = floor;
-                newHat.ClimbImage = climb;
+                newHat.hatViewData.viewData.FloorImage = floor;
+                newHat.hatViewData.viewData.ClimbImage = climb;
                 newHat.Free = true;
-                newHat.LeftMainImage = leftimage;
+                newHat.hatViewData.viewData.LeftMainImage = leftimage;
                 newHat.ChipOffset = new Vector2(-0.1f, 0.4f);
-                if (altshader == true) { newHat.AltShader = MagicShader; }
+                if (altshader == true) { newHat.hatViewData.viewData.AltShader = MagicShader; }
 
                 return newHat;
             }
