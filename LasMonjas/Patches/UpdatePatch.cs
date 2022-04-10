@@ -456,8 +456,8 @@ namespace LasMonjas.Patches {
             if (PlayerControl.LocalPlayer == Spiritualist.spiritualist && Spiritualist.spiritualist != null) {
                 foreach (var player in PlayerControl.AllPlayerControls) {
                     if (player.Data.IsDead) {
-                        player.myRend.gameObject.SetActive(true);
-                        player.myRend.enabled = true;
+                        player.MyRend.gameObject.SetActive(true);
+                        player.MyRend.enabled = true;
                         player.nameText.enabled = true;
                         player.nameText.gameObject.SetActive(true);
                     }
@@ -887,41 +887,76 @@ namespace LasMonjas.Patches {
                 if (thief.Data.Disconnected) {
 
                     if (PoliceAndThief.thiefplayer01 != null && thief.PlayerId == PoliceAndThief.thiefplayer01.PlayerId && PoliceAndThief.thiefplayer01IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer01);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer01JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer02 != null && thief.PlayerId == PoliceAndThief.thiefplayer02.PlayerId && PoliceAndThief.thiefplayer02IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer02);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer02JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer03 != null && thief.PlayerId == PoliceAndThief.thiefplayer03.PlayerId && PoliceAndThief.thiefplayer03IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer03);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer03JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer04 != null && thief.PlayerId == PoliceAndThief.thiefplayer04.PlayerId && PoliceAndThief.thiefplayer04IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer04);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer04JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer05 != null && thief.PlayerId == PoliceAndThief.thiefplayer05.PlayerId && PoliceAndThief.thiefplayer05IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer05);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer05JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer06 != null && thief.PlayerId == PoliceAndThief.thiefplayer06.PlayerId && PoliceAndThief.thiefplayer06IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer06);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer06JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer07 != null && thief.PlayerId == PoliceAndThief.thiefplayer07.PlayerId && PoliceAndThief.thiefplayer07IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer07);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer07JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer08 != null && thief.PlayerId == PoliceAndThief.thiefplayer08.PlayerId && PoliceAndThief.thiefplayer08IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer08);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer08JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer09 != null && thief.PlayerId == PoliceAndThief.thiefplayer09.PlayerId && PoliceAndThief.thiefplayer09IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer09);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer09JewelId);
                     }
                     else if (PoliceAndThief.thiefplayer10 != null && thief.PlayerId == PoliceAndThief.thiefplayer10.PlayerId && PoliceAndThief.thiefplayer10IsStealing) {
+                        PoliceAndThief.thiefTeam.Remove(PoliceAndThief.thiefplayer10);
                         RPCProcedure.policeandThiefRevertedJewelPosition(thief.PlayerId, PoliceAndThief.thiefplayer10JewelId);
                     }
-                    
-                    PoliceAndThief.thiefTeam.Remove(thief);
+
                     PoliceAndThief.thiefpointCounter = "Stealed Jewels: " + "<color=#00F7FFFF>" + PoliceAndThief.currentJewelsStoled + "/" + PoliceAndThief.requiredJewels + "</color> | " + "Thiefs Captured: " + "<color=#928B55FF>" + PoliceAndThief.currentThiefsCaptured + "/" + PoliceAndThief.thiefTeam.Count + "</color>";
                     if (PoliceAndThief.currentThiefsCaptured == PoliceAndThief.thiefTeam.Count) {
                         PoliceAndThief.triggerPoliceWin = true;
                         ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ThiefModePoliceWin, false);
+                    }
+                    break;
+                }
+            }
+
+            foreach (PlayerControl police in PoliceAndThief.policeTeam) {
+                if (police.Data.Disconnected) {
+                    if (PoliceAndThief.policeplayer01 != null && police.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
+                        PoliceAndThief.policeTeam.Remove(PoliceAndThief.policeplayer01);
+                    }
+                    else if (PoliceAndThief.policeplayer02 != null && police.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
+                        PoliceAndThief.policeTeam.Remove(PoliceAndThief.policeplayer02);
+                    }
+                    else if (PoliceAndThief.policeplayer03 != null && police.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
+                        PoliceAndThief.policeTeam.Remove(PoliceAndThief.policeplayer03);
+                    }
+                    else if (PoliceAndThief.policeplayer04 != null && police.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
+                        PoliceAndThief.policeTeam.Remove(PoliceAndThief.policeplayer04);
+                    }
+                    else if (PoliceAndThief.policeplayer05 != null && police.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
+                        PoliceAndThief.policeTeam.Remove(PoliceAndThief.policeplayer05);
+                    }
+
+                    if (PoliceAndThief.policeTeam.Count <= 0) {
+                        PoliceAndThief.triggerThiefWin = true;
+                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ThiefModeThiefWin, false);
                     }
                     break;
                 }
@@ -944,6 +979,30 @@ namespace LasMonjas.Patches {
                     new CustomMessage("You're the new <color=#00FF00FF>Green King</color>!", 5, -1, 1.6f, 11);
                 }
                 KingOfTheHill.greenKingIsReviving = false;
+
+                // Remove minion player from new king
+                if (KingOfTheHill.greenplayer01 != null && KingOfTheHill.greenTeam[0] == KingOfTheHill.greenplayer01) {
+                    KingOfTheHill.greenplayer01 = null;
+                }
+                else if (KingOfTheHill.greenplayer02 != null && KingOfTheHill.greenTeam[0] == KingOfTheHill.greenplayer02) {
+                    KingOfTheHill.greenplayer02 = null;
+                }
+                else if (KingOfTheHill.greenplayer03 != null && KingOfTheHill.greenTeam[0] == KingOfTheHill.greenplayer03) {
+                    KingOfTheHill.greenplayer03 = null;
+                }
+                else if (KingOfTheHill.greenplayer04 != null && KingOfTheHill.greenTeam[0] == KingOfTheHill.greenplayer04) {
+                    KingOfTheHill.greenplayer04 = null;
+                }
+                else if (KingOfTheHill.greenplayer05 != null && KingOfTheHill.greenTeam[0] == KingOfTheHill.greenplayer05) {
+                    KingOfTheHill.greenplayer05 = null;
+                }
+                else if (KingOfTheHill.greenplayer06 != null && KingOfTheHill.greenTeam[0] == KingOfTheHill.greenplayer06) {
+                    KingOfTheHill.greenplayer06 = null;
+                }
+
+                KingOfTheHill.greenTeam.RemoveAt(0);
+                KingOfTheHill.greenTeam.Add(KingOfTheHill.greenKingplayer);
+                return;
             }           
 
             if (KingOfTheHill.yellowKingplayer != null && KingOfTheHill.yellowKingplayer.Data.Disconnected) {
@@ -956,6 +1015,30 @@ namespace LasMonjas.Patches {
                     new CustomMessage("You're the new <color=#FFFF00FF>Yellow King</color>!", 5, -1, 1.6f, 11);
                 }
                 KingOfTheHill.yellowKingIsReviving = false;
+
+                // Remove minion player from new king
+                if (KingOfTheHill.yellowplayer01 != null && KingOfTheHill.yellowTeam[0] == KingOfTheHill.yellowplayer01) {
+                    KingOfTheHill.yellowplayer01 = null;
+                }
+                else if (KingOfTheHill.yellowplayer02 != null && KingOfTheHill.yellowTeam[0] == KingOfTheHill.yellowplayer02) {
+                    KingOfTheHill.yellowplayer02 = null;
+                }
+                else if (KingOfTheHill.yellowplayer03 != null && KingOfTheHill.yellowTeam[0] == KingOfTheHill.yellowplayer03) {
+                    KingOfTheHill.yellowplayer03 = null;
+                }
+                else if (KingOfTheHill.yellowplayer04 != null && KingOfTheHill.yellowTeam[0] == KingOfTheHill.yellowplayer04) {
+                    KingOfTheHill.yellowplayer04 = null;
+                }
+                else if (KingOfTheHill.yellowplayer05 != null && KingOfTheHill.yellowTeam[0] == KingOfTheHill.yellowplayer05) {
+                    KingOfTheHill.yellowplayer05 = null;
+                }
+                else if (KingOfTheHill.yellowplayer06 != null && KingOfTheHill.yellowTeam[0] == KingOfTheHill.yellowplayer06) {
+                    KingOfTheHill.yellowplayer06 = null;
+                }
+
+                KingOfTheHill.yellowTeam.RemoveAt(0);
+                KingOfTheHill.yellowTeam.Add(KingOfTheHill.yellowKingplayer);
+                return;
             }        
         }
 
@@ -1006,46 +1089,46 @@ namespace LasMonjas.Patches {
                 HotPotato.hotPotato.transform.parent = HotPotato.hotPotatoPlayer.transform;
 
                 // If hot potato timed out, assing new potato
-                if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato01) {
+                if (HotPotato.notPotato01 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato01) {
                     HotPotato.notPotato01 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato02) {
+                else if (HotPotato.notPotato02 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato02) {
                     HotPotato.notPotato02 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato03) {
+                else if (HotPotato.notPotato03 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato03) {
                     HotPotato.notPotato03 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato04) {
+                else if (HotPotato.notPotato04 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato04) {
                     HotPotato.notPotato04 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato05) {
+                else if (HotPotato.notPotato05 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato05) {
                     HotPotato.notPotato05 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato06) {
+                else if (HotPotato.notPotato06 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato06) {
                     HotPotato.notPotato06 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato07) {
+                else if (HotPotato.notPotato07 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato07) {
                     HotPotato.notPotato07 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato08) {
+                else if (HotPotato.notPotato08 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato08) {
                     HotPotato.notPotato08 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato09) {
+                else if (HotPotato.notPotato09 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato09) {
                     HotPotato.notPotato09 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato10) {
+                else if (HotPotato.notPotato10 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato10) {
                     HotPotato.notPotato10 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato11) {
+                else if (HotPotato.notPotato11 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato11) {
                     HotPotato.notPotato11 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato12) {
+                else if (HotPotato.notPotato12 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato12) {
                     HotPotato.notPotato12 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato13) {
+                else if (HotPotato.notPotato13 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato13) {
                     HotPotato.notPotato13 = null;
                 }
-                else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato14) {
+                else if (HotPotato.notPotato14 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato14) {
                     HotPotato.notPotato14 = null;
                 }
 
@@ -1055,7 +1138,73 @@ namespace LasMonjas.Patches {
 
                 new CustomMessage("<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> is the new Hot Potato!", 5, -1, 1f, 16);
                 HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + notPotatosAlives + "</color>";
-            }            
+            }
+
+            // If notpotato disconnects, check number of notpotatos
+            foreach (PlayerControl notPotato in HotPotato.notPotatoTeam) {
+                if (notPotato.Data.Disconnected) {
+
+                    int notPotatosAlives = -1;
+                    HotPotato.notPotatoTeamAlive.Clear();
+                    foreach (PlayerControl remainPotato in HotPotato.notPotatoTeam) {
+                        if (!remainPotato.Data.IsDead) {
+                            notPotatosAlives += 1;
+                            HotPotato.notPotatoTeamAlive.Add(remainPotato);
+                        }
+                    }
+
+                    if (notPotatosAlives < 1) {
+                        HotPotato.triggerHotPotatoEnd = true;
+                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.HotPotatoEnd, false);
+                    }
+                    
+                    if (HotPotato.notPotato01 != null && notPotato.PlayerId == HotPotato.notPotato01.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato01);
+                    }
+                    else if (HotPotato.notPotato02 != null && notPotato.PlayerId == HotPotato.notPotato02.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato02);
+                    }
+                    else if (HotPotato.notPotato03 != null && notPotato.PlayerId == HotPotato.notPotato03.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato03);
+                    }
+                    else if (HotPotato.notPotato04 != null && notPotato.PlayerId == HotPotato.notPotato04.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato04);
+                    }
+                    else if (HotPotato.notPotato05 != null && notPotato.PlayerId == HotPotato.notPotato05.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato05);
+                    }
+                    else if (HotPotato.notPotato06 != null && notPotato.PlayerId == HotPotato.notPotato06.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato06);
+                    }
+                    else if (HotPotato.notPotato07 != null && notPotato.PlayerId == HotPotato.notPotato07.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato07);
+                    }
+                    else if (HotPotato.notPotato08 != null && notPotato.PlayerId == HotPotato.notPotato08.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato08);
+                    }
+                    else if (HotPotato.notPotato09 != null && notPotato.PlayerId == HotPotato.notPotato09.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato09);
+                    }
+                    else if (HotPotato.notPotato10 != null && notPotato.PlayerId == HotPotato.notPotato10.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato10);
+                    }
+                    else if (HotPotato.notPotato11 != null && notPotato.PlayerId == HotPotato.notPotato11.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato11);
+                    }
+                    else if (HotPotato.notPotato12 != null && notPotato.PlayerId == HotPotato.notPotato12.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato12);
+                    }
+                    else if (HotPotato.notPotato13 != null && notPotato.PlayerId == HotPotato.notPotato13.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato13);
+                    }
+                    else if (HotPotato.notPotato14 != null && notPotato.PlayerId == HotPotato.notPotato14.PlayerId) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato14);
+                    }
+
+                    HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + notPotatosAlives + "</color>";
+                    break;
+                }
+            }
         }
 
         static void UpdateMiniMap() {

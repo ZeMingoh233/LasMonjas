@@ -120,8 +120,7 @@ namespace LasMonjas.Patches {
                         setRoleToRandomPlayer((byte)RoleId.Welder, crewmates);
                     if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.spiritualistSpawnRate.getSelection()))
                         setRoleToRandomPlayer((byte)RoleId.Spiritualist, crewmates);
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.cowardSpawnRate.getSelection()))
-                        setRoleToRandomPlayer((byte)RoleId.Coward, crewmates); 
+                    
                     if (PlayerControl.GameOptions.MapId != 1) {
                         if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.vigilantSpawnRate.getSelection()))
                             setRoleToRandomPlayer((byte)RoleId.Vigilant, crewmates);
@@ -130,14 +129,17 @@ namespace LasMonjas.Patches {
                         if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.vigilantSpawnRate.getSelection()))
                             setRoleToRandomPlayer((byte)RoleId.VigilantMira, crewmates);
                     }
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.medusaSpawnRate.getSelection()))
-                        setRoleToRandomPlayer((byte)RoleId.Medusa, crewmates); 
+                    
                     if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.hunterSpawnRate.getSelection())) {
                         setRoleToRandomPlayer((byte)RoleId.Hunter, crewmates);
                     }                                     
                     if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.jinxSpawnRate.getSelection()))
                         setRoleToRandomPlayer((byte)RoleId.Jinx, crewmates);
-
+                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.cowardSpawnRate.getSelection()))
+                        setRoleToRandomPlayer((byte)RoleId.Coward, crewmates);
+                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.medusaSpawnRate.getSelection()))
+                        setRoleToRandomPlayer((byte)RoleId.Medusa, crewmates); 
+                    
                     // Even assing by list order, limit rebel and neutrals roles to only 1 per game
                     int rebelds = 1;
                     if (rebelds > 0 && crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.renegadeSpawnRate.getSelection())) {
@@ -166,19 +168,19 @@ namespace LasMonjas.Patches {
                         setRoleToRandomPlayer((byte)RoleId.Joker, crewmates);
                         neutrals -= 1;
                     }
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.rolethiefSpawnRate.getSelection())) {
+                    if (neutrals > 0 && crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.rolethiefSpawnRate.getSelection())) {
                         setRoleToRandomPlayer((byte)RoleId.RoleThief, crewmates);
                         neutrals -= 1;
                     }
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.pyromaniacSpawnRate.getSelection())) {
+                    if (neutrals > 0 && crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.pyromaniacSpawnRate.getSelection())) {
                         setRoleToRandomPlayer((byte)RoleId.Pyromaniac, crewmates);
                         neutrals -= 1;
                     }
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.treasureHunterSpawnRate.getSelection())) {
+                    if (neutrals > 0 && crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.treasureHunterSpawnRate.getSelection())) {
                         setRoleToRandomPlayer((byte)RoleId.TreasureHunter, crewmates);
                         neutrals -= 1;
                     }                
-                    if (crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.devourerSpawnRate.getSelection())) {
+                    if (neutrals > 0 && crewmates.Count > 0 && (rnd.Next(1, 2) <= CustomOptionHolder.devourerSpawnRate.getSelection())) {
                         setRoleToRandomPlayer((byte)RoleId.Devourer, crewmates);
                         neutrals -= 1;
                     }

@@ -18,6 +18,7 @@ namespace LasMonjas.Patches
             new SelectionBehaviour("Game Summary", () => MapOptions.showRoleSummary = LasMonjasPlugin.ShowRoleSummary.Value = !LasMonjasPlugin.ShowRoleSummary.Value, LasMonjasPlugin.ShowRoleSummary.Value),
             new SelectionBehaviour("Activate Music", () => MapOptions.activateMusic = LasMonjasPlugin.ActivateMusic.Value = !LasMonjasPlugin.ActivateMusic.Value, LasMonjasPlugin.ActivateMusic.Value),
             new SelectionBehaviour("Ghosts Can \nSee Roles", () => MapOptions.ghostsSeeRoles = LasMonjasPlugin.GhostsSeeRoles.Value = !LasMonjasPlugin.GhostsSeeRoles.Value, LasMonjasPlugin.GhostsSeeRoles.Value),
+            new SelectionBehaviour("Horse Mode", () => MapOptions.horseMode = LasMonjasPlugin.HorseMode.Value = !LasMonjasPlugin.HorseMode.Value, LasMonjasPlugin.HorseMode.Value),
         };
         
         private static GameObject popUp;
@@ -86,9 +87,16 @@ namespace LasMonjas.Patches
             var moreOptions = Object.Instantiate(buttonPrefab, __instance.CensorChatButton.transform.parent);
             var transform = __instance.CensorChatButton.transform;
             _origin ??= transform.localPosition;
-            
-            transform.localPosition = _origin.Value + Vector3.left * 1.3f;
+
+            transform.localScale *= 0.7f;
+
+            var friendsTrasnform = __instance.EnableFriendInvitesButton.transform;
+            friendsTrasnform.localScale *= 0.7f;
+
+            transform.localPosition = _origin.Value + new Vector3(-0.475f, 0f, 0);
+            friendsTrasnform.localPosition = friendsTrasnform.localPosition + new Vector3(0.475f, 0f, 0);
             moreOptions.transform.localPosition = _origin.Value + Vector3.right * 1.3f;
+            moreOptions.transform.localScale *= 0.7f;
             
             moreOptions.gameObject.SetActive(true);
             moreOptions.Text.text = "Las Monjas Options";

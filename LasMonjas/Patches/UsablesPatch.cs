@@ -409,8 +409,8 @@ namespace LasMonjas.Patches {
                                     if (!component || component.Data == null || component.Data.Disconnected || component.Data.IsDead) {
                                         num2--;
                                     }
-                                    else if (component?.myRend?.material != null) {
-                                        Color color = component.myRend.material.GetColor("_BodyColor");
+                                    else if (component?.MyRend?.material != null) {
+                                        Color color = component.MyRend.material.GetColor("_BodyColor");
                                         roomColors.Add(color);
                                     }
                                 }

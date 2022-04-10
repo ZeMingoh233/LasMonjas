@@ -47,15 +47,15 @@ namespace LasMonjas.Patches {
         }
 
         static void setPlayerOutline(PlayerControl target, Color color) {
-            if (target == null || target.myRend == null) return;
+            if (target == null || target.MyRend == null) return;
 
-            target.myRend.material.SetFloat("_Outline", 1f);
-            target.myRend.material.SetColor("_OutlineColor", color);
+            target.MyRend.material.SetFloat("_Outline", 1f);
+            target.MyRend.material.SetColor("_OutlineColor", color);
         }
 
         static void setBasePlayerOutlines() {
             foreach (PlayerControl target in PlayerControl.AllPlayerControls) {
-                if (target == null || target.myRend == null) continue;
+                if (target == null || target.MyRend == null) continue;
 
                 bool isTransformedMimic = target == Mimic.mimic && Mimic.transformTarget != null && Mimic.transformTimer > 0f;
                 bool hasVisibleShield = false;
@@ -66,11 +66,11 @@ namespace LasMonjas.Patches {
                 }
 
                 if (hasVisibleShield) {
-                    target.myRend.material.SetFloat("_Outline", 1f);
-                    target.myRend.material.SetColor("_OutlineColor", Squire.shieldedColor);
+                    target.MyRend.material.SetFloat("_Outline", 1f);
+                    target.MyRend.material.SetColor("_OutlineColor", Squire.shieldedColor);
                 }
                 else {
-                    target.myRend.material.SetFloat("_Outline", 0f);
+                    target.MyRend.material.SetFloat("_Outline", 0f);
                 }
             }
         }
@@ -1661,8 +1661,6 @@ namespace LasMonjas.Patches {
                 // Capture the flag revive player
                 if (CaptureTheFlag.stealerPlayer != null && CaptureTheFlag.stealerPlayer.PlayerId == target.PlayerId) {
                     var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                    body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[15]);
-                    body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[15]);
                     body.transform.position = new Vector3(50, 50, 1);
                     CaptureTheFlag.stealerPlayerIsReviving = true;
                     CaptureTheFlag.stealerPlayer.nameText.color = new Color(CaptureTheFlag.stealerPlayer.nameText.color.r, CaptureTheFlag.stealerPlayer.nameText.color.g, CaptureTheFlag.stealerPlayer.nameText.color.b, 0.5f);
@@ -1696,7 +1694,6 @@ namespace LasMonjas.Patches {
                                 CaptureTheFlag.stealerPlayer.VisorSlot.Image.color = new Color(CaptureTheFlag.stealerPlayer.VisorSlot.Image.color.r, CaptureTheFlag.stealerPlayer.VisorSlot.Image.color.g, CaptureTheFlag.stealerPlayer.VisorSlot.Image.color.b, 1f);
                             }
                             CaptureTheFlag.stealerPlayer.MyPhysics.Skin.layer.color = new Color(CaptureTheFlag.stealerPlayer.MyPhysics.Skin.layer.color.r, CaptureTheFlag.stealerPlayer.MyPhysics.Skin.layer.color.g, CaptureTheFlag.stealerPlayer.MyPhysics.Skin.layer.color.b, 1f);
-
                         }
                     })));
                     HudManager.Instance.StartCoroutine(Effects.Lerp(CaptureTheFlag.reviveTime - CaptureTheFlag.invincibilityTimeAfterRevive, new Action<float>((p) => {
@@ -1741,28 +1738,26 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[0]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[0]);
                         body.transform.position = new Vector3(50, 50, 1);
-                        if (target.PlayerId == CaptureTheFlag.redplayer01.PlayerId) {
+                        if (CaptureTheFlag.redplayer01 != null && target.PlayerId == CaptureTheFlag.redplayer01.PlayerId) {
                             CaptureTheFlag.redplayer01IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.redplayer02.PlayerId) {
+                        else if (CaptureTheFlag.redplayer02 != null && target.PlayerId == CaptureTheFlag.redplayer02.PlayerId) {
                             CaptureTheFlag.redplayer02IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.redplayer03.PlayerId) {
+                        else if (CaptureTheFlag.redplayer03 != null && target.PlayerId == CaptureTheFlag.redplayer03.PlayerId) {
                             CaptureTheFlag.redplayer03IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.redplayer04.PlayerId) {
+                        else if (CaptureTheFlag.redplayer04 != null && target.PlayerId == CaptureTheFlag.redplayer04.PlayerId) {
                             CaptureTheFlag.redplayer04IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.redplayer05.PlayerId) {
+                        else if (CaptureTheFlag.redplayer05 != null && target.PlayerId == CaptureTheFlag.redplayer05.PlayerId) {
                             CaptureTheFlag.redplayer05IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.redplayer06.PlayerId) {
+                        else if (CaptureTheFlag.redplayer06 != null && target.PlayerId == CaptureTheFlag.redplayer06.PlayerId) {
                             CaptureTheFlag.redplayer06IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.redplayer07.PlayerId) {
+                        else if (CaptureTheFlag.redplayer07 != null && target.PlayerId == CaptureTheFlag.redplayer07.PlayerId) {
                             CaptureTheFlag.redplayer07IsReviving = true;
                         }
                         player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
@@ -1782,25 +1777,25 @@ namespace LasMonjas.Patches {
 
                         HudManager.Instance.StartCoroutine(Effects.Lerp(CaptureTheFlag.reviveTime, new Action<float>((p) => {
                             if (p == 1f && player != null) {
-                                if (target.PlayerId == CaptureTheFlag.redplayer01.PlayerId) {
+                                if (CaptureTheFlag.redplayer01 != null && target.PlayerId == CaptureTheFlag.redplayer01.PlayerId) {
                                     CaptureTheFlag.redplayer01IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.redplayer02.PlayerId) {
+                                else if (CaptureTheFlag.redplayer02 != null && target.PlayerId == CaptureTheFlag.redplayer02.PlayerId) {
                                     CaptureTheFlag.redplayer02IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.redplayer03.PlayerId) {
+                                else if (CaptureTheFlag.redplayer03 != null && target.PlayerId == CaptureTheFlag.redplayer03.PlayerId) {
                                     CaptureTheFlag.redplayer03IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.redplayer04.PlayerId) {
+                                else if (CaptureTheFlag.redplayer04 != null && target.PlayerId == CaptureTheFlag.redplayer04.PlayerId) {
                                     CaptureTheFlag.redplayer04IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.redplayer05.PlayerId) {
+                                else if (CaptureTheFlag.redplayer05 != null && target.PlayerId == CaptureTheFlag.redplayer05.PlayerId) {
                                     CaptureTheFlag.redplayer05IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.redplayer06.PlayerId) {
+                                else if (CaptureTheFlag.redplayer06 != null && target.PlayerId == CaptureTheFlag.redplayer06.PlayerId) {
                                     CaptureTheFlag.redplayer06IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.redplayer07.PlayerId) {
+                                else if (CaptureTheFlag.redplayer07 != null && target.PlayerId == CaptureTheFlag.redplayer07.PlayerId) {
                                     CaptureTheFlag.redplayer07IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
@@ -1863,28 +1858,26 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in CaptureTheFlag.blueteamFlag) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[1]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[1]);
                         body.transform.position = new Vector3(50, 50, 1);
-                        if (target.PlayerId == CaptureTheFlag.blueplayer01.PlayerId) {
+                        if (CaptureTheFlag.blueplayer01 != null && target.PlayerId == CaptureTheFlag.blueplayer01.PlayerId) {
                             CaptureTheFlag.blueplayer01IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.blueplayer02.PlayerId) {
+                        else if (CaptureTheFlag.blueplayer02 != null && target.PlayerId == CaptureTheFlag.blueplayer02.PlayerId) {
                             CaptureTheFlag.blueplayer02IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.blueplayer03.PlayerId) {
+                        else if (CaptureTheFlag.blueplayer03 != null && target.PlayerId == CaptureTheFlag.blueplayer03.PlayerId) {
                             CaptureTheFlag.blueplayer03IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.blueplayer04.PlayerId) {
+                        else if (CaptureTheFlag.blueplayer04 != null && target.PlayerId == CaptureTheFlag.blueplayer04.PlayerId) {
                             CaptureTheFlag.blueplayer04IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.blueplayer05.PlayerId) {
+                        else if (CaptureTheFlag.blueplayer05 != null && target.PlayerId == CaptureTheFlag.blueplayer05.PlayerId) {
                             CaptureTheFlag.blueplayer05IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.blueplayer06.PlayerId) {
+                        else if (CaptureTheFlag.blueplayer06 != null && target.PlayerId == CaptureTheFlag.blueplayer06.PlayerId) {
                             CaptureTheFlag.blueplayer06IsReviving = true;
                         }
-                        else if (target.PlayerId == CaptureTheFlag.blueplayer07.PlayerId) {
+                        else if (CaptureTheFlag.blueplayer07 != null && target.PlayerId == CaptureTheFlag.blueplayer07.PlayerId) {
                             CaptureTheFlag.blueplayer07IsReviving = true;
                         }
                         player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
@@ -1904,25 +1897,25 @@ namespace LasMonjas.Patches {
 
                         HudManager.Instance.StartCoroutine(Effects.Lerp(CaptureTheFlag.reviveTime, new Action<float>((p) => {
                             if (p == 1f && player != null) {
-                                if (target.PlayerId == CaptureTheFlag.blueplayer01.PlayerId) {
+                                if (CaptureTheFlag.blueplayer01 != null && target.PlayerId == CaptureTheFlag.blueplayer01.PlayerId) {
                                     CaptureTheFlag.blueplayer01IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.blueplayer02.PlayerId) {
+                                else if (CaptureTheFlag.blueplayer02 != null && target.PlayerId == CaptureTheFlag.blueplayer02.PlayerId) {
                                     CaptureTheFlag.blueplayer02IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.blueplayer03.PlayerId) {
+                                else if (CaptureTheFlag.blueplayer03 != null && target.PlayerId == CaptureTheFlag.blueplayer03.PlayerId) {
                                     CaptureTheFlag.blueplayer03IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.blueplayer04.PlayerId) {
+                                else if (CaptureTheFlag.blueplayer04 != null && target.PlayerId == CaptureTheFlag.blueplayer04.PlayerId) {
                                     CaptureTheFlag.blueplayer04IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.blueplayer05.PlayerId) {
+                                else if (CaptureTheFlag.blueplayer05 != null && target.PlayerId == CaptureTheFlag.blueplayer05.PlayerId) {
                                     CaptureTheFlag.blueplayer05IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.blueplayer06.PlayerId) {
+                                else if (CaptureTheFlag.blueplayer06 != null && target.PlayerId == CaptureTheFlag.blueplayer06.PlayerId) {
                                     CaptureTheFlag.blueplayer06IsReviving = false;
                                 }
-                                else if (target.PlayerId == CaptureTheFlag.blueplayer07.PlayerId) {
+                                else if (CaptureTheFlag.blueplayer07 != null && target.PlayerId == CaptureTheFlag.blueplayer07.PlayerId) {
                                     CaptureTheFlag.blueplayer07IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
@@ -1990,22 +1983,20 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in PoliceAndThief.policeTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[10]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[10]);
                         body.transform.position = new Vector3(50, 50, 1);
-                        if (target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
+                        if (PoliceAndThief.policeplayer01 != null && target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
                             PoliceAndThief.policeplayer01IsReviving = true;
                         }
-                        else if (target.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
+                        else if (PoliceAndThief.policeplayer02 != null && target.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
                             PoliceAndThief.policeplayer02IsReviving = true;
                         }
-                        else if (target.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
+                        else if (PoliceAndThief.policeplayer03 != null && target.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
                             PoliceAndThief.policeplayer03IsReviving = true;
                         }
-                        else if (target.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
+                        else if (PoliceAndThief.policeplayer04 != null && target.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
                             PoliceAndThief.policeplayer04IsReviving = true;
                         }
-                        else if (target.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
+                        else if (PoliceAndThief.policeplayer05 != null && target.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
                             PoliceAndThief.policeplayer05IsReviving = true;
                         }
                         player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
@@ -2025,19 +2016,19 @@ namespace LasMonjas.Patches {
 
                         HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.policeReviveTime, new Action<float>((p) => {
                             if (p == 1f && player != null) {
-                                if (target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
+                                if (PoliceAndThief.policeplayer01 != null && target.PlayerId == PoliceAndThief.policeplayer01.PlayerId) {
                                     PoliceAndThief.policeplayer01IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
+                                else if (PoliceAndThief.policeplayer02 != null && target.PlayerId == PoliceAndThief.policeplayer02.PlayerId) {
                                     PoliceAndThief.policeplayer02IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
+                                else if (PoliceAndThief.policeplayer03 != null && target.PlayerId == PoliceAndThief.policeplayer03.PlayerId) {
                                     PoliceAndThief.policeplayer03IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
+                                else if (PoliceAndThief.policeplayer04 != null && target.PlayerId == PoliceAndThief.policeplayer04.PlayerId) {
                                     PoliceAndThief.policeplayer04IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
+                                else if (PoliceAndThief.policeplayer05 != null && target.PlayerId == PoliceAndThief.policeplayer05.PlayerId) {
                                     PoliceAndThief.policeplayer05IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
@@ -2100,8 +2091,6 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[16]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[16]);
                         body.transform.position = new Vector3(50, 50, 1);
                         if (PoliceAndThief.thiefplayer01 != null && target.PlayerId == PoliceAndThief.thiefplayer01.PlayerId) {
                             if (PoliceAndThief.thiefplayer01IsStealing) {
@@ -2180,34 +2169,34 @@ namespace LasMonjas.Patches {
 
                         HudManager.Instance.StartCoroutine(Effects.Lerp(PoliceAndThief.thiefReviveTime, new Action<float>((p) => {
                             if (p == 1f && player != null) {
-                                if (target.PlayerId == PoliceAndThief.thiefplayer01.PlayerId) {
+                                if (PoliceAndThief.thiefplayer01 != null && target.PlayerId == PoliceAndThief.thiefplayer01.PlayerId) {
                                     PoliceAndThief.thiefplayer01IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer02.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer02 != null && target.PlayerId == PoliceAndThief.thiefplayer02.PlayerId) {
                                     PoliceAndThief.thiefplayer02IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer03.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer03 != null && target.PlayerId == PoliceAndThief.thiefplayer03.PlayerId) {
                                     PoliceAndThief.thiefplayer03IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer04.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer04 != null && target.PlayerId == PoliceAndThief.thiefplayer04.PlayerId) {
                                     PoliceAndThief.thiefplayer04IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer05.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer05 != null && target.PlayerId == PoliceAndThief.thiefplayer05.PlayerId) {
                                     PoliceAndThief.thiefplayer05IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer06.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer06 != null && target.PlayerId == PoliceAndThief.thiefplayer06.PlayerId) {
                                     PoliceAndThief.thiefplayer06IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer07.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer07 != null && target.PlayerId == PoliceAndThief.thiefplayer07.PlayerId) {
                                     PoliceAndThief.thiefplayer07IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer08.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer08 != null && target.PlayerId == PoliceAndThief.thiefplayer08.PlayerId) {
                                     PoliceAndThief.thiefplayer08IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer09.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer09 != null && target.PlayerId == PoliceAndThief.thiefplayer09.PlayerId) {
                                     PoliceAndThief.thiefplayer09IsReviving = false;
                                 }
-                                else if (target.PlayerId == PoliceAndThief.thiefplayer10.PlayerId) {
+                                else if (PoliceAndThief.thiefplayer10 != null && target.PlayerId == PoliceAndThief.thiefplayer10.PlayerId) {
                                     PoliceAndThief.thiefplayer10IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
@@ -2273,8 +2262,6 @@ namespace LasMonjas.Patches {
             if (KingOfTheHill.kingOfTheHillMode && howmanygamemodesareon == 1) {
                 if (KingOfTheHill.usurperPlayer != null && KingOfTheHill.usurperPlayer.PlayerId == target.PlayerId) {
                     var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                    body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[15]);
-                    body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[15]);
                     body.transform.position = new Vector3(50, 50, 1);
                     KingOfTheHill.usurperPlayerIsReviving = true;
                     KingOfTheHill.usurperPlayer.nameText.color = new Color(KingOfTheHill.usurperPlayer.nameText.color.r, KingOfTheHill.usurperPlayer.nameText.color.g, KingOfTheHill.usurperPlayer.nameText.color.b, 0.5f);
@@ -2353,12 +2340,10 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in KingOfTheHill.greenTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[2]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[2]);
                         body.transform.position = new Vector3(50, 50, 1);
 
                         // Restore zones
-                        if (target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
+                        if (KingOfTheHill.greenKingplayer != null && target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
                             KingOfTheHill.greenteamAlerted = false;
                             if (KingOfTheHill.greenKinghaszoneone) {
                                 KingOfTheHill.greenKinghaszoneone = false;
@@ -2402,22 +2387,22 @@ namespace LasMonjas.Patches {
                                 }
                             }
                         }
-                        else if (target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
+                        else if (KingOfTheHill.greenplayer01 != null && target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
                             KingOfTheHill.greenplayer01IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.greenplayer02.PlayerId) {
+                        else if (KingOfTheHill.greenplayer02 != null && target.PlayerId == KingOfTheHill.greenplayer02.PlayerId) {
                             KingOfTheHill.greenplayer02IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.greenplayer03.PlayerId) {
+                        else if (KingOfTheHill.greenplayer03 != null && target.PlayerId == KingOfTheHill.greenplayer03.PlayerId) {
                             KingOfTheHill.greenplayer03IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.greenplayer04.PlayerId) {
+                        else if (KingOfTheHill.greenplayer04 != null && target.PlayerId == KingOfTheHill.greenplayer04.PlayerId) {
                             KingOfTheHill.greenplayer04IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.greenplayer05.PlayerId) {
+                        else if (KingOfTheHill.greenplayer05 != null && target.PlayerId == KingOfTheHill.greenplayer05.PlayerId) {
                             KingOfTheHill.greenplayer05IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.greenplayer06.PlayerId) {
+                        else if (KingOfTheHill.greenplayer06 != null && target.PlayerId == KingOfTheHill.greenplayer06.PlayerId) {
                             KingOfTheHill.greenplayer06IsReviving = true;
                         }
                         player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
@@ -2436,25 +2421,25 @@ namespace LasMonjas.Patches {
                         player.MyPhysics.Skin.layer.color = new Color(player.MyPhysics.Skin.layer.color.r, player.MyPhysics.Skin.layer.color.g, player.MyPhysics.Skin.layer.color.b, 0.5f);
                         HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime, new Action<float>((p) => {
                             if (p == 1f && player != null) {
-                                if (target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
+                                if (KingOfTheHill.greenKingplayer != null && target.PlayerId == KingOfTheHill.greenKingplayer.PlayerId) {
                                     KingOfTheHill.greenKingIsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
+                                else if (KingOfTheHill.greenplayer01 != null && target.PlayerId == KingOfTheHill.greenplayer01.PlayerId) {
                                     KingOfTheHill.greenplayer01IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.greenplayer02.PlayerId) {
+                                else if (KingOfTheHill.greenplayer02 != null && target.PlayerId == KingOfTheHill.greenplayer02.PlayerId) {
                                     KingOfTheHill.greenplayer02IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.greenplayer03.PlayerId) {
+                                else if (KingOfTheHill.greenplayer03 != null && target.PlayerId == KingOfTheHill.greenplayer03.PlayerId) {
                                     KingOfTheHill.greenplayer03IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.greenplayer04.PlayerId) {
+                                else if (KingOfTheHill.greenplayer04 != null && target.PlayerId == KingOfTheHill.greenplayer04.PlayerId) {
                                     KingOfTheHill.greenplayer04IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.greenplayer05.PlayerId) {
+                                else if (KingOfTheHill.greenplayer05 != null && target.PlayerId == KingOfTheHill.greenplayer05.PlayerId) {
                                     KingOfTheHill.greenplayer05IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.greenplayer06.PlayerId) {
+                                else if (KingOfTheHill.greenplayer06 != null && target.PlayerId == KingOfTheHill.greenplayer06.PlayerId) {
                                     KingOfTheHill.greenplayer06IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
@@ -2516,12 +2501,10 @@ namespace LasMonjas.Patches {
                 foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
                     if (player.PlayerId == target.PlayerId) {
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == target.PlayerId);
-                        body.bodyRenderer.material.SetColor("_BodyColor", Palette.PlayerColors[5]);
-                        body.bodyRenderer.material.SetColor("_BackColor", Palette.PlayerColors[5]);
                         body.transform.position = new Vector3(50, 50, 1);
 
                         // Restore zones
-                        if (target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
+                        if (KingOfTheHill.yellowKingplayer != null && target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
                             KingOfTheHill.yellowteamAlerted = false;
                             if (KingOfTheHill.yellowKinghaszoneone) {
                                 KingOfTheHill.yellowKinghaszoneone = false;
@@ -2565,22 +2548,22 @@ namespace LasMonjas.Patches {
                                 }
                             }
                         }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
+                        else if (KingOfTheHill.yellowplayer01 != null && target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
                             KingOfTheHill.yellowplayer01IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer02.PlayerId) {
+                        else if (KingOfTheHill.yellowplayer02 != null && target.PlayerId == KingOfTheHill.yellowplayer02.PlayerId) {
                             KingOfTheHill.yellowplayer02IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer03.PlayerId) {
+                        else if (KingOfTheHill.yellowplayer03 != null && target.PlayerId == KingOfTheHill.yellowplayer03.PlayerId) {
                             KingOfTheHill.yellowplayer03IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer04.PlayerId) {
+                        else if (KingOfTheHill.yellowplayer04 != null && target.PlayerId == KingOfTheHill.yellowplayer04.PlayerId) {
                             KingOfTheHill.yellowplayer04IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer05.PlayerId) {
+                        else if (KingOfTheHill.yellowplayer05 != null && target.PlayerId == KingOfTheHill.yellowplayer05.PlayerId) {
                             KingOfTheHill.yellowplayer05IsReviving = true;
                         }
-                        else if (target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
+                        else if (KingOfTheHill.yellowplayer06 != null && target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
                             KingOfTheHill.yellowplayer06IsReviving = true;
                         }
                         player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 0.5f);
@@ -2600,25 +2583,25 @@ namespace LasMonjas.Patches {
 
                         HudManager.Instance.StartCoroutine(Effects.Lerp(KingOfTheHill.reviveTime, new Action<float>((p) => {
                             if (p == 1f && player != null) {
-                                if (target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
+                                if (KingOfTheHill.yellowKingplayer != null && target.PlayerId == KingOfTheHill.yellowKingplayer.PlayerId) {
                                     KingOfTheHill.yellowKingIsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
+                                else if (KingOfTheHill.yellowplayer01 != null && target.PlayerId == KingOfTheHill.yellowplayer01.PlayerId) {
                                     KingOfTheHill.yellowplayer01IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer02.PlayerId) {
+                                else if (KingOfTheHill.yellowplayer02 != null && target.PlayerId == KingOfTheHill.yellowplayer02.PlayerId) {
                                     KingOfTheHill.yellowplayer02IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer03.PlayerId) {
+                                else if (KingOfTheHill.yellowplayer03 != null && target.PlayerId == KingOfTheHill.yellowplayer03.PlayerId) {
                                     KingOfTheHill.yellowplayer03IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer04.PlayerId) {
+                                else if (KingOfTheHill.yellowplayer04 != null && target.PlayerId == KingOfTheHill.yellowplayer04.PlayerId) {
                                     KingOfTheHill.yellowplayer04IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer05.PlayerId) {
+                                else if (KingOfTheHill.yellowplayer05 != null && target.PlayerId == KingOfTheHill.yellowplayer05.PlayerId) {
                                     KingOfTheHill.yellowplayer05IsReviving = false;
                                 }
-                                else if (target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
+                                else if (KingOfTheHill.yellowplayer06 != null && target.PlayerId == KingOfTheHill.yellowplayer06.PlayerId) {
                                     KingOfTheHill.yellowplayer06IsReviving = false;
                                 }
                                 player.nameText.color = new Color(player.nameText.color.r, player.nameText.color.g, player.nameText.color.b, 1f);
@@ -2767,46 +2750,46 @@ namespace LasMonjas.Patches {
                             HotPotato.hotPotatoPlayer = HotPotato.notPotatoTeam[0];
 
                             // If hot potato timed out, assing new potato
-                            if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato01) {
+                            if (HotPotato.notPotato01 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato01) {
                                 HotPotato.notPotato01 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato02) {
+                            else if (HotPotato.notPotato02 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato02) {
                                 HotPotato.notPotato02 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato03) {
+                            else if (HotPotato.notPotato03 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato03) {
                                 HotPotato.notPotato03 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato04) {
+                            else if (HotPotato.notPotato04 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato04) {
                                 HotPotato.notPotato04 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato05) {
+                            else if (HotPotato.notPotato05 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato05) {
                                 HotPotato.notPotato05 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato06) {
+                            else if (HotPotato.notPotato06 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato06) {
                                 HotPotato.notPotato06 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato07) {
+                            else if (HotPotato.notPotato07 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato07) {
                                 HotPotato.notPotato07 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato08) {
+                            else if (HotPotato.notPotato08 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato08) {
                                 HotPotato.notPotato08 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato09) {
+                            else if (HotPotato.notPotato09 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato09) {
                                 HotPotato.notPotato09 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato10) {
+                            else if (HotPotato.notPotato10 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato10) {
                                 HotPotato.notPotato10 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato11) {
+                            else if (HotPotato.notPotato11 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato11) {
                                 HotPotato.notPotato11 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato12) {
+                            else if (HotPotato.notPotato12 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato12) {
                                 HotPotato.notPotato12 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato13) {
+                            else if (HotPotato.notPotato13 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato13) {
                                 HotPotato.notPotato13 = null;
                             }
-                            else if (HotPotato.notPotatoTeam[0] == HotPotato.notPotato14) {
+                            else if (HotPotato.notPotato14 != null && HotPotato.notPotatoTeam[0] == HotPotato.notPotato14) {
                                 HotPotato.notPotato14 = null;
                             }
 
@@ -2855,7 +2838,7 @@ namespace LasMonjas.Patches {
     class KillAnimationSetMovementPatch {
         private static int? colorId = null;
         public static void Prefix(PlayerControl source, bool canMove) {
-            Color color = source.myRend.material.GetColor("_BodyColor");
+            Color color = source.MyRend.material.GetColor("_BodyColor");
             if (color != null && Mimic.mimic != null && source.Data.PlayerId == Mimic.mimic.PlayerId) {
                 var index = Palette.PlayerColors.IndexOf(color);
                 if (index != -1) colorId = index;

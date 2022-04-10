@@ -19,7 +19,20 @@ namespace LasMonjas.Patches
 
             float num = (float)switchSystem.Value / 255f;
 
-            if (PoliceAndThief.policeAndThiefMode) {
+            // Same crewmate vision for everyone on gamemodes with no vision change
+            if (CaptureTheFlag.captureTheFlagMode || KingOfTheHill.kingOfTheHillMode) {
+                if (player == null || player.IsDead) // IsDead
+                    __result = __instance.MaxLightRadius;
+                else {
+                    foreach (PlayerControl gamemodePlayer in PlayerControl.AllPlayerControls) {
+                        if (gamemodePlayer != null && gamemodePlayer.PlayerId == player.PlayerId) {
+                            __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, num) * PlayerControl.GameOptions.CrewLightMod;
+                        }
+                    }
+                }
+                return false;
+            }
+            else if (PoliceAndThief.policeAndThiefMode) {
                 if (player == null || player.IsDead) // IsDead
                     __result = __instance.MaxLightRadius;
 
