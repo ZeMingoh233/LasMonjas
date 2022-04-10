@@ -52,7 +52,7 @@ namespace LasMonjas.Core
             new AuthorData {AuthorName = "Sensei", HatName = "Scars", NoBounce = false, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Sus Man", NoBounce = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Take It Easy", NoBounce = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "World Destroyer", NoBounce = true},
+            new AuthorData {AuthorName = "Xago", HatName = "World Destroyer", NoBounce = true},
             new AuthorData {AuthorName = "IceCreamGuy", HatName = "Ice Cream Man", NoBounce = true},
             new AuthorData {AuthorName = "IceCreamGuy", HatName = "Devious Bling", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "IceCreamGuy", HatName = "Hungry Hat", NoBounce = true},
@@ -118,7 +118,7 @@ namespace LasMonjas.Core
             /// <param name="altshader"></param>
             /// <returns>HatData</returns>
             private static HatData CreateHat(Sprite sprite, string author, Sprite climb = null, Sprite floor = null, Sprite leftimage = null, bool bounce = false, bool altshader = false) {
-
+				//Borrowed from Other Roles to get hats alt shaders to work
                 if (MagicShader == null) {
                     Material hatShader = new Material("PlayerMaterial");
                     hatShader.shader = Shader.Find("Unlit/PlayerShader");
