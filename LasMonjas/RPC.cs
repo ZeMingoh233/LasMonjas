@@ -1013,6 +1013,7 @@ namespace LasMonjas
             // Green screen notification for the minion and renegade
             if (PlayerControl.LocalPlayer == Minion.minion || PlayerControl.LocalPlayer == Renegade.renegade) {
                 HudManager.Instance.FullScreen.enabled = true;
+                HudManager.Instance.FullScreen.gameObject.SetActive(true); 
                 HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
                     var renderer = HudManager.Instance.FullScreen;
                     Color c = new Color(0f / 255f, 255f / 255f, 157f / 255f, 0f);
@@ -1447,11 +1448,11 @@ namespace LasMonjas
 
                     // Switch shield
                     if (Squire.shielded != null && Squire.shielded == player) {
-                        Squire.shielded.myRend.material.SetFloat("_Outline", 0f);
+                        Squire.shielded.MyRend.material.SetFloat("_Outline", 0f);
                         Squire.shielded = oldRoleThief;
                     }
                     else if (Squire.shielded != null && Squire.shielded == oldRoleThief) {
-                        Squire.shielded.myRend.material.SetFloat("_Outline", 0f);
+                        Squire.shielded.MyRend.material.SetFloat("_Outline", 0f);
                         Squire.shielded = player;
                     }
 
@@ -1642,6 +1643,7 @@ namespace LasMonjas
             }
             HudManager.Instance.FullScreen.color = new Color(0f, 0.5f, 0.8f, 0.3f);
             HudManager.Instance.FullScreen.enabled = true;
+            HudManager.Instance.FullScreen.gameObject.SetActive(true); 
             HudManager.Instance.StartCoroutine(Effects.Lerp(TimeTraveler.rewindTime / 2, new Action<float>((p) => {
                 if (p == 1f) HudManager.Instance.FullScreen.enabled = false;
             })));
@@ -1730,6 +1732,7 @@ namespace LasMonjas
                 if (showNotification) {
                     SoundManager.Instance.PlaySound(CustomMain.customAssets.fortuneTellerRevealClip, false, 100f); 
                     HudManager.Instance.FullScreen.enabled = true;
+                    HudManager.Instance.FullScreen.gameObject.SetActive(true); 
                     HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
                         var renderer = HudManager.Instance.FullScreen;
                         Color c = new Color(42f / 255f, 187f / 255f, 245f / 255f, 0f);
@@ -1895,6 +1898,7 @@ namespace LasMonjas
                 if (player.PlayerId == playerId && playerId == PlayerControl.LocalPlayer.PlayerId) {
                     SoundManager.Instance.PlaySound(CustomMain.customAssets.spiritualistRevive, false, 100f);
                     HudManager.Instance.FullScreen.enabled = true;
+                    HudManager.Instance.FullScreen.gameObject.SetActive(true); 
                     HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
                         var renderer = HudManager.Instance.FullScreen;
                         Color c = new Color(255f / 255f, 197f / 255f, 255f / 255f, 0f);

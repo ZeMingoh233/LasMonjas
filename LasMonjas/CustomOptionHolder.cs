@@ -465,7 +465,7 @@ namespace LasMonjas
 
             // Challenger options
             challengerSpawnRate = CustomOption.Create(250, cs(Challenger.color, "Challenger"), rates, null, true);
-            challengerCooldown = CustomOption.Create(251, cs(Challenger.color, "Challenger") + ": Cooldown", 20f, 20f, 30f, 1f, challengerSpawnRate); 
+            challengerCooldown = CustomOption.Create(251, cs(Challenger.color, "Challenger") + ": Cooldown", 15f, 15f, 30f, 1f, challengerSpawnRate); 
             
             // Joker options
             jokerSpawnRate = CustomOption.Create(260, cs(Joker.color, "Joker"), rates, null, true);
