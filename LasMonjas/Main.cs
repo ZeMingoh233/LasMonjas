@@ -23,7 +23,7 @@ namespace LasMonjas
     {
         public const string Id = "me.allul.lasmonjas";
 
-        public const string VersionString = "1.1.3";
+        public const string VersionString = "1.3.3";
 
         public static System.Version Version = System.Version.Parse(VersionString);
         internal static BepInEx.Logging.ManualLogSource Logger;
@@ -38,6 +38,8 @@ namespace LasMonjas
         public static ConfigEntry<string> StreamerModeReplacementText { get; set; }
         public static ConfigEntry<string> StreamerModeReplacementColor { get; set; }
         public static ConfigEntry<bool> ActivateMusic { get; set; }
+        public static ConfigEntry<bool> GhostsSeeRoles { get; set; }
+        public static ConfigEntry<bool> HorseMode { get; set; }
         public static ConfigEntry<string> IpCustom { get; set; }
         public static ConfigEntry<ushort> PortCustom { get; set; }
 
@@ -46,7 +48,7 @@ namespace LasMonjas
             ServerManager serverManager = DestroyableSingleton<ServerManager>.Instance;
             IRegionInfo[] regions = defaultRegions;
 
-            var CustomRegionCustom = new DnsRegionInfo(IpCustom.Value, "Custom", StringNames.NoTranslation, IpCustom.Value, PortCustom.Value);
+            var CustomRegionCustom = new DnsRegionInfo(IpCustom.Value, "Custom", StringNames.NoTranslation, IpCustom.Value, PortCustom.Value, false);
             regions = regions.Concat(new IRegionInfo[] { CustomRegionCustom.Cast<IRegionInfo>() }).ToArray();
             ServerManager.DefaultRegions = regions;
             serverManager.AvailableRegions = regions;
@@ -60,8 +62,10 @@ namespace LasMonjas
             ShowRoleSummary = Config.Bind("Custom", "Show Role Summary", true);
             StreamerModeReplacementText = Config.Bind("Custom", "Streamer Mode Replacement Text", "\n\nLas Monjas");
             StreamerModeReplacementColor = Config.Bind("Custom", "Streamer Mode Replacement Text Hex Color", "#CC00FFFF");
-            ActivateMusic = Config.Bind("Allul", "Activate Music", true);
-          
+            ActivateMusic = Config.Bind("Custom", "Activate Music", true);
+            GhostsSeeRoles = Config.Bind("Custom", "Ghosts See Roles", true);
+            HorseMode = Config.Bind("Custom", "Horse Mode", false);
+
             IpCustom = Config.Bind("Custom", "Custom Server IP", "127.0.0.1");
             PortCustom = Config.Bind("Custom", "Custom Server Port", (ushort)22023);
             defaultRegions = ServerManager.DefaultRegions;

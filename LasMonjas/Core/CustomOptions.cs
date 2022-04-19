@@ -279,21 +279,33 @@ namespace LasMonjas.Core
 
         public static void Postfix(GameSettingMenu __instance) {
 
-            var mapNameTransform = __instance.AllItems.FirstOrDefault(x => x.gameObject.activeSelf && x.name.Equals("MapName", StringComparison.OrdinalIgnoreCase));
+            var mapNameTransform = __instance.AllItems.FirstOrDefault(x => x.name.Equals("MapName", StringComparison.OrdinalIgnoreCase));
             if (mapNameTransform == null) return;
 
             var options = new Il2CppSystem.Collections.Generic.List<Il2CppSystem.Collections.Generic.KeyValuePair<string, int>>();
             for (int i = 0; i < Constants.MapNames.Length; i++) {
+                // Dleks was removed from the game, so remove it from our selections.
+                if (i == (int)MapNames.Dleks) continue; 
+                
                 var kvp = new Il2CppSystem.Collections.Generic.KeyValuePair<string, int>();
                 kvp.key = Constants.MapNames[i];
                 kvp.value = i;
                 options.Add(kvp);
             }
             mapNameTransform.GetComponent<KeyValueOption>().Values = options;
+            mapNameTransform.gameObject.active = true;
+
+            foreach (Transform i in __instance.AllItems.ToList()) {
+                float num = -0.5f;
+                if (i.name.Equals("MapName", StringComparison.OrdinalIgnoreCase)) num = -0.25f;
+                if (i.name.Equals("NumImpostors", StringComparison.OrdinalIgnoreCase) || i.name.Equals("ResetToDefault", StringComparison.OrdinalIgnoreCase)) num = 0f;
+                i.position += new Vector3(0, num, 0);
+            }
+            __instance.Scroller.ContentYBounds.max += 0.5F;
         }
     }
 
-    [HarmonyPatch(typeof(Constants), nameof(Constants.ShouldFlipSkeld))]
+    /*[HarmonyPatch(typeof(Constants), nameof(Constants.ShouldFlipSkeld))]
     class ConstantsShouldFlipSkeldPatch
     {
         public static bool Prefix(ref bool __result) {
@@ -301,7 +313,7 @@ namespace LasMonjas.Core
             __result = PlayerControl.GameOptions.MapId == 3;
             return false;
         }
-    }
+    }*/
 
     [HarmonyPatch]
     class GameOptionsDataPatch
@@ -330,17 +342,19 @@ namespace LasMonjas.Core
             var hudString = sb.ToString();
 
             int defaultSettingsLines = 23;
-            int roleSettingsLines = defaultSettingsLines + 45;
-            int detailedSettingsP1 = roleSettingsLines + 40;
-            int detailedSettingsP2 = detailedSettingsP1 + 34;
-            int detailedSettingsP3 = detailedSettingsP2 + 31;
-            int detailedSettingsP4 = detailedSettingsP3 + 39;
+            int roleSettingsLines = defaultSettingsLines + 26;
+            int detailedSettingsP1 = roleSettingsLines + 36;
+            int detailedSettingsP2 = detailedSettingsP1 + 35;
+            int detailedSettingsP3 = detailedSettingsP2 + 34;
+            int detailedSettingsP4 = detailedSettingsP3 + 31;
+            int detailedSettingsP5 = detailedSettingsP4 + 37;
             int end1 = hudString.TakeWhile(c => (defaultSettingsLines -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end2 = hudString.TakeWhile(c => (roleSettingsLines -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end3 = hudString.TakeWhile(c => (detailedSettingsP1 -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end4 = hudString.TakeWhile(c => (detailedSettingsP2 -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end5 = hudString.TakeWhile(c => (detailedSettingsP3 -= (c == '\n' ? 1 : 0)) > 0).Count();
             int end6 = hudString.TakeWhile(c => (detailedSettingsP4 -= (c == '\n' ? 1 : 0)) > 0).Count();
+            int end7 = hudString.TakeWhile(c => (detailedSettingsP5 -= (c == '\n' ? 1 : 0)) > 0).Count();
             int counter = LasMonjasPlugin.optionsPage;
             if (counter == 0) {
                 hudString = hudString.Substring(0, end1) + "\n";
@@ -350,15 +364,21 @@ namespace LasMonjas.Core
                 int gap = 1;
                 int index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index, "\n");
-                gap = 5;
-                /*index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
+                gap = 7;
+                index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index, "\n");
-                gap = 26;*/
+                gap = 18;
+                index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
+                hudString = hudString.Insert(index, "\n");
+                gap = 24;
                 index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index + 1, "\n");
             }
             else if (counter == 2) {
                 hudString = hudString.Substring(end2 + 1, end3 - end2);
+                int gap = 0;
+                int index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
+                hudString = hudString.Insert(index, "\n");
             }
             else if (counter == 3) {
                 hudString = hudString.Substring(end3 + 1, end4 - end3);
@@ -370,10 +390,13 @@ namespace LasMonjas.Core
                 hudString = hudString.Substring(end5 + 1, end6 - end5);
             }
             else if (counter == 6) {
-                hudString = hudString.Substring(end6 + 1);
+                hudString = hudString.Substring(end6 + 1, end7 - end6);
+            }
+            else if (counter == 7) {
+                hudString = hudString.Substring(end7 + 1);
             }
 
-            hudString += $"\nTab for next page ({counter + 1}/7)";
+            hudString += $"\nTab for next page ({counter + 1}/8)";
             __result = hudString;
         }
     }
@@ -383,7 +406,7 @@ namespace LasMonjas.Core
     {
         public static void Postfix(KeyboardJoystick __instance) {
             if (Input.GetKeyDown(KeyCode.Tab)) {
-                LasMonjasPlugin.optionsPage = (LasMonjasPlugin.optionsPage + 1) % 7;
+                LasMonjasPlugin.optionsPage = (LasMonjasPlugin.optionsPage + 1) % 8;
             }
         }
     }

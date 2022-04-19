@@ -168,6 +168,32 @@ namespace LasMonjas.Patches {
             writer.Write(2);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
             RPCProcedure.changeMusic(2);
+
+            // Show roles after meeting for dead players if the option is active
+            if (MapOptions.ghostsSeeRoles && howmanygamemodesareon != 1) {
+                foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
+                    if (p == PlayerControl.LocalPlayer || PlayerControl.LocalPlayer.Data.IsDead) {
+                        Transform playerInfoTransform = p.nameText.transform.parent.FindChild("Info");
+                        TMPro.TextMeshPro playerInfo = playerInfoTransform != null ? playerInfoTransform.GetComponent<TMPro.TextMeshPro>() : null;
+                        if (playerInfo == null) {
+                            playerInfo = UnityEngine.Object.Instantiate(p.nameText, p.nameText.transform.parent);
+                            playerInfo.transform.localPosition += Vector3.up * 0.5f;
+                            playerInfo.fontSize *= 0.75f;
+                            playerInfo.gameObject.name = "Info";
+                        }
+
+                        string roleNames = RoleInfo.GetRolesString(p, true);
+
+                        string playerInfoText = "";
+                        if (PlayerControl.LocalPlayer.Data.IsDead) {
+                            playerInfoText = $"{roleNames}";
+                        }
+
+                        playerInfo.text = playerInfoText;
+                        playerInfo.gameObject.SetActive(p.Visible);
+                    }
+                }
+            }
         }
     }
 
@@ -181,7 +207,7 @@ namespace LasMonjas.Patches {
                     if (player == null) return;
                     // Exile role text
                     if (id == StringNames.ExileTextPN || id == StringNames.ExileTextSN || id == StringNames.ExileTextPP || id == StringNames.ExileTextSP) {
-                        __result = player.Data.PlayerName + " era el " + String.Join(" ", RoleInfo.getRoleInfoForPlayer(player).Select(x => x.name).ToArray());
+                        __result = player.Data.PlayerName + " was the " + String.Join(" ", RoleInfo.getRoleInfoForPlayer(player).Select(x => x.name).ToArray());
                     }
                     // Custom text on Joker exile instead remaining impostors
                     if (id == StringNames.ImpostorsRemainP || id == StringNames.ImpostorsRemainS) {

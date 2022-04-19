@@ -54,10 +54,10 @@ namespace LasMonjas
         Kid,
         Welder,
         Spiritualist,
-        TheChosenOne,
+        Coward,
         Vigilant,
         VigilantMira,
-        Performer,
+        Medusa,
         Hunter,
         Jinx,
         Lover,
@@ -65,6 +65,8 @@ namespace LasMonjas
         Blind,
         Flash,
         BigChungus,
+        TheChosenOne,
+        Performer,
         Crewmate,
         Impostor,
 
@@ -83,7 +85,7 @@ namespace LasMonjas
         BluePlayer05,
         BluePlayer06,
         BluePlayer07,
-        BluePlayer08,
+        StealerPlayer,
 
         // Police and Thief
         PolicePlayer01,
@@ -117,7 +119,38 @@ namespace LasMonjas
         YellowPlayer04,
         YellowPlayer05,
         YellowPlayer06,
-        UsurperPlayer
+        UsurperPlayer,
+
+        // Hot Potato
+        HotPotato,
+        NotPotato01,
+        NotPotato02,
+        NotPotato03,
+        NotPotato04,
+        NotPotato05,
+        NotPotato06,
+        NotPotato07,
+        NotPotato08,
+        NotPotato09,
+        NotPotato10,
+        NotPotato11,
+        NotPotato12,
+        NotPotato13,
+        NotPotato14,
+        ExplodedPotato01,
+        ExplodedPotato02,
+        ExplodedPotato03,
+        ExplodedPotato04,
+        ExplodedPotato05,
+        ExplodedPotato06,
+        ExplodedPotato07,
+        ExplodedPotato08,
+        ExplodedPotato09,
+        ExplodedPotato10,
+        ExplodedPotato11,
+        ExplodedPotato12,
+        ExplodedPotato13,
+        ExplodedPotato14
     }
 
     enum CustomRPC
@@ -182,14 +215,17 @@ namespace LasMonjas
         FortuneTellerReveal,
         HackerAbilityUses,
         SleuthUsedLocate,
+        FinkHawkEye,
         SealVent,
         SpiritualistRevive,
         SendSpiritualistIsReviving,
         MurderSpiritualistIfReportWhileReviving,
         ResetSpiritualistReviveValues,
+        CowardUsedCall,
         PlaceCamera,
         VigilantAbilityUses,
         PerformerIsReported,
+        MedusaPetrify,
         HunterUsedHunted,
         SetJinxed,
 
@@ -210,7 +246,10 @@ namespace LasMonjas
 
         // King of the hill
         KingoftheHillKills,
-        KingoftheHillCapture
+        KingoftheHillCapture,
+
+        // Hot Potato
+        HotPotatoTransfer
     }
 
     public static class RPCProcedure
@@ -365,8 +404,8 @@ namespace LasMonjas
                         case RoleId.Spiritualist:
                             Spiritualist.spiritualist = player;
                             break;
-                        case RoleId.TheChosenOne:
-                            TheChosenOne.theChosenOne = player;
+                        case RoleId.Coward:
+                            Coward.coward = player;
                             break;
                         case RoleId.Vigilant:
                             Vigilant.vigilant = player;
@@ -374,8 +413,8 @@ namespace LasMonjas
                         case RoleId.VigilantMira:
                             Vigilant.vigilantMira = player;
                             break;
-                        case RoleId.Performer:
-                            Performer.performer = player;
+                        case RoleId.Medusa:
+                            Medusa.medusa = player;
                             break;
                         case RoleId.Hunter:
                             Hunter.hunter = player;
@@ -400,6 +439,12 @@ namespace LasMonjas
                             break;
                         case RoleId.BigChungus:
                             Modifiers.bigchungus = player;
+                            break;
+                        case RoleId.TheChosenOne:
+                            Modifiers.theChosenOne = player;
+                            break;
+                        case RoleId.Performer:
+                            Modifiers.performer = player;
                             break;
 
                         // Capture the Flag
@@ -459,9 +504,8 @@ namespace LasMonjas
                             CaptureTheFlag.blueplayer07 = player;
                             CaptureTheFlag.blueteamFlag.Add(player);
                             break;
-                        case RoleId.BluePlayer08:
-                            CaptureTheFlag.blueplayer08 = player;
-                            CaptureTheFlag.blueteamFlag.Add(player);
+                        case RoleId.StealerPlayer:
+                            CaptureTheFlag.stealerPlayer = player;
                             break;
 
                         // Police and Thief
@@ -586,6 +630,109 @@ namespace LasMonjas
                         case RoleId.UsurperPlayer:
                             KingOfTheHill.usurperPlayer = player;
                             break;
+
+                        // Hot Potato 
+                        case RoleId.HotPotato:
+                            HotPotato.hotPotatoPlayer = player;
+                            break;
+                        case RoleId.NotPotato01:
+                            HotPotato.notPotato01 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato02:
+                            HotPotato.notPotato02 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato03:
+                            HotPotato.notPotato03 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato04:
+                            HotPotato.notPotato04 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato05:
+                            HotPotato.notPotato05 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato06:
+                            HotPotato.notPotato06 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato07:
+                            HotPotato.notPotato07 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato08:
+                            HotPotato.notPotato08 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato09:
+                            HotPotato.notPotato09 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato10:
+                            HotPotato.notPotato10 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato11:
+                            HotPotato.notPotato11 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato12:
+                            HotPotato.notPotato12 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato13:
+                            HotPotato.notPotato13 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.NotPotato14:
+                            HotPotato.notPotato14 = player;
+                            HotPotato.notPotatoTeam.Add(player);
+                            break;
+                        case RoleId.ExplodedPotato01:
+                            HotPotato.explodedPotato01 = player;
+                            break;
+                        case RoleId.ExplodedPotato02:
+                            HotPotato.explodedPotato02 = player;
+                            break;
+                        case RoleId.ExplodedPotato03:
+                            HotPotato.explodedPotato03 = player;
+                            break;
+                        case RoleId.ExplodedPotato04:
+                            HotPotato.explodedPotato04 = player;
+                            break;
+                        case RoleId.ExplodedPotato05:
+                            HotPotato.explodedPotato05 = player;
+                            break;
+                        case RoleId.ExplodedPotato06:
+                            HotPotato.explodedPotato06 = player;
+                            break;
+                        case RoleId.ExplodedPotato07:
+                            HotPotato.explodedPotato07 = player;
+                            break;
+                        case RoleId.ExplodedPotato08:
+                            HotPotato.explodedPotato08 = player;
+                            break;
+                        case RoleId.ExplodedPotato09:
+                            HotPotato.explodedPotato09 = player;
+                            break;
+                        case RoleId.ExplodedPotato10:
+                            HotPotato.explodedPotato10 = player;
+                            break;
+                        case RoleId.ExplodedPotato11:
+                            HotPotato.explodedPotato11 = player;
+                            break;
+                        case RoleId.ExplodedPotato12:
+                            HotPotato.explodedPotato12 = player;
+                            break;
+                        case RoleId.ExplodedPotato13:
+                            HotPotato.explodedPotato13 = player;
+                            break;
+                        case RoleId.ExplodedPotato14:
+                            HotPotato.explodedPotato14 = player;
+                            break;
                     }
                 }
         }
@@ -675,7 +822,7 @@ namespace LasMonjas
                     UnityEngine.Object.Destroy(array[i].gameObject);
                 }
             }
-            if (Performer.performer != null && playerId == Performer.performer.PlayerId)
+            if (Modifiers.performer != null && playerId == Modifiers.performer.PlayerId)
                 performerIsReported(0);
         }
 
@@ -866,6 +1013,7 @@ namespace LasMonjas
             // Green screen notification for the minion and renegade
             if (PlayerControl.LocalPlayer == Minion.minion || PlayerControl.LocalPlayer == Renegade.renegade) {
                 HudManager.Instance.FullScreen.enabled = true;
+                HudManager.Instance.FullScreen.gameObject.SetActive(true); 
                 HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
                     var renderer = HudManager.Instance.FullScreen;
                     Color c = new Color(0f / 255f, 255f / 255f, 157f / 255f, 0f);
@@ -903,10 +1051,10 @@ namespace LasMonjas
             if (player == Kid.kid) Kid.clearAndReload();
             if (player == Welder.welder) Welder.clearAndReload();
             if (player == Spiritualist.spiritualist) Spiritualist.clearAndReload();
-            if (player == TheChosenOne.theChosenOne) TheChosenOne.clearAndReload();
+            if (player == Coward.coward) Coward.clearAndReload();
             if (player == Vigilant.vigilant) Vigilant.clearAndReload();
             if (player == Vigilant.vigilantMira) Vigilant.clearAndReload();
-            if (player == Performer.performer) Performer.clearAndReload();
+            if (player == Medusa.medusa) Medusa.clearAndReload();
             if (player == Hunter.hunter) Hunter.clearAndReload();
             if (player == Jinx.jinx) Jinx.clearAndReload();
 
@@ -1009,8 +1157,8 @@ namespace LasMonjas
                 else if (BountyHunter.hasToKill == Spiritualist.spiritualist) {
                     BountyHunter.rolName = ": <color=#FFC5E1FF>Spiritualist</color>";
                 }
-                else if (BountyHunter.hasToKill == TheChosenOne.theChosenOne) {
-                    BountyHunter.rolName = ": <color=#00F7E1FF>The Chosen One</color>";
+                else if (BountyHunter.hasToKill == Coward.coward) {
+                    BountyHunter.rolName = ": <color=#00F7E1FF>Coward</color>";
                 }
                 else if (BountyHunter.hasToKill == Vigilant.vigilant) {
                     BountyHunter.rolName = ": <color=#E3E15AFF>Vigilant</color>";
@@ -1018,8 +1166,8 @@ namespace LasMonjas
                 else if (BountyHunter.hasToKill == Vigilant.vigilantMira) {
                     BountyHunter.rolName = ": <color=#E3E15AFF>Vigilant</color>";
                 }
-                else if (BountyHunter.hasToKill == Performer.performer) {
-                    BountyHunter.rolName = ": <color=#F2BEFFFF>Performer</color>";
+                else if (BountyHunter.hasToKill == Medusa.medusa) {
+                    BountyHunter.rolName = ": <color=#F2BEFFFF>Medusa</color>";
                 }
                 else if (BountyHunter.hasToKill == Hunter.hunter) {
                     BountyHunter.rolName = ": <color=#E1EB90FF>Hunter</color>";
@@ -1300,11 +1448,11 @@ namespace LasMonjas
 
                     // Switch shield
                     if (Squire.shielded != null && Squire.shielded == player) {
-                        Squire.shielded.myRend.material.SetFloat("_Outline", 0f);
+                        Squire.shielded.MyRend.material.SetFloat("_Outline", 0f);
                         Squire.shielded = oldRoleThief;
                     }
                     else if (Squire.shielded != null && Squire.shielded == oldRoleThief) {
-                        Squire.shielded.myRend.material.SetFloat("_Outline", 0f);
+                        Squire.shielded.MyRend.material.SetFloat("_Outline", 0f);
                         Squire.shielded = player;
                     }
 
@@ -1349,6 +1497,8 @@ namespace LasMonjas
                         Sleuth.sleuth = oldRoleThief;
                     }
                     else if (Fink.fink != null && Fink.fink == player) {
+                        Fink.resetCamera();
+                        Fink.fink.moveable = true; 
                         Fink.fink = oldRoleThief;
                     }
                     else if (Kid.kid != null && Kid.kid == player) {
@@ -1360,9 +1510,8 @@ namespace LasMonjas
                     else if (Spiritualist.spiritualist != null && Spiritualist.spiritualist == player) {
                         Spiritualist.spiritualist = oldRoleThief;
                     }
-                    else if (TheChosenOne.theChosenOne != null && TheChosenOne.theChosenOne == player) {
-                        TheChosenOne.theChosenOne = oldRoleThief;
-                        if (TheChosenOne.theChosenOne.Data.IsDead) TheChosenOne.reported = true;
+                    else if (Coward.coward != null && Coward.coward == player) {
+                        Coward.coward = oldRoleThief;
                     }
                     else if (Vigilant.vigilant != null && Vigilant.vigilant == player) {
                         if (Vigilant.minigame != null) {
@@ -1387,8 +1536,8 @@ namespace LasMonjas
                             Vigilant.doorLog.transform.localPosition = new Vector2(0, -0.5f);
                         }
                     }
-                    else if (Performer.performer != null && Performer.performer == player) {
-                        Performer.performer = oldRoleThief;
+                    else if (Medusa.medusa != null && Medusa.medusa == player) {
+                        Medusa.medusa = oldRoleThief;
                     }
                     else if (Hunter.hunter != null && Hunter.hunter == player) {
                         Hunter.hunter = oldRoleThief;
@@ -1442,7 +1591,7 @@ namespace LasMonjas
                     }
                 }
             }
-            if (Performer.performer != null && playerId == Performer.performer.PlayerId)
+            if (Modifiers.performer != null && playerId == Modifiers.performer.PlayerId)
                 performerIsReported(0);
             if (PlayerControl.LocalPlayer == Devourer.devourer) {
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.devourerDevourClip, false, 100f);
@@ -1494,6 +1643,7 @@ namespace LasMonjas
             }
             HudManager.Instance.FullScreen.color = new Color(0f, 0.5f, 0.8f, 0.3f);
             HudManager.Instance.FullScreen.enabled = true;
+            HudManager.Instance.FullScreen.gameObject.SetActive(true); 
             HudManager.Instance.StartCoroutine(Effects.Lerp(TimeTraveler.rewindTime / 2, new Action<float>((p) => {
                 if (p == 1f) HudManager.Instance.FullScreen.enabled = false;
             })));
@@ -1519,7 +1669,7 @@ namespace LasMonjas
                     DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == playerId).FirstOrDefault();
                     if (body != null) UnityEngine.Object.Destroy(body.gameObject);
                     if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
-                    if (Performer.performer != null && player.PlayerId == Performer.performer.PlayerId) {
+                    if (Modifiers.performer != null && player.PlayerId == Modifiers.performer.PlayerId) {
                         performerIsReported(1);
                     }
                     if (Vigilant.vigilantMira != null && player.PlayerId == Vigilant.vigilantMira.PlayerId) {
@@ -1582,6 +1732,7 @@ namespace LasMonjas
                 if (showNotification) {
                     SoundManager.Instance.PlaySound(CustomMain.customAssets.fortuneTellerRevealClip, false, 100f); 
                     HudManager.Instance.FullScreen.enabled = true;
+                    HudManager.Instance.FullScreen.gameObject.SetActive(true); 
                     HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
                         var renderer = HudManager.Instance.FullScreen;
                         Color c = new Color(42f / 255f, 187f / 255f, 245f / 255f, 0f);
@@ -1613,6 +1764,13 @@ namespace LasMonjas
                     Sleuth.located = player;
         }
 
+        public static void finkHawkEye() {
+            Fink.finkTimer = Fink.duration;
+            if (PlayerControl.LocalPlayer.Data.Role.IsImpostor || Renegade.renegade != null && PlayerControl.LocalPlayer == Renegade.renegade || Minion.minion != null && PlayerControl.LocalPlayer == Minion.minion) {
+                new CustomMessage("Fink is using Hawkeye!", Fink.duration, -1, -1f, 13);
+            }
+        }
+        
         public static void sealVent(int ventId) {
             Vent vent = ShipStatus.Instance.AllVents.FirstOrDefault((x) => x != null && x.Id == ventId);
             if (vent == null) return;
@@ -1639,7 +1797,7 @@ namespace LasMonjas
                     if (body != null) UnityEngine.Object.Destroy(body.gameObject);
                     if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
                     spiritualistPinkScreen(player.PlayerId);
-                    if (Performer.performer != null && player == Performer.performer)
+                    if (Modifiers.performer != null && player == Modifiers.performer)
                         performerIsReported(1);
                     if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                         vigilantMiraRestoreDoorlogItem();
@@ -1658,7 +1816,7 @@ namespace LasMonjas
                         if (bodytwo != null) UnityEngine.Object.Destroy(bodytwo.gameObject);
                         if (deadPlayerEntrytwo != null) deadPlayers.Remove(deadPlayerEntrytwo);
                         spiritualistPinkScreen(lovertwo.PlayerId);
-                        if (Performer.performer != null && player == Performer.performer)
+                        if (Modifiers.performer != null && player == Modifiers.performer)
                             performerIsReported(1);
                         if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                             vigilantMiraRestoreDoorlogItem();
@@ -1677,7 +1835,7 @@ namespace LasMonjas
                         if (bodytwo != null) UnityEngine.Object.Destroy(bodytwo.gameObject);
                         if (deadPlayerEntrytwo != null) deadPlayers.Remove(deadPlayerEntrytwo);
                         spiritualistPinkScreen(loverone.PlayerId);
-                        if (Performer.performer != null && player == Performer.performer)
+                        if (Modifiers.performer != null && player == Modifiers.performer)
                             performerIsReported(1);
                         if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                             vigilantMiraRestoreDoorlogItem();
@@ -1698,7 +1856,7 @@ namespace LasMonjas
                         if (bodybountyhunter != null) UnityEngine.Object.Destroy(bodybountyhunter.gameObject);
                         if (deadPlayerEntrytwo != null) deadPlayers.Remove(deadPlayerEntrytwo);
                         spiritualistPinkScreen(bountyhunter.PlayerId);
-                        if (Performer.performer != null && player == Performer.performer)
+                        if (Modifiers.performer != null && player == Modifiers.performer)
                             performerIsReported(1);
                         if (Vigilant.vigilantMira != null && player == Vigilant.vigilantMira)
                             vigilantMiraRestoreDoorlogItem();
@@ -1740,6 +1898,7 @@ namespace LasMonjas
                 if (player.PlayerId == playerId && playerId == PlayerControl.LocalPlayer.PlayerId) {
                     SoundManager.Instance.PlaySound(CustomMain.customAssets.spiritualistRevive, false, 100f);
                     HudManager.Instance.FullScreen.enabled = true;
+                    HudManager.Instance.FullScreen.gameObject.SetActive(true); 
                     HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
                         var renderer = HudManager.Instance.FullScreen;
                         Color c = new Color(255f / 255f, 197f / 255f, 255f / 255f, 0f);
@@ -1772,6 +1931,16 @@ namespace LasMonjas
             resetSpiritualistReviveButton();
         }
 
+        public static void cowardUsedCall() {
+            if (Coward.timesUsedCalls < Coward.numberOfCalls) {
+                Coward.timesUsedCalls += 1;
+                if (Coward.timesUsedCalls == Coward.numberOfCalls) {
+                    Coward.usedCalls = true;
+                }
+            }
+            Coward.cowardCallButtonText.text = $"{Coward.numberOfCalls - Coward.timesUsedCalls} / {Coward.numberOfCalls}";
+        }
+        
         public static void placeCamera(byte[] buff) {
             var referenceCamera = UnityEngine.Object.FindObjectOfType<SurvCamera>();
             if (referenceCamera == null) return; // Mira HQ
@@ -1810,14 +1979,34 @@ namespace LasMonjas
 
         public static void performerIsReported(byte check) {
             if (check == 0) {
-                Performer.reported = true;
+                Modifiers.performerReported = true;
             }
             else {
-                Performer.reported = false;
+                Modifiers.performerReported = false;
             }
             SoundManager.Instance.StopSound(CustomMain.customAssets.performerMusic);
         }
 
+        public static void medusaPetrify(byte targetId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId) {
+                    Medusa.messageTimer = Medusa.duration;
+                    if (PlayerControl.LocalPlayer == player) {
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.medusaPetrify, false, 100f);
+                        new CustomMessage("Petrified!", Medusa.duration, -1, 1.6f, 14);
+                    }
+                    player.moveable = false;
+                    player.NetTransform.Halt(); // Stop current movement
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(Medusa.duration, new Action<float>((p) => { // Delayed action
+                        if (p == 1f) {
+                            player.moveable = true;
+                        }
+                    })));
+                    return;
+                }
+            }
+        }
+        
         public static void hunterUsedHunted(byte targetId) {
             Hunter.usedHunted = true;
             foreach (PlayerControl player in PlayerControl.AllPlayerControls)
@@ -1867,7 +2056,7 @@ namespace LasMonjas
         public static void changeMusic(byte whichmusic) {
             SoundManager.Instance.StopSound(CustomMain.customAssets.bombermanBombMusic);
             SoundManager.Instance.StopSound(CustomMain.customAssets.challengerDuelMusic);
-            if (MapOptions.activateMusic && ((!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode))) {
+            if (MapOptions.activateMusic && howmanygamemodesareon != 1) {
                 int alivePlayers = 0;
                 int totalPlayers = 0;
                 foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
@@ -1983,7 +2172,117 @@ namespace LasMonjas
                             CaptureTheFlag.blueplayer07.MurderPlayer(player);
                             break;
                         case 16:
-                            CaptureTheFlag.blueplayer08.MurderPlayer(player);
+                            if (CaptureTheFlag.redPlayerWhoHasBlueFlag != null && player.PlayerId == CaptureTheFlag.redPlayerWhoHasBlueFlag.PlayerId) {
+                                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                    new CustomMessage("You're the new <color=#FF0000FF>Red Team</color> player now!", 5, -1, 1.6f, 4);
+                                }
+                                if (CaptureTheFlag.redplayer01 != null && CaptureTheFlag.redplayer01 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer01);
+                                    CaptureTheFlag.redplayer01 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer01.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer02 != null && CaptureTheFlag.redplayer02 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer02);
+                                    CaptureTheFlag.redplayer02 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer02.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer03 != null && CaptureTheFlag.redplayer03 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer03);
+                                    CaptureTheFlag.redplayer03 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer03.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer04 != null && CaptureTheFlag.redplayer04 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer04);
+                                    CaptureTheFlag.redplayer04 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer04.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer05 != null && CaptureTheFlag.redplayer05 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer05);
+                                    CaptureTheFlag.redplayer05 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer05.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer06 != null && CaptureTheFlag.redplayer06 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer06);
+                                    CaptureTheFlag.redplayer06 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer06.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.redplayer07 != null && CaptureTheFlag.redplayer07 == CaptureTheFlag.redPlayerWhoHasBlueFlag) {
+                                    CaptureTheFlag.redteamFlag.Remove(CaptureTheFlag.redplayer07);
+                                    CaptureTheFlag.redplayer07 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.redteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.redplayer07.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                            }
+                            else if (CaptureTheFlag.bluePlayerWhoHasRedFlag != null && player.PlayerId == CaptureTheFlag.bluePlayerWhoHasRedFlag.PlayerId) {
+                                if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                    new CustomMessage("You're the new <color=#0000FFFF>Blue Team</color> player now!", 5, -1, 1.6f, 4);
+                                }
+                                if (CaptureTheFlag.blueplayer01 != null && CaptureTheFlag.blueplayer01 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer01);
+                                    CaptureTheFlag.blueplayer01 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer01.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer02 != null && CaptureTheFlag.blueplayer02 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer02);
+                                    CaptureTheFlag.blueplayer02 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer02.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer03 != null && CaptureTheFlag.blueplayer03 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer03);
+                                    CaptureTheFlag.blueplayer03 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer03.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer04 != null && CaptureTheFlag.blueplayer04 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer04);
+                                    CaptureTheFlag.blueplayer04 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer04.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer05 != null && CaptureTheFlag.blueplayer05 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer05);
+                                    CaptureTheFlag.blueplayer05 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer05.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer06 != null && CaptureTheFlag.blueplayer06 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer06);
+                                    CaptureTheFlag.blueplayer06 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer06.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                                else if (CaptureTheFlag.blueplayer07 != null && CaptureTheFlag.blueplayer07 == CaptureTheFlag.bluePlayerWhoHasRedFlag) {
+                                    CaptureTheFlag.blueteamFlag.Remove(CaptureTheFlag.blueplayer07);
+                                    CaptureTheFlag.blueplayer07 = CaptureTheFlag.stealerPlayer;
+                                    CaptureTheFlag.blueteamFlag.Add(CaptureTheFlag.stealerPlayer);
+                                    CaptureTheFlag.stealerPlayer = player;
+                                    CaptureTheFlag.blueplayer07.MurderPlayer(CaptureTheFlag.stealerPlayer);
+                                }
+                            }
+                            else {
+                                CaptureTheFlag.stealerPlayer.MurderPlayer(player);
+                            }
                             break;
                     }
                     return;
@@ -1998,7 +2297,8 @@ namespace LasMonjas
                     CaptureTheFlag.blueflagtaken = true;
                     CaptureTheFlag.blueteamAlerted = false;
                     CaptureTheFlag.redPlayerWhoHasBlueFlag = player;
-                    CaptureTheFlag.blueflag.transform.position = player.transform.position + new Vector3(0f, 0f, 0.5f);
+                    CaptureTheFlag.blueflag.transform.parent = player.transform;
+                    CaptureTheFlag.blueflag.transform.localPosition = new Vector3(0f, 0f, -0.1f);
                 }
 
                 // Alert red team players
@@ -2016,7 +2316,8 @@ namespace LasMonjas
                     CaptureTheFlag.redflagtaken = true;
                     CaptureTheFlag.redteamAlerted = false;
                     CaptureTheFlag.bluePlayerWhoHasRedFlag = player;
-                    CaptureTheFlag.redflag.transform.position = player.transform.position + new Vector3(0f, 0f, 0.5f);
+                    CaptureTheFlag.redflag.transform.parent = player.transform;
+                    CaptureTheFlag.redflag.transform.localPosition = new Vector3(0f, 0f, -0.1f);
                 }
 
                 // Alert blue team players
@@ -2036,19 +2337,20 @@ namespace LasMonjas
             if (whichteam == 1) {
                 CaptureTheFlag.blueflagtaken = false;
                 CaptureTheFlag.redPlayerWhoHasBlueFlag = null;
+                CaptureTheFlag.blueflag.transform.parent = CaptureTheFlag.blueflagbase.transform.parent;
                 switch (PlayerControl.GameOptions.MapId) {
                     // Skeld
                     case 0:
                         if (activatedSensei) {
-                            CaptureTheFlag.blueflag.transform.position = new Vector3(7.7f, -1.15f, 1f);
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(7.7f, -1.15f, 0.5f);
                         }
                         else {
-                            CaptureTheFlag.blueflag.transform.position = new Vector3(16.5f, -4.65f, 1f);
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(16.5f, -4.65f, 0.5f);
                         }
                         break;
                     // MiraHQ
                     case 1:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(23.25f, 5.05f, 1f);
+                        CaptureTheFlag.blueflag.transform.position = new Vector3(23.25f, 5.05f, 0.5f);
                         break;
                     // Polus
                     case 2:
@@ -2056,7 +2358,7 @@ namespace LasMonjas
                         break;
                     // Dleks
                     case 3:
-                        CaptureTheFlag.blueflag.transform.position = new Vector3(-16.5f, -4.65f, 1f);
+                        CaptureTheFlag.blueflag.transform.position = new Vector3(-16.5f, -4.65f, 0.5f);
                         break;
                     // Airship
                     case 4:
@@ -2076,19 +2378,20 @@ namespace LasMonjas
             if (whichteam == 2) {
                 CaptureTheFlag.redflagtaken = false;
                 CaptureTheFlag.bluePlayerWhoHasRedFlag = null;
+                CaptureTheFlag.redflag.transform.parent = CaptureTheFlag.redflagbase.transform.parent;
                 switch (PlayerControl.GameOptions.MapId) {
                     // Skeld
                     case 0:
                         if (activatedSensei) {
-                            CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.35f, 1f);
+                            CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.35f, 0.5f);
                         }
                         else {
-                            CaptureTheFlag.redflag.transform.position = new Vector3(-20.5f, -5.35f, 1f);
+                            CaptureTheFlag.redflag.transform.position = new Vector3(-20.5f, -5.35f, 0.5f);
                         }
                         break;
                     // MiraHQ
                     case 1:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(2.525f, 10.55f, 1f);
+                        CaptureTheFlag.redflag.transform.position = new Vector3(2.525f, 10.55f, 0.5f);
                         break;
                     // Polus
                     case 2:
@@ -2096,7 +2399,7 @@ namespace LasMonjas
                         break;
                     // Dleks
                     case 3:
-                        CaptureTheFlag.redflag.transform.position = new Vector3(20.5f, -5.35f, 1f);
+                        CaptureTheFlag.redflag.transform.position = new Vector3(20.5f, -5.35f, 0.5f);
                         break;
                     // Airship
                     case 4:
@@ -2353,78 +2656,93 @@ namespace LasMonjas
                     switch (jewelId) {
                         case 1:
                             PoliceAndThief.jewel01BeingStealed = player;
-                            PoliceAndThief.jewel01.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel01.SetActive(true);
+                            PoliceAndThief.jewel01.transform.parent = player.transform;
+                            PoliceAndThief.jewel01.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 2:
                             PoliceAndThief.jewel02BeingStealed = player;
-                            PoliceAndThief.jewel02.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel02.SetActive(true);
+                            PoliceAndThief.jewel02.transform.parent = player.transform;
+                            PoliceAndThief.jewel02.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 3:
                             PoliceAndThief.jewel03BeingStealed = player;
-                            PoliceAndThief.jewel03.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel03.SetActive(true);
+                            PoliceAndThief.jewel03.transform.parent = player.transform;
+                            PoliceAndThief.jewel03.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 4:
                             PoliceAndThief.jewel04BeingStealed = player;
-                            PoliceAndThief.jewel04.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel04.SetActive(true);
+                            PoliceAndThief.jewel04.transform.parent = player.transform;
+                            PoliceAndThief.jewel04.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 5:
                             PoliceAndThief.jewel05BeingStealed = player;
-                            PoliceAndThief.jewel05.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel05.SetActive(true);
+                            PoliceAndThief.jewel05.transform.parent = player.transform;
+                            PoliceAndThief.jewel05.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 6:
                             PoliceAndThief.jewel06BeingStealed = player;
-                            PoliceAndThief.jewel06.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel06.SetActive(true);
+                            PoliceAndThief.jewel06.transform.parent = player.transform;
+                            PoliceAndThief.jewel06.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 7:
                             PoliceAndThief.jewel07BeingStealed = player;
-                            PoliceAndThief.jewel07.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel07.SetActive(true);
+                            PoliceAndThief.jewel07.transform.parent = player.transform;
+                            PoliceAndThief.jewel07.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 8:
                             PoliceAndThief.jewel08BeingStealed = player;
-                            PoliceAndThief.jewel08.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel08.SetActive(true);
+                            PoliceAndThief.jewel08.transform.parent = player.transform;
+                            PoliceAndThief.jewel08.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 9:
                             PoliceAndThief.jewel09BeingStealed = player;
-                            PoliceAndThief.jewel09.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel09.SetActive(true);
+                            PoliceAndThief.jewel09.transform.parent = player.transform;
+                            PoliceAndThief.jewel09.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 10:
                             PoliceAndThief.jewel10BeingStealed = player;
-                            PoliceAndThief.jewel10.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel10.SetActive(true);
+                            PoliceAndThief.jewel10.transform.parent = player.transform;
+                            PoliceAndThief.jewel10.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 11:
                             PoliceAndThief.jewel11BeingStealed = player;
-                            PoliceAndThief.jewel11.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel11.SetActive(true);
+                            PoliceAndThief.jewel11.transform.parent = player.transform;
+                            PoliceAndThief.jewel11.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 12:
                             PoliceAndThief.jewel12BeingStealed = player;
-                            PoliceAndThief.jewel12.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel12.SetActive(true);
+                            PoliceAndThief.jewel12.transform.parent = player.transform;
+                            PoliceAndThief.jewel12.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 13:
                             PoliceAndThief.jewel13BeingStealed = player;
-                            PoliceAndThief.jewel13.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel13.SetActive(true);
+                            PoliceAndThief.jewel13.transform.parent = player.transform;
+                            PoliceAndThief.jewel13.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 14:
                             PoliceAndThief.jewel14BeingStealed = player;
-                            PoliceAndThief.jewel14.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel14.SetActive(true);
+                            PoliceAndThief.jewel14.transform.parent = player.transform;
+                            PoliceAndThief.jewel14.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                         case 15:
                             PoliceAndThief.jewel15BeingStealed = player;
-                            PoliceAndThief.jewel15.transform.position = player.transform.position + new Vector3(0, 0.5f, -0.25f);
                             PoliceAndThief.jewel15.SetActive(true);
+                            PoliceAndThief.jewel15.transform.parent = player.transform;
+                            PoliceAndThief.jewel15.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
                             break;
                     }
                 }
@@ -2606,6 +2924,7 @@ namespace LasMonjas
                             }
                             break;
                     }
+                    myJewel.transform.SetParent(null);
                 }
 
             }
@@ -2667,62 +2986,77 @@ namespace LasMonjas
                             if (activatedSensei) {
                                 switch (jewelRevertedId) {
                                     case 1:
+                                        PoliceAndThief.jewel01.transform.SetParent(null);
                                         PoliceAndThief.jewel01.transform.position = new Vector3(6.95f, 4.95f, 1f);
                                         PoliceAndThief.jewel01BeingStealed = null;
                                         break;
                                     case 2:
+                                        PoliceAndThief.jewel02.transform.SetParent(null);
                                         PoliceAndThief.jewel02.transform.position = new Vector3(-3.75f, 5.35f, 1f);
                                         PoliceAndThief.jewel02BeingStealed = null;
                                         break;
                                     case 3:
+                                        PoliceAndThief.jewel03.transform.SetParent(null);
                                         PoliceAndThief.jewel03.transform.position = new Vector3(-7.7f, 11.3f, 1f);
                                         PoliceAndThief.jewel03BeingStealed = null;
                                         break;
                                     case 4:
+                                        PoliceAndThief.jewel04.transform.SetParent(null);
                                         PoliceAndThief.jewel04.transform.position = new Vector3(-19.65f, 5.3f, 1f);
                                         PoliceAndThief.jewel04BeingStealed = null;
                                         break;
                                     case 5:
+                                        PoliceAndThief.jewel05.transform.SetParent(null);
                                         PoliceAndThief.jewel05.transform.position = new Vector3(-19.65f, -8, 1f);
                                         PoliceAndThief.jewel05BeingStealed = null;
                                         break;
                                     case 6:
+                                        PoliceAndThief.jewel06.transform.SetParent(null);
                                         PoliceAndThief.jewel06.transform.position = new Vector3(-5.45f, -13f, 1f);
                                         PoliceAndThief.jewel06BeingStealed = null;
                                         break;
                                     case 7:
+                                        PoliceAndThief.jewel07.transform.SetParent(null);
                                         PoliceAndThief.jewel07.transform.position = new Vector3(-7.65f, -4.2f, 1f);
                                         PoliceAndThief.jewel07BeingStealed = null;
                                         break;
                                     case 8:
+                                        PoliceAndThief.jewel08.transform.SetParent(null);
                                         PoliceAndThief.jewel08.transform.position = new Vector3(2f, -6.75f, 1f);
                                         PoliceAndThief.jewel08BeingStealed = null;
                                         break;
                                     case 9:
+                                        PoliceAndThief.jewel09.transform.SetParent(null);
                                         PoliceAndThief.jewel09.transform.position = new Vector3(8.9f, 1.45f, 1f);
                                         PoliceAndThief.jewel09BeingStealed = null;
                                         break;
                                     case 10:
+                                        PoliceAndThief.jewel10.transform.SetParent(null);
                                         PoliceAndThief.jewel10.transform.position = new Vector3(4.6f, -2.25f, 1f);
                                         PoliceAndThief.jewel10BeingStealed = null;
                                         break;
                                     case 11:
+                                        PoliceAndThief.jewel11.transform.SetParent(null);
                                         PoliceAndThief.jewel11.transform.position = new Vector3(-5.05f, -0.88f, 1f);
                                         PoliceAndThief.jewel11BeingStealed = null;
                                         break;
                                     case 12:
+                                        PoliceAndThief.jewel12.transform.SetParent(null);
                                         PoliceAndThief.jewel12.transform.position = new Vector3(-8.25f, -0.45f, 1f);
                                         PoliceAndThief.jewel12BeingStealed = null;
                                         break;
                                     case 13:
+                                        PoliceAndThief.jewel13.transform.SetParent(null);
                                         PoliceAndThief.jewel13.transform.position = new Vector3(-19.75f, -1.55f, 1f);
                                         PoliceAndThief.jewel13BeingStealed = null;
                                         break;
                                     case 14:
+                                        PoliceAndThief.jewel14.transform.SetParent(null);
                                         PoliceAndThief.jewel14.transform.position = new Vector3(-12.1f, -13.15f, 1f);
                                         PoliceAndThief.jewel14BeingStealed = null;
                                         break;
                                     case 15:
+                                        PoliceAndThief.jewel15.transform.SetParent(null);
                                         PoliceAndThief.jewel15.transform.position = new Vector3(7.15f, -14.45f, 1f);
                                         PoliceAndThief.jewel15BeingStealed = null;
                                         break;
@@ -2731,62 +3065,77 @@ namespace LasMonjas
                             else {
                                 switch (jewelRevertedId) {
                                     case 1:
+                                        PoliceAndThief.jewel01.transform.SetParent(null);
                                         PoliceAndThief.jewel01.transform.position = new Vector3(-18.65f, -9.9f, 1f);
                                         PoliceAndThief.jewel01BeingStealed = null;
                                         break;
                                     case 2:
+                                        PoliceAndThief.jewel02.transform.SetParent(null);
                                         PoliceAndThief.jewel02.transform.position = new Vector3(-21.5f, -2, 1f);
                                         PoliceAndThief.jewel02BeingStealed = null;
                                         break;
                                     case 3:
+                                        PoliceAndThief.jewel03.transform.SetParent(null);
                                         PoliceAndThief.jewel03.transform.position = new Vector3(-5.9f, -8.25f, 1f);
                                         PoliceAndThief.jewel03BeingStealed = null;
                                         break;
                                     case 4:
+                                        PoliceAndThief.jewel04.transform.SetParent(null);
                                         PoliceAndThief.jewel04.transform.position = new Vector3(4.5f, -7.5f, 1f);
                                         PoliceAndThief.jewel04BeingStealed = null;
                                         break;
                                     case 5:
+                                        PoliceAndThief.jewel05.transform.SetParent(null);
                                         PoliceAndThief.jewel05.transform.position = new Vector3(7.85f, -14.45f, 1f);
                                         PoliceAndThief.jewel05BeingStealed = null;
                                         break;
                                     case 6:
+                                        PoliceAndThief.jewel06.transform.SetParent(null);
                                         PoliceAndThief.jewel06.transform.position = new Vector3(6.65f, -4.8f, 1f);
                                         PoliceAndThief.jewel06BeingStealed = null;
                                         break;
                                     case 7:
+                                        PoliceAndThief.jewel07.transform.SetParent(null);
                                         PoliceAndThief.jewel07.transform.position = new Vector3(10.5f, 2.15f, 1f);
                                         PoliceAndThief.jewel07BeingStealed = null;
                                         break;
                                     case 8:
+                                        PoliceAndThief.jewel08.transform.SetParent(null);
                                         PoliceAndThief.jewel08.transform.position = new Vector3(-5.5f, 3.5f, 1f);
                                         PoliceAndThief.jewel08BeingStealed = null;
                                         break;
                                     case 9:
+                                        PoliceAndThief.jewel09.transform.SetParent(null);
                                         PoliceAndThief.jewel09.transform.position = new Vector3(-19, -1.2f, 1f);
                                         PoliceAndThief.jewel09BeingStealed = null;
                                         break;
                                     case 10:
+                                        PoliceAndThief.jewel10.transform.SetParent(null);
                                         PoliceAndThief.jewel10.transform.position = new Vector3(-21.5f, -8.35f, 1f);
                                         PoliceAndThief.jewel10BeingStealed = null;
                                         break;
                                     case 11:
+                                        PoliceAndThief.jewel11.transform.SetParent(null);
                                         PoliceAndThief.jewel11.transform.position = new Vector3(-12.5f, -3.75f, 1f);
                                         PoliceAndThief.jewel11BeingStealed = null;
                                         break;
                                     case 12:
+                                        PoliceAndThief.jewel12.transform.SetParent(null);
                                         PoliceAndThief.jewel12.transform.position = new Vector3(-5.9f, -5.25f, 1f);
                                         PoliceAndThief.jewel12BeingStealed = null;
                                         break;
                                     case 13:
+                                        PoliceAndThief.jewel13.transform.SetParent(null);
                                         PoliceAndThief.jewel13.transform.position = new Vector3(2.65f, -16.5f, 1f);
                                         PoliceAndThief.jewel13BeingStealed = null;
                                         break;
                                     case 14:
+                                        PoliceAndThief.jewel14.transform.SetParent(null);
                                         PoliceAndThief.jewel14.transform.position = new Vector3(16.75f, -4.75f, 1f);
                                         PoliceAndThief.jewel14BeingStealed = null;
                                         break;
                                     case 15:
+                                        PoliceAndThief.jewel15.transform.SetParent(null);
                                         PoliceAndThief.jewel15.transform.position = new Vector3(3.8f, 3.5f, 1f);
                                         PoliceAndThief.jewel15BeingStealed = null;
                                         break;
@@ -2797,62 +3146,77 @@ namespace LasMonjas
                         case 1:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(-4.5f, 2.5f, 1f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(6.25f, 14f, 1f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(9.15f, 4.75f, 1f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(14.75f, 20.5f, 1f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(19.5f, 17.5f, 1f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(21, 24.1f, 1f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(19.5f, 4.75f, 1f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 8:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(28.25f, 0, 1f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 9:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(2.45f, 11.25f, 1f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(4.4f, 1.75f, 1f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(9.25f, 13f, 1f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(13.75f, 23.5f, 1f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(16, 4, 1f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(15.35f, -0.9f, 1f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(19.5f, -1.75f, 1f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -2862,62 +3226,77 @@ namespace LasMonjas
                         case 2:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(16.7f, -2.65f, 0.75f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(25.35f, -7.35f, 0.75f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(34.9f, -9.75f, 0.75f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(36.5f, -21.75f, 0.75f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(17.25f, -17.5f, 0.75f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(10.9f, -20.5f, -0.75f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(1.5f, -20.25f, 0.75f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 08:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(3f, -12f, 0.75f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 09:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(30f, -7.35f, 0.75f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(40.25f, -8f, 0.75f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(26f, -17.15f, 0.75f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(22f, -25.25f, 0.75f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(20.65f, -12f, 0.75f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(9.75f, -12.25f, 0.75f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(2.25f, -24f, 0.75f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -2927,62 +3306,77 @@ namespace LasMonjas
                         case 3:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(18.65f, -9.9f, 1f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(21.5f, -2, 1f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(5.9f, -8.25f, 1f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(-4.5f, -7.5f, 1f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(-7.85f, -14.45f, 1f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(-6.65f, -4.8f, 1f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(-10.5f, 2.15f, 1f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 8:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(5.5f, 3.5f, 1f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 9:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(19, -1.2f, 1f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(21.5f, -8.35f, 1f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(12.5f, -3.75f, 1f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(5.9f, -5.25f, 1f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(-2.65f, -16.5f, 1f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(-16.75f, -4.75f, 1f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(-3.8f, 3.5f, 1f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -2992,62 +3386,77 @@ namespace LasMonjas
                         case 4:
                             switch (jewelRevertedId) {
                                 case 1:
+                                    PoliceAndThief.jewel01.transform.SetParent(null);
                                     PoliceAndThief.jewel01.transform.position = new Vector3(-23.5f, -1.5f, 1f);
                                     PoliceAndThief.jewel01BeingStealed = null;
                                     break;
                                 case 2:
+                                    PoliceAndThief.jewel02.transform.SetParent(null);
                                     PoliceAndThief.jewel02.transform.position = new Vector3(-14.15f, -4.85f, 1f);
                                     PoliceAndThief.jewel02BeingStealed = null;
                                     break;
                                 case 3:
+                                    PoliceAndThief.jewel03.transform.SetParent(null);
                                     PoliceAndThief.jewel03.transform.position = new Vector3(-13.9f, -16.25f, 1f);
                                     PoliceAndThief.jewel03BeingStealed = null;
                                     break;
                                 case 4:
+                                    PoliceAndThief.jewel04.transform.SetParent(null);
                                     PoliceAndThief.jewel04.transform.position = new Vector3(-0.85f, -2.5f, 1f);
                                     PoliceAndThief.jewel04BeingStealed = null;
                                     break;
                                 case 5:
+                                    PoliceAndThief.jewel05.transform.SetParent(null);
                                     PoliceAndThief.jewel05.transform.position = new Vector3(-5, 8.5f, 1f);
                                     PoliceAndThief.jewel05BeingStealed = null;
                                     break;
                                 case 6:
+                                    PoliceAndThief.jewel06.transform.SetParent(null);
                                     PoliceAndThief.jewel06.transform.position = new Vector3(19.3f, -4.15f, 1f);
                                     PoliceAndThief.jewel06BeingStealed = null;
                                     break;
                                 case 7:
+                                    PoliceAndThief.jewel07.transform.SetParent(null);
                                     PoliceAndThief.jewel07.transform.position = new Vector3(19.85f, 8, 1f);
                                     PoliceAndThief.jewel07BeingStealed = null;
                                     break;
                                 case 8:
+                                    PoliceAndThief.jewel08.transform.SetParent(null);
                                     PoliceAndThief.jewel08.transform.position = new Vector3(28.85f, -1.75f, 1f);
                                     PoliceAndThief.jewel08BeingStealed = null;
                                     break;
                                 case 9:
+                                    PoliceAndThief.jewel09.transform.SetParent(null);
                                     PoliceAndThief.jewel09.transform.position = new Vector3(-14.5f, -8.5f, 1f);
                                     PoliceAndThief.jewel09BeingStealed = null;
                                     break;
                                 case 10:
+                                    PoliceAndThief.jewel10.transform.SetParent(null);
                                     PoliceAndThief.jewel10.transform.position = new Vector3(6.3f, -2.75f, 1f);
                                     PoliceAndThief.jewel10BeingStealed = null;
                                     break;
                                 case 11:
+                                    PoliceAndThief.jewel11.transform.SetParent(null);
                                     PoliceAndThief.jewel11.transform.position = new Vector3(20.75f, 2.5f, 1f);
                                     PoliceAndThief.jewel11BeingStealed = null;
                                     break;
                                 case 12:
+                                    PoliceAndThief.jewel12.transform.SetParent(null);
                                     PoliceAndThief.jewel12.transform.position = new Vector3(29.25f, 7, 1f);
                                     PoliceAndThief.jewel12BeingStealed = null;
                                     break;
                                 case 13:
+                                    PoliceAndThief.jewel13.transform.SetParent(null);
                                     PoliceAndThief.jewel13.transform.position = new Vector3(37.5f, -3.5f, 1f);
                                     PoliceAndThief.jewel13BeingStealed = null;
                                     break;
                                 case 14:
+                                    PoliceAndThief.jewel14.transform.SetParent(null);
                                     PoliceAndThief.jewel14.transform.position = new Vector3(25.2f, -8.75f, 1f);
                                     PoliceAndThief.jewel14BeingStealed = null;
                                     break;
                                 case 15:
+                                    PoliceAndThief.jewel15.transform.SetParent(null);
                                     PoliceAndThief.jewel15.transform.position = new Vector3(16.3f, -11, 1f);
                                     PoliceAndThief.jewel15BeingStealed = null;
                                     break;
@@ -3297,6 +3706,122 @@ namespace LasMonjas
                 }
             }
         }
+
+        public static PlayerControl oldHotPotato = null;
+
+        public static void hotPotatoTransfer(byte targetId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId && HotPotato.hotPotatoPlayer != null) {
+
+                    if (!HotPotato.firstPotatoTransfered) {
+                        HotPotato.firstPotatoTransfered = true;
+                        new CustomMessage("Hot Potato: ", HotPotato.matchDuration, -1, -1f, 18);
+                        new CustomMessage("Time Left: ", HotPotato.matchDuration, -1, -1.3f, 15);
+                        HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + HotPotato.notPotatoTeam.Count + "</color>";
+                        new CustomMessage(HotPotato.hotpotatopointCounter, HotPotato.matchDuration, -1, 1.9f, 17);
+                    }
+
+                    if (HotPotato.resetTimeForTransfer) {
+                        HotPotato.timeforTransfer = HotPotato.savedtimeforTransfer + 3f;
+                    }
+                    else {
+                        HotPotato.timeforTransfer = (HotPotato.timeforTransfer + HotPotato.increaseTimeIfNoReset + 3f);
+                    }
+
+                    oldHotPotato = HotPotato.hotPotatoPlayer;
+
+                    HotPotato.notPotatoTeam.Add(oldHotPotato);
+
+                    // Switch role
+                    if (HotPotato.notPotato01 != null && HotPotato.notPotato01 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato01);
+                        HotPotato.notPotato01 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato02 != null && HotPotato.notPotato02 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato02);
+                        HotPotato.notPotato02 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato03 != null && HotPotato.notPotato03 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato03);
+                        HotPotato.notPotato03 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato04 != null && HotPotato.notPotato04 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato04);
+                        HotPotato.notPotato04 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato05 != null && HotPotato.notPotato05 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato05);
+                        HotPotato.notPotato05 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato06 != null && HotPotato.notPotato06 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato06);
+                        HotPotato.notPotato06 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato07 != null && HotPotato.notPotato07 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato07);
+                        HotPotato.notPotato07 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato08 != null && HotPotato.notPotato08 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato08);
+                        HotPotato.notPotato08 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato09 != null && HotPotato.notPotato09 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato09);
+                        HotPotato.notPotato09 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato10 != null && HotPotato.notPotato10 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato10);
+                        HotPotato.notPotato10 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato11 != null && HotPotato.notPotato11 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato11);
+                        HotPotato.notPotato11 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato12 != null && HotPotato.notPotato12 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato12);
+                        HotPotato.notPotato12 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato13 != null && HotPotato.notPotato13 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato13);
+                        HotPotato.notPotato13 = oldHotPotato;
+                    }
+                    else if (HotPotato.notPotato14 != null && HotPotato.notPotato14 == player) {
+                        HotPotato.notPotatoTeam.Remove(HotPotato.notPotato14);
+                        HotPotato.notPotato14 = oldHotPotato;
+                    }
+
+                    HotPotato.hotPotatoPlayer = player;
+                    HotPotato.hotPotatoPlayer.NetTransform.Halt();
+                    HotPotato.hotPotatoPlayer.moveable = false;
+                    HotPotato.hotPotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                    HotPotato.hotPotato.transform.parent = HotPotato.hotPotatoPlayer.transform;
+
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(3, new Action<float>((p) => { // Delayed action
+                        if (p == 1f) {
+                            HotPotato.hotPotatoPlayer.moveable = true;
+                        }
+                    })));
+
+                    int notPotatosAlives = 0;
+                    HotPotato.notPotatoTeamAlive.Clear();
+                    foreach (PlayerControl notPotato in HotPotato.notPotatoTeam) {
+                        if (!notPotato.Data.IsDead) {
+                            notPotatosAlives += 1;
+                            HotPotato.notPotatoTeamAlive.Add(notPotato);
+                        }
+                    }
+
+                    new CustomMessage("<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> is the new Hot Potato!", 5, -1, 1f, 16);
+
+                    HotPotato.hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF>" + HotPotato.hotPotatoPlayer.name + "</color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + HotPotato.notPotatoTeam.Count + "</color>";
+
+                    // Set custom cooldown to the hotpotato button
+                    hotPotatoButton.Timer = HotPotato.transferCooldown;
+                    if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer || PlayerControl.LocalPlayer == oldHotPotato)
+                        SoundManager.Instance.PlaySound(CustomMain.customAssets.roleThiefStealRole, false, 100f);
+                }
+            }
+        }
     }
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
@@ -3501,6 +4026,9 @@ namespace LasMonjas
                 case (byte)CustomRPC.SleuthUsedLocate:
                     RPCProcedure.sleuthUsedLocate(reader.ReadByte());
                     break;
+                case (byte)CustomRPC.FinkHawkEye:
+                    RPCProcedure.finkHawkEye();
+                    break;
                 case (byte)CustomRPC.SealVent:
                     RPCProcedure.sealVent(reader.ReadPackedInt32());
                     break;
@@ -3516,6 +4044,9 @@ namespace LasMonjas
                 case (byte)CustomRPC.ResetSpiritualistReviveValues:
                     RPCProcedure.resetSpiritualistReviveValues();
                     break;
+                case (byte)CustomRPC.CowardUsedCall:
+                    RPCProcedure.cowardUsedCall();
+                    break;
                 case (byte)CustomRPC.PlaceCamera:
                     RPCProcedure.placeCamera(reader.ReadBytesAndSize());
                     break;
@@ -3526,6 +4057,9 @@ namespace LasMonjas
                 case (byte)CustomRPC.PerformerIsReported:
                     byte check = reader.ReadByte();
                     RPCProcedure.performerIsReported(check);
+                    break;
+                case (byte)CustomRPC.MedusaPetrify:
+                    RPCProcedure.medusaPetrify(reader.ReadByte());
                     break;
                 case (byte)CustomRPC.HunterUsedHunted:
                     RPCProcedure.hunterUsedHunted(reader.ReadByte());
@@ -3599,6 +4133,11 @@ namespace LasMonjas
                     byte capturedId = reader.ReadByte();
                     byte whichKingCaptured = reader.ReadByte();
                     RPCProcedure.kingoftheHillCapture(capturedId, whichKingCaptured);
+                    break;
+
+                // Hot Potato
+                case (byte)CustomRPC.HotPotatoTransfer:
+                    RPCProcedure.hotPotatoTransfer(reader.ReadByte());
                     break;
             }
         }

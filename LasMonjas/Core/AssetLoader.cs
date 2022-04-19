@@ -13,6 +13,8 @@ namespace LasMonjas.Core
         private static readonly Assembly allulCustomMusic = Assembly.GetExecutingAssembly();
         private static readonly Assembly allulCustomMap = Assembly.GetExecutingAssembly();
 
+        private static AssetBundle AssetBundleHats;
+
         public static void LoadAssets() {
 
             // Custom Bundle Assets
@@ -48,6 +50,7 @@ namespace LasMonjas.Core
             CustomMain.customAssets.spiritualistRevive = assetBundleBundle.LoadAsset<AudioClip>("spiritualistRevive_Recovery.ogg").DontUnload();
             CustomMain.customAssets.performerDio = assetBundleBundle.LoadAsset<GameObject>("dio.prefab").DontUnload();
             CustomMain.customAssets.jinxQuack = assetBundleBundle.LoadAsset<AudioClip>("jinxQuack_quack.mp3").DontUnload();
+            CustomMain.customAssets.medusaPetrify = assetBundleBundle.LoadAsset<AudioClip>("medusaPretrify_Earth2.ogg").DontUnload();
 
             // Capture the flag
             CustomMain.customAssets.redflag = assetBundleBundle.LoadAsset<GameObject>("redFlag.prefab").DontUnload();
@@ -76,6 +79,9 @@ namespace LasMonjas.Core
             CustomMain.customAssets.greenfloor = assetBundleBundle.LoadAsset<GameObject>("greenfloorbase.prefab").DontUnload();
             CustomMain.customAssets.yellowfloor = assetBundleBundle.LoadAsset<GameObject>("yellowfloorbase.prefab").DontUnload();
 
+            // Hot Potato
+            CustomMain.customAssets.hotPotato = assetBundleBundle.LoadAsset<GameObject>("Hot_Potato.prefab").DontUnload();
+            
             // Custom Lobby Assets
             var resourceStreamLobby = allulCustomLobby.GetManifestResourceStream("LasMonjas.Images.MyAssets.allulcustomlobby");
             var assetBundleLobby = AssetBundle.LoadFromMemory(resourceStreamLobby.ReadFully());
@@ -100,6 +106,7 @@ namespace LasMonjas.Core
             CustomMain.customAssets.captureTheFlagMusic = assetBundleMusic.LoadAsset<AudioClip>("CaptureTheFlagMusic_BeachfrontCelebration.mp3").DontUnload();
             CustomMain.customAssets.policeAndThiefMusic = assetBundleMusic.LoadAsset<AudioClip>("PoliceAndThief_Unity.mp3").DontUnload();
             CustomMain.customAssets.kingOfTheHillMusic = assetBundleMusic.LoadAsset<AudioClip>("KingOfTheHill_Bama Country.mp3").DontUnload();
+            CustomMain.customAssets.hotPotatoMusic = assetBundleMusic.LoadAsset<AudioClip>("HotPotato_Batty McFaddin.mp3").DontUnload();
             CustomMain.customAssets.lobbyMusic = assetBundleMusic.LoadAsset<AudioClip>("Lobby_Hyperfun.mp3").DontUnload();
             CustomMain.customAssets.tasksCalmMusic = assetBundleMusic.LoadAsset<AudioClip>("TasksCalm_Sneaky Adventure.mp3").DontUnload();
             CustomMain.customAssets.tasksCoreMusic = assetBundleMusic.LoadAsset<AudioClip>("TasksCore_Investigations.mp3").DontUnload();
@@ -112,11 +119,17 @@ namespace LasMonjas.Core
             CustomMain.customAssets.winNeutralsMusic = assetBundleMusic.LoadAsset<AudioClip>("WinNeutrals_Mistake the Getaway.mp3").DontUnload();
             CustomMain.customAssets.winRebelsMusic = assetBundleMusic.LoadAsset<AudioClip>("WinRebels_Danse Macabre - Low Strings Finale.mp3").DontUnload();
 
+            // Custom Hats Assets
+            byte[] bundleRead = Assembly.GetCallingAssembly().GetManifestResourceStream("LasMonjas.Images.MyAssets.allulcustomhats").ReadFully();
+            AssetBundleHats = AssetBundle.LoadFromMemory(bundleRead);
+
             assetBundleBundle.Unload(false);
             assetBundleLobby.Unload(false);
             assetBundleMap.Unload(false);
             assetBundleMusic.Unload(false);
-
         }
+
+        public static UnityEngine.Object LoadAsset(string name)
+           => AssetBundleHats.LoadAsset(name);
     }
 }

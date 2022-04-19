@@ -251,10 +251,12 @@ namespace LasMonjas.Patches {
                     if (/* Special roles */ roleInfo.roleId == RoleId.Lover || roleInfo.roleId == RoleId.Kid || (roleInfo == RoleInfo.vigilantMira && PlayerControl.GameOptions.MapId != 1) || (roleInfo == RoleInfo.vigilant && PlayerControl.GameOptions.MapId == 1)
                         /* Impostor roles */ || roleInfo.roleId == RoleId.Mimic || roleInfo.roleId == RoleId.Painter || roleInfo.roleId == RoleId.Demon || roleInfo.roleId == RoleId.Janitor || roleInfo.roleId == RoleId.Ilusionist || roleInfo.roleId == RoleId.Manipulator || roleInfo.roleId == RoleId.Bomberman || roleInfo.roleId == RoleId.Chameleon || roleInfo.roleId == RoleId.Gambler || roleInfo.roleId == RoleId.Sorcerer || roleInfo.roleId == RoleId.Impostor
                         /* Modifiers*/ || roleInfo.roleId == RoleId.BigChungus
-                        /* Capture the flag players*/ || roleInfo.roleId == RoleId.RedPlayer01 || roleInfo.roleId == RoleId.RedPlayer02 || roleInfo.roleId == RoleId.RedPlayer03 || roleInfo.roleId == RoleId.RedPlayer04 || roleInfo.roleId == RoleId.RedPlayer05 || roleInfo.roleId == RoleId.RedPlayer06 || roleInfo.roleId == RoleId.RedPlayer07 || roleInfo.roleId == RoleId.BluePlayer01 || roleInfo.roleId == RoleId.BluePlayer02 || roleInfo.roleId == RoleId.BluePlayer03 || roleInfo.roleId == RoleId.BluePlayer04 || roleInfo.roleId == RoleId.BluePlayer05 || roleInfo.roleId == RoleId.BluePlayer06 || roleInfo.roleId == RoleId.BluePlayer07 || roleInfo.roleId == RoleId.BluePlayer08
+                        /* Capture the flag players*/ || roleInfo.roleId == RoleId.RedPlayer01 || roleInfo.roleId == RoleId.RedPlayer02 || roleInfo.roleId == RoleId.RedPlayer03 || roleInfo.roleId == RoleId.RedPlayer04 || roleInfo.roleId == RoleId.RedPlayer05 || roleInfo.roleId == RoleId.RedPlayer06 || roleInfo.roleId == RoleId.RedPlayer07 || roleInfo.roleId == RoleId.BluePlayer01 || roleInfo.roleId == RoleId.BluePlayer02 || roleInfo.roleId == RoleId.BluePlayer03 || roleInfo.roleId == RoleId.BluePlayer04 || roleInfo.roleId == RoleId.BluePlayer05 || roleInfo.roleId == RoleId.BluePlayer06 || roleInfo.roleId == RoleId.BluePlayer07 || roleInfo.roleId == RoleId.StealerPlayer
                         /* Police and Thief players*/ || roleInfo.roleId == RoleId.PolicePlayer01 || roleInfo.roleId == RoleId.PolicePlayer02 || roleInfo.roleId == RoleId.PolicePlayer03 || roleInfo.roleId == RoleId.PolicePlayer04 || roleInfo.roleId == RoleId.PolicePlayer05 || roleInfo.roleId == RoleId.ThiefPlayer01 || roleInfo.roleId == RoleId.ThiefPlayer02 || roleInfo.roleId == RoleId.ThiefPlayer03 || roleInfo.roleId == RoleId.ThiefPlayer04 || roleInfo.roleId == RoleId.ThiefPlayer05 || roleInfo.roleId == RoleId.ThiefPlayer06 || roleInfo.roleId == RoleId.ThiefPlayer07 || roleInfo.roleId == RoleId.ThiefPlayer08 || roleInfo.roleId == RoleId.ThiefPlayer09 || roleInfo.roleId == RoleId.ThiefPlayer10
-                        /* King of the hill*/ || roleInfo.roleId == RoleId.GreenKing || roleInfo.roleId == RoleId.YellowKing || roleInfo.roleId == RoleId.GreenPlayer01 || roleInfo.roleId == RoleId.GreenPlayer02 || roleInfo.roleId == RoleId.GreenPlayer03 || roleInfo.roleId == RoleId.GreenPlayer04 || roleInfo.roleId == RoleId.GreenPlayer05 || roleInfo.roleId == RoleId.GreenPlayer06 || roleInfo.roleId == RoleId.YellowPlayer01 || roleInfo.roleId == RoleId.YellowPlayer02 || roleInfo.roleId == RoleId.YellowPlayer03 || roleInfo.roleId == RoleId.YellowPlayer04 || roleInfo.roleId == RoleId.YellowPlayer05 || roleInfo.roleId == RoleId.YellowPlayer06 || roleInfo.roleId == RoleId.UsurperPlayer)
-                    continue;
+                        /* King of the hill*/ || roleInfo.roleId == RoleId.GreenKing || roleInfo.roleId == RoleId.YellowKing || roleInfo.roleId == RoleId.GreenPlayer01 || roleInfo.roleId == RoleId.GreenPlayer02 || roleInfo.roleId == RoleId.GreenPlayer03 || roleInfo.roleId == RoleId.GreenPlayer04 || roleInfo.roleId == RoleId.GreenPlayer05 || roleInfo.roleId == RoleId.GreenPlayer06 || roleInfo.roleId == RoleId.YellowPlayer01 || roleInfo.roleId == RoleId.YellowPlayer02 || roleInfo.roleId == RoleId.YellowPlayer03 || roleInfo.roleId == RoleId.YellowPlayer04 || roleInfo.roleId == RoleId.YellowPlayer05 || roleInfo.roleId == RoleId.YellowPlayer06 || roleInfo.roleId == RoleId.UsurperPlayer
+                        /* Hot Potato */ || roleInfo.roleId == RoleId.HotPotato || roleInfo.roleId == RoleId.NotPotato01 || roleInfo.roleId == RoleId.NotPotato02 || roleInfo.roleId == RoleId.NotPotato03 || roleInfo.roleId == RoleId.NotPotato04 || roleInfo.roleId == RoleId.NotPotato05 || roleInfo.roleId == RoleId.NotPotato06 || roleInfo.roleId == RoleId.NotPotato07 || roleInfo.roleId == RoleId.NotPotato08 || roleInfo.roleId == RoleId.NotPotato09 || roleInfo.roleId == RoleId.NotPotato10 || roleInfo.roleId == RoleId.NotPotato11 || roleInfo.roleId == RoleId.NotPotato12 || roleInfo.roleId == RoleId.NotPotato13 || roleInfo.roleId == RoleId.NotPotato14
+                        /* Exploded Potato */ || roleInfo.roleId == RoleId.ExplodedPotato01 || roleInfo.roleId == RoleId.ExplodedPotato02 || roleInfo.roleId == RoleId.ExplodedPotato03 || roleInfo.roleId == RoleId.ExplodedPotato04 || roleInfo.roleId == RoleId.ExplodedPotato05 || roleInfo.roleId == RoleId.ExplodedPotato06 || roleInfo.roleId == RoleId.ExplodedPotato07 || roleInfo.roleId == RoleId.ExplodedPotato08 || roleInfo.roleId == RoleId.ExplodedPotato09 || roleInfo.roleId == RoleId.ExplodedPotato10 || roleInfo.roleId == RoleId.ExplodedPotato11 || roleInfo.roleId == RoleId.ExplodedPotato12 || roleInfo.roleId == RoleId.ExplodedPotato13 || roleInfo.roleId == RoleId.ExplodedPotato14)
+                        continue;
 
                     // Only add current game roles
                     if (roleInfo.roleId != RoleInfo.getRoleInfoForPlayer(player).FirstOrDefault().roleId) {
@@ -266,7 +268,8 @@ namespace LasMonjas.Patches {
                     Transform button = UnityEngine.Object.Instantiate(buttonTemplate, buttonParent);
                     Transform buttonMask = UnityEngine.Object.Instantiate(maskTemplate, buttonParent);
                     TMPro.TextMeshPro label = UnityEngine.Object.Instantiate(textTemplate, button);
-                    button.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.AllNamePlates[0].Image;
+                    button.GetComponent<SpriteRenderer>().sprite = DestroyableSingleton<HatManager>.Instance.GetNamePlateById("nameplate_NoPlate")?.viewData?.viewData?.Image;
+                    //button.GetComponent<SpriteRenderer>().sprite = Helpers.loadSpriteFromResources("LasMonjas.Images.GamblerPlate.png", 90f);
                     buttons.Add(button);
                     int row = i / 5, col = i % 5;
                     buttonParent.localPosition = new Vector3(-3.47f + 1.75f * col, 1.5f - 0.45f * row, -5);
@@ -434,6 +437,14 @@ namespace LasMonjas.Patches {
                 Demon.bitten = null;                
                 // Save the meeting target
                 target = meetingTarget;
+
+                // Reset camera zoom for Fink when meeting start
+                if (Fink.fink != null) {
+                    Fink.resetCamera();
+                }
+
+                // Reset medusa target
+                Medusa.petrified = null;
             }
         }
     }

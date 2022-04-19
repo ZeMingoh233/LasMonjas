@@ -100,16 +100,10 @@ namespace LasMonjas.Patches {
         static void Postfix(PlayerControl __instance) {
             if (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started) return;
 
-            if (__instance.AmOwner && __instance.roleCanUseVents() && CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+            if (__instance.AmOwner && __instance.roleCanUseVents() && howmanygamemodesareon == 1) {
                 HudManager.Instance.ImpostorVentButton.Show();
             }
-            else if (__instance.AmOwner && __instance.roleCanUseVents() && PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
-                HudManager.Instance.ImpostorVentButton.Show();
-            }
-            else if (__instance.AmOwner && __instance.roleCanUseVents() && KingOfTheHill.kingOfTheHillMode && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
-                HudManager.Instance.ImpostorVentButton.Show();
-            }
-            else if (__instance.AmOwner && __instance.roleCanUseVents() && HudManager.Instance.ReportButton.isActiveAndEnabled || __instance.AmOwner && __instance.roleCanUseVents() && HudManager.Instance.ReportButton.isActiveAndEnabled && PoliceAndThief.policeAndThiefMode && CaptureTheFlag.captureTheFlagMode) {
+            else if (__instance.AmOwner && __instance.roleCanUseVents() && HudManager.Instance.ReportButton.isActiveAndEnabled || __instance.AmOwner && __instance.roleCanUseVents() && HudManager.Instance.ReportButton.isActiveAndEnabled && howmanygamemodesareon != 1) {
                 HudManager.Instance.ImpostorVentButton.Show();
             }
         }
@@ -159,11 +153,8 @@ namespace LasMonjas.Patches {
         static bool Prefix(SabotageButton __instance) {
 
             // Block sabotage button on custom gamemodes
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) {
-                bool blockFlagSabotage = PlayerControl.LocalPlayer.Data.Role.IsImpostor && CaptureTheFlag.captureTheFlagMode;
-                bool blockPoliceSabotage = PlayerControl.LocalPlayer.Data.Role.IsImpostor && PoliceAndThief.policeAndThiefMode;
-                bool blockKingSabotage = PlayerControl.LocalPlayer.Data.Role.IsImpostor && KingOfTheHill.kingOfTheHillMode;
-                if (blockFlagSabotage || blockPoliceSabotage || blockKingSabotage) return false;
+            if (howmanygamemodesareon == 1) {
+                return false;
             }
             else {
                 
@@ -187,13 +178,8 @@ namespace LasMonjas.Patches {
         static void Postfix() {
 
             // Change sabotage button image and block sabotages if capture the flag mode or police and thief mode
-            if (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode || !CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode) {
-                bool blockFlagSabotage = CaptureTheFlag.captureTheFlagMode;
-                bool blockPoliceSabotage = PoliceAndThief.policeAndThiefMode;
-                bool blockKingSabotage = KingOfTheHill.kingOfTheHillMode;
-                if (blockFlagSabotage || blockPoliceSabotage || blockKingSabotage) {
-                    HudManager.Instance.SabotageButton.Hide();
-                }
+            if (howmanygamemodesareon == 1) {
+                HudManager.Instance.SabotageButton.Hide();
             }
 
             else {
@@ -222,7 +208,7 @@ namespace LasMonjas.Patches {
         static bool Prefix(ReportButton __instance) {
 
             // Block report button if dueling or gamemodes)
-            bool blockReport = Challenger.isDueling || Spiritualist.preventReport || (CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode);
+            bool blockReport = Challenger.isDueling || Spiritualist.preventReport || howmanygamemodesareon == 1;
             if (blockReport) return false;
 
             return true;
@@ -235,8 +221,8 @@ namespace LasMonjas.Patches {
             var roleCanCallEmergency = true;
             var statusText = "";
 
-            // Deactivate emergency button for capture the flag mode and police and thief
-            if ((CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) || (!CaptureTheFlag.captureTheFlagMode && !PoliceAndThief.policeAndThiefMode && KingOfTheHill.kingOfTheHillMode)) {
+            // Deactivate emergency button for custom gamemodes
+            if (howmanygamemodesareon == 1) {
                 roleCanCallEmergency = false;
                 statusText = "Can't use the emergency button \non custom gamemodes!";
             }
@@ -423,8 +409,8 @@ namespace LasMonjas.Patches {
                                     if (!component || component.Data == null || component.Data.Disconnected || component.Data.IsDead) {
                                         num2--;
                                     }
-                                    else if (component?.myRend?.material != null) {
-                                        Color color = component.myRend.material.GetColor("_BodyColor");
+                                    else if (component?.MyRend?.material != null) {
+                                        Color color = component.MyRend.material.GetColor("_BodyColor");
                                         roomColors.Add(color);
                                     }
                                 }

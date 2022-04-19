@@ -36,12 +36,16 @@ namespace LasMonjas
         public static bool createdpoliceandthief = false;
 
         public static bool createdkingofthehill = false;
+
+        public static bool createdhotpotato = false;
         
         public static bool activatedReportButtonAfterCustomMode = false;
 
         public static int quackNumber = 0;
 
         public static int alivePlayers = 15;
+
+        public static int howmanygamemodesareon = 0;
 
         public static void clearAndReloadRoles() {
             Mimic.clearAndReload();
@@ -83,9 +87,9 @@ namespace LasMonjas
             Kid.clearAndReload();
             Welder.clearAndReload();
             Spiritualist.clearAndReload();
-            TheChosenOne.clearAndReload();
+            Coward.clearAndReload();
             Vigilant.clearAndReload();
-            Performer.clearAndReload();
+            Medusa.clearAndReload();
             Hunter.clearAndReload();
             Jinx.clearAndReload();
 
@@ -96,7 +100,9 @@ namespace LasMonjas
             PoliceAndThief.clearAndReload();
 
             KingOfTheHill.clearAndReload();
-            
+
+            HotPotato.clearAndReload();
+
             removedSwipe = false;
             removedAirshipDoors = false;
             activatedSensei = false;
@@ -106,9 +112,11 @@ namespace LasMonjas
             createdcapturetheflag = false;
             createdpoliceandthief = false;
             createdkingofthehill = false;
+            createdhotpotato = false;
             activatedReportButtonAfterCustomMode = false;
             quackNumber = 0;
             alivePlayers = 15;
+            howmanygamemodesareon = 0;
         }
 
     }
@@ -1031,16 +1039,32 @@ namespace LasMonjas
         public static float footprintDuration = 1f;
         public static bool anonymousFootprints = false;
         public static float timer = 1f;
-
+        public static int showFootPrints = 0;
+        public static float cooldown = 30f;
+        public static float duration = 10f;
+        public static float detectiveTimer = 0f;
+        public static float backUpduration = 10f;
         public static int footprintcolor = 6;
+
+        private static Sprite buttonSprite;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.DetectiveFootPrintButton.png", 90f);
+            return buttonSprite;
+        }
 
         public static void clearAndReload() {
             detective = null;
+            detectiveTimer = 0f;
+            showFootPrints = CustomOptionHolder.detectiveShowFootprints.getSelection();
+            cooldown = CustomOptionHolder.detectiveCooldown.getFloat();
+            duration = CustomOptionHolder.detectiveShowFootPrintDuration.getFloat();
             anonymousFootprints = CustomOptionHolder.detectiveAnonymousFootprints.getBool();
             footprintIntervall = CustomOptionHolder.detectiveFootprintIntervall.getFloat();
             footprintDuration = CustomOptionHolder.detectiveFootprintDuration.getFloat();
             timer = footprintIntervall;
             footprintcolor = 6;
+            backUpduration = duration;
         }
     }
 
@@ -1376,6 +1400,19 @@ namespace LasMonjas
         public static List<Arrow> localArrows = new List<Arrow>();
         public static int taskCountForImpostors = 1;
         public static bool includeTeamRenegade = false;
+        public static float cooldown = 30f;
+        public static float duration = 10f;
+        public static float finkTimer = 0f;
+        public static float backUpduration = 10f;
+        public static GameObject finkCamera = null;
+        public static GameObject finkShadow = null;
+
+        private static Sprite buttonSprite;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.FinkEyeButton.png", 90f);
+            return buttonSprite;
+        }
 
         public static void clearAndReload() {
             if (localArrows != null) {
@@ -1387,6 +1424,20 @@ namespace LasMonjas
             taskCountForImpostors = Mathf.RoundToInt(CustomOptionHolder.finkLeftTasksForImpostors.getFloat());
             includeTeamRenegade = CustomOptionHolder.finkIncludeTeamRenegade.getBool();
             fink = null;
+            finkTimer = 0f;
+            cooldown = CustomOptionHolder.finkCooldown.getFloat();
+            duration = CustomOptionHolder.finkDuration.getFloat();
+            backUpduration = duration;
+            finkCamera = null;
+            finkShadow = null;
+        }
+
+        public static void resetCamera() {
+            finkTimer = 0f;
+            if (finkCamera != null && finkShadow != null) {
+                finkCamera.GetComponent<Camera>().orthographicSize = 3;
+                finkShadow.SetActive(true);
+            }
         }
     }
 
@@ -1478,19 +1529,29 @@ namespace LasMonjas
         }
     }
 
-    public static class TheChosenOne
+    public static class Coward
     {
-        public static PlayerControl theChosenOne;
+
+        public static PlayerControl coward;
         public static Color color = new Color32(0, 247, 255, byte.MaxValue);
 
-        public static float reportDelay = 0f;
+        public static bool usedCalls;
+        public static int numberOfCalls;
+        public static int timesUsedCalls;
+        public static TMPro.TMP_Text cowardCallButtonText;
+        private static Sprite buttonSprite;
 
-        public static bool reported = false;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.CowardCallButton.png", 90f);
+            return buttonSprite;
+        }
 
         public static void clearAndReload() {
-            theChosenOne = null;
-            reported = false;
-            reportDelay = CustomOptionHolder.theChosenOneReportDelay.getFloat();
+            coward = null;
+            usedCalls = false;
+            timesUsedCalls = 0;
+            numberOfCalls = (int)CustomOptionHolder.cowardNumberOfCalls.getFloat();
         }
     }
 
@@ -1556,26 +1617,6 @@ namespace LasMonjas
         }
     }
 
-    public static class Performer
-    {
-        public static PlayerControl performer;
-        public static Color color = new Color32(242, 190, 255, byte.MaxValue);
-
-        public static float duration = 15f;
-
-        public static List<Arrow> localPerformerArrows = new List<Arrow>();
-        public static bool reported = false;
-        public static bool musicStop = false;
-
-        public static void clearAndReload() {
-            performer = null;
-            duration = CustomOptionHolder.performerDuration.getFloat();
-            localPerformerArrows = new List<Arrow>();
-            reported = false;
-            musicStop = false;
-        }
-    }
-
     public static class Hunter
     {
         public static PlayerControl hunter;
@@ -1603,6 +1644,37 @@ namespace LasMonjas
             hunter = null;
             resetHunted();
             resetTargetAfterMeeting = CustomOptionHolder.hunterResetTargetAfterMeeting.getBool();
+        }
+    }
+
+    public static class Medusa
+    {
+        public static PlayerControl medusa;
+        public static Color color = new Color32(242, 190, 255, byte.MaxValue);
+
+        public static float cooldown = 20f;
+        public static float delay = 10f;
+        public static float duration = 10f;
+        public static float messageTimer = 0f;
+
+        public static PlayerControl currentTarget;
+        public static PlayerControl petrified;
+
+        private static Sprite buttonSprite;
+        public static Sprite getButtonSprite() {
+            if (buttonSprite) return buttonSprite;
+            buttonSprite = Helpers.loadSpriteFromResources("LasMonjas.Images.MedusaPetrifyButton.png", 90f);
+            return buttonSprite;
+        }
+
+        public static void clearAndReload() {
+            medusa = null;
+            petrified = null;
+            currentTarget = null;
+            cooldown = CustomOptionHolder.medusaCooldown.getFloat();
+            delay = CustomOptionHolder.medusaDelay.getFloat();
+            duration = CustomOptionHolder.medusaDuration.getFloat();
+            messageTimer = 0f;
         }
     }
 
@@ -1649,6 +1721,14 @@ namespace LasMonjas
         public static PlayerControl blind;
         public static PlayerControl flash;
         public static PlayerControl bigchungus;
+        public static PlayerControl theChosenOne;
+        public static float chosenOneReportDelay = 0f;
+        public static bool chosenOneReported = false;
+        public static PlayerControl performer;
+        public static float performerDuration = 15f;
+        public static List<Arrow> performerLocalPerformerArrows = new List<Arrow>();
+        public static bool performerReported = false;
+        public static bool performerMusicStop = false;
 
         // Lovers save if next to be exiled is a lover, because RPC of ending game comes before RPC of exiled
         public static bool notAckedExiledIsLover = false;
@@ -1679,7 +1759,15 @@ namespace LasMonjas
             notAckedExiledIsLover = false;
             blind = null;
             flash = null;
-            bigchungus = null;
+            bigchungus = null; 
+            theChosenOne = null;
+            chosenOneReported = false;
+            chosenOneReportDelay = CustomOptionHolder.theChosenOneReportDelay.getFloat();
+            performer = null;
+            performerDuration = CustomOptionHolder.performerDuration.getFloat();
+            performerLocalPerformerArrows = new List<Arrow>();
+            performerReported = false;
+            performerMusicStop = false;
         }
 
         public static void ClearLovers() {
@@ -1747,9 +1835,9 @@ namespace LasMonjas
         public static PlayerControl blueplayer07 = null;
         public static bool blueplayer07IsReviving = false;
         public static PlayerControl blueplayer07currentTarget = null;
-        public static PlayerControl blueplayer08 = null;
-        public static bool blueplayer08IsReviving = false;
-        public static PlayerControl blueplayer08currentTarget = null;
+        public static PlayerControl stealerPlayer = null;
+        public static bool stealerPlayerIsReviving = false;
+        public static PlayerControl stealerPlayercurrentTarget = null;
 
         public static bool captureTheFlagMode = false;
         public static float requiredFlags = 3;
@@ -1855,9 +1943,9 @@ namespace LasMonjas
             blueplayer07 = null;
             blueplayer07IsReviving = false;
             blueplayer07currentTarget = null;
-            blueplayer08 = null;
-            blueplayer08IsReviving = false;
-            blueplayer08currentTarget = null;
+            stealerPlayer = null;
+            stealerPlayerIsReviving = false;
+            stealerPlayercurrentTarget = null;
             if (CustomOptionHolder.captureTheFlagMode.getSelection() == 1) {
                 captureTheFlagMode = true;
             }
@@ -2435,6 +2523,127 @@ namespace LasMonjas
         }
     }
 
+    public static class HotPotato
+    {
+        public static List<PlayerControl> notPotatoTeam = new List<PlayerControl>();
+        public static List<PlayerControl> notPotatoTeamAlive = new List<PlayerControl>();
+        public static List<PlayerControl> explodedPotatoTeam = new List<PlayerControl>();
+
+        public static PlayerControl hotPotatoPlayer = null;
+        public static PlayerControl hotPotatoPlayerCurrentTarget = null;
+        public static PlayerControl notPotato01 = null;
+        public static PlayerControl notPotato02 = null;
+        public static PlayerControl notPotato03 = null;
+        public static PlayerControl notPotato04 = null;
+        public static PlayerControl notPotato05 = null;
+        public static PlayerControl notPotato06 = null;
+        public static PlayerControl notPotato07 = null;
+        public static PlayerControl notPotato08 = null;
+        public static PlayerControl notPotato09 = null;
+        public static PlayerControl notPotato10 = null;
+        public static PlayerControl notPotato11 = null;
+        public static PlayerControl notPotato12 = null;
+        public static PlayerControl notPotato13 = null;
+        public static PlayerControl notPotato14 = null;
+
+        public static PlayerControl explodedPotato01 = null;
+        public static PlayerControl explodedPotato02 = null;
+        public static PlayerControl explodedPotato03 = null;
+        public static PlayerControl explodedPotato04 = null;
+        public static PlayerControl explodedPotato05 = null;
+        public static PlayerControl explodedPotato06 = null;
+        public static PlayerControl explodedPotato07 = null;
+        public static PlayerControl explodedPotato08 = null;
+        public static PlayerControl explodedPotato09 = null;
+        public static PlayerControl explodedPotato10 = null;
+        public static PlayerControl explodedPotato11 = null;
+        public static PlayerControl explodedPotato12 = null;
+        public static PlayerControl explodedPotato13 = null;
+        public static PlayerControl explodedPotato14 = null;
+
+        public static GameObject hotPotato = null;
+
+        public static bool hotPotatoMode = false;
+        public static float timeforTransfer = 15;
+        public static float transferCooldown = 10f;
+        public static float matchDuration = 300f;
+        public static float savedtimeforTransfer = 15;
+        public static float notPotatoVision = 1f;
+        public static bool resetTimeForTransfer = true;
+        public static float increaseTimeIfNoReset = 5f; 
+        public static bool firstPotatoTransfered = false;
+
+        public static bool notPotatoTeamAlerted = false;
+
+        public static bool triggerHotPotatoEnd = false;
+
+        public static string hotpotatopointCounter = "Hot Potato: " + "<color=#808080FF></color> | " + "Cold Potatoes: " + "<color=#00F7FFFF>" + notPotatoTeam.Count + "</color>";
+
+        private static Sprite buttonPotato;
+
+        public static Sprite getButtonSprite() {
+            if (buttonPotato) return buttonPotato;
+            buttonPotato = Helpers.loadSpriteFromResources("LasMonjas.Images.HotPotatoHotPotatusButton.png", 90f);
+            return buttonPotato;
+        }
+
+        public static void clearAndReload() {
+            notPotatoTeam.Clear();
+            notPotatoTeamAlive.Clear();
+            hotPotatoPlayer = null;
+            hotPotatoPlayerCurrentTarget = null;
+            notPotato01 = null;
+            notPotato02 = null;
+            notPotato03 = null;
+            notPotato04 = null;
+            notPotato05 = null;
+            notPotato06 = null;
+            notPotato07 = null;
+            notPotato08 = null;
+            notPotato09 = null;
+            notPotato10 = null;
+            notPotato11 = null;
+            notPotato12 = null;
+            notPotato13 = null;
+            notPotato14 = null;
+
+            explodedPotato01 = null;
+            explodedPotato02 = null;
+            explodedPotato03 = null;
+            explodedPotato04 = null;
+            explodedPotato05 = null;
+            explodedPotato06 = null;
+            explodedPotato07 = null;
+            explodedPotato08 = null;
+            explodedPotato09 = null;
+            explodedPotato10 = null;
+            explodedPotato11 = null;
+            explodedPotato12 = null;
+            explodedPotato13 = null;
+            explodedPotato14 = null;
+
+            if (CustomOptionHolder.hotPotatoMode.getSelection() == 1) {
+                hotPotatoMode = true;
+            }
+            else {
+                hotPotatoMode = false;
+            }
+            timeforTransfer = CustomOptionHolder.hotPotatoTransferLimit.getFloat() + 10f;
+            transferCooldown = CustomOptionHolder.hotPotatoCooldown.getFloat();
+            matchDuration = CustomOptionHolder.hotPotatoMatchDuration.getFloat();
+            notPotatoVision = CustomOptionHolder.hotPotatoNotPotatovision.getFloat();
+            resetTimeForTransfer = CustomOptionHolder.hotPotatoResetTimeForTransfer.getBool();
+            increaseTimeIfNoReset = CustomOptionHolder.hotPotatoIncreaseTimeIfNoReset.getFloat(); 
+            notPotatoTeamAlerted = false;
+            triggerHotPotatoEnd = false;
+            savedtimeforTransfer = timeforTransfer - 10f;
+            firstPotatoTransfered = false;
+            hotPotato = null;
+
+            hotpotatopointCounter = "Hot Potato: " + "<color=#00F7FFFF></color> | " + "Cold Potatoes: " + "<color=#928B55FF>" + notPotatoTeam.Count + "</color>";
+        }
+    }
+
     public static class CustomMain
     {
         public static CustomAssets customAssets = new CustomAssets();
@@ -2475,6 +2684,7 @@ namespace LasMonjas
         public GameObject performerDio;
         public AudioClip performerMusic;
         public AudioClip jinxQuack;
+        public AudioClip medusaPetrify;
 
         // Custom Bundle Capture the flag Assets
         public AudioClip captureTheFlagMusic;
@@ -2506,6 +2716,10 @@ namespace LasMonjas
         public GameObject greenfloor;
         public GameObject yellowfloor;
 
+        // Custom Bundle Hot Potato Assets
+        public AudioClip hotPotatoMusic;
+        public GameObject hotPotato;
+        
         // Custom Map
         public GameObject customMap;
         public GameObject customMinimap;

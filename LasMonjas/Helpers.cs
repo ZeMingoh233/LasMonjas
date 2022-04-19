@@ -226,17 +226,18 @@ namespace LasMonjas
             target.RawSetHat(hatId, colorId);
             target.RawSetName(hidePlayerName(PlayerControl.LocalPlayer, target) ? "" : playerName);
 
-            SkinData nextSkin = DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId);
+            SkinViewData nextSkin = DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId).viewData.viewData;
             PlayerPhysics playerPhysics = target.MyPhysics;
             AnimationClip clip = null;
             var spriteAnim = playerPhysics.Skin.animator;
             var currentPhysicsAnim = playerPhysics.Animator.GetCurrentAnimation();
-            if (currentPhysicsAnim == playerPhysics.RunAnim) clip = nextSkin.RunAnim;
-            else if (currentPhysicsAnim == playerPhysics.SpawnAnim) clip = nextSkin.SpawnAnim;
-            else if (currentPhysicsAnim == playerPhysics.EnterVentAnim) clip = nextSkin.EnterVentAnim;
-            else if (currentPhysicsAnim == playerPhysics.ExitVentAnim) clip = nextSkin.ExitVentAnim;
-            else if (currentPhysicsAnim == playerPhysics.IdleAnim) clip = nextSkin.IdleAnim;
+            if (currentPhysicsAnim == playerPhysics.CurrentAnimationGroup.RunAnim) clip = nextSkin.RunAnim;
+            else if (currentPhysicsAnim == playerPhysics.CurrentAnimationGroup.SpawnAnim) clip = nextSkin.SpawnAnim;
+            else if (currentPhysicsAnim == playerPhysics.CurrentAnimationGroup.EnterVentAnim) clip = nextSkin.EnterVentAnim;
+            else if (currentPhysicsAnim == playerPhysics.CurrentAnimationGroup.ExitVentAnim) clip = nextSkin.ExitVentAnim;
+            else if (currentPhysicsAnim == playerPhysics.CurrentAnimationGroup.IdleAnim) clip = nextSkin.IdleAnim;
             else clip = nextSkin.IdleAnim;
+
             float progress = playerPhysics.Animator.m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             playerPhysics.Skin.skin = nextSkin;
             spriteAnim.Play(clip, 1f);
@@ -244,7 +245,7 @@ namespace LasMonjas
             spriteAnim.m_animator.Update(0f);
 
             if (target.CurrentPet) UnityEngine.Object.Destroy(target.CurrentPet.gameObject);
-            target.CurrentPet = UnityEngine.Object.Instantiate<PetBehaviour>(DestroyableSingleton<HatManager>.Instance.GetPetById(petId).PetPrefab);
+            target.CurrentPet = UnityEngine.Object.Instantiate<PetBehaviour>(DestroyableSingleton<HatManager>.Instance.GetPetById(petId).viewData.viewData);
             target.CurrentPet.transform.position = target.transform.position;
             target.CurrentPet.Source = target;
             target.CurrentPet.Visible = target.Visible;
@@ -253,7 +254,7 @@ namespace LasMonjas
 
         public static bool roleCanUseVents(this PlayerControl player) {
             bool roleCouldUse = false;
-            if (CaptureTheFlag.captureTheFlagMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode && !KingOfTheHill.kingOfTheHillMode) {
+            if (CaptureTheFlag.captureTheFlagMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
                 if (PlayerControl.LocalPlayer != CaptureTheFlag.bluePlayerWhoHasRedFlag && PlayerControl.LocalPlayer != CaptureTheFlag.redPlayerWhoHasBlueFlag
                     && (PlayerControl.LocalPlayer == CaptureTheFlag.redplayer01 && !CaptureTheFlag.redplayer01IsReviving
                     || PlayerControl.LocalPlayer == CaptureTheFlag.redplayer02 && !CaptureTheFlag.redplayer02IsReviving
@@ -269,14 +270,14 @@ namespace LasMonjas
                     || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer05 && !CaptureTheFlag.blueplayer05IsReviving
                     || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer06 && !CaptureTheFlag.blueplayer06IsReviving
                     || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer07 && !CaptureTheFlag.blueplayer07IsReviving
-                    || PlayerControl.LocalPlayer == CaptureTheFlag.blueplayer08 && !CaptureTheFlag.blueplayer08IsReviving)) {
+                    || PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer && !CaptureTheFlag.stealerPlayerIsReviving)) {
                     roleCouldUse = true;
                 }
                 else {
                     roleCouldUse = false;
                 }
             }
-            else if (PoliceAndThief.policeAndThiefMode && PlayerControl.LocalPlayer == player && !CaptureTheFlag.captureTheFlagMode && !KingOfTheHill.kingOfTheHillMode) {
+            else if (PoliceAndThief.policeAndThiefMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
                 if (PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer01 && !PoliceAndThief.thiefplayer01IsStealing && !PoliceAndThief.thiefplayer01IsReviving 
                     || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer02 && !PoliceAndThief.thiefplayer02IsStealing && !PoliceAndThief.thiefplayer02IsReviving 
                     || PlayerControl.LocalPlayer == PoliceAndThief.thiefplayer03 && !PoliceAndThief.thiefplayer03IsStealing && !PoliceAndThief.thiefplayer03IsReviving 
@@ -293,7 +294,7 @@ namespace LasMonjas
                     roleCouldUse = false;
                 }
             }
-            else if (KingOfTheHill.kingOfTheHillMode && PlayerControl.LocalPlayer == player && !PoliceAndThief.policeAndThiefMode && !CaptureTheFlag.captureTheFlagMode) {
+            else if (KingOfTheHill.kingOfTheHillMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
                 if (PlayerControl.LocalPlayer != KingOfTheHill.greenKingplayer && PlayerControl.LocalPlayer != KingOfTheHill.yellowKingplayer
                     && (PlayerControl.LocalPlayer == KingOfTheHill.greenplayer01 && !KingOfTheHill.greenplayer01IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.greenplayer02 && !KingOfTheHill.greenplayer02IsReviving
@@ -308,6 +309,14 @@ namespace LasMonjas
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer05 && !KingOfTheHill.yellowplayer05IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.yellowplayer06 && !KingOfTheHill.yellowplayer06IsReviving
                     || PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer && !KingOfTheHill.usurperPlayerIsReviving)) {
+                    roleCouldUse = true;
+                }
+                else {
+                    roleCouldUse = false;
+                }
+            }
+            else if (HotPotato.hotPotatoMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
+                if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
                     roleCouldUse = true;
                 }
                 else {

@@ -42,7 +42,7 @@ namespace LasMonjas
         public static RoleInfo blueplayer05 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer05);
         public static RoleInfo blueplayer06 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer06);
         public static RoleInfo blueplayer07 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer07);
-        public static RoleInfo blueplayer08 = new RoleInfo("Blue Team", Color.blue, "Steal <color=#FF0000FF>Red Team</color> flag", "Steal <color=#FF0000FF>Red Team</color> flag", RoleId.BluePlayer08);
+        public static RoleInfo stealerplayer = new RoleInfo("Flag Stealer", Color.grey, "Steal the flag from a player to join that team", "Steal the flag from a player to join that team", RoleId.StealerPlayer);
 
         // Police and Thief Teams
         public static RoleInfo policeplayer01 = new RoleInfo("Police Officer", Color.cyan, "Capture all the <color=#D2B48CFF>Thiefs</color>", "Capture all the <color=#D2B48CFF>Thiefs</color>", RoleId.PolicePlayer01);
@@ -78,6 +78,37 @@ namespace LasMonjas
         public static RoleInfo yellowplayer06 = new RoleInfo("Yellow Team", Color.yellow, "Protect your King and yellow zones", "Protect your King and yellow zones", RoleId.YellowPlayer06);
         public static RoleInfo usurperplayer = new RoleInfo("Usurper", Color.grey, "Kill a King to become one", "Kill a King to become one", RoleId.UsurperPlayer);
 
+        // Hot Potato Teams
+        public static RoleInfo hotPotatoPlayer = new RoleInfo("Hot Potato", Color.grey, "Transfer the hot potato to other player", "Transfer the hot potato to other player", RoleId.HotPotato);
+        public static RoleInfo notPotato01 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato01);
+        public static RoleInfo notPotato02 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato02);
+        public static RoleInfo notPotato03 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato03);
+        public static RoleInfo notPotato04 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato04);
+        public static RoleInfo notPotato05 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato05);
+        public static RoleInfo notPotato06 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato06);
+        public static RoleInfo notPotato07 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato07);
+        public static RoleInfo notPotato08 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato08);
+        public static RoleInfo notPotato09 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato09);
+        public static RoleInfo notPotato10 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato10);
+        public static RoleInfo notPotato11 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato11);
+        public static RoleInfo notPotato12 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato12);
+        public static RoleInfo notPotato13 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato13);
+        public static RoleInfo notPotato14 = new RoleInfo("Cold Potato", Color.cyan, "Run from the Hot Potato", "Run from the Hot Potato", RoleId.NotPotato14);
+        public static RoleInfo explodedPotato01 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato01);
+        public static RoleInfo explodedPotato02 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato02);
+        public static RoleInfo explodedPotato03 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato03);
+        public static RoleInfo explodedPotato04 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato04);
+        public static RoleInfo explodedPotato05 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato05);
+        public static RoleInfo explodedPotato06 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato06);
+        public static RoleInfo explodedPotato07 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato07);
+        public static RoleInfo explodedPotato08 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato08);
+        public static RoleInfo explodedPotato09 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato09);
+        public static RoleInfo explodedPotato10 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato10);
+        public static RoleInfo explodedPotato11 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato11);
+        public static RoleInfo explodedPotato12 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato12);
+        public static RoleInfo explodedPotato13 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato13);
+        public static RoleInfo explodedPotato14 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato14);
+        
         // Impostor roles
         public static RoleInfo mimic = new RoleInfo("Mimic", Mimic.color, "Mimic the look of other player", "Mimic the look of other player", RoleId.Mimic);
         public static RoleInfo painter = new RoleInfo("Painter", Painter.color, "Paint players with the same color", "Paint players with the same color", RoleId.Painter);
@@ -121,10 +152,10 @@ namespace LasMonjas
         public static RoleInfo kid = new RoleInfo("Kid", Kid.color, "Everyone lose if you die or get voted out", "Everyone lose if you die or get voted out", RoleId.Kid);
         public static RoleInfo welder = new RoleInfo("Welder", Welder.color, "Seal vents", "Seal vents", RoleId.Welder);
         public static RoleInfo spiritualist = new RoleInfo("Spiritualist", Spiritualist.color, "Sacrifice yourself to revive a player", "Sacrifice yourself to revive a player", RoleId.Spiritualist);
-        public static RoleInfo theChosenOne = new RoleInfo("The Chosen One", TheChosenOne.color, "Force your killer to report your body", "Force your killer to report your body", RoleId.TheChosenOne);
+        public static RoleInfo coward = new RoleInfo("Coward", Coward.color, "Call meetings from anywhere", "Call meetings from anywhere", RoleId.Coward);
         public static RoleInfo vigilant = new RoleInfo("Vigilant", Vigilant.color, "Put additional cameras on the map", "Put additional cameras on the map", RoleId.Vigilant);
         public static RoleInfo vigilantMira = new RoleInfo("Vigilant", Vigilant.color, "Activate remote Doorlog with Q key", "Activate remote Doorlog with Q key", RoleId.VigilantMira);
-        public static RoleInfo performer = new RoleInfo("Performer", Performer.color, "Your dead will trigger an alarm and reveal where your body is", "Your dead will trigger an alarm and reveal where your body is", RoleId.Performer);
+        public static RoleInfo medusa = new RoleInfo("Medusa", Medusa.color, "Petrify suspicious players", "Petrify suspicious players", RoleId.Medusa);
         public static RoleInfo hunter = new RoleInfo("Hunter", Hunter.color, "Mark a player to die if you get killed", "Mark a player to die if you get killed", RoleId.Hunter);
         public static RoleInfo jinx = new RoleInfo("Jinx", Jinx.color, "Jinx players abilities", "Jinx players abilities", RoleId.Jinx);
         public static RoleInfo impostor = new RoleInfo("Impostor", Palette.ImpostorRed, Helpers.cs(Palette.ImpostorRed, "Sabotage and kill everyone"), "Sabotage and kill everyone", RoleId.Impostor);
@@ -133,6 +164,8 @@ namespace LasMonjas
         public static RoleInfo blind = new RoleInfo("Blind", Modifiers.color, "You have less vision", "You have less vision", RoleId.Blind);
         public static RoleInfo flash = new RoleInfo("Flash", Modifiers.color, "You're faster", "You're faster", RoleId.Flash);
         public static RoleInfo bigchungus = new RoleInfo("Big Chungus", Modifiers.color, "You're bigger and slower", "You're bigger and slower", RoleId.BigChungus);
+        public static RoleInfo theChosenOne = new RoleInfo("The Chosen One", Modifiers.color, "Force your killer to report your body", "Force your killer to report your body", RoleId.TheChosenOne);
+        public static RoleInfo performer = new RoleInfo("Performer", Modifiers.color, "Your dead will trigger an alarm and reveal where your body is", "Your dead will trigger an alarm and reveal where your body is", RoleId.Performer);
         public static RoleInfo lover = new RoleInfo("Lover", Modifiers.loverscolor, $"♥Survive as a couple with your partner♥", $"♥Survive as a couple with your partner♥", RoleId.Lover);
         public static RoleInfo badlover = new RoleInfo("Loverstor", Palette.ImpostorRed, $"<color=#FF00D1FF>♥Survive as a couple with your partner♥. </color><color=#FF1919FF>Kill the rest</color>", $"<color=#FF00D1FF>♥Survive as a couple with your partner♥. </color><color=#FF1919FF>Kill the rest</color>", RoleId.Lover);
 
@@ -175,17 +208,19 @@ namespace LasMonjas
             fink,
             welder,
             spiritualist,
-            theChosenOne,
+            coward,         
             vigilant,
             vigilantMira,
-            performer,
             kid,
+            medusa,
             hunter,
             jinx,
             lighter,
             blind,
             flash,
             bigchungus,
+            theChosenOne,
+            performer,
             lover,
             badlover,
             redplayer01,
@@ -202,7 +237,7 @@ namespace LasMonjas
             blueplayer05,
             blueplayer06,
             blueplayer07,
-            blueplayer08,
+            stealerplayer,
             policeplayer01,
             policeplayer02,
             policeplayer03,
@@ -232,7 +267,36 @@ namespace LasMonjas
             yellowplayer04,
             yellowplayer05,
             yellowplayer06,
-            usurperplayer
+            usurperplayer,
+            hotPotatoPlayer,
+            notPotato01,
+            notPotato02,
+            notPotato03,
+            notPotato04,
+            notPotato05,
+            notPotato06,
+            notPotato07,
+            notPotato08,
+            notPotato09,
+            notPotato10,
+            notPotato11,
+            notPotato12,
+            notPotato13,
+            notPotato14,
+            explodedPotato01,
+            explodedPotato02,
+            explodedPotato03,
+            explodedPotato04,
+            explodedPotato05,
+            explodedPotato06,
+            explodedPotato07,
+            explodedPotato08,
+            explodedPotato09,
+            explodedPotato10,
+            explodedPotato11,
+            explodedPotato12,
+            explodedPotato13,
+            explodedPotato14
         };
 
         public static List<RoleInfo> getRoleInfoForPlayer(PlayerControl p) {
@@ -254,7 +318,7 @@ namespace LasMonjas
             if (p == CaptureTheFlag.blueplayer05) infos.Add(blueplayer05);
             if (p == CaptureTheFlag.blueplayer06) infos.Add(blueplayer06);
             if (p == CaptureTheFlag.blueplayer07) infos.Add(blueplayer07);
-            if (p == CaptureTheFlag.blueplayer08) infos.Add(blueplayer08);
+            if (p == CaptureTheFlag.stealerPlayer) infos.Add(stealerplayer);
 
             // Police and Thief
             if (p == PoliceAndThief.policeplayer01) infos.Add(policeplayer01);
@@ -289,6 +353,38 @@ namespace LasMonjas
             if (p == KingOfTheHill.yellowplayer05) infos.Add(yellowplayer05);
             if (p == KingOfTheHill.yellowplayer06) infos.Add(yellowplayer06);
             if (p == KingOfTheHill.usurperPlayer) infos.Add(usurperplayer);
+
+            // Hot Potato
+            if (p == HotPotato.hotPotatoPlayer) infos.Add(hotPotatoPlayer);
+            if (p == HotPotato.notPotato01) infos.Add(notPotato01);
+            if (p == HotPotato.notPotato02) infos.Add(notPotato02);
+            if (p == HotPotato.notPotato03) infos.Add(notPotato03);
+            if (p == HotPotato.notPotato04) infos.Add(notPotato04);
+            if (p == HotPotato.notPotato05) infos.Add(notPotato05);
+            if (p == HotPotato.notPotato06) infos.Add(notPotato06);
+            if (p == HotPotato.notPotato07) infos.Add(notPotato07);
+            if (p == HotPotato.notPotato08) infos.Add(notPotato08);
+            if (p == HotPotato.notPotato09) infos.Add(notPotato09);
+            if (p == HotPotato.notPotato10) infos.Add(notPotato10);
+            if (p == HotPotato.notPotato11) infos.Add(notPotato11);
+            if (p == HotPotato.notPotato12) infos.Add(notPotato12);
+            if (p == HotPotato.notPotato13) infos.Add(notPotato13);
+            if (p == HotPotato.notPotato14) infos.Add(notPotato14);
+
+            if (p == HotPotato.explodedPotato01) infos.Add(explodedPotato01);
+            if (p == HotPotato.explodedPotato02) infos.Add(explodedPotato02);
+            if (p == HotPotato.explodedPotato03) infos.Add(explodedPotato03);
+            if (p == HotPotato.explodedPotato04) infos.Add(explodedPotato04);
+            if (p == HotPotato.explodedPotato05) infos.Add(explodedPotato05);
+            if (p == HotPotato.explodedPotato06) infos.Add(explodedPotato06);
+            if (p == HotPotato.explodedPotato07) infos.Add(explodedPotato07);
+            if (p == HotPotato.explodedPotato08) infos.Add(explodedPotato08);
+            if (p == HotPotato.explodedPotato09) infos.Add(explodedPotato09);
+            if (p == HotPotato.explodedPotato10) infos.Add(explodedPotato10);
+            if (p == HotPotato.explodedPotato11) infos.Add(explodedPotato11);
+            if (p == HotPotato.explodedPotato12) infos.Add(explodedPotato12);
+            if (p == HotPotato.explodedPotato13) infos.Add(explodedPotato13);
+            if (p == HotPotato.explodedPotato14) infos.Add(explodedPotato14);
 
 
             // Impostor roles
@@ -334,10 +430,10 @@ namespace LasMonjas
             if (p == Kid.kid) infos.Add(kid);
             if (p == Welder.welder) infos.Add(welder);
             if (p == Spiritualist.spiritualist) infos.Add(spiritualist);
-            if (p == TheChosenOne.theChosenOne) infos.Add(theChosenOne);
+            if (p == Coward.coward) infos.Add(coward);
             if (p == Vigilant.vigilant) infos.Add(vigilant);
             if (p == Vigilant.vigilantMira) infos.Add(vigilantMira);
-            if (p == Performer.performer) infos.Add(performer);
+            if (p == Medusa.medusa) infos.Add(medusa);
             if (p == Hunter.hunter) infos.Add(hunter);
             if (p == Jinx.jinx) infos.Add(jinx);
 
@@ -346,6 +442,8 @@ namespace LasMonjas
             if (p == Modifiers.blind) infos.Add(blind);
             if (p == Modifiers.flash) infos.Add(flash);
             if (p == Modifiers.bigchungus) infos.Add(bigchungus);
+            if (p == Modifiers.theChosenOne) infos.Add(theChosenOne);
+            if (p == Modifiers.performer) infos.Add(performer);
             if (p == Modifiers.lover1 || p == Modifiers.lover2) infos.Add(p.Data.Role.IsImpostor ? badlover : lover);
 
             // Default roles
@@ -439,9 +537,9 @@ namespace LasMonjas
                     name = "Spiritualist";
                     color = Spiritualist.color;
                 }
-                else if (TheChosenOne.theChosenOne != null && p == TheChosenOne.theChosenOne) {
-                    name = "The Chosen One";
-                    color = TheChosenOne.color;
+                else if (Coward.coward != null && p == Coward.coward) {
+                    name = "Coward";
+                    color = Coward.color;
                 }
                 else if (Vigilant.vigilant != null && p == Vigilant.vigilant) {
                     name = "Vigilant";
@@ -451,9 +549,9 @@ namespace LasMonjas
                     name = "Vigilant";
                     color = Vigilant.color;
                 }
-                else if (Performer.performer != null && p == Performer.performer) {
-                    name = "Performer";
-                    color = Performer.color;
+                else if (Medusa.medusa != null && p == Medusa.medusa) {
+                    name = "Medusa";
+                    color = Medusa.color;
                 }
                 else if (Hunter.hunter != null && p == Hunter.hunter) {
                     name = "Hunter";

@@ -11,4 +11,12 @@ namespace LasMonjas.Patches
             MapOptions.checkMusic();
         }
     }
+
+    [HarmonyPatch(typeof(Constants), nameof(Constants.ShouldHorseAround))]
+    public static class ConstPatch
+    {
+        public static void Postfix(ref bool __result) {
+            __result = LasMonjasPlugin.HorseMode.Value;
+        }
+    }
 }

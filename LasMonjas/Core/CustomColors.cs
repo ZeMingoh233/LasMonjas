@@ -25,10 +25,18 @@ namespace LasMonjas.Core {
                                         color = new Color32(207, 161, 241, byte.MaxValue),
                                         shadow = new Color32(165, 93, 243, byte.MaxValue),
                                         isLighterColor = true });
-            colors.Add(new CustomColor { longname = "Turquoise", 
+            colors.Add(new CustomColor { longname = "Petrol", 
                                         color = new Color32(0, 99, 105, byte.MaxValue),
                                         shadow = new Color32(0, 61, 54, byte.MaxValue),
                                         isLighterColor = false });
+            colors.Add(new CustomColor { longname = "Mint",
+                                         color = new Color32(168, 235, 195, byte.MaxValue),
+                                         shadow = new Color32(123, 156, 143, byte.MaxValue),
+                                         isLighterColor = true });
+            colors.Add(new CustomColor { longname = "Olive",
+                                         color = new Color32(97, 114, 24, byte.MaxValue),
+                                         shadow = new Color32(66, 91, 15, byte.MaxValue),
+                                         isLighterColor = false }); 
 
             pickableColors += (uint)colors.Count;
                     
