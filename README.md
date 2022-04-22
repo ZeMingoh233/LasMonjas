@@ -6,11 +6,11 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   1. [40 roles](#roles)
   2. [13 modifiers](#modifiers)
   3. [1 custom map](https://youtu.be/9tDh9eYqAgk)
-  4. [4 custom gamemodes](#gamemodes)
+  4. [5 custom gamemodes](#gamemodes)
   5. [4 new colors](#settings)
   6. [Custom Music](#settings)
   7. [Custom Lobby](#settings)
-  8. [Custom Hats](#customhats)
+  8. [Custom Hats, Visors and Nameplates](#customcosmetics)
 
 -----------------------
 
@@ -30,6 +30,12 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 # Changelog
 <details>
   <summary>Click to show</summary>
+
+**Version 1.4.0 (22th April 2022)**
+- New Gamemode: Zombie Laboratory
+- New Custom Nameplate system with 5 nameplates for now
+- New Custom Visor system with 8 visors
+- Added 12 hats, upgraded old ones and another ones turned into visor
 
 **Version 1.3.3 (9th April 2022)**
 - For Among Us 2022.3.29s, fixed 1.3.3 BETA issues:
@@ -907,7 +913,7 @@ Match between cyan (Police) and brown (Thiefs) team. This gamemode adds a new ma
 | Police Can Kill Near Prison | Define if police team can kill near the prison |
 | Police Can See Jewels | Define if police team can see jewels on the map |
 | Arrest Cooldown | Police ability to arrest a Thief |
-| Time to Arrest | Police needed time near a Thief to arrest it |
+| Time to Arrest | Police needed time next to a Thief to arrest it |
 | Police Vision Range | Define light range for Police |
 | Police Revive Time | Wait time for Police team to revive |
 | Thiefs Can Kill | Define if Thief team can or not kill |
@@ -991,9 +997,42 @@ A random player gets the Hot Potato role, that player has to give the hot potato
 
 -----------------------
 
-# CustomHats
+## Zombie Laboratory
 
-A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/HatPack)) has been added. They don't replace visors and some have adaptative color. Right now there's only 25 and may have some color or position bugs, we'll try to fix them in the future while also adding new hats.
+A random player gets the Zombie role, another player the Nurse role and the rest will be Survivors. The zombie must infect everyone to win, while the survivors have to look for the key items hided in boxes around the map to give them to the Nurse so she can make the cure and win the game. This gamemode adds a new zone on the map, the Infirmary. If timer reach 0, zombie team will win.
+
+| Option  | Description |
+|----------|-------------|
+| Match Duration | From 5 to 7 and half minutes |
+| Time needed to Infect | Time needed next to a player to infect it |
+| Infect Cooldown | Infect Button Cooldown |
+| Search Box Timer | Time needed to search inside a Box |
+| Survivors Vision Range | Survivor Team light range |
+| Time limit to use medkit | Nurse time limit to use medkit on a infected player |
+| Kill Cooldown | Kill Button cooldown |
+| Revive Time | Everyone revives on his team base after a setted amount of time |
+| Invincibility Time After Revive | Players can't use their abilities, vent or get killed during this time |
+
+**Additional Gamemode Notes:**
+- Only Zombies can use vents.
+- Zombies can infect other player by standing near to him the needed time. Infected players name will turn from blue to yellow but they remain as Survivor during the time limit to use medkit.
+- If the time to use medkit reach 0 (this timer doesn't show anywhere to add tension), that Survivor will turn into a Zombie.
+-Nurse is immune to the infection, she can pick a medkit (pointed by pink arrows) from 3 different map location and use it on a infected player (yellow name) to cure it. She can carry only 1 medkit at once and will lose it if she gets killed. A healed player has to be infected again to try to turn it into a zombie.
+- Infirmary is the Nurse's spawn and only survivors can enter in it. After 10 seconds, survivors will be forced to exit it. The Nurse can enter and stay in it anytime she wants, also she can leave from 3 different location to prevent Zombie spawn camping. There's 2 switches in the Infirmary, the left one is for delivering a key item and the right one is to create the cure when all key items are delivered, making the Survivor team the winner.
+- Survivors have to look for the key items hided in the boxes around the map and deliver them to the Infirmary.
+- Zombies can kill, the Nurse can't and the Survivors can find ammo on random boxes, which makes them able to kill 1 time (after being killed or killing a Zombie they will have to search the same ammo box to recharge their kill button)
+- Boxes loot are random for every player even the location is the same for everyone. There are 60 box on every map, 6 of them contains the key items, 4 contains ammo and the rest are empty. For example Survivor 1 can find ammo on Admin while Survivor 2 finds it on Reactor, the same goes with the key items. 
+- If you're delivering a key item, you can't search boxes or kill and you'll lose it if you die or turn into a zombie, making the key item return to their original location.
+- If a Zombie disconnects from the game and was the only one, survivors will win. Also if the Nurse disconnects, zombie team will win.
+- There are custom messages for somebody gets infected, delivered a key item or someone turned into a zombie.
+- Revive Time value is calculated by subtracting Invincibility Time value from it, for example if Revive Time is 8 and Invincibility Time is 3, players will revive after 5 seconds but will be invincible for another 3 seconds after reviving.
+- Score message is always shown, telling how many key items had been delivered, how many survivors are alive, how many infected are and how many zombies are.
+
+-----------------------
+
+# CustomCosmetics
+
+A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/HatPack)) has been added, also thanks to that I could add a method to add custom visors and nameplates too. Hats don't replace visors and some have adaptative color. It can also have some color or position bugs, we'll try to fix them in the future while also adding new hats.
 
 -----------------------
 
@@ -1027,5 +1066,4 @@ If you use something from Las Monjas on your mod, please credit me on your mod's
 
 # Known Bugs
 - On the custom map, you can see player names and do some tasks across the walls (this is a vanilla game bug)
-- On Dleks, vents don't work as intented and host gets stuck in there, play on this map at your own risk
 - Sometimes when playing with modifiers, people can get a modifier as a primary role
