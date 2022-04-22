@@ -36,23 +36,31 @@ namespace LasMonjas.Core
             new AuthorData {AuthorName = "Sensei", HatName = "Time To Duel", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Medusa", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Mega Hat", NoBounce = true, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Over 9 Sus", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Egyptian", NoBounce = true },
-            new AuthorData {AuthorName = "Sensei", HatName = "Fortune Teller", NoBounce = false, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Joker", NoBounce = true },
             new AuthorData {AuthorName = "Sensei", HatName = "SrCobra", NoBounce = true, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "The Eye", NoBounce = true, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Alien", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Dinoseto", NoBounce = false, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Red Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Green Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Yellow Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Super Purple Sus", NoBounce = false},
             new AuthorData {AuthorName = "Sensei", HatName = "Chadsito", NoBounce = true, altShader = true},
-            new AuthorData {AuthorName = "Sensei", HatName = "Scars", NoBounce = false, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Scars", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Sus Man", NoBounce = true},
             new AuthorData {AuthorName = "Sensei", HatName = "Take It Easy", NoBounce = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Moon Face", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Pepper Carrot", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Sensei", HatName = "Dontaegamez", NoBounce = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Cell", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Ghost", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Goodbye", NoBounce = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Muaresito Joy", NoBounce = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Avatar", NoBounce = true, altShader = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Scallop Walker", NoBounce = true},
+            new AuthorData {AuthorName = "Muaresito", HatName = "Unknown Race", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "Xago", HatName = "World Destroyer", NoBounce = true},
+            new AuthorData {AuthorName = "Xago", HatName = "Amazing Robot", NoBounce = true},
+            new AuthorData {AuthorName = "Hige", HatName = "Punsus", NoBounce = true},
             new AuthorData {AuthorName = "IceCreamGuy", HatName = "Ice Cream Man", NoBounce = true},
             new AuthorData {AuthorName = "IceCreamGuy", HatName = "Devious Bling", NoBounce = true, altShader = true},
             new AuthorData {AuthorName = "IceCreamGuy", HatName = "Hungry Hat", NoBounce = true},
@@ -103,7 +111,7 @@ namespace LasMonjas.Core
             }
 
             public static Sprite GetSprite(string name)
-                => AssetLoader.LoadAsset(name).Cast<GameObject>().GetComponent<SpriteRenderer>().sprite;
+                => AssetLoader.LoadHatAsset(name).Cast<GameObject>().GetComponent<SpriteRenderer>().sprite;
 
             public static int HatID = 0;
             /// <summary>

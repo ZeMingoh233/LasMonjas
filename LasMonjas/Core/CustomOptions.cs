@@ -342,9 +342,9 @@ namespace LasMonjas.Core
             var hudString = sb.ToString();
 
             int defaultSettingsLines = 23;
-            int roleSettingsLines = defaultSettingsLines + 26;
+            int roleSettingsLines = defaultSettingsLines + 27;
             int detailedSettingsP1 = roleSettingsLines + 36;
-            int detailedSettingsP2 = detailedSettingsP1 + 35;
+            int detailedSettingsP2 = detailedSettingsP1 + 46;
             int detailedSettingsP3 = detailedSettingsP2 + 34;
             int detailedSettingsP4 = detailedSettingsP3 + 31;
             int detailedSettingsP5 = detailedSettingsP4 + 37;
@@ -364,13 +364,13 @@ namespace LasMonjas.Core
                 int gap = 1;
                 int index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index, "\n");
-                gap = 7;
+                gap = 8;
                 index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index, "\n");
-                gap = 18;
+                gap = 19;
                 index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index, "\n");
-                gap = 24;
+                gap = 25;
                 index = hudString.TakeWhile(c => (gap -= (c == '\n' ? 1 : 0)) > 0).Count();
                 hudString = hudString.Insert(index + 1, "\n");
             }

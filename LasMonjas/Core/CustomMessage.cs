@@ -208,6 +208,36 @@ namespace LasMonjas.Core {
                                 text.text = "";
                             }
                             break;
+                        case 19:
+                            // ZombieLaboratory timer
+                            if (ZombieLaboratory.zombieLaboratoryMode && ZombieLaboratory.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + ZombieLaboratory.matchDuration.ToString("F0") + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 20:
+                            // ZombieLaboratory point counter
+                            if (ZombieLaboratory.zombieLaboratoryMode && ZombieLaboratory.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + ZombieLaboratory.zombieLaboratoryCounter + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
+                        case 21:
+                            // ZombieLaboratory warnings
+                            if (ZombieLaboratory.zombieLaboratoryMode && ZombieLaboratory.matchDuration >= 0) {
+                                string prefix = ("<color=#FF8000FF>");
+                                text.text = prefix + message + "</color>";
+                            }
+                            else {
+                                text.text = "";
+                            }
+                            break;
                     }
                     if (text != null) text.color = even ? Color.yellow : Color.red;
                     if (p == 1f && text != null && text.gameObject != null) {
