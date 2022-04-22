@@ -87,6 +87,7 @@ namespace LasMonjas.Patches
                 PoliceAndThief.policeAndThiefMode = false;
                 KingOfTheHill.kingOfTheHillMode = false;
                 HotPotato.hotPotatoMode = false;
+                ZombieLaboratory.zombieLaboratoryMode = false;
 
                 if (prefab == null) {
                     LoadPrefab();

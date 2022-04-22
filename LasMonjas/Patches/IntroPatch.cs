@@ -64,6 +64,9 @@ namespace LasMonjas.Patches
             if (HotPotato.hotPotatoMode) {
                 howmanygamemodesareon += 1;
             }
+            if (ZombieLaboratory.zombieLaboratoryMode) {
+                howmanygamemodesareon += 1;
+            }
 
             if (CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon == 1) {
                 SoundManager.Instance.PlaySound(CustomMain.customAssets.captureTheFlagMusic, true, 25f);
@@ -132,6 +135,21 @@ namespace LasMonjas.Patches
                     yourTeam = notPotatoTeam;
                 }
             }
+            else if (ZombieLaboratory.zombieLaboratoryMode && howmanygamemodesareon == 1) {
+                SoundManager.Instance.PlaySound(CustomMain.customAssets.zombieLaboratoryMusic, true, 25f);
+                // Intro zombie teams
+                if (PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer01) {
+                    var greyTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                    greyTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = greyTeam;
+                }
+
+                var survivorTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
+                if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer01 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer02 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer03 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer04 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer05 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer06 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer07 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer08 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer09 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer10 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer11 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer12 || PlayerControl.LocalPlayer == ZombieLaboratory.survivorPlayer13) {
+                    survivorTeam.Add(PlayerControl.LocalPlayer);
+                    yourTeam = survivorTeam;
+                }
+            }
             else {
                 // Intro solo teams (rebels and neutrals)
                 if (PlayerControl.LocalPlayer == Joker.joker || PlayerControl.LocalPlayer == RoleThief.rolethief || PlayerControl.LocalPlayer == Pyromaniac.pyromaniac || PlayerControl.LocalPlayer == TreasureHunter.treasureHunter || PlayerControl.LocalPlayer == Devourer.devourer || PlayerControl.LocalPlayer == Renegade.renegade || PlayerControl.LocalPlayer == BountyHunter.bountyhunter || PlayerControl.LocalPlayer == Trapper.trapper || PlayerControl.LocalPlayer == Yinyanger.yinyanger || PlayerControl.LocalPlayer == Challenger.challenger) {
@@ -171,6 +189,11 @@ namespace LasMonjas.Patches
                     __instance.BackgroundBar.material.color = Medusa.color;
                     __instance.TeamTitle.text = "Hot Potato";
                     __instance.TeamTitle.color = Medusa.color;
+                }
+                else if (ZombieLaboratory.zombieLaboratoryMode) {
+                    __instance.BackgroundBar.material.color = Hunter.color;
+                    __instance.TeamTitle.text = "Zombie \nLaboratory";
+                    __instance.TeamTitle.color = Hunter.color;
                 }
             }
             else {
@@ -266,7 +289,32 @@ namespace LasMonjas.Patches
                 // Activate sensei map
                 activateSenseiMap();
 
-                // Capture the flag
+                // Allulfitti
+                GameObject allulfitti = GameObject.Instantiate(CustomMain.customAssets.allulfitti, PlayerControl.LocalPlayer.transform.parent);
+                switch (PlayerControl.GameOptions.MapId) {
+                       case 0:
+                        if (activatedSensei) {
+                            allulfitti.transform.position = new Vector3(-6.8f, -5.2f, 0.5f);
+                        }
+                        else {
+                            allulfitti.transform.position = new Vector3(-13.75f, 2, 0.5f);
+                        }
+                        break;
+                    case 1:
+                        allulfitti.transform.position = new Vector3(6.2f, -0.25f, 0.5f);
+                        break;
+                    case 2:
+                        allulfitti.transform.position = new Vector3(19.3f, -13.3f, 0.5f);
+                        break;
+                    case 3:
+                        allulfitti.transform.position = new Vector3(13.75f, 2, 0.5f);
+                        break;
+                    case 4:
+                        allulfitti.transform.position = new Vector3(7.75f, 7.5f, 0.5f);
+                        break;
+                }
+				
+				// Capture the flag
                 if (CaptureTheFlag.captureTheFlagMode && howmanygamemodesareon == 1) {
                     switch (PlayerControl.GameOptions.MapId) {
                         // Skeld
@@ -2062,6 +2110,552 @@ namespace LasMonjas.Patches
                             }
                             break;
                     }
+                }
+                else if (ZombieLaboratory.zombieLaboratoryMode && howmanygamemodesareon == 1) {
+                    switch (PlayerControl.GameOptions.MapId) {
+                        // Skeld
+                        case 0:
+                            if (activatedSensei) {
+                                foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(-4.85f, 6, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+                                foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(4.75f, -8.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+
+                                if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                    ZombieLaboratory.nursePlayer.transform.position = new Vector3(-12f, 7.15f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                    GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    mapMedKit.name = "mapMedKit";
+                                    mapMedKit.transform.position = new Vector3(-6.5f, -0.85f, -0.1f);
+                                    GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    mapMedKittwo.name = "mapMedKittwo";
+                                    mapMedKittwo.transform.position = new Vector3(-18.85f, 2f, -0.1f);
+                                    GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    mapMedKitthree.name = "mapMedKitthree";
+                                    mapMedKitthree.transform.position = new Vector3(-5.75f, 11.75f, -0.1f);
+                                    ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                    ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                    ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                    // Add Arrows pointing the medkit only for nurse
+                                    if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                        ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                        ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                        ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    }
+                                    ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                    ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                    ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                                }
+
+                                if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                    GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                    laboratory.name = "laboratory";
+                                    laboratory.transform.position = new Vector3(-12f, 7.2f, 0.5f);
+                                    laboratory.gameObject.layer = 9;
+                                    laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                    ZombieLaboratory.laboratory = laboratory;
+                                    ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                    ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                    ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                    ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                    ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                    ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                    GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    nurseMedKit.name = "nurseMedKit";
+                                    nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                    nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                                    ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                    ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                    // Remove camera use and admin table on Skeld
+                                    GameObject cameraStand = GameObject.Find("SurvConsole");
+                                    cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                    GameObject admin = GameObject.Find("MapRoomConsole");
+                                    admin.GetComponent<CircleCollider2D>().enabled = false;
+                                }
+                            }
+                            else {
+                                foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(-17.25f, -13.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+
+                                foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                    if (player == PlayerControl.LocalPlayer)
+                                        player.transform.position = new Vector3(11.75f, -4.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(player);
+                                }
+
+                                if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                    ZombieLaboratory.nursePlayer.transform.position = new Vector3(-10.2f, 3.6f, PlayerControl.LocalPlayer.transform.position.z);
+                                    Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                    GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    mapMedKit.name = "mapMedKit";
+                                    mapMedKit.transform.position = new Vector3(-7.25f, -5f, -0.1f);
+                                    GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    mapMedKittwo.name = "mapMedKittwo";
+                                    mapMedKittwo.transform.position = new Vector3(3.75f, 3.5f, -0.1f);
+                                    GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    mapMedKitthree.name = "mapMedKitthree";
+                                    mapMedKitthree.transform.position = new Vector3(-13.75f, -3.75f, -0.1f);
+                                    ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                    ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                    ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                    // Add Arrows pointing the medkit only for nurse
+                                    if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                        ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                        ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                        ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    }
+                                    ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                    ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                    ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                                }
+
+                                if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                    GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                    laboratory.name = "laboratory";
+                                    laboratory.transform.position = new Vector3(-10.25f, 3.38f, 0.5f);
+                                    laboratory.gameObject.layer = 9;
+                                    laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                    ZombieLaboratory.laboratory = laboratory;
+                                    ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                    ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                    ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                    ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                    ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                    ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                    ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                    GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                    nurseMedKit.name = "nurseMedKit";
+                                    nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                    nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                                    ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                    ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                    // Remove camera use and admin table on Skeld
+                                    GameObject cameraStand = GameObject.Find("SurvConsole");
+                                    cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                    GameObject admin = GameObject.Find("MapRoomConsole");
+                                    admin.GetComponent<CircleCollider2D>().enabled = false;
+                                }
+                            }
+                            break;
+                        // MiraHQ
+                        case 1:
+                            foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(18.5f, -1.85f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(6.1f, 5.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                ZombieLaboratory.nursePlayer.transform.position = new Vector3(1.8f, 1.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKit.name = "mapMedKit";
+                                mapMedKit.transform.position = new Vector3(16.25f, 0.25f, -0.1f);
+                                GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKittwo.name = "mapMedKittwo";
+                                mapMedKittwo.transform.position = new Vector3(8.5f, 13.75f, -0.1f);
+                                GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKitthree.name = "mapMedKitthree";
+                                mapMedKitthree.transform.position = new Vector3(-4.5f, 3.5f, -0.1f);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                // Add Arrows pointing the medkit only for nurse
+                                if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                }
+                                ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                laboratory.name = "laboratory";
+                                laboratory.transform.position = new Vector3(1.75f, 1.125f, 0.5f);
+                                laboratory.gameObject.layer = 9;
+                                laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                ZombieLaboratory.laboratory = laboratory;
+                                ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                nurseMedKit.name = "nurseMedKit";
+                                nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                                ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                // Remove Doorlog use, Decontamintion doors and admin table on MiraHQ
+                                GameObject DoorLog = GameObject.Find("SurvLogConsole");
+                                DoorLog.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject deconUpperDoor = GameObject.Find("UpperDoor");
+                                deconUpperDoor.SetActive(false);
+                                GameObject deconLowerDoor = GameObject.Find("LowerDoor");
+                                deconLowerDoor.SetActive(false);
+                                GameObject deconUpperDoorPanelTop = GameObject.Find("DeconDoorPanel-Top");
+                                deconUpperDoorPanelTop.SetActive(false);
+                                GameObject deconUpperDoorPanelHigh = GameObject.Find("DeconDoorPanel-High");
+                                deconUpperDoorPanelHigh.SetActive(false);
+                                GameObject deconUpperDoorPanelBottom = GameObject.Find("DeconDoorPanel-Bottom");
+                                deconUpperDoorPanelBottom.SetActive(false);
+                                GameObject deconUpperDoorPanelLow = GameObject.Find("DeconDoorPanel-Low");
+                                deconUpperDoorPanelLow.SetActive(false);
+                                GameObject admin = GameObject.Find("AdminMapConsole");
+                                admin.GetComponent<CircleCollider2D>().enabled = false;
+                            }
+                            break;
+                        // Polus
+                        case 2:
+                            foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(17.15f, -17.15f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(40.4f, -6.8f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                ZombieLaboratory.nursePlayer.transform.position = new Vector3(16.65f, -2.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKit.name = "mapMedKit";
+                                mapMedKit.transform.position = new Vector3(20.75f, -12f, -0.1f);
+                                GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKittwo.name = "mapMedKittwo";
+                                mapMedKittwo.transform.position = new Vector3(3.5f, -11.75f, -0.1f);
+                                GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKitthree.name = "mapMedKitthree";
+                                mapMedKitthree.transform.position = new Vector3(31.5f, -7.5f, -0.1f);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                // Add Arrows pointing the medkit only for nurse
+                                if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                }
+                                ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                laboratory.name = "laboratory";
+                                laboratory.transform.position = new Vector3(16.68f, -2.52f, 0.5f);
+                                laboratory.gameObject.layer = 9;
+                                laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                ZombieLaboratory.laboratory = laboratory;
+                                ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                nurseMedKit.name = "nurseMedKit";
+                                nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                                ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                // Remove Decon doors, camera use, vitals, admin tables on Polus
+                                GameObject lowerdecon = GameObject.Find("LowerDecon");
+                                lowerdecon.SetActive(false);
+                                GameObject upperdecon = GameObject.Find("UpperDecon");
+                                upperdecon.SetActive(false);
+                                GameObject survCameras = GameObject.Find("Surv_Panel");
+                                survCameras.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals");
+                                vitals.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("panel_map");
+                                adminone.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("panel_map (1)");
+                                admintwo.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject ramp = GameObject.Find("ramp");
+                                ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y, 0.75f);
+                                GameObject bathroomVent = GameObject.Find("BathroomVent");
+                                bathroomVent.transform.position = new Vector3(34, -10.3f, bathroomVent.transform.position.z);
+                            }
+                            break;
+                        // Dlesk
+                        case 3:
+                            foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(17.25f, -13.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-11.75f, -4.75f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                ZombieLaboratory.nursePlayer.transform.position = new Vector3(10.2f, 3.6f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKit.name = "mapMedKit";
+                                mapMedKit.transform.position = new Vector3(7.25f, -5f, -0.1f);
+                                GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKittwo.name = "mapMedKittwo";
+                                mapMedKittwo.transform.position = new Vector3(-3.75f, 3.5f, -0.1f);
+                                GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKitthree.name = "mapMedKitthree";
+                                mapMedKitthree.transform.position = new Vector3(13.75f, -3.75f, -0.1f);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                // Add Arrows pointing the medkit only for nurse
+                                if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                }
+                                ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                laboratory.name = "laboratory";
+                                laboratory.transform.position = new Vector3(10.25f, 3.38f, 0.5f);
+                                laboratory.gameObject.layer = 9;
+                                laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                ZombieLaboratory.laboratory = laboratory;
+                                ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                nurseMedKit.name = "nurseMedKit";
+                                nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                                ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                // Remove camera use and admin table on Skeld
+                                GameObject cameraStand = GameObject.Find("SurvConsole");
+                                cameraStand.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject admin = GameObject.Find("MapRoomConsole");
+                                admin.GetComponent<CircleCollider2D>().enabled = false;
+                            }
+                            break;
+                        // Airship
+                        case 4:
+                            foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(32.35f, 7.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(25.25f, -8.65f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                ZombieLaboratory.nursePlayer.transform.position = new Vector3(-18.5f, 2.9f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                ZombieLaboratory.nursePlayerInsideLaboratory = false;
+                                GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKit.name = "mapMedKit";
+                                mapMedKit.transform.position = new Vector3(-12f, 2.5f, -0.1f);
+                                GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKittwo.name = "mapMedKittwo";
+                                mapMedKittwo.transform.position = new Vector3(-13.5f, -9.75f, -0.1f);
+                                GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKitthree.name = "mapMedKitthree";
+                                mapMedKitthree.transform.position = new Vector3(-8.85f, 7.5f, -0.1f);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                // Add Arrows pointing the medkit only for nurse
+                                if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                }
+                                ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                laboratory.name = "laboratory";
+                                laboratory.transform.position = new Vector3(-18.45f, 3f, 0.5f);
+                                laboratory.gameObject.layer = 9;
+                                laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                ZombieLaboratory.laboratory = laboratory;
+                                ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                nurseMedKit.name = "nurseMedKit";
+                                nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                                ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                // Remove camera use, admin table, vitals, electrical doors on Airship
+                                GameObject cameras = GameObject.Find("task_cams");
+                                cameras.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject admin = GameObject.Find("panel_cockpit_map");
+                                admin.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject LeftDoorTop = GameObject.Find("LeftDoorTop");
+                                LeftDoorTop.SetActive(false);
+                                GameObject TopLeftVert = GameObject.Find("TopLeftVert");
+                                TopLeftVert.SetActive(false);
+                                GameObject TopLeftHort = GameObject.Find("TopLeftHort");
+                                TopLeftHort.SetActive(false);
+                                GameObject BottomHort = GameObject.Find("BottomHort");
+                                BottomHort.SetActive(false);
+                                GameObject TopCenterHort = GameObject.Find("TopCenterHort");
+                                TopCenterHort.SetActive(false);
+                                GameObject LeftVert = GameObject.Find("LeftVert");
+                                LeftVert.SetActive(false);
+                                GameObject RightVert = GameObject.Find("RightVert");
+                                RightVert.SetActive(false);
+                                GameObject TopRightVert = GameObject.Find("TopRightVert");
+                                TopRightVert.SetActive(false);
+                                GameObject TopRightHort = GameObject.Find("TopRightHort");
+                                TopRightHort.SetActive(false);
+                                GameObject BottomRightHort = GameObject.Find("BottomRightHort");
+                                BottomRightHort.SetActive(false);
+                                GameObject BottomRightVert = GameObject.Find("BottomRightVert");
+                                BottomRightVert.SetActive(false);
+                                GameObject LeftDoorBottom = GameObject.Find("LeftDoorBottom");
+                                LeftDoorBottom.SetActive(false);
+                            }
+                            break;
+                    }
+                    // Spawn key items
+                    GameObject keyitem01 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    keyitem01.transform.position = ZombieLaboratory.susBoxPositions[0];
+                    keyitem01.name = "keyItem01";
+                    ZombieLaboratory.laboratoryKeyItem01 = keyitem01;
+                    GameObject keyitem02 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    keyitem02.transform.position = ZombieLaboratory.susBoxPositions[1];
+                    keyitem02.name = "keyItem02";
+                    ZombieLaboratory.laboratoryKeyItem02 = keyitem02;
+                    GameObject keyitem03 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    keyitem03.transform.position = ZombieLaboratory.susBoxPositions[2];
+                    keyitem03.name = "keyItem03";
+                    ZombieLaboratory.laboratoryKeyItem03 = keyitem03;
+                    GameObject keyitem04 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    keyitem04.transform.position = ZombieLaboratory.susBoxPositions[3];
+                    keyitem04.name = "keyItem04";
+                    ZombieLaboratory.laboratoryKeyItem04 = keyitem04;
+                    GameObject keyitem05 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    keyitem05.transform.position = ZombieLaboratory.susBoxPositions[4];
+                    keyitem05.name = "keyItem05";
+                    ZombieLaboratory.laboratoryKeyItem05 = keyitem05;
+                    GameObject keyitem06 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    keyitem06.transform.position = ZombieLaboratory.susBoxPositions[5];
+                    keyitem06.name = "keyItem06";
+                    ZombieLaboratory.laboratoryKeyItem06 = keyitem06;
+                    // Ammoboxes
+                    GameObject ammoBox01 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    ammoBox01.transform.position = ZombieLaboratory.susBoxPositions[6];
+                    ammoBox01.name = "ammoBox";
+                    GameObject ammoBox02 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    ammoBox02.transform.position = ZombieLaboratory.susBoxPositions[7];
+                    ammoBox02.name = "ammoBox";
+                    GameObject ammoBox03 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    ammoBox03.transform.position = ZombieLaboratory.susBoxPositions[8];
+                    ammoBox03.name = "ammoBox";
+                    GameObject ammoBox04 = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                    ammoBox04.transform.position = ZombieLaboratory.susBoxPositions[9];
+                    ammoBox04.name = "ammoBox";
+                    ZombieLaboratory.groundItems.Add(keyitem01);
+                    ZombieLaboratory.groundItems.Add(keyitem02);
+                    ZombieLaboratory.groundItems.Add(keyitem03);
+                    ZombieLaboratory.groundItems.Add(keyitem04);
+                    ZombieLaboratory.groundItems.Add(keyitem05);
+                    ZombieLaboratory.groundItems.Add(keyitem06);
+                    ZombieLaboratory.groundItems.Add(ammoBox01);
+                    ZombieLaboratory.groundItems.Add(ammoBox02);
+                    ZombieLaboratory.groundItems.Add(ammoBox03);
+                    ZombieLaboratory.groundItems.Add(ammoBox04);
+                    // Nothing boxes
+                    for (int i = 0; i < ZombieLaboratory.susBoxPositions.Count - 10; i++) {
+                        GameObject nothingBox = GameObject.Instantiate(CustomMain.customAssets.susBox, PlayerControl.LocalPlayer.transform.parent);
+                        nothingBox.transform.position = ZombieLaboratory.susBoxPositions[i + 10];
+                        nothingBox.name = "nothingBox";
+                        ZombieLaboratory.groundItems.Add(nothingBox);
+                    }
+
+                    createdzombielaboratory = true;
+
+                    new CustomMessage("Time Left: ", ZombieLaboratory.matchDuration, -1, -1.3f, 19);
+                    ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+                    new CustomMessage(ZombieLaboratory.zombieLaboratoryCounter, ZombieLaboratory.matchDuration, -1, 1.9f, 20);
                 }
             }
         }

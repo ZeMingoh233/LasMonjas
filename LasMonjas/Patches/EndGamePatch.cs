@@ -32,7 +32,9 @@ namespace LasMonjas.Patches {
         GreenTeamHillWin = 27,
         YellowTeamHillWin = 28,
         TeamHillDraw = 29,
-        HotPotatoEnd = 30
+        HotPotatoEnd = 30,
+        ZombieWin = 31,
+        SurvivorWin = 32
     }
 
     enum WinCondition {
@@ -58,7 +60,9 @@ namespace LasMonjas.Patches {
         GreenTeamHillWin,
         YellowTeamHillWin,
         TeamHillDraw,
-        HotPotatoEnd
+        HotPotatoEnd,
+        ZombieWin,
+        SurvivorWin
     }
 
     static class AdditionalTempData {
@@ -144,6 +148,8 @@ namespace LasMonjas.Patches {
             bool yellowTeamHillWin = KingOfTheHill.kingOfTheHillMode && gameOverReason == (GameOverReason)CustomGameOverReason.YellowTeamHillWin;
             bool teamHillDraw = KingOfTheHill.kingOfTheHillMode && gameOverReason == (GameOverReason)CustomGameOverReason.TeamHillDraw;
             bool hotPotatoEnd = HotPotato.hotPotatoMode && gameOverReason == (GameOverReason)CustomGameOverReason.HotPotatoEnd;
+            bool zombieWin = ZombieLaboratory.zombieLaboratoryMode && gameOverReason == (GameOverReason)CustomGameOverReason.ZombieWin;
+            bool survivorWin = ZombieLaboratory.zombieLaboratoryMode && gameOverReason == (GameOverReason)CustomGameOverReason.SurvivorWin;
 
             // Kid lose
             if (kidLose) {
@@ -366,6 +372,24 @@ namespace LasMonjas.Patches {
                 AdditionalTempData.winCondition = WinCondition.HotPotatoEnd;
             }
 
+            // ZombieLaboratory zombie Win
+            else if (zombieWin) {
+                TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
+                foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                    WinningPlayerData wpd = new WinningPlayerData(player.Data);
+                    TempData.winners.Add(wpd);
+                }
+                AdditionalTempData.winCondition = WinCondition.ZombieWin;
+            }
+            else if (survivorWin) {
+                TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
+                foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                    WinningPlayerData wpd = new WinningPlayerData(player.Data);
+                    TempData.winners.Add(wpd);
+                }
+                AdditionalTempData.winCondition = WinCondition.SurvivorWin;
+            }
+
             // Reset Settings
             RPCProcedure.resetVariables();
         }
@@ -519,6 +543,14 @@ namespace LasMonjas.Patches {
                 textRenderer.text = "Cold Potato Team Win";
                 textRenderer.color = Color.cyan;
             }
+            else if (AdditionalTempData.winCondition == WinCondition.ZombieWin) {
+                textRenderer.text = "Zombie Team Win";
+                textRenderer.color = Mechanic.color;
+            }
+            else if (AdditionalTempData.winCondition == WinCondition.SurvivorWin) {
+                textRenderer.text = "Survivor Team Win";
+                textRenderer.color = Medusa.color;
+            }
             else {
                 MessageWriter writermusic = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ChangeMusic, Hazel.SendOption.Reliable, -1);
                 writermusic.Write(5);
@@ -586,6 +618,8 @@ namespace LasMonjas.Patches {
             if (CheckAndEndGameForYellowTeamHillWin(__instance)) return false;
             if (CheckAndEndGameForDrawHillWin(__instance)) return false;
             if (CheckAndEndGameForHotPotatoEnd(__instance)) return false;
+            if (CheckAndEndGameForZombieWin(__instance)) return false;
+            if (CheckAndEndGameForSurvivorWin(__instance)) return false;
             return false;
         }
 
@@ -828,6 +862,22 @@ namespace LasMonjas.Patches {
             if (HotPotato.triggerHotPotatoEnd) {
                 __instance.enabled = false;
                 ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.HotPotatoEnd, false);
+                return true;
+            }
+            return false;
+        }
+        private static bool CheckAndEndGameForZombieWin(ShipStatus __instance) {
+            if (ZombieLaboratory.triggerZombieWin) {
+                __instance.enabled = false;
+                ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ZombieWin, false);
+                return true;
+            }
+            return false;
+        }
+        private static bool CheckAndEndGameForSurvivorWin(ShipStatus __instance) {
+            if (ZombieLaboratory.triggerSurvivorWin) {
+                __instance.enabled = false;
+                ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.SurvivorWin, false);
                 return true;
             }
             return false;

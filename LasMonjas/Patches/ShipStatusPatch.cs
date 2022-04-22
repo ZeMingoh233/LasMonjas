@@ -95,6 +95,23 @@ namespace LasMonjas.Patches
                 }
                 return false;
             }
+            else if (ZombieLaboratory.zombieLaboratoryMode) {
+                if (player == null || player.IsDead) // IsDead
+                    __result = __instance.MaxLightRadius;
+                else {
+                    foreach (PlayerControl survivor in ZombieLaboratory.survivorTeam) {
+                        if (survivor != null && survivor.PlayerId == player.PlayerId) {
+                            __result = Mathf.Lerp(__instance.MinLightRadius * (ZombieLaboratory.survivorsVision / 2), __instance.MaxLightRadius * (ZombieLaboratory.survivorsVision / 2), num);
+                        }
+                    }
+                    foreach (PlayerControl zombie in ZombieLaboratory.zombieTeam) {
+                        if (zombie != null && zombie.PlayerId == player.PlayerId) {
+                            __result = Mathf.Lerp(__instance.MinLightRadius, __instance.MaxLightRadius, num) * PlayerControl.GameOptions.CrewLightMod;
+                        }
+                    }
+                }
+                return false;
+            }
             else {
                 if (player == null || player.IsDead) // IsDead
                     __result = __instance.MaxLightRadius;

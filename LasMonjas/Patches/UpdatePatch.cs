@@ -132,6 +132,30 @@ namespace LasMonjas.Patches {
                     setPlayerNameColor(HotPotato.hotPotatoPlayer, Palette.PlayerColors[15]);
                 }
             }
+            else if (ZombieLaboratory.zombieLaboratoryMode && howmanygamemodesareon == 1) {
+
+                foreach (PlayerControl survivorPlayer in ZombieLaboratory.survivorTeam) {
+                    if (survivorPlayer != null) {
+                        setPlayerNameColor(survivorPlayer, Palette.PlayerColors[10]);
+                    }
+                }
+
+                foreach (PlayerControl infectedPlayer in ZombieLaboratory.infectedTeam) {
+                    if (infectedPlayer != null) {
+                        setPlayerNameColor(infectedPlayer, Palette.PlayerColors[5]);
+                    }
+                }
+
+                foreach (PlayerControl zombiePlayer in ZombieLaboratory.zombieTeam) {
+                    if (zombiePlayer != null) {
+                        setPlayerNameColor(zombiePlayer, Palette.PlayerColors[16]);
+                    }
+                }
+
+                if (ZombieLaboratory.nursePlayer != null) {
+                    setPlayerNameColor(ZombieLaboratory.nursePlayer, Palette.PlayerColors[3]);
+                }
+            }
             else {
                 // Crewmates name color
                 if (Captain.captain != null && Captain.captain == PlayerControl.LocalPlayer)
@@ -412,7 +436,16 @@ namespace LasMonjas.Patches {
                         ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.HotPotatoEnd, false);
                     }
                 }
+            }
 
+            // ZombieLaboratory timer
+            if (ZombieLaboratory.zombieLaboratoryMode && howmanygamemodesareon == 1) {
+                ZombieLaboratory.matchDuration -= Time.deltaTime;
+
+                if (ZombieLaboratory.matchDuration < 0) {
+                    ZombieLaboratory.triggerZombieWin = true;
+                    ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ZombieWin, false);
+                }
             }
         }
 
@@ -1207,6 +1240,191 @@ namespace LasMonjas.Patches {
             }
         }
 
+        static void zombieLaboratoryUpdate() {
+
+            if (!ZombieLaboratory.zombieLaboratoryMode && howmanygamemodesareon != 1)
+                return;
+
+            // Check number of survivors if a survivor disconnects
+            foreach (PlayerControl survivor in ZombieLaboratory.survivorTeam) {
+                if (survivor.Data.Disconnected) {
+
+                    if (ZombieLaboratory.nursePlayer != null && survivor.PlayerId == ZombieLaboratory.nursePlayer.PlayerId) {
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.nursePlayer);
+                        ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+                        ZombieLaboratory.triggerZombieWin = true;
+                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ZombieWin, false);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer01 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer01.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer01IsInfected) {
+                            ZombieLaboratory.survivorPlayer01IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer01);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer01);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer01FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer02 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer02.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer02IsInfected) {
+                            ZombieLaboratory.survivorPlayer02IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer02);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer02);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer02FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer03 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer03.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer03IsInfected) {
+                            ZombieLaboratory.survivorPlayer03IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer03);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer03);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer03FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer04 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer04.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer04IsInfected) {
+                            ZombieLaboratory.survivorPlayer04IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer04);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer04);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer04FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer05 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer05.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer05IsInfected) {
+                            ZombieLaboratory.survivorPlayer05IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer05);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer05);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer05FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer06 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer06.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer06IsInfected) {
+                            ZombieLaboratory.survivorPlayer06IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer06);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer06);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer06FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer07 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer07.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer07IsInfected) {
+                            ZombieLaboratory.survivorPlayer07IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer07);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer07);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer07FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer08 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer08.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer08IsInfected) {
+                            ZombieLaboratory.survivorPlayer08IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer08);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer08);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer08FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer09 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer09.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer09IsInfected) {
+                            ZombieLaboratory.survivorPlayer09IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer09);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer09);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer09FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer10 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer10.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer10IsInfected) {
+                            ZombieLaboratory.survivorPlayer10IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer10);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer10);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer10FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer11 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer11.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer11IsInfected) {
+                            ZombieLaboratory.survivorPlayer11IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer11);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer11);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer11FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer12 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer12.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer12IsInfected) {
+                            ZombieLaboratory.survivorPlayer12IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer12);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer12);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer12FoundBox);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer13 != null && survivor.PlayerId == ZombieLaboratory.survivorPlayer13.PlayerId) {
+                        if (ZombieLaboratory.survivorPlayer13IsInfected) {
+                            ZombieLaboratory.survivorPlayer13IsInfected = false;
+                            ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer13);
+                        }
+                        ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer13);
+                        RPCProcedure.zombieLaboratoryRevertedKeyPosition(survivor.PlayerId, ZombieLaboratory.survivorPlayer13FoundBox);
+                    }
+
+                    // Check win condition
+                    ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+                    if (ZombieLaboratory.survivorTeam.Count == 1) {
+                        ZombieLaboratory.triggerZombieWin = true;
+                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.ZombieWin, false);
+                    }
+                    break;
+                }
+            }
+
+            foreach (PlayerControl zombie in ZombieLaboratory.zombieTeam) {
+                if (zombie.Data.Disconnected) {
+                    // Check win condition
+                    if (ZombieLaboratory.zombiePlayer01 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer01.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer01);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer02 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer02.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer02);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer03 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer03.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer03);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer04 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer04.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer04);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer05 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer05.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer05);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer06 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer06.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer06);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer07 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer07.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer07);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer08 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer08.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer08);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer09 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer09.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer09);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer10 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer10.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer10);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer11 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer11.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer11);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer12 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer12.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer12);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer13 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer13.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer13);
+                    }
+                    else if (ZombieLaboratory.zombiePlayer14 != null && zombie.PlayerId == ZombieLaboratory.zombiePlayer14.PlayerId) {
+                        ZombieLaboratory.zombieTeam.Remove(ZombieLaboratory.zombiePlayer14);
+                    }
+                    ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+                    if (ZombieLaboratory.zombieTeam.Count <= 0) {
+                        ZombieLaboratory.triggerSurvivorWin = true;
+                        ShipStatus.RpcEndGame((GameOverReason)CustomGameOverReason.SurvivorWin, false);
+                    }
+                    break;
+                }
+            }
+        }
+
         static void UpdateMiniMap() {
 
             if (MapBehaviour.Instance != null && MapBehaviour.Instance.IsOpen && howmanygamemodesareon == 1) {
@@ -1396,6 +1614,9 @@ namespace LasMonjas.Patches {
 
             // Hot Potato disconnect update
             hotPotatoUpdate();
+
+            // ZombieLaboratory disconnect update
+            zombieLaboratoryUpdate();
         }
     }
 }

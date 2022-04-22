@@ -31,6 +31,8 @@ namespace LasMonjas.Patches {
 
         private static List<int> myHotPotato = new List<int>();
 
+        private static List<int> myZombie = new List<int>();
+
         public static void Postfix() {
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ResetVaribles, Hazel.SendOption.Reliable, -1);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -58,6 +60,9 @@ namespace LasMonjas.Patches {
                 howmanygamemodesareon += 1;
             }
             if (HotPotato.hotPotatoMode) {
+                howmanygamemodesareon += 1;
+            }
+            if (ZombieLaboratory.zombieLaboratoryMode) {
                 howmanygamemodesareon += 1;
             }
 
@@ -636,6 +641,164 @@ namespace LasMonjas.Patches {
                     }
                     myHotPotato.Add(mypotato);
                     mypotato += 1;
+                }
+            }
+            else if (ZombieLaboratory.zombieLaboratoryMode && howmanygamemodesareon == 1) {
+                // ZombieLaboratory
+                myZombie.Clear();
+                int myzombie = 1;
+                while (myZombie.Count < PlayerControl.AllPlayerControls.Count) {
+                    switch (ZombieLaboratory.startZombies) {
+                        case 1:
+                            switch (myzombie) {
+                                case 1:
+                                    setRoleToRandomPlayer((byte)RoleId.ZombiePlayer01, modifiers);
+                                    break;
+                                case 2:
+                                    setRoleToRandomPlayer((byte)RoleId.NursePlayer, modifiers);
+                                    break;
+                                case 3:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer01, modifiers);
+                                    break;
+                                case 4:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer02, modifiers);
+                                    break;
+                                case 5:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer03, modifiers);
+                                    break;
+                                case 6:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer04, modifiers);
+                                    break;
+                                case 7:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer05, modifiers);
+                                    break;
+                                case 8:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer06, modifiers);
+                                    break;
+                                case 9:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer07, modifiers);
+                                    break;
+                                case 10:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer08, modifiers);
+                                    break;
+                                case 11:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer09, modifiers);
+                                    break;
+                                case 12:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer10, modifiers);
+                                    break;
+                                case 13:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer11, modifiers);
+                                    break;
+                                case 14:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer12, modifiers);
+                                    break;
+                                case 15:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer13, modifiers);
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch (myzombie) {
+                                case 1:
+                                    setRoleToRandomPlayer((byte)RoleId.ZombiePlayer01, modifiers);
+                                    break;
+                                case 2:
+                                    setRoleToRandomPlayer((byte)RoleId.NursePlayer, modifiers);
+                                    break;
+                                case 3:
+                                    setRoleToRandomPlayer((byte)RoleId.ZombiePlayer02, modifiers);
+                                    break;
+                                case 4:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer01, modifiers);
+                                    break;
+                                case 5:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer02, modifiers);
+                                    break;
+                                case 6:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer03, modifiers);
+                                    break;
+                                case 7:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer04, modifiers);
+                                    break;
+                                case 8:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer05, modifiers);
+                                    break;
+                                case 9:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer06, modifiers);
+                                    break;
+                                case 10:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer07, modifiers);
+                                    break;
+                                case 11:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer08, modifiers);
+                                    break;
+                                case 12:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer09, modifiers);
+                                    break;
+                                case 13:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer10, modifiers);
+                                    break;
+                                case 14:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer11, modifiers);
+                                    break;
+                                case 15:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer12, modifiers);
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch (myzombie) {
+                                case 1:
+                                    setRoleToRandomPlayer((byte)RoleId.ZombiePlayer01, modifiers);
+                                    break;
+                                case 2:
+                                    setRoleToRandomPlayer((byte)RoleId.NursePlayer, modifiers);
+                                    break;
+                                case 3:
+                                    setRoleToRandomPlayer((byte)RoleId.ZombiePlayer02, modifiers);
+                                    break;
+                                case 4:
+                                    setRoleToRandomPlayer((byte)RoleId.ZombiePlayer03, modifiers);
+                                    break;
+                                case 5:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer01, modifiers);
+                                    break;
+                                case 6:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer02, modifiers);
+                                    break;
+                                case 7:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer03, modifiers);
+                                    break;
+                                case 8:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer04, modifiers);
+                                    break;
+                                case 9:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer05, modifiers);
+                                    break;
+                                case 10:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer06, modifiers);
+                                    break;
+                                case 11:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer07, modifiers);
+                                    break;
+                                case 12:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer08, modifiers);
+                                    break;
+                                case 13:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer09, modifiers);
+                                    break;
+                                case 14:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer10, modifiers);
+                                    break;
+                                case 15:
+                                    setRoleToRandomPlayer((byte)RoleId.SurvivorPlayer11, modifiers);
+                                    break;
+                            }
+                            break;
+                    }
+                    myZombie.Add(myzombie);
+                    myzombie += 1;
                 }
             }
         }      
