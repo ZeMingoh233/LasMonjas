@@ -38,6 +38,8 @@ namespace LasMonjas
         public static bool createdkingofthehill = false;
 
         public static bool createdhotpotato = false;
+
+        public static bool createdzombielaboratory = false;
         
         public static bool activatedReportButtonAfterCustomMode = false;
 
@@ -103,6 +105,8 @@ namespace LasMonjas
 
             HotPotato.clearAndReload();
 
+            ZombieLaboratory.clearAndReload();
+            
             removedSwipe = false;
             removedAirshipDoors = false;
             activatedSensei = false;
@@ -113,6 +117,7 @@ namespace LasMonjas
             createdpoliceandthief = false;
             createdkingofthehill = false;
             createdhotpotato = false;
+            createdzombielaboratory = false;
             activatedReportButtonAfterCustomMode = false;
             quackNumber = 0;
             alivePlayers = 15;
@@ -2644,6 +2649,969 @@ namespace LasMonjas
         }
     }
 
+    public static class ZombieLaboratory
+    {
+        public static List<PlayerControl> survivorTeam = new List<PlayerControl>();
+        public static List<PlayerControl> zombieTeam = new List<PlayerControl>();
+        public static List<GameObject> groundItems = new List<GameObject>();
+        public static List<PlayerControl> infectedTeam = new List<PlayerControl>();
+        public static List<GameObject> nurseExits = new List<GameObject>();
+        public static List<GameObject> nurseMedkits = new List<GameObject>();
+
+        public static List<Vector3> susBoxPositions = new List<Vector3>();
+        public static List<Arrow> localNurseArrows = new List<Arrow>();
+
+        public static PlayerControl nursePlayer = null;
+        public static PlayerControl nursePlayercurrentTarget = null;
+        public static bool nursePlayerIsReviving = false;
+        public static bool nursePlayerHasMedKit = false;
+        public static bool nursePlayerInsideLaboratory = true;
+        public static bool nursePlayerHasCureReady = false;
+        public static byte nursePlayerCurrentExit = 0;
+        public static PlayerControl survivorPlayer01 = null;
+        public static PlayerControl survivorPlayer01currentTarget = null;
+        public static bool survivorPlayer01IsReviving = false;
+        public static bool survivorPlayer01IsInfected = false;
+        public static bool survivorPlayer01CanKill = false;
+        public static bool survivorPlayer01HasKeyItem = false;
+        public static byte survivorPlayer01FoundBox = 0;
+        public static GameObject survivorPlayer01SelectedBox = null;
+        public static GameObject survivorPlayer01CurrentBox = null;
+        public static PlayerControl survivorPlayer02 = null;
+        public static PlayerControl survivorPlayer02currentTarget = null;
+        public static bool survivorPlayer02IsReviving = false;
+        public static bool survivorPlayer02IsInfected = false;
+        public static bool survivorPlayer02CanKill = false;
+        public static bool survivorPlayer02HasKeyItem = false;
+        public static byte survivorPlayer02FoundBox = 0;
+        public static GameObject survivorPlayer02SelectedBox = null;
+        public static GameObject survivorPlayer02CurrentBox = null;
+        public static PlayerControl survivorPlayer03 = null;
+        public static PlayerControl survivorPlayer03currentTarget = null;
+        public static bool survivorPlayer03IsReviving = false;
+        public static bool survivorPlayer03IsInfected = false;
+        public static bool survivorPlayer03CanKill = false;
+        public static bool survivorPlayer03HasKeyItem = false;
+        public static byte survivorPlayer03FoundBox = 0;
+        public static GameObject survivorPlayer03SelectedBox = null;
+        public static GameObject survivorPlayer03CurrentBox = null;
+        public static PlayerControl survivorPlayer04 = null;
+        public static PlayerControl survivorPlayer04currentTarget = null;
+        public static bool survivorPlayer04IsReviving = false;
+        public static bool survivorPlayer04IsInfected = false;
+        public static bool survivorPlayer04CanKill = false;
+        public static bool survivorPlayer04HasKeyItem = false;
+        public static byte survivorPlayer04FoundBox = 0;
+        public static GameObject survivorPlayer04SelectedBox = null;
+        public static GameObject survivorPlayer04CurrentBox = null;
+        public static PlayerControl survivorPlayer05 = null;
+        public static PlayerControl survivorPlayer05currentTarget = null;
+        public static bool survivorPlayer05IsReviving = false;
+        public static bool survivorPlayer05IsInfected = false;
+        public static bool survivorPlayer05CanKill = false;
+        public static bool survivorPlayer05HasKeyItem = false;
+        public static byte survivorPlayer05FoundBox = 0;
+        public static GameObject survivorPlayer05SelectedBox = null;
+        public static GameObject survivorPlayer05CurrentBox = null;
+        public static PlayerControl survivorPlayer06 = null;
+        public static PlayerControl survivorPlayer06currentTarget = null;
+        public static bool survivorPlayer06IsReviving = false;
+        public static bool survivorPlayer06IsInfected = false;
+        public static bool survivorPlayer06CanKill = false;
+        public static bool survivorPlayer06HasKeyItem = false;
+        public static byte survivorPlayer06FoundBox = 0;
+        public static GameObject survivorPlayer06SelectedBox = null;
+        public static GameObject survivorPlayer06CurrentBox = null;
+        public static PlayerControl survivorPlayer07 = null;
+        public static PlayerControl survivorPlayer07currentTarget = null;
+        public static bool survivorPlayer07IsReviving = false;
+        public static bool survivorPlayer07IsInfected = false;
+        public static bool survivorPlayer07CanKill = false;
+        public static bool survivorPlayer07HasKeyItem = false;
+        public static byte survivorPlayer07FoundBox = 0;
+        public static GameObject survivorPlayer07SelectedBox = null;
+        public static GameObject survivorPlayer07CurrentBox = null;
+        public static PlayerControl survivorPlayer08 = null;
+        public static PlayerControl survivorPlayer08currentTarget = null;
+        public static bool survivorPlayer08IsReviving = false;
+        public static bool survivorPlayer08IsInfected = false;
+        public static bool survivorPlayer08CanKill = false;
+        public static bool survivorPlayer08HasKeyItem = false;
+        public static byte survivorPlayer08FoundBox = 0;
+        public static GameObject survivorPlayer08SelectedBox = null;
+        public static GameObject survivorPlayer08CurrentBox = null;
+        public static PlayerControl survivorPlayer09 = null;
+        public static PlayerControl survivorPlayer09currentTarget = null;
+        public static bool survivorPlayer09IsReviving = false;
+        public static bool survivorPlayer09IsInfected = false;
+        public static bool survivorPlayer09CanKill = false;
+        public static bool survivorPlayer09HasKeyItem = false;
+        public static byte survivorPlayer09FoundBox = 0;
+        public static GameObject survivorPlayer09SelectedBox = null;
+        public static GameObject survivorPlayer09CurrentBox = null;
+        public static PlayerControl survivorPlayer10 = null;
+        public static PlayerControl survivorPlayer10currentTarget = null;
+        public static bool survivorPlayer10IsReviving = false;
+        public static bool survivorPlayer10IsInfected = false;
+        public static bool survivorPlayer10CanKill = false;
+        public static bool survivorPlayer10HasKeyItem = false;
+        public static byte survivorPlayer10FoundBox = 0;
+        public static GameObject survivorPlayer10SelectedBox = null;
+        public static GameObject survivorPlayer10CurrentBox = null;
+        public static PlayerControl survivorPlayer11 = null;
+        public static PlayerControl survivorPlayer11currentTarget = null;
+        public static bool survivorPlayer11IsReviving = false;
+        public static bool survivorPlayer11IsInfected = false;
+        public static bool survivorPlayer11CanKill = false;
+        public static bool survivorPlayer11HasKeyItem = false;
+        public static byte survivorPlayer11FoundBox = 0;
+        public static GameObject survivorPlayer11SelectedBox = null;
+        public static GameObject survivorPlayer11CurrentBox = null;
+        public static PlayerControl survivorPlayer12 = null;
+        public static PlayerControl survivorPlayer12currentTarget = null;
+        public static bool survivorPlayer12IsReviving = false;
+        public static bool survivorPlayer12IsInfected = false;
+        public static bool survivorPlayer12CanKill = false;
+        public static bool survivorPlayer12HasKeyItem = false;
+        public static byte survivorPlayer12FoundBox = 0;
+        public static GameObject survivorPlayer12SelectedBox = null;
+        public static GameObject survivorPlayer12CurrentBox = null;
+        public static PlayerControl survivorPlayer13 = null;
+        public static PlayerControl survivorPlayer13currentTarget = null;
+        public static bool survivorPlayer13IsReviving = false;
+        public static bool survivorPlayer13IsInfected = false;
+        public static bool survivorPlayer13CanKill = false;
+        public static bool survivorPlayer13HasKeyItem = false;
+        public static byte survivorPlayer13FoundBox = 0;
+        public static GameObject survivorPlayer13SelectedBox = null;
+        public static GameObject survivorPlayer13CurrentBox = null;
+        public static PlayerControl zombiePlayer01 = null;
+        public static PlayerControl zombiePlayer01currentTarget = null;
+        public static PlayerControl zombiePlayer01infectedTarget = null;
+        public static bool zombiePlayer01IsReviving = false;
+        public static PlayerControl zombiePlayer02 = null;
+        public static PlayerControl zombiePlayer02currentTarget = null;
+        public static PlayerControl zombiePlayer02infectedTarget = null;
+        public static bool zombiePlayer02IsReviving = false;
+        public static PlayerControl zombiePlayer03 = null;
+        public static PlayerControl zombiePlayer03currentTarget = null;
+        public static PlayerControl zombiePlayer03infectedTarget = null;
+        public static bool zombiePlayer03IsReviving = false;
+        public static PlayerControl zombiePlayer04 = null;
+        public static PlayerControl zombiePlayer04currentTarget = null;
+        public static PlayerControl zombiePlayer04infectedTarget = null;
+        public static bool zombiePlayer04IsReviving = false;
+        public static PlayerControl zombiePlayer05 = null;
+        public static PlayerControl zombiePlayer05currentTarget = null;
+        public static PlayerControl zombiePlayer05infectedTarget = null;
+        public static bool zombiePlayer05IsReviving = false;
+        public static PlayerControl zombiePlayer06 = null;
+        public static PlayerControl zombiePlayer06currentTarget = null;
+        public static PlayerControl zombiePlayer06infectedTarget = null;
+        public static bool zombiePlayer06IsReviving = false;
+        public static PlayerControl zombiePlayer07 = null;
+        public static PlayerControl zombiePlayer07currentTarget = null;
+        public static PlayerControl zombiePlayer07infectedTarget = null;
+        public static bool zombiePlayer07IsReviving = false;
+        public static PlayerControl zombiePlayer08 = null;
+        public static PlayerControl zombiePlayer08currentTarget = null;
+        public static PlayerControl zombiePlayer08infectedTarget = null;
+        public static bool zombiePlayer08IsReviving = false;
+        public static PlayerControl zombiePlayer09 = null;
+        public static PlayerControl zombiePlayer09currentTarget = null;
+        public static PlayerControl zombiePlayer09infectedTarget = null;
+        public static bool zombiePlayer09IsReviving = false;
+        public static PlayerControl zombiePlayer10 = null;
+        public static PlayerControl zombiePlayer10currentTarget = null;
+        public static PlayerControl zombiePlayer10infectedTarget = null;
+        public static bool zombiePlayer10IsReviving = false;
+        public static PlayerControl zombiePlayer11 = null;
+        public static PlayerControl zombiePlayer11currentTarget = null;
+        public static PlayerControl zombiePlayer11infectedTarget = null;
+        public static bool zombiePlayer11IsReviving = false;
+        public static PlayerControl zombiePlayer12 = null;
+        public static PlayerControl zombiePlayer12currentTarget = null;
+        public static PlayerControl zombiePlayer12infectedTarget = null;
+        public static bool zombiePlayer12IsReviving = false;
+        public static PlayerControl zombiePlayer13 = null;
+        public static PlayerControl zombiePlayer13currentTarget = null;
+        public static PlayerControl zombiePlayer13infectedTarget = null;
+        public static bool zombiePlayer13IsReviving = false;
+        public static PlayerControl zombiePlayer14 = null;
+        public static PlayerControl zombiePlayer14currentTarget = null;
+        public static PlayerControl zombiePlayer14infectedTarget = null;
+        public static bool zombiePlayer14IsReviving = false;
+
+        public static bool zombieLaboratoryMode = false;
+        public static bool zombieSenseiMapLaboratoryMode = false;
+
+        public static GameObject laboratory = null;
+        public static GameObject laboratoryEnterButton = null;
+        public static GameObject laboratoryExitButton = null;
+        public static GameObject laboratoryCreateCureButton = null;
+        public static GameObject laboratoryPutKeyItemButton = null;
+        public static GameObject laboratoryKeyItem01 = null;
+        public static GameObject laboratoryKeyItem02 = null;
+        public static GameObject laboratoryKeyItem03 = null;
+        public static GameObject laboratoryKeyItem04 = null;
+        public static GameObject laboratoryKeyItem05 = null;
+        public static GameObject laboratoryKeyItem06 = null;
+        public static GameObject laboratoryNurseMedKit = null;
+        public static GameObject laboratoryExitLeftButton = null;
+        public static GameObject laboratoryExitRightButton = null;
+
+        public static bool keyItem01BeingHeld = false;
+        public static bool keyItem02BeingHeld = false;
+        public static bool keyItem03BeingHeld = false;
+        public static bool keyItem04BeingHeld = false;
+        public static bool keyItem05BeingHeld = false;
+        public static bool keyItem06BeingHeld = false;
+
+        public static float matchDuration = 300f;
+        public static float startZombies = 1f;
+        public static float infectCooldown = 10f;
+        public static float killCooldown = 10f;
+        public static float reviveTime = 5f;
+        public static float invincibilityTimeAfterRevive = 3f;
+        public static float infectTime = 3f;
+        public static float timeForHeal = 20f;
+        public static float survivorsVision = 1f;
+        public static float searchBoxTimer = 5f;
+
+        public static int currentKeyItems = 0;
+        public static bool triggerZombieWin = false;
+        public static bool triggerSurvivorWin = false;
+
+        public static string zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + zombieTeam.Count + "</color>";
+
+        private static Sprite buttonInfect;
+
+        public static Sprite getInfectButtonSprite() {
+            if (buttonInfect) return buttonInfect;
+            buttonInfect = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratoryInfectButton.png", 90f);
+            return buttonInfect;
+        }
+
+        private static Sprite buttonPickMedkit;
+
+        public static Sprite getPickMedkitButtonSprite() {
+            if (buttonPickMedkit) return buttonPickMedkit;
+            buttonPickMedkit = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratoryPickMedkitButton.png", 90f);
+            return buttonPickMedkit;
+        }
+
+        private static Sprite buttonDeliverMedkit;
+
+        public static Sprite getDeliverMedkitButtonSprite() {
+            if (buttonDeliverMedkit) return buttonDeliverMedkit;
+            buttonDeliverMedkit = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratoryDeliverMedkitButton.png", 90f);
+            return buttonDeliverMedkit;
+        }
+
+        private static Sprite buttonEnterLaboratory;
+
+        public static Sprite getEnterLaboratoryButtonSprite() {
+            if (buttonEnterLaboratory) return buttonEnterLaboratory;
+            buttonEnterLaboratory = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratoryEnterLaboratoryButton.png", 90f);
+            return buttonEnterLaboratory;
+        }
+
+        private static Sprite buttonExitLaboratory;
+
+        public static Sprite getExitLaboratoryButtonSprite() {
+            if (buttonExitLaboratory) return buttonExitLaboratory;
+            buttonExitLaboratory = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratoryExitLaboratoryButton.png", 90f);
+            return buttonExitLaboratory;
+        }
+
+        private static Sprite buttonCreateCure;
+
+        public static Sprite getCreateCureButtonSprite() {
+            if (buttonCreateCure) return buttonCreateCure;
+            buttonCreateCure = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratoryCreateCureButton.png", 90f);
+            return buttonCreateCure;
+        }
+
+        private static Sprite buttonSurvivorEnterLaboratory;
+
+        public static Sprite getSurvivorEnterLaboratoryButtonSprite() {
+            if (buttonSurvivorEnterLaboratory) return buttonSurvivorEnterLaboratory;
+            buttonSurvivorEnterLaboratory = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratorySurvivorEnterLaboratoryButton.png", 90f);
+            return buttonSurvivorEnterLaboratory;
+        }
+
+        private static Sprite buttonSurvivorExitLaboratory;
+
+        public static Sprite getSurvivorExitLaboratoryButtonSprite() {
+            if (buttonSurvivorExitLaboratory) return buttonSurvivorExitLaboratory;
+            buttonSurvivorExitLaboratory = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratorySurvivorExitLaboratoryButton.png", 90f);
+            return buttonSurvivorExitLaboratory;
+        }
+
+        private static Sprite buttonSurvivorEmptyShoot;
+
+        public static Sprite getSurvivorEmptyShootButtonSprite() {
+            if (buttonSurvivorEmptyShoot) return buttonSurvivorEmptyShoot;
+            buttonSurvivorEmptyShoot = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratorySurvivorEmptyShootButton.png", 90f);
+            return buttonSurvivorEmptyShoot;
+        }
+
+        private static Sprite buttonSurvivorFullShoot;
+
+        public static Sprite getSurvivorFullShootButtonSprite() {
+            if (buttonSurvivorFullShoot) return buttonSurvivorFullShoot;
+            buttonSurvivorFullShoot = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratorySurvivorFullShootButton.png", 90f);
+            return buttonSurvivorFullShoot;
+        }
+
+        private static Sprite buttonSurvivorTakeBox;
+
+        public static Sprite getSurvivorTakeBoxButtonSprite() {
+            if (buttonSurvivorTakeBox) return buttonSurvivorTakeBox;
+            buttonSurvivorTakeBox = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratorySurvivorTakeBoxButton.png", 90f);
+            return buttonSurvivorTakeBox;
+        }
+
+        private static Sprite buttonSurvivorDeliverBox;
+
+        public static Sprite getSurvivorDeliverBoxButtonSprite() {
+            if (buttonSurvivorDeliverBox) return buttonSurvivorDeliverBox;
+            buttonSurvivorDeliverBox = Helpers.loadSpriteFromResources("LasMonjas.Images.ZombieLaboratorySurvivorDeliverBoxButton.png", 90f);
+            return buttonSurvivorDeliverBox;
+        }
+
+        public static void clearAndReload() {
+            survivorTeam.Clear();
+            zombieTeam.Clear();
+            groundItems.Clear();
+            infectedTeam.Clear();
+            susBoxPositions.Clear();
+            nurseExits.Clear();
+            nurseMedkits.Clear();
+            localNurseArrows = new List<Arrow>();
+
+            nursePlayer = null;
+            nursePlayercurrentTarget = null;
+            nursePlayerIsReviving = false;
+            nursePlayerHasMedKit = false;
+            nursePlayerInsideLaboratory = true;
+            nursePlayerHasCureReady = false;
+            nursePlayerCurrentExit = 0;
+            laboratoryNurseMedKit = null;
+            survivorPlayer01 = null;
+            survivorPlayer01currentTarget = null;
+            survivorPlayer01IsReviving = false;
+            survivorPlayer01IsInfected = false;
+            survivorPlayer01CanKill = false;
+            survivorPlayer01HasKeyItem = false;
+            survivorPlayer01FoundBox = 0;
+            survivorPlayer01SelectedBox = null;
+            survivorPlayer01CurrentBox = null;
+            survivorPlayer02 = null;
+            survivorPlayer02currentTarget = null;
+            survivorPlayer02IsReviving = false;
+            survivorPlayer02IsInfected = false;
+            survivorPlayer02CanKill = false;
+            survivorPlayer02HasKeyItem = false;
+            survivorPlayer02FoundBox = 0;
+            survivorPlayer02SelectedBox = null;
+            survivorPlayer02CurrentBox = null;
+            survivorPlayer03 = null;
+            survivorPlayer03currentTarget = null;
+            survivorPlayer03IsReviving = false;
+            survivorPlayer03IsInfected = false;
+            survivorPlayer03CanKill = false;
+            survivorPlayer03HasKeyItem = false;
+            survivorPlayer03FoundBox = 0;
+            survivorPlayer03SelectedBox = null;
+            survivorPlayer03CurrentBox = null;
+            survivorPlayer04 = null;
+            survivorPlayer04currentTarget = null;
+            survivorPlayer04IsReviving = false;
+            survivorPlayer04IsInfected = false;
+            survivorPlayer04CanKill = false;
+            survivorPlayer04HasKeyItem = false;
+            survivorPlayer04FoundBox = 0;
+            survivorPlayer04SelectedBox = null;
+            survivorPlayer04CurrentBox = null;
+            survivorPlayer05 = null;
+            survivorPlayer05currentTarget = null;
+            survivorPlayer05IsInfected = false;
+            survivorPlayer05IsReviving = false;
+            survivorPlayer05CanKill = false;
+            survivorPlayer05HasKeyItem = false;
+            survivorPlayer05FoundBox = 0;
+            survivorPlayer05SelectedBox = null;
+            survivorPlayer05CurrentBox = null;
+            survivorPlayer06 = null;
+            survivorPlayer06currentTarget = null;
+            survivorPlayer06IsReviving = false;
+            survivorPlayer06IsInfected = false;
+            survivorPlayer06CanKill = false;
+            survivorPlayer06HasKeyItem = false;
+            survivorPlayer06FoundBox = 0;
+            survivorPlayer06SelectedBox = null;
+            survivorPlayer06CurrentBox = null;
+            survivorPlayer07 = null;
+            survivorPlayer07currentTarget = null;
+            survivorPlayer07IsReviving = false;
+            survivorPlayer07IsInfected = false;
+            survivorPlayer07CanKill = false;
+            survivorPlayer07HasKeyItem = false;
+            survivorPlayer07FoundBox = 0;
+            survivorPlayer07SelectedBox = null;
+            survivorPlayer07CurrentBox = null;
+            survivorPlayer08 = null;
+            survivorPlayer08currentTarget = null;
+            survivorPlayer08IsInfected = false;
+            survivorPlayer08IsReviving = false;
+            survivorPlayer08CanKill = false;
+            survivorPlayer08HasKeyItem = false;
+            survivorPlayer08FoundBox = 0;
+            survivorPlayer08SelectedBox = null;
+            survivorPlayer08CurrentBox = null;
+            survivorPlayer09 = null;
+            survivorPlayer09currentTarget = null;
+            survivorPlayer09IsReviving = false;
+            survivorPlayer09IsInfected = false;
+            survivorPlayer09CanKill = false;
+            survivorPlayer09HasKeyItem = false;
+            survivorPlayer09FoundBox = 0;
+            survivorPlayer09SelectedBox = null;
+            survivorPlayer09CurrentBox = null;
+            survivorPlayer10 = null;
+            survivorPlayer10currentTarget = null;
+            survivorPlayer10IsReviving = false;
+            survivorPlayer10IsInfected = false;
+            survivorPlayer10CanKill = false;
+            survivorPlayer10HasKeyItem = false;
+            survivorPlayer10FoundBox = 0;
+            survivorPlayer10SelectedBox = null;
+            survivorPlayer10CurrentBox = null;
+            survivorPlayer11 = null;
+            survivorPlayer11currentTarget = null;
+            survivorPlayer11IsReviving = false;
+            survivorPlayer11IsInfected = false;
+            survivorPlayer11CanKill = false;
+            survivorPlayer11HasKeyItem = false;
+            survivorPlayer11FoundBox = 0;
+            survivorPlayer11SelectedBox = null;
+            survivorPlayer11CurrentBox = null;
+            survivorPlayer12 = null;
+            survivorPlayer12currentTarget = null;
+            survivorPlayer12IsReviving = false;
+            survivorPlayer12IsInfected = false;
+            survivorPlayer12CanKill = false;
+            survivorPlayer12HasKeyItem = false;
+            survivorPlayer12FoundBox = 0;
+            survivorPlayer12SelectedBox = null;
+            survivorPlayer12CurrentBox = null;
+            survivorPlayer13 = null;
+            survivorPlayer13currentTarget = null;
+            survivorPlayer13IsReviving = false;
+            survivorPlayer13IsInfected = false;
+            survivorPlayer13CanKill = false;
+            survivorPlayer13HasKeyItem = false;
+            survivorPlayer13FoundBox = 0;
+            survivorPlayer13SelectedBox = null;
+            survivorPlayer13CurrentBox = null;
+            zombiePlayer01 = null;
+            zombiePlayer01currentTarget = null;
+            zombiePlayer01infectedTarget = null;
+            zombiePlayer01IsReviving = false;
+            zombiePlayer02 = null;
+            zombiePlayer02currentTarget = null;
+            zombiePlayer02infectedTarget = null;
+            zombiePlayer02IsReviving = false;
+            zombiePlayer03 = null;
+            zombiePlayer03currentTarget = null;
+            zombiePlayer03infectedTarget = null;
+            zombiePlayer03IsReviving = false;
+            zombiePlayer04 = null;
+            zombiePlayer04currentTarget = null;
+            zombiePlayer04infectedTarget = null;
+            zombiePlayer04IsReviving = false;
+            zombiePlayer05 = null;
+            zombiePlayer05currentTarget = null;
+            zombiePlayer06infectedTarget = null;
+            zombiePlayer05IsReviving = false;
+            zombiePlayer06 = null;
+            zombiePlayer06currentTarget = null;
+            zombiePlayer06infectedTarget = null;
+            zombiePlayer06IsReviving = false;
+            zombiePlayer07 = null;
+            zombiePlayer07currentTarget = null;
+            zombiePlayer07infectedTarget = null;
+            zombiePlayer07IsReviving = false;
+            zombiePlayer08 = null;
+            zombiePlayer08currentTarget = null;
+            zombiePlayer08infectedTarget = null;
+            zombiePlayer08IsReviving = false;
+            zombiePlayer09 = null;
+            zombiePlayer09currentTarget = null;
+            zombiePlayer09infectedTarget = null;
+            zombiePlayer09IsReviving = false;
+            zombiePlayer10 = null;
+            zombiePlayer10currentTarget = null;
+            zombiePlayer10infectedTarget = null;
+            zombiePlayer10IsReviving = false;
+            zombiePlayer11 = null;
+            zombiePlayer11currentTarget = null;
+            zombiePlayer11infectedTarget = null;
+            zombiePlayer11IsReviving = false;
+            zombiePlayer12 = null;
+            zombiePlayer12currentTarget = null;
+            zombiePlayer12infectedTarget = null;
+            zombiePlayer12IsReviving = false;
+            zombiePlayer13 = null;
+            zombiePlayer13currentTarget = null;
+            zombiePlayer13infectedTarget = null;
+            zombiePlayer13IsReviving = false;
+            zombiePlayer14 = null;
+            zombiePlayer14currentTarget = null;
+            zombiePlayer14infectedTarget = null;
+            zombiePlayer14IsReviving = false;
+
+            if (CustomOptionHolder.zombieLaboratoryMode.getSelection() == 1) {
+                zombieLaboratoryMode = true;
+            }
+            else {
+                zombieLaboratoryMode = false;
+            }
+            laboratory = null;
+            laboratoryEnterButton = null;
+            laboratoryExitButton = null;
+            laboratoryCreateCureButton = null;
+            laboratoryPutKeyItemButton = null;
+            laboratoryExitLeftButton = null;
+            laboratoryExitRightButton = null;
+            laboratoryKeyItem01 = null;
+            laboratoryKeyItem02 = null;
+            laboratoryKeyItem03 = null;
+            laboratoryKeyItem04 = null;
+            laboratoryKeyItem05 = null;
+            laboratoryKeyItem06 = null;
+            keyItem01BeingHeld = false;
+            keyItem02BeingHeld = false;
+            keyItem03BeingHeld = false;
+            keyItem04BeingHeld = false;
+            keyItem05BeingHeld = false;
+            keyItem06BeingHeld = false;
+            matchDuration = CustomOptionHolder.zombieLaboratoryMatchDuration.getFloat() + 10f;
+            startZombies = CustomOptionHolder.zombieLaboratoryStartZombies.getFloat();
+            infectCooldown = CustomOptionHolder.zombieLaboratoryInfectCooldown.getFloat();
+            killCooldown = CustomOptionHolder.zombieLaboratoryKillCooldown.getFloat();
+            reviveTime = CustomOptionHolder.zombieLaboratoryReviveTime.getFloat();
+            invincibilityTimeAfterRevive = CustomOptionHolder.zombieLaboratoryInvincibilityTimeAfterRevive.getFloat();
+            infectTime = CustomOptionHolder.zombieLaboratoryInfectTime.getFloat();
+            timeForHeal = CustomOptionHolder.zombieLaboratoryTimeForHeal.getFloat();
+            survivorsVision = CustomOptionHolder.zombieLaboratorySurvivorsVision.getFloat();
+            searchBoxTimer = CustomOptionHolder.zombieLaboratorySearchBoxTimer.getFloat();
+            zombieSenseiMapLaboratoryMode = CustomOptionHolder.activateSenseiMap.getBool();
+            currentKeyItems = 0;
+            triggerZombieWin = false;
+            triggerSurvivorWin = false;
+
+            zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + zombieTeam.Count + "</color>";
+
+            switch (PlayerControl.GameOptions.MapId) {
+                case 0:
+                    if (zombieSenseiMapLaboratoryMode) {
+                        // sus[0-5] = key items
+                        susBoxPositions.Add(new Vector3(-7.5f, -4, 0.4f));
+                        susBoxPositions.Add(new Vector3(-5.25f, -0.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-4.5f, 1.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.25f, 3, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.85f, 5.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-16.25f, -4.75f, 0.4f));
+                        // sus[6-9] = ammo boxes
+                        susBoxPositions.Add(new Vector3(-20, -1.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-16f, -1.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-18f, -1.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-18f, 2f, 0.4f));
+                        // sus[10-59] = nothing boxes
+                        susBoxPositions.Add(new Vector3(-15.5f, 2.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-17.85f, 5.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-18.85f, -8f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-14.25f, -12.35f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-16.35f, -10.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-13f, -7.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-10.75f, -9f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-10.75f, -11.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-5.5f, -12.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-7.75f, -11.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.75f, -9.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-1f, -9f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1f, -12f, 0.4f));
+                        susBoxPositions.Add(new Vector3(3.75f, -14f, 0.4f));
+                        susBoxPositions.Add(new Vector3(6.5f, -14f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-8.5f, -0.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(12.5f, -0.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(12f, -2.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(10f, -2.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(5.75f, 2f, 0.4f));
+                        susBoxPositions.Add(new Vector3(6.75f, 5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(7.5f, 1.9f, 0.4f));
+                        susBoxPositions.Add(new Vector3(5f, -9f, 0.4f));
+                        susBoxPositions.Add(new Vector3(5f, -5.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.35f, 8f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.75f, 6f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.75f, 3f, 0.4f));
+                        susBoxPositions.Add(new Vector3(2.5f, -6.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(7.5f, -6.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(7.5f, -3f, 0.4f));
+                        susBoxPositions.Add(new Vector3(7.5f, -1f, 0.4f));
+                        susBoxPositions.Add(new Vector3(4.6f, -1f, 0.4f));
+                        susBoxPositions.Add(new Vector3(3f, 1.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(4f, 3.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1f, 3f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1f, -1.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-2.25f, -1.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.75f, -1.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.75f, -4f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.5f, -6f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-13.5f, -1.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.85f, -6.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-12f, -4.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-12f, 1.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-10.35f, 2.85f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.75f, 3.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.75f, 6f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.75f, 8f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.75f, 10.85f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-15.5f, -6.75f, 0.4f));
+                    }
+                    else {
+                        // sus[0-5] = key items
+                        susBoxPositions.Add(new Vector3(-15.75f, -0.9f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-20, -6.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-7.85f, -11.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(4.5f, -9.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(5.75f, -15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1.75f, -3.5f, 0.4f));
+                        // sus[6-9] = ammo boxes
+                        susBoxPositions.Add(new Vector3(-18.5f, -9.65f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.5f, 1.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(16.75f, -6f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3f, -10f, 0.4f));
+                        // sus[10-59] = nothing boxes
+                        susBoxPositions.Add(new Vector3(-21.5f, -2.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-20f, -4f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-21f, -5.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-21.5f, -8f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-16.9f, -5.4f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-13.9f, -5.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-13.5f, -6.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-12.5f, -3.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-18f, 2.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-13.65f, 1.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-7.1f, 1.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-9.1f, -1.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-9.4f, -4.65f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-5.75f, -5.3f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-18.5f, -13.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-13.85f, -11.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-12.1f, -14.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-9.5f, -11f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-9f, -8.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.5f, -8.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-6.5f, -14.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(0.35f, -9.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.65f, -15.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.55f, -15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1.05f, -7f, 0.4f));
+                        susBoxPositions.Add(new Vector3(2.5f, -8.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(6.3f, -7.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(2.5f, -12.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(5.15f, -12.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(2.15f, -15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(4f, -16f, 0.4f));
+                        susBoxPositions.Add(new Vector3(8f, -14.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(9.4f, -12.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(9.4f, -8.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(11.75f, -6.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(14f, -4.75f, 0.4f));
+                        susBoxPositions.Add(new Vector3(16.75f, -3f, 0.4f));
+                        susBoxPositions.Add(new Vector3(9.5f, -3.25f, 0.4f));
+                        susBoxPositions.Add(new Vector3(6.65f, -4.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(5.2f, -4.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(9.5f, 0f, 0.4f));
+                        susBoxPositions.Add(new Vector3(10.5f, 2.35f, 0.4f));
+                        susBoxPositions.Add(new Vector3(6f, 1.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1.75f, 1.15f, 0.4f));
+                        susBoxPositions.Add(new Vector3(1.75f, 5.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.5f, 5.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-3.5f, -3.5f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.8f, -1.45f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.8f, 3.85f, 0.4f));
+                        susBoxPositions.Add(new Vector3(-0.65f, -5.65f, 0.4f));
+                    }
+                    break;
+                case 1:
+                    // sus[0-5] = key items
+                    susBoxPositions.Add(new Vector3(-3.5f, 3.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-5.35f, 2.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-3.55f, 1.45f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-5.4f, -1.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-3.25f, -1.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-0.55f, -1.35f, 0.4f));
+                    // sus[6-9] = ammo boxes
+                    susBoxPositions.Add(new Vector3(4.25f, -1.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(7.75f, -1.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(10.5f, -1.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.5f, -1.35f, 0.4f));
+                    // sus[10-59] = nothing boxes
+                    susBoxPositions.Add(new Vector3(14.5f, 0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(15.4f, -0.85f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.5f, 2.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.5f, 7f, 0.4f));
+                    susBoxPositions.Add(new Vector3(14.5f, 4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16f, 4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.25f, 4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.25f, 1.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6f, 1.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6f, 4.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6f, 8f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6f, 12f, 0.4f));
+                    susBoxPositions.Add(new Vector3(8.6f, 13f, 0.4f));
+                    susBoxPositions.Add(new Vector3(7.8f, 10.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(10.7f, 12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.5f, 10.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.75f, 13.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(1.25f, 13.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(1.25f, 10.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(15.4f, 9.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(17.85f, 11.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(17.85f, 14f, 0.4f));
+                    susBoxPositions.Add(new Vector3(17.85f, 17.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(17.85f, 20.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(17.85f, 23.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(15.75f, 17.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(14.75f, 20.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.65f, 20.65f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22f, 20.65f, 0.4f));
+                    susBoxPositions.Add(new Vector3(21f, 17.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.5f, 23.4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22.15f, 23.4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20.15f, 24.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16.25f, 24.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20.25f, 9.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.5f, 4.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(18.5f, 3.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.5f, 2.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.5f, 0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22f, 4.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22f, 2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22f, 0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22f, -1.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(25.5f, 4.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(25.5f, 2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(25.5f, 0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(25.5f, -1.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(28.25f, 4.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(28.25f, 2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(28.25f, 0.25f, 0.4f));
+                    break;
+                case 2:
+                    // sus[0-5] = key items
+                    susBoxPositions.Add(new Vector3(13.75f, -9.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(10.15f, -9.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(7.5f, -9.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(2.75f, -9.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(2.75f, -11.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(5.5f, -11.75f, 0.4f));
+                    // sus[6-9] = ammo boxes
+                    susBoxPositions.Add(new Vector3(7.5f, -12.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.75f, -12.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16f, -12.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(24f, -12.15f, 0.4f));
+                    // sus[10-59] = nothing boxes
+                    susBoxPositions.Add(new Vector3(29f, -12.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(5.45f, -16.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.25f, -16.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.45f, -14.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(4.4f, -19f, 0.4f));
+                    susBoxPositions.Add(new Vector3(8.5f, -19f, 0.4f));
+                    susBoxPositions.Add(new Vector3(14.5f, -19f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.85f, -19f, 0.4f));
+                    susBoxPositions.Add(new Vector3(1.35f, -17.4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.15f, -17.4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(1.35f, -20f, 0.4f));
+                    susBoxPositions.Add(new Vector3(2.25f, -23.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.15f, -21.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.25f, -21.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.25f, -24.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(8f, -24.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(11, -20.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16.5f, -25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22f, -25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(24f, -25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(18.5f, -21.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20.75f, -21.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22.5f, -21.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22.25f, -18.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(17.25f, -18.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20.65f, -14.45f, 0.4f));
+                    susBoxPositions.Add(new Vector3(26.5f, -14.45f, 0.4f));
+                    susBoxPositions.Add(new Vector3(24.5f, -17f, 0.4f));
+                    susBoxPositions.Add(new Vector3(27.5f, -17f, 0.4f));
+                    susBoxPositions.Add(new Vector3(27.85f, -22.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(31f, -20.65f, 0.4f));
+                    susBoxPositions.Add(new Vector3(38.35f, -20.65f, 0.4f));
+                    susBoxPositions.Add(new Vector3(36.5f, -21.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(35.5f, -19.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(32f, -15.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20f, -9f, 0.4f));
+                    susBoxPositions.Add(new Vector3(24f, -7f, 0.4f));
+                    susBoxPositions.Add(new Vector3(27.75f, -7.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(30f, -7.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(33.25f, -7.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(36.4f, -6.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(36.4f, -10f, 0.4f));
+                    susBoxPositions.Add(new Vector3(39.25f, -10f, 0.4f));
+                    susBoxPositions.Add(new Vector3(40.35f, -8f, 0.4f));
+                    susBoxPositions.Add(new Vector3(39.1f, -14.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(31.5f, -9.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(28.75f, -9.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(25.5f, -9.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.5f, -7.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(15.75f, -21.75f, 0.4f));
+                    break;
+                case 3:
+                    // sus[0-5] = key items
+                    susBoxPositions.Add(new Vector3(15.75f, -0.9f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20, -6.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(7.85f, -11.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-4.5f, -9.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-5.75f, -15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-1.75f, -3.5f, 0.4f));
+                    // sus[6-9] = ammo boxes
+                    susBoxPositions.Add(new Vector3(18.5f, -9.65f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.5f, 1.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-16.75f, -6f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3f, -10f, 0.4f));
+                    // sus[10-59] = nothing boxes
+                    susBoxPositions.Add(new Vector3(21.5f, -2.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20f, -4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(21f, -5.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(21.5f, -8f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16.9f, -5.4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.9f, -5.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.5f, -6.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.5f, -3.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(18f, 2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.65f, 1.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(7.1f, 1.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.1f, -1.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.4f, -4.65f, 0.4f));
+                    susBoxPositions.Add(new Vector3(5.75f, -5.3f, 0.4f));
+                    susBoxPositions.Add(new Vector3(18.5f, -13.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.85f, -11.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.1f, -14.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.5f, -11f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9f, -8.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.5f, -8.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.5f, -14.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-0.35f, -9.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(0.65f, -15.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.55f, -15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-1.05f, -7f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-2.5f, -8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-6.3f, -7.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-2.5f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-5.15f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-2.15f, -15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-4f, -16f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-8f, -14.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-9.4f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-9.4f, -8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-11.75f, -6.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-14f, -4.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-16.75f, -3f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-9.5f, -3.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-6.65f, -4.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-5.2f, -4.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-9.5f, 0f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-10.5f, 2.35f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-6f, 1.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-1.75f, 1.15f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-1.75f, 5.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.5f, 5.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(3.5f, -3.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(0.8f, -1.45f, 0.4f));
+                    susBoxPositions.Add(new Vector3(0.8f, 3.85f, 0.4f));
+                    susBoxPositions.Add(new Vector3(0.65f, -5.65f, 0.4f));
+                    break;
+                case 4:
+                    // sus[0-5] = key items
+                    susBoxPositions.Add(new Vector3(3.5f, -0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.5f, -2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.25f, -2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(6.25f, 2f, 0.4f));
+                    susBoxPositions.Add(new Vector3(9.25f, 2f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12.25f, 2f, 0.4f));
+                    // sus[6-9] = ammo boxes
+                    susBoxPositions.Add(new Vector3(15.25f, 2f, 0.4f));
+                    susBoxPositions.Add(new Vector3(24f, 2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(25.75f, 0.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-5.15f, 8.5f, 0.4f));
+                    // sus[10-59] = nothing boxes
+                    susBoxPositions.Add(new Vector3(18.5f, -0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(18.5f, 3f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20f, 5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.5f, 6f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-23.25f, -0.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-19f, -2.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-10.5f, -5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-7.5f, -7.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-0.75f, 5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(1.25f, -1f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-7.5f, -1f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-15f, -1f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-14.25f, 1.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-14.25f, -4.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-14.25f, -8.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-13.75f, -14.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-15.5f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-10.25f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(1.5f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(5.75f, -10.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(5.75f, -12.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(8.25f, -12.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(10.25f, -6.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.25f, -11f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.25f, -4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.25f, -6.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16.25f, -11f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16.25f, -6.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.25f, -6.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(13.25f, -8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(16.25f, -8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(19.25f, -8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(22.5f, -8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(23f, -6f, 0.4f));
+                    susBoxPositions.Add(new Vector3(29f, -6f, 0.4f));
+                    susBoxPositions.Add(new Vector3(29f, -1.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(32f, 1.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(37.25f, -3.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(38.25f, 0.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(30.75f, 5.4f, 0.4f));
+                    susBoxPositions.Add(new Vector3(33.75f, 7.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(29.25f, 7.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(24.75f, 7.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(27f, 9.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(20f, 11.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(12f, 8.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(4.25f, 8.75f, 0.4f));
+                    susBoxPositions.Add(new Vector3(0.5f, 8.5f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-8.75f, 5.25f, 0.4f));
+                    susBoxPositions.Add(new Vector3(-8.75f, 12.5f, 0.4f));
+                    break;
+            }
+            susBoxPositions.Shuffle();
+        }
+    }
+
     public static class CustomMain
     {
         public static CustomAssets customAssets = new CustomAssets();
@@ -2719,6 +3687,22 @@ namespace LasMonjas
         // Custom Bundle Hot Potato Assets
         public AudioClip hotPotatoMusic;
         public GameObject hotPotato;
+
+        // Custom Bundle ZombieLaboratory Assets
+        public AudioClip zombieLaboratoryMusic;
+        public GameObject laboratory;
+        public GameObject keyItem01;
+        public GameObject keyItem02;
+        public GameObject keyItem03;
+        public GameObject keyItem04;
+        public GameObject keyItem05;
+        public GameObject keyItem06;
+        public GameObject susBox;
+        public GameObject emptyBox;
+        public GameObject ammoBox;
+        public AudioClip rechargeAmmoClip;
+        public GameObject nurseMedKit;
+        public GameObject mapMedKit;
         
         // Custom Map
         public GameObject customMap;
@@ -2727,6 +3711,7 @@ namespace LasMonjas
 
         // Custom Lobby
         public GameObject customLobby;
+        public GameObject allulfitti;
 
         // Custom Music
         public AudioClip lobbyMusic;

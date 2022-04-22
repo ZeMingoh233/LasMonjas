@@ -150,7 +150,37 @@ namespace LasMonjas
         ExplodedPotato11,
         ExplodedPotato12,
         ExplodedPotato13,
-        ExplodedPotato14
+        ExplodedPotato14,
+
+        // ZombieLaboratory
+        NursePlayer,
+        SurvivorPlayer01,
+        SurvivorPlayer02,
+        SurvivorPlayer03,
+        SurvivorPlayer04,
+        SurvivorPlayer05,
+        SurvivorPlayer06,
+        SurvivorPlayer07,
+        SurvivorPlayer08,
+        SurvivorPlayer09,
+        SurvivorPlayer10,
+        SurvivorPlayer11,
+        SurvivorPlayer12,
+        SurvivorPlayer13,
+        ZombiePlayer01,
+        ZombiePlayer02,
+        ZombiePlayer03,
+        ZombiePlayer04,
+        ZombiePlayer05,
+        ZombiePlayer06,
+        ZombiePlayer07,
+        ZombiePlayer08,
+        ZombiePlayer09,
+        ZombiePlayer10,
+        ZombiePlayer11,
+        ZombiePlayer12,
+        ZombiePlayer13,
+        ZombiePlayer14
     }
 
     enum CustomRPC
@@ -249,7 +279,18 @@ namespace LasMonjas
         KingoftheHillCapture,
 
         // Hot Potato
-        HotPotatoTransfer
+        HotPotatoTransfer,
+
+        // ZombieLaboratory
+        ZombieInfect,
+        ZombieKills,
+        ZombieAmmoRecover,
+        ZombieNurseHeal,
+        ZombieSurvivorsWin,
+        ZombieTakeKeyItem,
+        ZombieDeliverKeyItem,
+        EnterLeaveInfirmary,
+        NurseHasMedKit
     }
 
     public static class RPCProcedure
@@ -732,6 +773,120 @@ namespace LasMonjas
                             break;
                         case RoleId.ExplodedPotato14:
                             HotPotato.explodedPotato14 = player;
+                            break;
+
+                        // ZombieLaboratory
+                        case RoleId.NursePlayer:
+                            ZombieLaboratory.nursePlayer = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer01:
+                            ZombieLaboratory.zombiePlayer01 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer02:
+                            ZombieLaboratory.zombiePlayer02 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer03:
+                            ZombieLaboratory.zombiePlayer03 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer04:
+                            ZombieLaboratory.zombiePlayer04 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer05:
+                            ZombieLaboratory.zombiePlayer05 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer06:
+                            ZombieLaboratory.zombiePlayer06 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer07:
+                            ZombieLaboratory.zombiePlayer07 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer08:
+                            ZombieLaboratory.zombiePlayer08 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer09:
+                            ZombieLaboratory.zombiePlayer09 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer10:
+                            ZombieLaboratory.zombiePlayer10 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer11:
+                            ZombieLaboratory.zombiePlayer11 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer12:
+                            ZombieLaboratory.zombiePlayer12 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer13:
+                            ZombieLaboratory.zombiePlayer13 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.ZombiePlayer14:
+                            ZombieLaboratory.zombiePlayer14 = player;
+                            ZombieLaboratory.zombieTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer01:
+                            ZombieLaboratory.survivorPlayer01 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer02:
+                            ZombieLaboratory.survivorPlayer02 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer03:
+                            ZombieLaboratory.survivorPlayer03 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer04:
+                            ZombieLaboratory.survivorPlayer04 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer05:
+                            ZombieLaboratory.survivorPlayer05 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer06:
+                            ZombieLaboratory.survivorPlayer06 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer07:
+                            ZombieLaboratory.survivorPlayer07 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer08:
+                            ZombieLaboratory.survivorPlayer08 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer09:
+                            ZombieLaboratory.survivorPlayer09 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer10:
+                            ZombieLaboratory.survivorPlayer10 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer11:
+                            ZombieLaboratory.survivorPlayer11 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer12:
+                            ZombieLaboratory.survivorPlayer12 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
+                            break;
+                        case RoleId.SurvivorPlayer13:
+                            ZombieLaboratory.survivorPlayer13 = player;
+                            ZombieLaboratory.survivorTeam.Add(player);
                             break;
                     }
                 }
@@ -3822,6 +3977,1219 @@ namespace LasMonjas
                 }
             }
         }
+
+        public static void zombieTakeKeyItem(byte survivorWhoTookTheKey, byte keyId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                // survivor player take key item
+                if (player.PlayerId == survivorWhoTookTheKey) {
+                    if (ZombieLaboratory.survivorPlayer01 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer01.PlayerId) {
+                        ZombieLaboratory.survivorPlayer01HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer01FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer02 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer02.PlayerId) {
+                        ZombieLaboratory.survivorPlayer02HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer02FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer03 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer03.PlayerId) {
+                        ZombieLaboratory.survivorPlayer03HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer03FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer04 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer04.PlayerId) {
+                        ZombieLaboratory.survivorPlayer04HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer04FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer05 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer05.PlayerId) {
+                        ZombieLaboratory.survivorPlayer05HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer05FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer06 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer06.PlayerId) {
+                        ZombieLaboratory.survivorPlayer06HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer06FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer07 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer07.PlayerId) {
+                        ZombieLaboratory.survivorPlayer07HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer07FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer08 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer08.PlayerId) {
+                        ZombieLaboratory.survivorPlayer08HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer08FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer09 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer09.PlayerId) {
+                        ZombieLaboratory.survivorPlayer09HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer09FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer10 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer10.PlayerId) {
+                        ZombieLaboratory.survivorPlayer10HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer10FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer11 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer11.PlayerId) {
+                        ZombieLaboratory.survivorPlayer11HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer11FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer12 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer12.PlayerId) {
+                        ZombieLaboratory.survivorPlayer12HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer12FoundBox = keyId;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer13 != null && survivorWhoTookTheKey == ZombieLaboratory.survivorPlayer13.PlayerId) {
+                        ZombieLaboratory.survivorPlayer13HasKeyItem = true;
+                        ZombieLaboratory.survivorPlayer13FoundBox = keyId;
+                    }
+                    switch (keyId) {
+                        case 1:
+                            ZombieLaboratory.keyItem01BeingHeld = true;
+                            ZombieLaboratory.laboratoryKeyItem01.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.keyItem01.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.laboratoryKeyItem01.transform.parent = player.transform;
+                            ZombieLaboratory.laboratoryKeyItem01.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                            ZombieLaboratory.laboratoryKeyItem01.SetActive(true);
+                            break;
+                        case 2:
+                            ZombieLaboratory.keyItem02BeingHeld = true;
+                            ZombieLaboratory.laboratoryKeyItem02.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.keyItem02.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.laboratoryKeyItem02.transform.parent = player.transform;
+                            ZombieLaboratory.laboratoryKeyItem02.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                            ZombieLaboratory.laboratoryKeyItem02.SetActive(true);
+                            break;
+                        case 3:
+                            ZombieLaboratory.keyItem03BeingHeld = true;
+                            ZombieLaboratory.laboratoryKeyItem03.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.keyItem03.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.laboratoryKeyItem03.transform.parent = player.transform;
+                            ZombieLaboratory.laboratoryKeyItem03.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                            ZombieLaboratory.laboratoryKeyItem03.SetActive(true);
+                            break;
+                        case 4:
+                            ZombieLaboratory.keyItem04BeingHeld = true;
+                            ZombieLaboratory.laboratoryKeyItem04.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.keyItem04.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.laboratoryKeyItem04.transform.parent = player.transform;
+                            ZombieLaboratory.laboratoryKeyItem04.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                            ZombieLaboratory.laboratoryKeyItem04.SetActive(true);
+                            break;
+                        case 5:
+                            ZombieLaboratory.keyItem05BeingHeld = true;
+                            ZombieLaboratory.laboratoryKeyItem05.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.keyItem05.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.laboratoryKeyItem05.transform.parent = player.transform;
+                            ZombieLaboratory.laboratoryKeyItem05.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                            ZombieLaboratory.laboratoryKeyItem05.SetActive(true);
+                            break;
+                        case 6:
+                            ZombieLaboratory.keyItem06BeingHeld = true;
+                            ZombieLaboratory.laboratoryKeyItem06.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.keyItem06.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.laboratoryKeyItem06.transform.parent = player.transform;
+                            ZombieLaboratory.laboratoryKeyItem06.transform.localPosition = new Vector3(0f, 0.7f, -0.1f);
+                            ZombieLaboratory.laboratoryKeyItem06.SetActive(true);
+                            break;
+                    }
+                }
+
+            }
+        }
+
+        public static void zombieDeliverKeyItem(byte survivorWhoHasKey, byte keyId) {
+            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                // survivor deliver keyitem
+                if (player.PlayerId == survivorWhoHasKey) {
+                    if (ZombieLaboratory.survivorPlayer01 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer01.PlayerId) {
+                        ZombieLaboratory.survivorPlayer01HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer01FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer02 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer02.PlayerId) {
+                        ZombieLaboratory.survivorPlayer02HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer02FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer03 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer03.PlayerId) {
+                        ZombieLaboratory.survivorPlayer03HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer03FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer04 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer04.PlayerId) {
+                        ZombieLaboratory.survivorPlayer04HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer04FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer05 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer05.PlayerId) {
+                        ZombieLaboratory.survivorPlayer05HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer05FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer06 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer06.PlayerId) {
+                        ZombieLaboratory.survivorPlayer06HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer06FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer07 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer07.PlayerId) {
+                        ZombieLaboratory.survivorPlayer07HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer07FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer08 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer08.PlayerId) {
+                        ZombieLaboratory.survivorPlayer08HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer08FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer09 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer09.PlayerId) {
+                        ZombieLaboratory.survivorPlayer09HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer09FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer10 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer10.PlayerId) {
+                        ZombieLaboratory.survivorPlayer10HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer10FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer11 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer11.PlayerId) {
+                        ZombieLaboratory.survivorPlayer11HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer11FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer12 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer12.PlayerId) {
+                        ZombieLaboratory.survivorPlayer12HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer12FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer13 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer13.PlayerId) {
+                        ZombieLaboratory.survivorPlayer13HasKeyItem = false;
+                        ZombieLaboratory.survivorPlayer13FoundBox = 0;
+                    }
+                    GameObject myKeyItem = null;
+                    switch (keyId) {
+                        case 1:
+                            myKeyItem = ZombieLaboratory.laboratoryKeyItem01;
+                            ZombieLaboratory.keyItem01BeingHeld = true;
+                            break;
+                        case 2:
+                            myKeyItem = ZombieLaboratory.laboratoryKeyItem02;
+                            ZombieLaboratory.keyItem02BeingHeld = true;
+                            break;
+                        case 3:
+                            myKeyItem = ZombieLaboratory.laboratoryKeyItem03;
+                            ZombieLaboratory.keyItem03BeingHeld = true;
+                            break;
+                        case 4:
+                            myKeyItem = ZombieLaboratory.laboratoryKeyItem04;
+                            ZombieLaboratory.keyItem04BeingHeld = true;
+                            break;
+                        case 5:
+                            myKeyItem = ZombieLaboratory.laboratoryKeyItem05;
+                            ZombieLaboratory.keyItem05BeingHeld = true;
+                            break;
+                        case 6:
+                            myKeyItem = ZombieLaboratory.laboratoryKeyItem06;
+                            ZombieLaboratory.keyItem06BeingHeld = true;
+                            break;
+                    }
+                    switch (PlayerControl.GameOptions.MapId) {
+                        // Skeld
+                        case 0:
+                            if (activatedSensei) {
+                                switch (myKeyItem.name) {
+                                    case "keyItem01":
+                                        myKeyItem.transform.position = new Vector3(-13.5f, 8.25f, -0.2f);
+                                        break;
+                                    case "keyItem02":
+                                        myKeyItem.transform.position = new Vector3(-13.15f, 8.25f, -0.2f);
+                                        break;
+                                    case "keyItem03":
+                                        myKeyItem.transform.position = new Vector3(-12.8f, 8.25f, -0.2f);
+                                        break;
+                                    case "keyItem04":
+                                        myKeyItem.transform.position = new Vector3(-12.45f, 8.25f, -0.2f);
+                                        break;
+                                    case "keyItem05":
+                                        myKeyItem.transform.position = new Vector3(-12.1f, 8.25f, -0.2f);
+                                        break;
+                                    case "keyItem06":
+                                        myKeyItem.transform.position = new Vector3(-11.85f, 8.25f, -0.2f);
+                                        break;
+                                }
+                            }
+                            else {
+                                switch (myKeyItem.name) {
+                                    case "keyItem01":
+                                        myKeyItem.transform.position = new Vector3(-11.85f, 4.5f, -0.2f);
+                                        break;
+                                    case "keyItem02":
+                                        myKeyItem.transform.position = new Vector3(-11.5f, 4.5f, -0.2f);
+                                        break;
+                                    case "keyItem03":
+                                        myKeyItem.transform.position = new Vector3(-11.15f, 4.5f, -0.2f);
+                                        break;
+                                    case "keyItem04":
+                                        myKeyItem.transform.position = new Vector3(-10.8f, 4.5f, -0.2f);
+                                        break;
+                                    case "keyItem05":
+                                        myKeyItem.transform.position = new Vector3(-10.45f, 4.5f, -0.2f);
+                                        break;
+                                    case "keyItem06":
+                                        myKeyItem.transform.position = new Vector3(-10.1f, 4.5f, -0.2f);
+                                        break;
+                                }
+                            }
+                            break;
+                        // MiraHQ
+                        case 1:
+                            switch (myKeyItem.name) {
+                                case "keyItem01":
+                                    myKeyItem.transform.position = new Vector3(0.25f, 2.15f, -0.2f);
+                                    break;
+                                case "keyItem02":
+                                    myKeyItem.transform.position = new Vector3(0.6f, 2.15f, -0.2f);
+                                    break;
+                                case "keyItem03":
+                                    myKeyItem.transform.position = new Vector3(0.95f, 2.15f, -0.2f);
+                                    break;
+                                case "keyItem04":
+                                    myKeyItem.transform.position = new Vector3(1.3f, 2.15f, -0.2f);
+                                    break;
+                                case "keyItem05":
+                                    myKeyItem.transform.position = new Vector3(1.65f, 2.15f, -0.2f);
+                                    break;
+                                case "keyItem06":
+                                    myKeyItem.transform.position = new Vector3(2f, 2.15f, -0.2f);
+                                    break;
+                            }
+                            break;
+                        // Polus
+                        case 2:
+                            switch (myKeyItem.name) {
+                                case "keyItem01":
+                                    myKeyItem.transform.position = new Vector3(15.2f, -1.5f, -0.2f);
+                                    break;
+                                case "keyItem02":
+                                    myKeyItem.transform.position = new Vector3(15.55f, -1.5f, -0.2f);
+                                    break;
+                                case "keyItem03":
+                                    myKeyItem.transform.position = new Vector3(15.9f, -1.5f, -0.2f);
+                                    break;
+                                case "keyItem04":
+                                    myKeyItem.transform.position = new Vector3(16.25f, -1.5f, -0.2f);
+                                    break;
+                                case "keyItem05":
+                                    myKeyItem.transform.position = new Vector3(16.6f, -1.5f, -0.2f);
+                                    break;
+                                case "keyItem06":
+                                    myKeyItem.transform.position = new Vector3(16.95f, -1.5f, -0.2f);
+                                    break;
+                            }
+                            break;
+                        // Dleks
+                        case 3:
+                            switch (myKeyItem.name) {
+                                case "keyItem01":
+                                    myKeyItem.transform.position = new Vector3(11.85f, 4.5f, -0.2f);
+                                    break;
+                                case "keyItem02":
+                                    myKeyItem.transform.position = new Vector3(11.5f, 4.5f, -0.2f);
+                                    break;
+                                case "keyItem03":
+                                    myKeyItem.transform.position = new Vector3(11.15f, 4.5f, -0.2f);
+                                    break;
+                                case "keyItem04":
+                                    myKeyItem.transform.position = new Vector3(10.8f, 4.5f, -0.2f);
+                                    break;
+                                case "keyItem05":
+                                    myKeyItem.transform.position = new Vector3(10.45f, 4.5f, -0.2f);
+                                    break;
+                                case "keyItem06":
+                                    myKeyItem.transform.position = new Vector3(10.1f, 4.5f, -0.2f);
+                                    break;
+                            }
+                            break;
+                        // Airship
+                        case 4:
+                            switch (myKeyItem.name) {
+                                case "keyItem01":
+                                    myKeyItem.transform.position = new Vector3(-19.95f, 4f, -0.2f);
+                                    break;
+                                case "keyItem02":
+                                    myKeyItem.transform.position = new Vector3(-19.6f, 4f, -0.2f);
+                                    break;
+                                case "keyItem03":
+                                    myKeyItem.transform.position = new Vector3(-19.25f, 4f, -0.2f);
+                                    break;
+                                case "keyItem04":
+                                    myKeyItem.transform.position = new Vector3(-18.9f, 4f, -0.2f);
+                                    break;
+                                case "keyItem05":
+                                    myKeyItem.transform.position = new Vector3(-18.55f, 4f, -0.2f);
+                                    break;
+                                case "keyItem06":
+                                    myKeyItem.transform.position = new Vector3(-18.2f, 4f, -0.2f);
+                                    break;
+                            }
+                            break;
+                    }
+                    myKeyItem.transform.SetParent(null);
+                }
+            }
+
+            ZombieLaboratory.currentKeyItems += 1;
+            new CustomMessage("A <color=#FF00FFFF>Key Item</color> has been delivered!", 5, -1, 1.6f, 21);
+            ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+            if (ZombieLaboratory.currentKeyItems >= 6) {
+                ZombieLaboratory.nursePlayerHasCureReady = true;
+            }
+        }
+
+        public static void zombieLaboratoryRevertedKeyPosition(byte survivorWhoHasKey, byte keyRevertedId) {
+            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                if (player.PlayerId == survivorWhoHasKey) {
+                    if (ZombieLaboratory.survivorPlayer01 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer01.PlayerId) {
+                        ZombieLaboratory.survivorPlayer01FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer02 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer02.PlayerId) {
+                        ZombieLaboratory.survivorPlayer02FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer03 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer03.PlayerId) {
+                        ZombieLaboratory.survivorPlayer03FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer04 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer04.PlayerId) {
+                        ZombieLaboratory.survivorPlayer04FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer05 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer05.PlayerId) {
+                        ZombieLaboratory.survivorPlayer05FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer06 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer06.PlayerId) {
+                        ZombieLaboratory.survivorPlayer06FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer07 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer07.PlayerId) {
+                        ZombieLaboratory.survivorPlayer07FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer08 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer08.PlayerId) {
+                        ZombieLaboratory.survivorPlayer08FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer09 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer09.PlayerId) {
+                        ZombieLaboratory.survivorPlayer09FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer10 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer10.PlayerId) {
+                        ZombieLaboratory.survivorPlayer10FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer11 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer11.PlayerId) {
+                        ZombieLaboratory.survivorPlayer11FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer12 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer12.PlayerId) {
+                        ZombieLaboratory.survivorPlayer12FoundBox = 0;
+                    }
+                    else if (ZombieLaboratory.survivorPlayer13 != null && survivorWhoHasKey == ZombieLaboratory.survivorPlayer13.PlayerId) {
+                        ZombieLaboratory.survivorPlayer13FoundBox = 0;
+                    }
+
+                    switch (keyRevertedId) {
+                        case 1:
+                            ZombieLaboratory.laboratoryKeyItem01.transform.SetParent(null);
+                            ZombieLaboratory.laboratoryKeyItem01.transform.position = ZombieLaboratory.susBoxPositions[0];
+                            ZombieLaboratory.keyItem01BeingHeld = false;
+                            break;
+                        case 2:
+                            ZombieLaboratory.laboratoryKeyItem02.transform.SetParent(null);
+                            ZombieLaboratory.laboratoryKeyItem02.transform.position = ZombieLaboratory.susBoxPositions[1];
+                            ZombieLaboratory.keyItem02BeingHeld = false;
+                            break;
+                        case 3:
+                            ZombieLaboratory.laboratoryKeyItem03.transform.SetParent(null);
+                            ZombieLaboratory.laboratoryKeyItem03.transform.position = ZombieLaboratory.susBoxPositions[2];
+                            ZombieLaboratory.keyItem03BeingHeld = false;
+                            break;
+                        case 4:
+                            ZombieLaboratory.laboratoryKeyItem04.transform.SetParent(null);
+                            ZombieLaboratory.laboratoryKeyItem04.transform.position = ZombieLaboratory.susBoxPositions[3];
+                            ZombieLaboratory.keyItem04BeingHeld = false;
+                            break;
+                        case 5:
+                            ZombieLaboratory.laboratoryKeyItem05.transform.SetParent(null);
+                            ZombieLaboratory.laboratoryKeyItem05.transform.position = ZombieLaboratory.susBoxPositions[4];
+                            ZombieLaboratory.keyItem05BeingHeld = false;
+                            break;
+                        case 6:
+                            ZombieLaboratory.laboratoryKeyItem06.transform.SetParent(null);
+                            ZombieLaboratory.laboratoryKeyItem06.transform.position = ZombieLaboratory.susBoxPositions[5];
+                            ZombieLaboratory.keyItem06BeingHeld = false;
+                            break;
+                    }
+
+                    // zombies can't see key items, hide it after infecting a player
+                    foreach (PlayerControl zombie in ZombieLaboratory.zombieTeam) {
+                        if (zombie != null & zombie == PlayerControl.LocalPlayer) {
+                            switch (keyRevertedId) {
+                                case 1:
+                                    ZombieLaboratory.laboratoryKeyItem01.SetActive(false);
+                                    break;
+                                case 2:
+                                    ZombieLaboratory.laboratoryKeyItem02.SetActive(false);
+                                    break;
+                                case 3:
+                                    ZombieLaboratory.laboratoryKeyItem03.SetActive(false);
+                                    break;
+                                case 4:
+                                    ZombieLaboratory.laboratoryKeyItem04.SetActive(false);
+                                    break;
+                                case 5:
+                                    ZombieLaboratory.laboratoryKeyItem05.SetActive(false);
+                                    break;
+                                case 6:
+                                    ZombieLaboratory.laboratoryKeyItem06.SetActive(false);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void zombieInfect(byte targetId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId) {
+
+                    // Assign infect bool
+                    if (ZombieLaboratory.survivorPlayer01 != null && player == ZombieLaboratory.survivorPlayer01) {
+                        if (!ZombieLaboratory.survivorPlayer01IsInfected) {
+                            ZombieLaboratory.survivorPlayer01IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer01);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer02 != null && player == ZombieLaboratory.survivorPlayer02) {
+                        if (!ZombieLaboratory.survivorPlayer02IsInfected) {
+                            ZombieLaboratory.survivorPlayer02IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer02);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer03 != null && player == ZombieLaboratory.survivorPlayer03) {
+                        if (!ZombieLaboratory.survivorPlayer03IsInfected) {
+                            ZombieLaboratory.survivorPlayer03IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer03);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer04 != null && player == ZombieLaboratory.survivorPlayer04) {
+                        if (!ZombieLaboratory.survivorPlayer04IsInfected) {
+                            ZombieLaboratory.survivorPlayer04IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer04);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer05 != null && player == ZombieLaboratory.survivorPlayer05) {
+                        if (!ZombieLaboratory.survivorPlayer05IsInfected) {
+                            ZombieLaboratory.survivorPlayer05IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer05);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer06 != null && player == ZombieLaboratory.survivorPlayer06) {
+                        if (!ZombieLaboratory.survivorPlayer06IsInfected) {
+                            ZombieLaboratory.survivorPlayer06IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer06);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer07 != null && player == ZombieLaboratory.survivorPlayer07) {
+                        if (!ZombieLaboratory.survivorPlayer07IsInfected) {
+                            ZombieLaboratory.survivorPlayer07IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer07);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer08 != null && player == ZombieLaboratory.survivorPlayer08) {
+                        if (!ZombieLaboratory.survivorPlayer08IsInfected) {
+                            ZombieLaboratory.survivorPlayer08IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer08);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer09 != null && player == ZombieLaboratory.survivorPlayer09) {
+                        if (!ZombieLaboratory.survivorPlayer09IsInfected) {
+                            ZombieLaboratory.survivorPlayer09IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer09);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer10 != null && player == ZombieLaboratory.survivorPlayer10) {
+                        if (!ZombieLaboratory.survivorPlayer10IsInfected) {
+                            ZombieLaboratory.survivorPlayer10IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer10);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer11 != null && player == ZombieLaboratory.survivorPlayer11) {
+                        if (!ZombieLaboratory.survivorPlayer11IsInfected) {
+                            ZombieLaboratory.survivorPlayer11IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer11);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer12 != null && player == ZombieLaboratory.survivorPlayer12) {
+                        if (!ZombieLaboratory.survivorPlayer12IsInfected) {
+                            ZombieLaboratory.survivorPlayer12IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer12);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else if (ZombieLaboratory.survivorPlayer13 != null && player == ZombieLaboratory.survivorPlayer13) {
+                        if (!ZombieLaboratory.survivorPlayer13IsInfected) {
+                            ZombieLaboratory.survivorPlayer13IsInfected = true;
+                            ZombieLaboratory.infectedTeam.Add(ZombieLaboratory.survivorPlayer13);
+                        }
+                        else {
+                            return;
+                        }
+                    }
+
+                    new CustomMessage("A <color=#00CCFFFF>Survivor</color> has been <color=#FFFF00FF>Infected</color>!", 5, -1, 1.3f, 21);
+                    ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(ZombieLaboratory.timeForHeal, new Action<float>((p) => { // Delayed action
+                        if (p == 1f && !player.Data.IsDead && !player.Data.Disconnected) {
+
+                            // Remove Survivor role
+                            if (ZombieLaboratory.survivorPlayer01 != null && player == ZombieLaboratory.survivorPlayer01) {
+                                if (ZombieLaboratory.survivorPlayer01IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer01HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer01HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer01FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer01);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer01);
+                                    ZombieLaboratory.survivorPlayer01 = null;
+                                    ZombieLaboratory.survivorPlayer01IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer02 != null && player == ZombieLaboratory.survivorPlayer02) {
+                                if (ZombieLaboratory.survivorPlayer02IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer02HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer02HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer02FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer02);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer02);
+                                    ZombieLaboratory.survivorPlayer02 = null;
+                                    ZombieLaboratory.survivorPlayer02IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer03 != null && player == ZombieLaboratory.survivorPlayer03) {
+                                if (ZombieLaboratory.survivorPlayer03IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer03HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer03HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer03FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer03);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer03);
+                                    ZombieLaboratory.survivorPlayer03 = null;
+                                    ZombieLaboratory.survivorPlayer03IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer04 != null && player == ZombieLaboratory.survivorPlayer04) {
+                                if (ZombieLaboratory.survivorPlayer04IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer04HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer04HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer04FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer04);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer04);
+                                    ZombieLaboratory.survivorPlayer04 = null;
+                                    ZombieLaboratory.survivorPlayer04IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer05 != null && player == ZombieLaboratory.survivorPlayer05) {
+                                if (ZombieLaboratory.survivorPlayer05IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer05HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer05HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer05FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer05);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer05);
+                                    ZombieLaboratory.survivorPlayer05 = null;
+                                    ZombieLaboratory.survivorPlayer05IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer06 != null && player == ZombieLaboratory.survivorPlayer06) {
+                                if (ZombieLaboratory.survivorPlayer06IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer06HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer06HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer06FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer06);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer06);
+                                    ZombieLaboratory.survivorPlayer06 = null;
+                                    ZombieLaboratory.survivorPlayer06IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer07 != null && player == ZombieLaboratory.survivorPlayer07) {
+                                if (ZombieLaboratory.survivorPlayer07IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer07HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer07HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer07FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer07);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer07);
+                                    ZombieLaboratory.survivorPlayer07 = null;
+                                    ZombieLaboratory.survivorPlayer07IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer08 != null && player == ZombieLaboratory.survivorPlayer08) {
+                                if (ZombieLaboratory.survivorPlayer08IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer08HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer08HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer08FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer08);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer08);
+                                    ZombieLaboratory.survivorPlayer08 = null;
+                                    ZombieLaboratory.survivorPlayer08IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer09 != null && player == ZombieLaboratory.survivorPlayer09) {
+                                if (ZombieLaboratory.survivorPlayer09IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer09HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer09HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer09FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer09);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer09);
+                                    ZombieLaboratory.survivorPlayer09 = null;
+                                    ZombieLaboratory.survivorPlayer09IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer10 != null && player == ZombieLaboratory.survivorPlayer10) {
+                                if (ZombieLaboratory.survivorPlayer10IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer10HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer10HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer10FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer10);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer10);
+                                    ZombieLaboratory.survivorPlayer10 = null;
+                                    ZombieLaboratory.survivorPlayer10IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer11 != null && player == ZombieLaboratory.survivorPlayer11) {
+                                if (ZombieLaboratory.survivorPlayer11IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer11HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer11HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer11FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer11);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer11);
+                                    ZombieLaboratory.survivorPlayer11 = null;
+                                    ZombieLaboratory.survivorPlayer11IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer12 != null && player == ZombieLaboratory.survivorPlayer12) {
+                                if (ZombieLaboratory.survivorPlayer12IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer12HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer12HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer12FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer12);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer12);
+                                    ZombieLaboratory.survivorPlayer12 = null;
+                                    ZombieLaboratory.survivorPlayer12IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                            else if (ZombieLaboratory.survivorPlayer13 != null && player == ZombieLaboratory.survivorPlayer13) {
+                                if (ZombieLaboratory.survivorPlayer13IsInfected) {
+                                    if (ZombieLaboratory.survivorPlayer13HasKeyItem) {
+                                        ZombieLaboratory.survivorPlayer13HasKeyItem = false;
+                                        zombieLaboratoryRevertedKeyPosition(player.PlayerId, ZombieLaboratory.survivorPlayer13FoundBox);
+                                    }
+                                    ZombieLaboratory.survivorTeam.Remove(ZombieLaboratory.survivorPlayer13);
+                                    ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer13);
+                                    ZombieLaboratory.survivorPlayer13 = null;
+                                    ZombieLaboratory.survivorPlayer13IsInfected = false;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+
+                            // Add zombie role
+                            if (ZombieLaboratory.zombiePlayer02 == null) {
+                                ZombieLaboratory.zombiePlayer02 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer03 == null) {
+                                ZombieLaboratory.zombiePlayer03 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer04 == null) {
+                                ZombieLaboratory.zombiePlayer04 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer05 == null) {
+                                ZombieLaboratory.zombiePlayer05 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer06 == null) {
+                                ZombieLaboratory.zombiePlayer06 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer07 == null) {
+                                ZombieLaboratory.zombiePlayer07 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer08 == null) {
+                                ZombieLaboratory.zombiePlayer08 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer09 == null) {
+                                ZombieLaboratory.zombiePlayer09 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer10 == null) {
+                                ZombieLaboratory.zombiePlayer10 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer11 == null) {
+                                ZombieLaboratory.zombiePlayer11 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer12 == null) {
+                                ZombieLaboratory.zombiePlayer12 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer13 == null) {
+                                ZombieLaboratory.zombiePlayer13 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+                            else if (ZombieLaboratory.zombiePlayer14 == null) {
+                                ZombieLaboratory.zombiePlayer14 = player;
+                                ZombieLaboratory.zombieTeam.Add(player);
+                            }
+
+                            if (!player.Data.IsDead) {
+                                switch (PlayerControl.GameOptions.MapId) {
+                                    case 0:
+                                        if (activatedSensei) {
+                                            player.transform.position = new Vector3(-4.85f, 6, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-17.25f, -13.25f, player.transform.position.z);
+                                        }
+                                        break;
+                                    case 1:
+                                        player.transform.position = new Vector3(18.5f, -1.85f, player.transform.position.z);
+                                        break;
+                                    case 2:
+                                        player.transform.position = new Vector3(17.15f, -17.15f, player.transform.position.z);
+                                        break;
+                                    case 3:
+                                        player.transform.position = new Vector3(17.25f, -13.25f, player.transform.position.z);
+                                        break;
+                                    case 4:
+                                        player.transform.position = new Vector3(32.35f, 7.25f, player.transform.position.z);
+                                        break;
+                                }
+                            }
+
+                            new CustomMessage("A <color=#00CCFFFF>Survivor</color> turned into a <color=#996633FF>Zombie</color>!", 5, -1, 1f, 21);
+                            ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+                            // Check win condition
+                            if (ZombieLaboratory.survivorTeam.Count == 1) {
+                                ZombieLaboratory.triggerZombieWin = true;
+                            }
+                        }
+                    })));
+                    return;
+                }
+            }
+        }
+
+        public static void zombieKills(byte targetId, int whichplayer) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId) {
+                    switch (whichplayer) {
+                        case 1:
+                            ZombieLaboratory.zombiePlayer01.MurderPlayer(player);
+                            break;
+                        case 2:
+                            ZombieLaboratory.zombiePlayer02.MurderPlayer(player);
+                            break;
+                        case 3:
+                            ZombieLaboratory.zombiePlayer03.MurderPlayer(player);
+                            break;
+                        case 4:
+                            ZombieLaboratory.zombiePlayer04.MurderPlayer(player);
+                            break;
+                        case 5:
+                            ZombieLaboratory.zombiePlayer05.MurderPlayer(player);
+                            break;
+                        case 6:
+                            ZombieLaboratory.zombiePlayer06.MurderPlayer(player);
+                            break;
+                        case 7:
+                            ZombieLaboratory.zombiePlayer07.MurderPlayer(player);
+                            break;
+                        case 8:
+                            ZombieLaboratory.zombiePlayer08.MurderPlayer(player);
+                            break;
+                        case 9:
+                            ZombieLaboratory.zombiePlayer09.MurderPlayer(player);
+                            break;
+                        case 10:
+                            ZombieLaboratory.zombiePlayer10.MurderPlayer(player);
+                            break;
+                        case 11:
+                            ZombieLaboratory.zombiePlayer11.MurderPlayer(player);
+                            break;
+                        case 12:
+                            ZombieLaboratory.zombiePlayer12.MurderPlayer(player);
+                            break;
+                        case 13:
+                            ZombieLaboratory.zombiePlayer13.MurderPlayer(player);
+                            break;
+                        case 14:
+                            ZombieLaboratory.zombiePlayer14.MurderPlayer(player);
+                            break;
+                        case 15:
+                            ZombieLaboratory.survivorPlayer01.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer01CanKill = false;
+                            break;
+                        case 16:
+                            ZombieLaboratory.survivorPlayer02.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer02CanKill = false;
+                            break;
+                        case 17:
+                            ZombieLaboratory.survivorPlayer03.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer03CanKill = false;
+                            break;
+                        case 18:
+                            ZombieLaboratory.survivorPlayer04.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer04CanKill = false;
+                            break;
+                        case 19:
+                            ZombieLaboratory.survivorPlayer05.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer05CanKill = false;
+                            break;
+                        case 20:
+                            ZombieLaboratory.survivorPlayer06.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer06CanKill = false;
+                            break;
+                        case 21:
+                            ZombieLaboratory.survivorPlayer07.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer07CanKill = false;
+                            break;
+                        case 22:
+                            ZombieLaboratory.survivorPlayer08.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer08CanKill = false;
+                            break;
+                        case 23:
+                            ZombieLaboratory.survivorPlayer09.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer09CanKill = false;
+                            break;
+                        case 24:
+                            ZombieLaboratory.survivorPlayer10.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer10CanKill = false;
+                            break;
+                        case 25:
+                            ZombieLaboratory.survivorPlayer11.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer11CanKill = false;
+                            break;
+                        case 26:
+                            ZombieLaboratory.survivorPlayer12.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer12CanKill = false;
+                            break;
+                        case 27:
+                            ZombieLaboratory.survivorPlayer13.MurderPlayer(player);
+                            ZombieLaboratory.survivorPlayer13CanKill = false;
+                            break;
+                    }
+                    return;
+                }
+            }
+        }
+
+        public static void zombieAmmoRecover(int whichplayer) {
+            switch (whichplayer) {
+                case 1:
+                    ZombieLaboratory.survivorPlayer01CanKill = true;
+                    break;
+                case 2:
+                    ZombieLaboratory.survivorPlayer02CanKill = true;
+                    break;
+                case 3:
+                    ZombieLaboratory.survivorPlayer03CanKill = true;
+                    break;
+                case 4:
+                    ZombieLaboratory.survivorPlayer04CanKill = true;
+                    break;
+                case 5:
+                    ZombieLaboratory.survivorPlayer05CanKill = true;
+                    break;
+                case 6:
+                    ZombieLaboratory.survivorPlayer06CanKill = true;
+                    break;
+                case 7:
+                    ZombieLaboratory.survivorPlayer07CanKill = true;
+                    break;
+                case 8:
+                    ZombieLaboratory.survivorPlayer08CanKill = true;
+                    break;
+                case 9:
+                    ZombieLaboratory.survivorPlayer09CanKill = true;
+                    break;
+                case 10:
+                    ZombieLaboratory.survivorPlayer10CanKill = true;
+                    break;
+                case 11:
+                    ZombieLaboratory.survivorPlayer11CanKill = true;
+                    break;
+                case 12:
+                    ZombieLaboratory.survivorPlayer12CanKill = true;
+                    break;
+                case 13:
+                    ZombieLaboratory.survivorPlayer13CanKill = true;
+                    break;
+            }
+        }
+
+        public static void zombieNurseHeal(byte targetId) {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
+                if (player.PlayerId == targetId) {
+                    if (ZombieLaboratory.survivorPlayer01 != null && player == ZombieLaboratory.survivorPlayer01) {
+                        ZombieLaboratory.survivorPlayer01IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer01);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer02 != null && player == ZombieLaboratory.survivorPlayer02) {
+                        ZombieLaboratory.survivorPlayer02IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer02);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer03 != null && player == ZombieLaboratory.survivorPlayer03) {
+                        ZombieLaboratory.survivorPlayer03IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer03);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer04 != null && player == ZombieLaboratory.survivorPlayer04) {
+                        ZombieLaboratory.survivorPlayer04IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer04);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer05 != null && player == ZombieLaboratory.survivorPlayer05) {
+                        ZombieLaboratory.survivorPlayer05IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer05);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer06 != null && player == ZombieLaboratory.survivorPlayer06) {
+                        ZombieLaboratory.survivorPlayer06IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer06);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer07 != null && player == ZombieLaboratory.survivorPlayer07) {
+                        ZombieLaboratory.survivorPlayer07IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer07);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer08 != null && player == ZombieLaboratory.survivorPlayer08) {
+                        ZombieLaboratory.survivorPlayer08IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer08);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer09 != null && player == ZombieLaboratory.survivorPlayer09) {
+                        ZombieLaboratory.survivorPlayer09IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer09);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer10 != null && player == ZombieLaboratory.survivorPlayer10) {
+                        ZombieLaboratory.survivorPlayer10IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer10);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer11 != null && player == ZombieLaboratory.survivorPlayer11) {
+                        ZombieLaboratory.survivorPlayer11IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer11);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer12 != null && player == ZombieLaboratory.survivorPlayer12) {
+                        ZombieLaboratory.survivorPlayer12IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer12);
+                    }
+                    else if (ZombieLaboratory.survivorPlayer13 != null && player == ZombieLaboratory.survivorPlayer13) {
+                        ZombieLaboratory.survivorPlayer13IsInfected = false;
+                        ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer13);
+                    }
+                    ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+                    ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
+                }
+                SoundManager.Instance.PlaySound(CustomMain.customAssets.spiritualistRevive, false, 100f);
+                if (player.PlayerId == targetId && targetId == PlayerControl.LocalPlayer.PlayerId) {
+                    HudManager.Instance.FullScreen.enabled = true;
+                    HudManager.Instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((p) => {
+                        var renderer = HudManager.Instance.FullScreen;
+                        Color c = new Color(255f / 255f, 197f / 255f, 255f / 255f, 0f);
+                        if (p < 0.5) {
+                            if (renderer != null)
+                                renderer.color = new Color(c.r, c.g, c.b, Mathf.Clamp01(p * 2 * 0.75f));
+                        }
+                        else {
+                            if (renderer != null)
+                                renderer.color = new Color(c.r, c.g, c.b, Mathf.Clamp01((1 - p) * 2 * 0.75f));
+                        }
+                    })));
+                }
+            }
+        }
+
+        public static void enterLeaveInfirmary(byte survivorId, bool isEntering, byte whichExit) {
+            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                if (player.PlayerId == survivorId) {
+                    if (isEntering) {
+                        switch (PlayerControl.GameOptions.MapId) {
+                            case 0:
+                                if (activatedSensei) {
+                                    player.transform.position = new Vector3(-12f, 7.15f, player.transform.position.z);
+                                }
+                                else {
+                                    player.transform.position = new Vector3(-10.2f, 3.6f, player.transform.position.z);
+                                }
+                                break;
+                            case 1:
+                                player.transform.position = new Vector3(1.8f, 1.25f, player.transform.position.z);
+                                break;
+                            case 2:
+                                player.transform.position = new Vector3(16.65f, -2.5f, player.transform.position.z);
+                                break;
+                            case 3:
+                                player.transform.position = new Vector3(10.2f, 3.6f, player.transform.position.z);
+                                break;
+                            case 4:
+                                player.transform.position = new Vector3(-18.5f, 2.9f, player.transform.position.z);
+                                break;
+                        }
+                    }
+                    else {
+                        switch (PlayerControl.GameOptions.MapId) {
+                            case 0:
+                                if (activatedSensei) {
+                                    switch (whichExit) {
+                                        case 1:
+                                            player.transform.position = new Vector3(-12f, 5f, player.transform.position.z);
+                                            break;
+                                        case 2:
+                                            player.transform.position = new Vector3(-15.5f, 3f, player.transform.position.z);
+                                            break;
+                                        case 3:
+                                            player.transform.position = new Vector3(-6.75f, 8.25f, player.transform.position.z);
+                                            break;
+                                    }
+                                }
+                                else {
+                                    switch (whichExit) {
+                                        case 1:
+                                            player.transform.position = new Vector3(-10.2f, 1.18f, player.transform.position.z);
+                                            break;
+                                        case 2:
+                                            player.transform.position = new Vector3(-17f, -1f, player.transform.position.z);
+                                            break;
+                                        case 3:
+                                            player.transform.position = new Vector3(-3.25f, 5.25f, player.transform.position.z);
+                                            break;
+                                    }
+                                }
+                                break;
+                            case 1:
+                                switch (whichExit) {
+                                    case 1:
+                                        player.transform.position = new Vector3(1.8f, -1f, player.transform.position.z);
+                                        break;
+                                    case 2:
+                                        player.transform.position = new Vector3(-3.4f, 3.5f, player.transform.position.z);
+                                        break;
+                                    case 3:
+                                        player.transform.position = new Vector3(4.5f, 1.5f, player.transform.position.z);
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                switch (whichExit) {
+                                    case 1:
+                                        player.transform.position = new Vector3(16.65f, -5f, player.transform.position.z);
+                                        break;
+                                    case 2:
+                                        player.transform.position = new Vector3(5.5f, -9.5f, player.transform.position.z);
+                                        break;
+                                    case 3:
+                                        player.transform.position = new Vector3(34.75f, -6f, player.transform.position.z);
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                switch (whichExit) {
+                                    case 1:
+                                        player.transform.position = new Vector3(10.2f, 1.18f, player.transform.position.z);
+                                        break;
+                                    case 2:
+                                        player.transform.position = new Vector3(17f, -1f, player.transform.position.z);
+                                        break;
+                                    case 3:
+                                        player.transform.position = new Vector3(3.25f, 5.25f, player.transform.position.z);
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                switch (whichExit) {
+                                    case 1:
+                                        player.transform.position = new Vector3(-18.5f, 0.75f, player.transform.position.z);
+                                        break;
+                                    case 2:
+                                        player.transform.position = new Vector3(-14.25f, -8f, player.transform.position.z);
+                                        break;
+                                    case 3:
+                                        player.transform.position = new Vector3(-10.75f, 8.5f, player.transform.position.z);
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void nurseHasMedKit() {
+            ZombieLaboratory.laboratoryNurseMedKit.SetActive(true);
+        }
+
+        public static void zombieSurvivorsWin() {
+            SoundManager.Instance.PlaySound(CustomMain.customAssets.spiritualistRevive, false, 100f);
+            ZombieLaboratory.triggerSurvivorWin = true;
+        }
     }
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
@@ -4138,6 +5506,46 @@ namespace LasMonjas
                 // Hot Potato
                 case (byte)CustomRPC.HotPotatoTransfer:
                     RPCProcedure.hotPotatoTransfer(reader.ReadByte());
+                    break;
+
+                // ZombieLaboratory
+                case (byte)CustomRPC.ZombieInfect:
+                    RPCProcedure.zombieInfect(reader.ReadByte());
+                    break;
+                case (byte)CustomRPC.ZombieKills:
+                    byte zombiekillId = reader.ReadByte();
+                    byte whichkill = reader.ReadByte();
+                    RPCProcedure.zombieKills(zombiekillId, whichkill);
+                    break;
+                case (byte)CustomRPC.ZombieAmmoRecover:
+                    byte whichAmmo = reader.ReadByte();
+                    RPCProcedure.zombieAmmoRecover(whichAmmo);
+                    break;
+                case (byte)CustomRPC.ZombieNurseHeal:
+                    byte whichHeal = reader.ReadByte();
+                    RPCProcedure.zombieNurseHeal(whichHeal);
+                    break;
+                case (byte)CustomRPC.ZombieSurvivorsWin:
+                    RPCProcedure.zombieSurvivorsWin();
+                    break;
+                case (byte)CustomRPC.ZombieTakeKeyItem:
+                    byte survivorWhoTookKeyItem = reader.ReadByte();
+                    byte keyId = reader.ReadByte();
+                    RPCProcedure.zombieTakeKeyItem(survivorWhoTookKeyItem, keyId);
+                    break;
+                case (byte)CustomRPC.ZombieDeliverKeyItem:
+                    byte survivorWhoDeliverKey = reader.ReadByte();
+                    byte keyDeliveredId = reader.ReadByte();
+                    RPCProcedure.zombieDeliverKeyItem(survivorWhoDeliverKey, keyDeliveredId);
+                    break;
+                case (byte)CustomRPC.EnterLeaveInfirmary:
+                    byte survivorWhoEntered = reader.ReadByte();
+                    bool enterOrLeave = reader.ReadBoolean();
+                    byte whichExit = reader.ReadByte();
+                    RPCProcedure.enterLeaveInfirmary(survivorWhoEntered, enterOrLeave, whichExit);
+                    break;
+                case (byte)CustomRPC.NurseHasMedKit:
+                    RPCProcedure.nurseHasMedKit();
                     break;
             }
         }

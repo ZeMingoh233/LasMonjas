@@ -323,6 +323,27 @@ namespace LasMonjas
                     roleCouldUse = false;
                 }
             }
+            else if (ZombieLaboratory.zombieLaboratoryMode && PlayerControl.LocalPlayer == player && howmanygamemodesareon == 1) {
+                if (PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer01 && !ZombieLaboratory.zombiePlayer01IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer02 && !ZombieLaboratory.zombiePlayer02IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer03 && !ZombieLaboratory.zombiePlayer03IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer04 && !ZombieLaboratory.zombiePlayer04IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer05 && !ZombieLaboratory.zombiePlayer05IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer06 && !ZombieLaboratory.zombiePlayer06IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer07 && !ZombieLaboratory.zombiePlayer07IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer08 && !ZombieLaboratory.zombiePlayer08IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer09 && !ZombieLaboratory.zombiePlayer09IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer10 && !ZombieLaboratory.zombiePlayer10IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer11 && !ZombieLaboratory.zombiePlayer11IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer12 && !ZombieLaboratory.zombiePlayer12IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer13 && !ZombieLaboratory.zombiePlayer13IsReviving
+                    || PlayerControl.LocalPlayer == ZombieLaboratory.zombiePlayer14 && !ZombieLaboratory.zombiePlayer14IsReviving) {
+                    roleCouldUse = true;
+                }
+                else {
+                    roleCouldUse = false;
+                }
+            }
             else {
                 if (Chameleon.chameleon != null && Chameleon.chameleon == player)
                     roleCouldUse = false;
@@ -417,6 +438,18 @@ namespace LasMonjas
             }
             
             return team;
+        }
+
+        public static void Shuffle<T>(this IList<T> list) {
+            System.Random rnd = new System.Random();
+            for (var i = 0; i < list.Count; i++)
+                list.Swap(i, rnd.Next(i, list.Count));
+        }
+
+        public static void Swap<T>(this IList<T> list, int i, int j) {
+            var temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
         }
     }
 }

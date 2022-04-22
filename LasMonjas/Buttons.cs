@@ -180,6 +180,78 @@ namespace LasMonjas
         // Hot Potato button
         public static CustomButton hotPotatoButton;
 
+        // ZombieLaboratory
+        private static CustomButton zombie01InfectButton;
+        private static CustomButton zombie01KillButton;
+        private static CustomButton zombie02InfectButton;
+        private static CustomButton zombie02KillButton;
+        private static CustomButton zombie03InfectButton;
+        private static CustomButton zombie03KillButton;
+        private static CustomButton zombie04InfectButton;
+        private static CustomButton zombie04KillButton;
+        private static CustomButton zombie05InfectButton;
+        private static CustomButton zombie05KillButton;
+        private static CustomButton zombie06InfectButton;
+        private static CustomButton zombie06KillButton;
+        private static CustomButton zombie07InfectButton;
+        private static CustomButton zombie07KillButton;
+        private static CustomButton zombie08InfectButton;
+        private static CustomButton zombie08KillButton;
+        private static CustomButton zombie09InfectButton;
+        private static CustomButton zombie09KillButton;
+        private static CustomButton zombie10InfectButton;
+        private static CustomButton zombie10KillButton;
+        private static CustomButton zombie11InfectButton;
+        private static CustomButton zombie11KillButton;
+        private static CustomButton zombie12InfectButton;
+        private static CustomButton zombie12KillButton;
+        private static CustomButton zombie13InfectButton;
+        private static CustomButton zombie13KillButton;
+        private static CustomButton zombie14InfectButton;
+        private static CustomButton zombie14KillButton;
+        private static CustomButton survivor01KillButton;
+        private static CustomButton survivor01FindDeliverButton;
+        private static CustomButton survivor01EnterExitButton;
+        private static CustomButton survivor02KillButton;
+        private static CustomButton survivor02FindDeliverButton;
+        private static CustomButton survivor02EnterExitButton;
+        private static CustomButton survivor03KillButton;
+        private static CustomButton survivor03FindDeliverButton;
+        private static CustomButton survivor03EnterExitButton;
+        private static CustomButton survivor04KillButton;
+        private static CustomButton survivor04FindDeliverButton;
+        private static CustomButton survivor04EnterExitButton;
+        private static CustomButton survivor05KillButton;
+        private static CustomButton survivor05FindDeliverButton;
+        private static CustomButton survivor05EnterExitButton;
+        private static CustomButton survivor06KillButton;
+        private static CustomButton survivor06FindDeliverButton;
+        private static CustomButton survivor06EnterExitButton;
+        private static CustomButton survivor07KillButton;
+        private static CustomButton survivor07FindDeliverButton;
+        private static CustomButton survivor07EnterExitButton;
+        private static CustomButton survivor08KillButton;
+        private static CustomButton survivor08FindDeliverButton;
+        private static CustomButton survivor08EnterExitButton;
+        private static CustomButton survivor09KillButton;
+        private static CustomButton survivor09FindDeliverButton;
+        private static CustomButton survivor09EnterExitButton;
+        private static CustomButton survivor10KillButton;
+        private static CustomButton survivor10FindDeliverButton;
+        private static CustomButton survivor10EnterExitButton;
+        private static CustomButton survivor11KillButton;
+        private static CustomButton survivor11FindDeliverButton;
+        private static CustomButton survivor11EnterExitButton;
+        private static CustomButton survivor12KillButton;
+        private static CustomButton survivor12FindDeliverButton;
+        private static CustomButton survivor12EnterExitButton;
+        private static CustomButton survivor13KillButton;
+        private static CustomButton survivor13FindDeliverButton;
+        private static CustomButton survivor13EnterExitButton;
+        private static CustomButton nurseEnterExitButton;
+        private static CustomButton nurseMedKitButton;
+        private static CustomButton nurseCreateCureButton;
+
         public static void setCustomButtonCooldowns() {
             // Impostor buttons
             mimicTransformButton.MaxTimer = Mimic.cooldown;
@@ -390,6 +462,105 @@ namespace LasMonjas
 
             // Hot Potato buttons
             hotPotatoButton.MaxTimer = HotPotato.transferCooldown;
+
+            // ZombieLaboratory
+            zombie01InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie01InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie01KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie02InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie02InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie02KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie03InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie03InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie03KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie04InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie04InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie04KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie05InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie05InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie05KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie06InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie06InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie06KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie07InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie07InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie07KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie08InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie08InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie08KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie09InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie09InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie09KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie10InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie10InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie10KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie11InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie11InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie11KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie12InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie12InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie12KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie13InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie13InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie13KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            zombie14InfectButton.MaxTimer = ZombieLaboratory.infectCooldown;
+            zombie14InfectButton.EffectDuration = ZombieLaboratory.infectTime;
+            zombie14KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor01KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor01FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor01FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor01EnterExitButton.MaxTimer = 10f;
+            survivor02KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor02FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor02FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor02EnterExitButton.MaxTimer = 10f;
+            survivor03KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor03FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor03FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor03EnterExitButton.MaxTimer = 10f;
+            survivor04KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor04FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor04FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor04EnterExitButton.MaxTimer = 10f;
+            survivor05KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor05FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor05FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor05EnterExitButton.MaxTimer = 10f;
+            survivor06KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor06FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor06FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor06EnterExitButton.MaxTimer = 10f;
+            survivor07KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor07FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor07FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor07EnterExitButton.MaxTimer = 10f;
+            survivor08KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor08FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor08FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor08EnterExitButton.MaxTimer = 10f;
+            survivor09KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor09FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor09FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor09EnterExitButton.MaxTimer = 10f;
+            survivor10KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor10FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor10FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor10EnterExitButton.MaxTimer = 10f;
+            survivor11KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor11FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor11FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor11EnterExitButton.MaxTimer = 10f;
+            survivor12KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor12FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor12FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor12EnterExitButton.MaxTimer = 10f;
+            survivor13KillButton.MaxTimer = ZombieLaboratory.killCooldown;
+            survivor13FindDeliverButton.MaxTimer = ZombieLaboratory.searchBoxTimer;
+            survivor13FindDeliverButton.EffectDuration = ZombieLaboratory.searchBoxTimer;
+            survivor13EnterExitButton.MaxTimer = 10f;
+            nurseEnterExitButton.MaxTimer = 5f;
+            nurseMedKitButton.MaxTimer = 5f;
+            nurseCreateCureButton.MaxTimer = 5f;
         }
 
         public static void resetBomberBombButton() {
@@ -6780,6 +6951,4195 @@ namespace LasMonjas
                 new Vector3(-1.9f, -0.06f, 0),
                 __instance,
                 KeyCode.Q
+            );
+
+            // ZombieLaboratory buttons code
+            // Zombie01 infect
+            zombie01InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer01infectedTarget = ZombieLaboratory.zombiePlayer01currentTarget;
+                    zombie01InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer01 != null && ZombieLaboratory.zombiePlayer01 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie01InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer01infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer01infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer01infectedTarget = null;
+                        zombie01InfectButton.Timer = 0f;
+                        zombie01InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer01currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer01currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer01IsReviving && ZombieLaboratory.zombiePlayer01currentTarget != null;
+                },
+                () => { zombie01InfectButton.Timer = zombie01InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer01infectedTarget != null && !ZombieLaboratory.zombiePlayer01infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer01infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer01infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer01infectedTarget = null;
+                    }
+                    zombie01InfectButton.Timer = zombie01InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie02 infect
+            zombie02InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer02infectedTarget = ZombieLaboratory.zombiePlayer02currentTarget;
+                    zombie02InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer02 != null && ZombieLaboratory.zombiePlayer02 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie02InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer02infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer02infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer02infectedTarget = null;
+                        zombie02InfectButton.Timer = 0f;
+                        zombie02InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer02currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer02currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer02IsReviving && ZombieLaboratory.zombiePlayer02currentTarget != null;
+                },
+                () => { zombie02InfectButton.Timer = zombie02InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer02infectedTarget != null && !ZombieLaboratory.zombiePlayer02infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer02infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer02infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer02infectedTarget = null;
+                    }
+                    zombie02InfectButton.Timer = zombie02InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie03 infect
+            zombie03InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer03infectedTarget = ZombieLaboratory.zombiePlayer03currentTarget;
+                    zombie03InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer03 != null && ZombieLaboratory.zombiePlayer03 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie03InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer03infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer03infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer03infectedTarget = null;
+                        zombie03InfectButton.Timer = 0f;
+                        zombie03InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer03currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer03currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer03IsReviving && ZombieLaboratory.zombiePlayer03currentTarget != null;
+                },
+                () => { zombie03InfectButton.Timer = zombie03InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer03infectedTarget != null && !ZombieLaboratory.zombiePlayer03infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer03infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer03infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer03infectedTarget = null;
+                    }
+                    zombie03InfectButton.Timer = zombie03InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie04 infect
+            zombie04InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer04infectedTarget = ZombieLaboratory.zombiePlayer04currentTarget;
+                    zombie04InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer04 != null && ZombieLaboratory.zombiePlayer04 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie04InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer04infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer04infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer04infectedTarget = null;
+                        zombie04InfectButton.Timer = 0f;
+                        zombie04InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer04currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer04currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer04IsReviving && ZombieLaboratory.zombiePlayer04currentTarget != null;
+                },
+                () => { zombie04InfectButton.Timer = zombie04InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer04infectedTarget != null && !ZombieLaboratory.zombiePlayer04infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer04infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer04infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer04infectedTarget = null;
+                    }
+                    zombie04InfectButton.Timer = zombie04InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie05 infect
+            zombie05InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer05infectedTarget = ZombieLaboratory.zombiePlayer05currentTarget;
+                    zombie05InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer05 != null && ZombieLaboratory.zombiePlayer05 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie05InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer05infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer05infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer05infectedTarget = null;
+                        zombie05InfectButton.Timer = 0f;
+                        zombie05InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer05currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer05currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer05IsReviving && ZombieLaboratory.zombiePlayer05currentTarget != null;
+                },
+                () => { zombie05InfectButton.Timer = zombie05InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer05infectedTarget != null && !ZombieLaboratory.zombiePlayer05infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer05infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer05infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer05infectedTarget = null;
+                    }
+                    zombie05InfectButton.Timer = zombie05InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie06 infect
+            zombie06InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer06infectedTarget = ZombieLaboratory.zombiePlayer06currentTarget;
+                    zombie06InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer06 != null && ZombieLaboratory.zombiePlayer06 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie06InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer06infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer06infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer06infectedTarget = null;
+                        zombie06InfectButton.Timer = 0f;
+                        zombie06InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer06currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer06currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer06IsReviving && ZombieLaboratory.zombiePlayer06currentTarget != null;
+                },
+                () => { zombie06InfectButton.Timer = zombie06InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer06infectedTarget != null && !ZombieLaboratory.zombiePlayer06infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer06infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer06infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer06infectedTarget = null;
+                    }
+                    zombie06InfectButton.Timer = zombie06InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie07 infect
+            zombie07InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer07infectedTarget = ZombieLaboratory.zombiePlayer07currentTarget;
+                    zombie07InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer07 != null && ZombieLaboratory.zombiePlayer07 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie07InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer07infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer07infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer07infectedTarget = null;
+                        zombie07InfectButton.Timer = 0f;
+                        zombie07InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer07currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer07currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer07IsReviving && ZombieLaboratory.zombiePlayer07currentTarget != null;
+                },
+                () => { zombie07InfectButton.Timer = zombie07InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer07infectedTarget != null && !ZombieLaboratory.zombiePlayer07infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer07infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer07infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer07infectedTarget = null;
+                    }
+                    zombie07InfectButton.Timer = zombie07InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie08 infect
+            zombie08InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer08infectedTarget = ZombieLaboratory.zombiePlayer08currentTarget;
+                    zombie08InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer08 != null && ZombieLaboratory.zombiePlayer08 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie08InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer08infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer08infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer08infectedTarget = null;
+                        zombie08InfectButton.Timer = 0f;
+                        zombie08InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer08currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer08currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer08IsReviving && ZombieLaboratory.zombiePlayer08currentTarget != null;
+                },
+                () => { zombie08InfectButton.Timer = zombie08InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer08infectedTarget != null && !ZombieLaboratory.zombiePlayer08infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer08infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer08infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer08infectedTarget = null;
+                    }
+                    zombie08InfectButton.Timer = zombie08InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie09 infect
+            zombie09InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer09infectedTarget = ZombieLaboratory.zombiePlayer09currentTarget;
+                    zombie09InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer09 != null && ZombieLaboratory.zombiePlayer09 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie09InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer09infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer09infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer09infectedTarget = null;
+                        zombie09InfectButton.Timer = 0f;
+                        zombie09InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer09currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer09currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer09IsReviving && ZombieLaboratory.zombiePlayer09currentTarget != null;
+                },
+                () => { zombie09InfectButton.Timer = zombie09InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer09infectedTarget != null && !ZombieLaboratory.zombiePlayer09infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer09infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer09infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer09infectedTarget = null;
+                    }
+                    zombie09InfectButton.Timer = zombie09InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie10 infect
+            zombie10InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer10infectedTarget = ZombieLaboratory.zombiePlayer10currentTarget;
+                    zombie10InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer10 != null && ZombieLaboratory.zombiePlayer10 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie10InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer10infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer10infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer10infectedTarget = null;
+                        zombie10InfectButton.Timer = 0f;
+                        zombie10InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer10currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer10currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer10IsReviving && ZombieLaboratory.zombiePlayer10currentTarget != null;
+                },
+                () => { zombie10InfectButton.Timer = zombie10InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer10infectedTarget != null && !ZombieLaboratory.zombiePlayer10infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer10infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer10infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer10infectedTarget = null;
+                    }
+                    zombie10InfectButton.Timer = zombie10InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie11 infect
+            zombie11InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer11infectedTarget = ZombieLaboratory.zombiePlayer11currentTarget;
+                    zombie11InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer11 != null && ZombieLaboratory.zombiePlayer11 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie11InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer11infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer11infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer11infectedTarget = null;
+                        zombie11InfectButton.Timer = 0f;
+                        zombie11InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer11currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer11currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer11IsReviving && ZombieLaboratory.zombiePlayer11currentTarget != null;
+                },
+                () => { zombie11InfectButton.Timer = zombie11InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer11infectedTarget != null && !ZombieLaboratory.zombiePlayer11infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer11infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer11infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer11infectedTarget = null;
+                    }
+                    zombie11InfectButton.Timer = zombie11InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie12 infect
+            zombie12InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer12infectedTarget = ZombieLaboratory.zombiePlayer12currentTarget;
+                    zombie12InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer12 != null && ZombieLaboratory.zombiePlayer12 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie12InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer12infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer12infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer12infectedTarget = null;
+                        zombie12InfectButton.Timer = 0f;
+                        zombie12InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer12currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer12currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer12IsReviving && ZombieLaboratory.zombiePlayer12currentTarget != null;
+                },
+                () => { zombie12InfectButton.Timer = zombie12InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer12infectedTarget != null && !ZombieLaboratory.zombiePlayer12infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer12infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer12infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer12infectedTarget = null;
+                    }
+                    zombie12InfectButton.Timer = zombie12InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie13 infect
+            zombie13InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer13infectedTarget = ZombieLaboratory.zombiePlayer13currentTarget;
+                    zombie13InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer13 != null && ZombieLaboratory.zombiePlayer13 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie13InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer13infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer13infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer13infectedTarget = null;
+                        zombie13InfectButton.Timer = 0f;
+                        zombie13InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer13currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer13currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer13IsReviving && ZombieLaboratory.zombiePlayer13currentTarget != null;
+                },
+                () => { zombie13InfectButton.Timer = zombie13InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer13infectedTarget != null && !ZombieLaboratory.zombiePlayer13infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer13infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer13infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer13infectedTarget = null;
+                    }
+                    zombie13InfectButton.Timer = zombie13InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie14 infect
+            zombie14InfectButton = new CustomButton(
+                () => {
+                    ZombieLaboratory.zombiePlayer14infectedTarget = ZombieLaboratory.zombiePlayer14currentTarget;
+                    zombie14InfectButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.zombiePlayer14 != null && ZombieLaboratory.zombiePlayer14 == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead; },
+                () => {
+                    if (zombie14InfectButton.isEffectActive && ZombieLaboratory.zombiePlayer14infectedTarget != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.zombiePlayer14infectedTarget.transform.position) > GameOptionsData.KillDistances[Mathf.Clamp(PlayerControl.GameOptions.KillDistance, 0, 2)]) {
+                        ZombieLaboratory.zombiePlayer14infectedTarget = null;
+                        zombie14InfectButton.Timer = 0f;
+                        zombie14InfectButton.isEffectActive = false;
+                    }
+
+                    bool canUse = false;
+                    if (ZombieLaboratory.zombiePlayer14currentTarget != null) {
+                        if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer01) {
+                            canUse = !ZombieLaboratory.survivorPlayer01IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer02) {
+                            canUse = !ZombieLaboratory.survivorPlayer02IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer03) {
+                            canUse = !ZombieLaboratory.survivorPlayer03IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer04) {
+                            canUse = !ZombieLaboratory.survivorPlayer04IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer05) {
+                            canUse = !ZombieLaboratory.survivorPlayer05IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer06) {
+                            canUse = !ZombieLaboratory.survivorPlayer06IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer07) {
+                            canUse = !ZombieLaboratory.survivorPlayer07IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer08) {
+                            canUse = !ZombieLaboratory.survivorPlayer08IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer09) {
+                            canUse = !ZombieLaboratory.survivorPlayer09IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer10) {
+                            canUse = !ZombieLaboratory.survivorPlayer10IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer11) {
+                            canUse = !ZombieLaboratory.survivorPlayer11IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer12) {
+                            canUse = !ZombieLaboratory.survivorPlayer12IsInfected;
+                        }
+                        else if (ZombieLaboratory.zombiePlayer14currentTarget == ZombieLaboratory.survivorPlayer13) {
+                            canUse = !ZombieLaboratory.survivorPlayer13IsInfected;
+                        }
+                    }
+                    return canUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.zombiePlayer14IsReviving && ZombieLaboratory.zombiePlayer14currentTarget != null;
+                },
+                () => { zombie14InfectButton.Timer = zombie14InfectButton.MaxTimer; },
+                ZombieLaboratory.getInfectButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.infectTime,
+                () => {
+                    if (ZombieLaboratory.zombiePlayer14infectedTarget != null && !ZombieLaboratory.zombiePlayer14infectedTarget.Data.IsDead) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieInfect, Hazel.SendOption.Reliable, -1);
+                        writer.Write(ZombieLaboratory.zombiePlayer14infectedTarget.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.zombieInfect(ZombieLaboratory.zombiePlayer14infectedTarget.PlayerId);
+                        ZombieLaboratory.zombiePlayer14infectedTarget = null;
+                    }
+                    zombie14InfectButton.Timer = zombie14InfectButton.MaxTimer;
+                }
+            );
+
+            // Zombie01 kill
+            zombie01KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer01currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(1);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 1);
+                    zombie01KillButton.Timer = zombie01KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer01currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer01 != null && ZombieLaboratory.zombiePlayer01 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer01IsReviving; },
+                () => { zombie01KillButton.Timer = zombie01KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie02 kill
+            zombie02KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer02currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(2);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 2);
+                    zombie02KillButton.Timer = zombie02KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer02currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer02 != null && ZombieLaboratory.zombiePlayer02 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer02IsReviving; },
+                () => { zombie02KillButton.Timer = zombie02KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie03 kill
+            zombie03KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer03currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(3);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 3);
+                    zombie03KillButton.Timer = zombie03KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer03currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer03 != null && ZombieLaboratory.zombiePlayer03 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer03IsReviving; },
+                () => { zombie03KillButton.Timer = zombie03KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie04 kill
+            zombie04KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer04currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(4);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 4);
+                    zombie04KillButton.Timer = zombie04KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer04currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer04 != null && ZombieLaboratory.zombiePlayer04 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer04IsReviving; },
+                () => { zombie04KillButton.Timer = zombie04KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie05 kill
+            zombie05KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer05currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(5);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 5);
+                    zombie05KillButton.Timer = zombie05KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer05currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer05 != null && ZombieLaboratory.zombiePlayer05 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer05IsReviving; },
+                () => { zombie05KillButton.Timer = zombie05KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie06 kill
+            zombie06KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer06currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(6);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 6);
+                    zombie06KillButton.Timer = zombie06KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer06currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer06 != null && ZombieLaboratory.zombiePlayer06 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer06IsReviving; },
+                () => { zombie06KillButton.Timer = zombie06KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie07 kill
+            zombie07KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer07currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(7);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 7);
+                    zombie07KillButton.Timer = zombie07KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer07currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer07 != null && ZombieLaboratory.zombiePlayer07 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer07IsReviving; },
+                () => { zombie07KillButton.Timer = zombie07KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie08 kill
+            zombie08KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer08currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(8);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 8);
+                    zombie08KillButton.Timer = zombie08KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer08currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer08 != null && ZombieLaboratory.zombiePlayer08 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer08IsReviving; },
+                () => { zombie08KillButton.Timer = zombie08KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie09 kill
+            zombie09KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer09currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(9);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 9);
+                    zombie09KillButton.Timer = zombie09KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer09currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer09 != null && ZombieLaboratory.zombiePlayer09 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer09currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer09IsReviving; },
+                () => { zombie09KillButton.Timer = zombie09KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie10 kill
+            zombie10KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer10currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(10);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 10);
+                    zombie10KillButton.Timer = zombie10KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer10currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer10 != null && ZombieLaboratory.zombiePlayer10 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer10currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer10IsReviving; },
+                () => { zombie10KillButton.Timer = zombie10KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie11 kill
+            zombie11KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer11currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(11);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 11);
+                    zombie11KillButton.Timer = zombie11KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer11currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer11 != null && ZombieLaboratory.zombiePlayer11 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer11currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer11IsReviving; },
+                () => { zombie11KillButton.Timer = zombie11KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie12 kill
+            zombie12KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer12currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(12);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 12);
+                    zombie12KillButton.Timer = zombie12KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer12currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer12 != null && ZombieLaboratory.zombiePlayer12 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer12currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer12IsReviving; },
+                () => { zombie12KillButton.Timer = zombie12KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie13 kill
+            zombie13KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer13currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(13);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 13);
+                    zombie13KillButton.Timer = zombie13KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer13currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer13 != null && ZombieLaboratory.zombiePlayer13 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer13currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer13IsReviving; },
+                () => { zombie13KillButton.Timer = zombie13KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Zombie14 kill
+            zombie14KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.zombiePlayer14currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(14);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 14);
+                    zombie14KillButton.Timer = zombie14KillButton.MaxTimer;
+                    ZombieLaboratory.zombiePlayer14currentTarget = null;
+                },
+                () => { return ZombieLaboratory.zombiePlayer14 != null && ZombieLaboratory.zombiePlayer14 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer14currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer14IsReviving; },
+                () => { zombie14KillButton.Timer = zombie14KillButton.MaxTimer; },
+                __instance.KillButton.graphic.sprite,
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Nurse EnterExit Button
+            nurseEnterExitButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.nursePlayerInsideLaboratory) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        byte whichExit = ZombieLaboratory.nursePlayerCurrentExit;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        enterInfirmary.Write(whichExit);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, whichExit);
+                        ZombieLaboratory.nursePlayerInsideLaboratory = false;
+                    }
+                    else {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = true;
+                        byte whichExit = 0;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        enterInfirmary.Write(whichExit);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, whichExit);
+                        ZombieLaboratory.nursePlayerInsideLaboratory = true;
+                    }
+                    nurseEnterExitButton.Timer = nurseEnterExitButton.MaxTimer;
+                },
+                () => { return ZombieLaboratory.nursePlayer != null && ZombieLaboratory.nursePlayer == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.nursePlayerInsideLaboratory) {
+                        nurseEnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        nurseEnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.nurseExits.Count != 0) {
+                        foreach (GameObject nurseExit in ZombieLaboratory.nurseExits) {
+                            if (nurseExit != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, nurseExit.transform.position) < 0.5f && !ZombieLaboratory.nursePlayer.Data.IsDead) {
+                                switch (nurseExit.name) {
+                                    case "enterButton":
+                                        ZombieLaboratory.nursePlayerCurrentExit = 0;
+                                        break;
+                                    case "exitButton":
+                                        ZombieLaboratory.nursePlayerCurrentExit = 1;
+                                        break;
+                                    case "exitLeftButton":
+                                        ZombieLaboratory.nursePlayerCurrentExit = 2;
+                                        break;
+                                    case "exitRightButton":
+                                        ZombieLaboratory.nursePlayerCurrentExit = 3;
+                                        break;
+                                }
+                                CanUse = true;
+                            }
+                        }
+                    }
+
+                    /*bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (((Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) || (Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryExitButton.transform.position) < 0.5f)) && !ZombieLaboratory.nursePlayer.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }*/
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.nursePlayerIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    nurseEnterExitButton.Timer = nurseEnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getExitLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T
+            );
+
+            // Nurse medkit
+            nurseMedKitButton = new CustomButton(
+                () => {
+
+                    if (ZombieLaboratory.nursePlayerHasMedKit) {
+                        byte targetId = ZombieLaboratory.nursePlayercurrentTarget.PlayerId;
+                        MessageWriter healWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieNurseHeal, Hazel.SendOption.Reliable, -1);
+                        healWriter.Write(targetId);
+                        AmongUsClient.Instance.FinishRpcImmediately(healWriter);
+                        RPCProcedure.zombieNurseHeal(targetId);
+                        ZombieLaboratory.nursePlayercurrentTarget = null;
+                        ZombieLaboratory.nursePlayerHasMedKit = false;
+                    }
+                    else {
+                        MessageWriter showMedkit = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.NurseHasMedKit, Hazel.SendOption.Reliable, -1);
+                        AmongUsClient.Instance.FinishRpcImmediately(showMedkit);
+                        RPCProcedure.nurseHasMedKit();
+                        ZombieLaboratory.nursePlayerHasMedKit = true;
+                    }
+
+                    nurseMedKitButton.Timer = nurseMedKitButton.MaxTimer;
+                },
+                () => { return ZombieLaboratory.nursePlayer != null && ZombieLaboratory.nursePlayer == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.localNurseArrows.Count != 0) {
+                        ZombieLaboratory.localNurseArrows[0].Update(ZombieLaboratory.nurseMedkits[0].transform.position, Medusa.color);
+                        ZombieLaboratory.localNurseArrows[1].Update(ZombieLaboratory.nurseMedkits[1].transform.position, Medusa.color);
+                        ZombieLaboratory.localNurseArrows[2].Update(ZombieLaboratory.nurseMedkits[2].transform.position, Medusa.color);
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.nursePlayerHasMedKit) {
+                        nurseMedKitButton.actionButton.graphic.sprite = ZombieLaboratory.getDeliverMedkitButtonSprite();
+                        if (ZombieLaboratory.infectedTeam.Count != 0) {
+                            foreach (PlayerControl infected in ZombieLaboratory.infectedTeam) {
+                                if (infected == ZombieLaboratory.nursePlayercurrentTarget) {
+                                    CanUse = true;
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        nurseMedKitButton.actionButton.graphic.sprite = ZombieLaboratory.getPickMedkitButtonSprite();
+                        if (ZombieLaboratory.nurseMedkits.Count != 0) {
+                            foreach (GameObject nurseMedkit in ZombieLaboratory.nurseMedkits) {
+                                if (nurseMedkit != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, nurseMedkit.transform.position) < 0.35f) {
+                                    CanUse = !ZombieLaboratory.nursePlayerHasMedKit;
+                                }
+                            }
+                        }
+                    }
+                    return CanUse && (ZombieLaboratory.nursePlayercurrentTarget || !ZombieLaboratory.nursePlayerHasMedKit) && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.nursePlayerIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { nurseMedKitButton.Timer = nurseMedKitButton.MaxTimer; },
+                ZombieLaboratory.getPickMedkitButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Nurse creatuecure Button
+            nurseCreateCureButton = new CustomButton(
+                () => {
+                    MessageWriter winSurvivorsWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieSurvivorsWin, Hazel.SendOption.Reliable, -1);
+                    AmongUsClient.Instance.FinishRpcImmediately(winSurvivorsWriter);
+                    RPCProcedure.zombieSurvivorsWin();
+                    nurseCreateCureButton.Timer = nurseCreateCureButton.MaxTimer;
+                },
+                () => { return ZombieLaboratory.nursePlayer != null && ZombieLaboratory.nursePlayer == PlayerControl.LocalPlayer; },
+                () => {
+                    bool CanUse = false;
+                    if (ZombieLaboratory.nursePlayerHasCureReady) {
+                        if (Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryCreateCureButton.transform.position) < 0.35f && !ZombieLaboratory.nursePlayer.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.nursePlayerIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    nurseCreateCureButton.Timer = nurseCreateCureButton.MaxTimer;
+                },
+                ZombieLaboratory.getCreateCureButtonSprite(),
+                new Vector3(0f, 1f, 0),
+                __instance,
+                KeyCode.T
+            );
+
+            // Survivor01 kill
+            survivor01KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer01currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(15);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 15);
+                    survivor01KillButton.Timer = survivor01KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer01currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer01 != null && ZombieLaboratory.survivorPlayer01 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer01CanKill) {
+                        survivor01KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor01KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer01IsReviving && ZombieLaboratory.survivorPlayer01CanKill && !ZombieLaboratory.survivorPlayer01HasKeyItem;
+                },
+                () => { survivor01KillButton.Timer = survivor01KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor01 FindDeliver Button
+            survivor01FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer01HasKeyItem) {
+                        survivor01FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer01FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor01FindDeliverButton.Timer = survivor01FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor01FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer01SelectedBox = ZombieLaboratory.survivorPlayer01CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer01 != null && ZombieLaboratory.survivorPlayer01 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor01FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer01SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer01SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer01SelectedBox = null;
+                        survivor01FindDeliverButton.Timer = 0f;
+                        survivor01FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer01HasKeyItem)
+                        survivor01FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor01FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer01HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer01CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer01HasKeyItem || !ZombieLaboratory.survivorPlayer01CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer01FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer01HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer01HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor01FindDeliverButton.Timer = survivor01FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer01.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer01FoundBox >= 1 && ZombieLaboratory.survivorPlayer01FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer01FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer01FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(1);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(1);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer01SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer01SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer01SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor01FindDeliverButton.Timer = survivor01FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor01 EnterExit Button
+            survivor01EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor01EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer01 != null && ZombieLaboratory.survivorPlayer01 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor01EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer01.Data.IsDead) {
+                            survivor01EnterExitButton.HasEffect = false;
+                            survivor01EnterExitButton.Timer = survivor01EnterExitButton.MaxTimer;
+                            survivor01EnterExitButton.isEffectActive = false;
+                        }
+                        survivor01EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor01EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer01.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer01.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor01EnterExitButton.Timer = survivor01EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer01.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor01EnterExitButton.Timer = survivor01EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor02 kill
+            survivor02KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer02currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(16);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 16);
+                    survivor02KillButton.Timer = survivor02KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer02currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer02 != null && ZombieLaboratory.survivorPlayer02 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer02CanKill) {
+                        survivor02KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor02KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer02IsReviving && ZombieLaboratory.survivorPlayer02CanKill && !ZombieLaboratory.survivorPlayer02HasKeyItem;
+                },
+                () => { survivor02KillButton.Timer = survivor02KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor02 FindDeliver Button
+            survivor02FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer02HasKeyItem) {
+                        survivor02FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer02FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor02FindDeliverButton.Timer = survivor02FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor02FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer02SelectedBox = ZombieLaboratory.survivorPlayer02CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer02 != null && ZombieLaboratory.survivorPlayer02 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor02FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer02SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer02SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer02SelectedBox = null;
+                        survivor02FindDeliverButton.Timer = 0f;
+                        survivor02FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer02HasKeyItem)
+                        survivor02FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor02FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer02HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer02CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer02HasKeyItem || !ZombieLaboratory.survivorPlayer02CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer02FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer02HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer02HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor02FindDeliverButton.Timer = survivor02FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer02.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer02FoundBox >= 1 && ZombieLaboratory.survivorPlayer02FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer02FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer02FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(2);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(2);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer02SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer02SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer02SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor02FindDeliverButton.Timer = survivor02FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor02 EnterExit Button
+            survivor02EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor02EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer02 != null && ZombieLaboratory.survivorPlayer02 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor02EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer02.Data.IsDead) {
+                            survivor02EnterExitButton.HasEffect = false;
+                            survivor02EnterExitButton.Timer = survivor02EnterExitButton.MaxTimer;
+                            survivor02EnterExitButton.isEffectActive = false;
+                        }
+                        survivor02EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor02EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer02.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer02.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor02EnterExitButton.Timer = survivor02EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer02.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor02EnterExitButton.Timer = survivor02EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor03 kill
+            survivor03KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer03currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(17);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 17);
+                    survivor03KillButton.Timer = survivor03KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer03currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer03 != null && ZombieLaboratory.survivorPlayer03 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer03CanKill) {
+                        survivor03KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor03KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer03IsReviving && ZombieLaboratory.survivorPlayer03CanKill && !ZombieLaboratory.survivorPlayer03HasKeyItem;
+                },
+                () => { survivor03KillButton.Timer = survivor03KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor03 FindDeliver Button
+            survivor03FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer03HasKeyItem) {
+                        survivor03FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer03FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor03FindDeliverButton.Timer = survivor03FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor03FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer03SelectedBox = ZombieLaboratory.survivorPlayer03CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer03 != null && ZombieLaboratory.survivorPlayer03 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor03FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer03SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer03SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer03SelectedBox = null;
+                        survivor03FindDeliverButton.Timer = 0f;
+                        survivor03FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer03HasKeyItem)
+                        survivor03FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor03FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer03HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer03CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer03HasKeyItem || !ZombieLaboratory.survivorPlayer03CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer03FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer03HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer03HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor03FindDeliverButton.Timer = survivor03FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer03.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer03FoundBox >= 1 && ZombieLaboratory.survivorPlayer03FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer03FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer03FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(3);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(3);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer03SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer03SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer03SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor03FindDeliverButton.Timer = survivor03FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor03 EnterExit Button
+            survivor03EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor03EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer03 != null && ZombieLaboratory.survivorPlayer03 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor03EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer03.Data.IsDead) {
+                            survivor03EnterExitButton.HasEffect = false;
+                            survivor03EnterExitButton.Timer = survivor03EnterExitButton.MaxTimer;
+                            survivor03EnterExitButton.isEffectActive = false;
+                        }
+                        survivor03EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor03EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer03.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer03.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor03EnterExitButton.Timer = survivor03EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer03.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor03EnterExitButton.Timer = survivor03EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor04 kill
+            survivor04KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer04currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(18);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 18);
+                    survivor04KillButton.Timer = survivor04KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer04currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer04 != null && ZombieLaboratory.survivorPlayer04 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer04CanKill) {
+                        survivor04KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor04KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer04IsReviving && ZombieLaboratory.survivorPlayer04CanKill && !ZombieLaboratory.survivorPlayer04HasKeyItem;
+                },
+                () => { survivor04KillButton.Timer = survivor04KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor04 FindDeliver Button
+            survivor04FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer04HasKeyItem) {
+                        survivor04FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer04FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor04FindDeliverButton.Timer = survivor04FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor04FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer04SelectedBox = ZombieLaboratory.survivorPlayer04CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer04 != null && ZombieLaboratory.survivorPlayer04 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor04FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer04SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer04SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer04SelectedBox = null;
+                        survivor04FindDeliverButton.Timer = 0f;
+                        survivor04FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer04HasKeyItem)
+                        survivor04FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor04FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer04HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer04CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer04HasKeyItem || !ZombieLaboratory.survivorPlayer04CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer04FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer04HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer04HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor04FindDeliverButton.Timer = survivor04FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer04.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer04FoundBox >= 1 && ZombieLaboratory.survivorPlayer04FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer04FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer04FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(4);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(4);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer04SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer04SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer04SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor04FindDeliverButton.Timer = survivor04FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor04 EnterExit Button
+            survivor04EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor04EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer04 != null && ZombieLaboratory.survivorPlayer04 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor04EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer04.Data.IsDead) {
+                            survivor04EnterExitButton.HasEffect = false;
+                            survivor04EnterExitButton.Timer = survivor04EnterExitButton.MaxTimer;
+                            survivor04EnterExitButton.isEffectActive = false;
+                        }
+                        survivor04EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor04EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer04.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer04.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor04EnterExitButton.Timer = survivor04EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer04.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor04EnterExitButton.Timer = survivor04EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor05 kill
+            survivor05KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer05currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(19);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 19);
+                    survivor05KillButton.Timer = survivor05KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer05currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer05 != null && ZombieLaboratory.survivorPlayer05 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer05CanKill) {
+                        survivor05KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor05KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer05IsReviving && ZombieLaboratory.survivorPlayer05CanKill && !ZombieLaboratory.survivorPlayer05HasKeyItem;
+                },
+                () => { survivor05KillButton.Timer = survivor05KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor05 FindDeliver Button
+            survivor05FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer05HasKeyItem) {
+                        survivor05FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer05FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor05FindDeliverButton.Timer = survivor05FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor05FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer05SelectedBox = ZombieLaboratory.survivorPlayer05CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer05 != null && ZombieLaboratory.survivorPlayer05 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor05FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer05SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer05SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer05SelectedBox = null;
+                        survivor05FindDeliverButton.Timer = 0f;
+                        survivor05FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer05HasKeyItem)
+                        survivor05FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor05FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer05HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer05CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer05HasKeyItem || !ZombieLaboratory.survivorPlayer05CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer05FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer05HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer05HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor05FindDeliverButton.Timer = survivor05FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer05.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer05FoundBox >= 1 && ZombieLaboratory.survivorPlayer05FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer05FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer05FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(5);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(5);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer05SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer05SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer05SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor05FindDeliverButton.Timer = survivor05FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor05 EnterExit Button
+            survivor05EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor05EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer05 != null && ZombieLaboratory.survivorPlayer05 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor05EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer05.Data.IsDead) {
+                            survivor05EnterExitButton.HasEffect = false;
+                            survivor05EnterExitButton.Timer = survivor05EnterExitButton.MaxTimer;
+                            survivor05EnterExitButton.isEffectActive = false;
+                        }
+                        survivor05EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor05EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer05.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer05.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor05EnterExitButton.Timer = survivor05EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer05.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor05EnterExitButton.Timer = survivor05EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor06 kill
+            survivor06KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer06currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(20);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 20);
+                    survivor06KillButton.Timer = survivor06KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer06currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer06 != null && ZombieLaboratory.survivorPlayer06 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer06CanKill) {
+                        survivor06KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor06KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer06IsReviving && ZombieLaboratory.survivorPlayer06CanKill && !ZombieLaboratory.survivorPlayer06HasKeyItem;
+                },
+                () => { survivor06KillButton.Timer = survivor06KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor06 FindDeliver Button
+            survivor06FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer06HasKeyItem) {
+                        survivor06FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer06FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor06FindDeliverButton.Timer = survivor06FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor06FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer06SelectedBox = ZombieLaboratory.survivorPlayer06CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer06 != null && ZombieLaboratory.survivorPlayer06 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor06FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer06SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer06SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer06SelectedBox = null;
+                        survivor06FindDeliverButton.Timer = 0f;
+                        survivor06FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer06HasKeyItem)
+                        survivor06FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor06FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer06HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer06CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer06HasKeyItem || !ZombieLaboratory.survivorPlayer06CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer06FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer06HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer06HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor06FindDeliverButton.Timer = survivor06FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer06.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer06FoundBox >= 1 && ZombieLaboratory.survivorPlayer06FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer06FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer06FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(6);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(6);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer06SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer06SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer06SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor06FindDeliverButton.Timer = survivor06FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor06 EnterExit Button
+            survivor06EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor06EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer06 != null && ZombieLaboratory.survivorPlayer06 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor06EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer06.Data.IsDead) {
+                            survivor06EnterExitButton.HasEffect = false;
+                            survivor06EnterExitButton.Timer = survivor06EnterExitButton.MaxTimer;
+                            survivor06EnterExitButton.isEffectActive = false;
+                        }
+                        survivor06EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor06EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer06.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer06.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer06IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor06EnterExitButton.Timer = survivor06EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer06.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor06EnterExitButton.Timer = survivor06EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor07 kill
+            survivor07KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer07currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(21);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 21);
+                    survivor07KillButton.Timer = survivor07KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer07currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer07 != null && ZombieLaboratory.survivorPlayer07 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer07CanKill) {
+                        survivor07KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor07KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer07IsReviving && ZombieLaboratory.survivorPlayer07CanKill && !ZombieLaboratory.survivorPlayer07HasKeyItem;
+                },
+                () => { survivor07KillButton.Timer = survivor07KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor07 FindDeliver Button
+            survivor07FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer07HasKeyItem) {
+                        survivor07FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer07FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor07FindDeliverButton.Timer = survivor07FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor07FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer07SelectedBox = ZombieLaboratory.survivorPlayer07CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer07 != null && ZombieLaboratory.survivorPlayer07 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor07FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer07SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer07SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer07SelectedBox = null;
+                        survivor07FindDeliverButton.Timer = 0f;
+                        survivor07FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer07HasKeyItem)
+                        survivor07FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor07FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer07HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer07CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer07HasKeyItem || !ZombieLaboratory.survivorPlayer07CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer07FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer07HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer07HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor07FindDeliverButton.Timer = survivor07FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer07.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer07FoundBox >= 1 && ZombieLaboratory.survivorPlayer07FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer07FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer07FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(7);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(7);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer07SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer07SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer07SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor07FindDeliverButton.Timer = survivor07FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor07 EnterExit Button
+            survivor07EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor07EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer07 != null && ZombieLaboratory.survivorPlayer07 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor07EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer07.Data.IsDead) {
+                            survivor07EnterExitButton.HasEffect = false;
+                            survivor07EnterExitButton.Timer = survivor07EnterExitButton.MaxTimer;
+                            survivor07EnterExitButton.isEffectActive = false;
+                        }
+                        survivor07EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor07EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer07.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer07.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer07IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor07EnterExitButton.Timer = survivor07EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer07.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor07EnterExitButton.Timer = survivor07EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor08 kill
+            survivor08KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer08currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(22);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 22);
+                    survivor08KillButton.Timer = survivor08KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer08currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer08 != null && ZombieLaboratory.survivorPlayer08 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer08CanKill) {
+                        survivor08KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor08KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer08IsReviving && ZombieLaboratory.survivorPlayer08CanKill && !ZombieLaboratory.survivorPlayer08HasKeyItem;
+                },
+                () => { survivor08KillButton.Timer = survivor08KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor08 FindDeliver Button
+            survivor08FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer08HasKeyItem) {
+                        survivor08FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer08FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor08FindDeliverButton.Timer = survivor08FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor08FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer08SelectedBox = ZombieLaboratory.survivorPlayer08CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer08 != null && ZombieLaboratory.survivorPlayer08 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor08FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer08SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer08SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer08SelectedBox = null;
+                        survivor08FindDeliverButton.Timer = 0f;
+                        survivor08FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer08HasKeyItem)
+                        survivor08FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor08FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer08HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer08CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer08HasKeyItem || !ZombieLaboratory.survivorPlayer08CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer08FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer08HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer08HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer08IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor08FindDeliverButton.Timer = survivor08FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer08.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer08FoundBox >= 1 && ZombieLaboratory.survivorPlayer08FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer08FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer08FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(8);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(8);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer08SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer08SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer08SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor08FindDeliverButton.Timer = survivor08FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor08 EnterExit Button
+            survivor08EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor08EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer08 != null && ZombieLaboratory.survivorPlayer08 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor08EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer08.Data.IsDead) {
+                            survivor08EnterExitButton.HasEffect = false;
+                            survivor08EnterExitButton.Timer = survivor08EnterExitButton.MaxTimer;
+                            survivor08EnterExitButton.isEffectActive = false;
+                        }
+                        survivor08EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor08EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer08.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer08.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer08IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor08EnterExitButton.Timer = survivor08EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer08.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor08EnterExitButton.Timer = survivor08EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor09 kill
+            survivor09KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer09currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(23);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 23);
+                    survivor09KillButton.Timer = survivor09KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer09currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer09 != null && ZombieLaboratory.survivorPlayer09 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer09CanKill) {
+                        survivor09KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor09KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer09currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer09IsReviving && ZombieLaboratory.survivorPlayer09CanKill && !ZombieLaboratory.survivorPlayer09HasKeyItem;
+                },
+                () => { survivor09KillButton.Timer = survivor09KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor09 FindDeliver Button
+            survivor09FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer09HasKeyItem) {
+                        survivor09FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer09FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor09FindDeliverButton.Timer = survivor09FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor09FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer09SelectedBox = ZombieLaboratory.survivorPlayer09CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer09 != null && ZombieLaboratory.survivorPlayer09 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor09FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer09SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer09SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer09SelectedBox = null;
+                        survivor09FindDeliverButton.Timer = 0f;
+                        survivor09FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer09HasKeyItem)
+                        survivor09FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor09FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer09HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer09CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer09HasKeyItem || !ZombieLaboratory.survivorPlayer09CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer09FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer09HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer09HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer09IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor09FindDeliverButton.Timer = survivor09FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer09.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer09FoundBox >= 1 && ZombieLaboratory.survivorPlayer09FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer09FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer09FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(9);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(9);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer09SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer09SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer09SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor09FindDeliverButton.Timer = survivor09FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor09 EnterExit Button
+            survivor09EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor09EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer09 != null && ZombieLaboratory.survivorPlayer09 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor09EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer09.Data.IsDead) {
+                            survivor09EnterExitButton.HasEffect = false;
+                            survivor09EnterExitButton.Timer = survivor09EnterExitButton.MaxTimer;
+                            survivor09EnterExitButton.isEffectActive = false;
+                        }
+                        survivor09EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor09EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer09.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer09.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer09IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor09EnterExitButton.Timer = survivor09EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer09.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor09EnterExitButton.Timer = survivor09EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor10 kill
+            survivor10KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer10currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(24);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 24);
+                    survivor10KillButton.Timer = survivor10KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer10currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer10 != null && ZombieLaboratory.survivorPlayer10 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer10CanKill) {
+                        survivor10KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor10KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer10currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer10IsReviving && ZombieLaboratory.survivorPlayer10CanKill && !ZombieLaboratory.survivorPlayer10HasKeyItem;
+                },
+                () => { survivor10KillButton.Timer = survivor10KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor10 FindDeliver Button
+            survivor10FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer10HasKeyItem) {
+                        survivor10FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer10FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor10FindDeliverButton.Timer = survivor10FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor10FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer10SelectedBox = ZombieLaboratory.survivorPlayer10CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer10 != null && ZombieLaboratory.survivorPlayer10 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor10FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer10SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer10SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer10SelectedBox = null;
+                        survivor10FindDeliverButton.Timer = 0f;
+                        survivor10FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer10HasKeyItem)
+                        survivor10FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor10FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer10HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer10CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer10HasKeyItem || !ZombieLaboratory.survivorPlayer10CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer10FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer10HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer10HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer10IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor10FindDeliverButton.Timer = survivor10FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer10.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer10FoundBox >= 1 && ZombieLaboratory.survivorPlayer10FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer10FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer10FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(10);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(10);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer10SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer10SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer10SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor10FindDeliverButton.Timer = survivor10FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor10 EnterExit Button
+            survivor10EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor10EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer10 != null && ZombieLaboratory.survivorPlayer10 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor10EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer10.Data.IsDead) {
+                            survivor10EnterExitButton.HasEffect = false;
+                            survivor10EnterExitButton.Timer = survivor10EnterExitButton.MaxTimer;
+                            survivor10EnterExitButton.isEffectActive = false;
+                        }
+                        survivor10EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor10EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer10.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer10.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer10IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor10EnterExitButton.Timer = survivor10EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer10.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor10EnterExitButton.Timer = survivor10EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor11 kill
+            survivor11KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer11currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(25);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 25);
+                    survivor11KillButton.Timer = survivor11KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer11currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer11 != null && ZombieLaboratory.survivorPlayer11 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer11CanKill) {
+                        survivor11KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor11KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer11currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer11IsReviving && ZombieLaboratory.survivorPlayer11CanKill && !ZombieLaboratory.survivorPlayer11HasKeyItem;
+                },
+                () => { survivor11KillButton.Timer = survivor11KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor11 FindDeliver Button
+            survivor11FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer11HasKeyItem) {
+                        survivor11FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer11FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor11FindDeliverButton.Timer = survivor11FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor11FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer11SelectedBox = ZombieLaboratory.survivorPlayer11CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer11 != null && ZombieLaboratory.survivorPlayer11 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor11FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer11SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer11SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer11SelectedBox = null;
+                        survivor11FindDeliverButton.Timer = 0f;
+                        survivor11FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer11HasKeyItem)
+                        survivor11FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor11FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer11HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer11CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer11HasKeyItem || !ZombieLaboratory.survivorPlayer11CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer11FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer11HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer11HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer11IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor11FindDeliverButton.Timer = survivor11FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer11.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer11FoundBox >= 1 && ZombieLaboratory.survivorPlayer11FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer11FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer11FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(11);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(11);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer11SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer11SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer11SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor11FindDeliverButton.Timer = survivor11FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor11 EnterExit Button
+            survivor11EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor11EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer11 != null && ZombieLaboratory.survivorPlayer11 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor11EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer11.Data.IsDead) {
+                            survivor11EnterExitButton.HasEffect = false;
+                            survivor11EnterExitButton.Timer = survivor11EnterExitButton.MaxTimer;
+                            survivor11EnterExitButton.isEffectActive = false;
+                        }
+                        survivor11EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor11EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer11.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer11.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer11IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor11EnterExitButton.Timer = survivor11EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer11.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor11EnterExitButton.Timer = survivor11EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor12 kill
+            survivor12KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer12currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(26);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 26);
+                    survivor12KillButton.Timer = survivor12KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer12currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer12 != null && ZombieLaboratory.survivorPlayer12 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer12CanKill) {
+                        survivor12KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor12KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer12currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer12IsReviving && ZombieLaboratory.survivorPlayer12CanKill && !ZombieLaboratory.survivorPlayer12HasKeyItem;
+                },
+                () => { survivor12KillButton.Timer = survivor12KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor12 FindDeliver Button
+            survivor12FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer12HasKeyItem) {
+                        survivor12FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer12FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor12FindDeliverButton.Timer = survivor12FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor12FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer12SelectedBox = ZombieLaboratory.survivorPlayer12CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer12 != null && ZombieLaboratory.survivorPlayer12 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor12FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer12SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer12SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer12SelectedBox = null;
+                        survivor12FindDeliverButton.Timer = 0f;
+                        survivor12FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer12HasKeyItem)
+                        survivor12FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor12FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer12HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer12CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer12HasKeyItem || !ZombieLaboratory.survivorPlayer12CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer12FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer12HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer12HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer12IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor12FindDeliverButton.Timer = survivor12FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer12.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer12FoundBox >= 1 && ZombieLaboratory.survivorPlayer12FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer12FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer12FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(12);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(12);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer12SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer12SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer12SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor12FindDeliverButton.Timer = survivor12FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor12 EnterExit Button
+            survivor12EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor12EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer12 != null && ZombieLaboratory.survivorPlayer12 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor12EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer12.Data.IsDead) {
+                            survivor12EnterExitButton.HasEffect = false;
+                            survivor12EnterExitButton.Timer = survivor12EnterExitButton.MaxTimer;
+                            survivor12EnterExitButton.isEffectActive = false;
+                        }
+                        survivor12EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor12EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer12.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer12.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer12IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor12EnterExitButton.Timer = survivor12EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer12.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor12EnterExitButton.Timer = survivor12EnterExitButton.MaxTimer;
+                }
+            );
+
+            // Survivor13 kill
+            survivor13KillButton = new CustomButton(
+                () => {
+                    byte targetId = ZombieLaboratory.survivorPlayer13currentTarget.PlayerId;
+                    MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieKills, Hazel.SendOption.Reliable, -1);
+                    killWriter.Write(targetId);
+                    killWriter.Write(27);
+                    AmongUsClient.Instance.FinishRpcImmediately(killWriter);
+                    RPCProcedure.zombieKills(targetId, 27);
+                    survivor13KillButton.Timer = survivor13KillButton.MaxTimer;
+                    ZombieLaboratory.survivorPlayer13currentTarget = null;
+                },
+                () => { return ZombieLaboratory.survivorPlayer13 != null && ZombieLaboratory.survivorPlayer13 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (ZombieLaboratory.survivorPlayer13CanKill) {
+                        survivor13KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorFullShootButtonSprite();
+                    }
+                    else {
+                        survivor13KillButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEmptyShootButtonSprite();
+                    }
+                    return ZombieLaboratory.survivorPlayer13currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.survivorPlayer13IsReviving && ZombieLaboratory.survivorPlayer13CanKill && !ZombieLaboratory.survivorPlayer13HasKeyItem;
+                },
+                () => { survivor13KillButton.Timer = survivor13KillButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorEmptyShootButtonSprite(),
+                new Vector3(0, 1f, 0),
+                __instance,
+                KeyCode.Q
+            );
+
+            // Survivor13 FindDeliver Button
+            survivor13FindDeliverButton = new CustomButton(
+                () => {
+                    if (ZombieLaboratory.survivorPlayer13HasKeyItem) {
+                        survivor13FindDeliverButton.HasEffect = false;
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        byte keyId = ZombieLaboratory.survivorPlayer13FoundBox;
+                        MessageWriter deliverKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieDeliverKeyItem, Hazel.SendOption.Reliable, -1);
+                        deliverKey.Write(targetId);
+                        deliverKey.Write(keyId);
+                        AmongUsClient.Instance.FinishRpcImmediately(deliverKey);
+                        RPCProcedure.zombieDeliverKeyItem(targetId, keyId);
+                        survivor13FindDeliverButton.Timer = survivor13FindDeliverButton.MaxTimer;
+                    }
+                    else {
+                        survivor13FindDeliverButton.HasEffect = true;
+                        ZombieLaboratory.survivorPlayer13SelectedBox = ZombieLaboratory.survivorPlayer13CurrentBox;
+                    }
+                },
+                () => { return ZombieLaboratory.survivorPlayer13 != null && ZombieLaboratory.survivorPlayer13 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor13FindDeliverButton.isEffectActive && ZombieLaboratory.survivorPlayer13SelectedBox != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.survivorPlayer13SelectedBox.transform.position) > 0.5f) {
+                        ZombieLaboratory.survivorPlayer13SelectedBox = null;
+                        survivor13FindDeliverButton.Timer = 0f;
+                        survivor13FindDeliverButton.isEffectActive = false;
+                    }
+
+                    if (ZombieLaboratory.survivorPlayer13HasKeyItem)
+                        survivor13FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorDeliverBoxButtonSprite();
+                    else
+                        survivor13FindDeliverButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorTakeBoxButtonSprite();
+                    bool CanUse = false;
+                    if (ZombieLaboratory.groundItems.Count != 0) {
+                        foreach (GameObject groundItem in ZombieLaboratory.groundItems) {
+                            if (groundItem != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, groundItem.transform.position) < 0.5f && !ZombieLaboratory.survivorPlayer13HasKeyItem) {
+                                ZombieLaboratory.survivorPlayer13CurrentBox = groundItem;
+                                switch (groundItem.name) {
+                                    case "keyItem01":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 1;
+                                        CanUse = !ZombieLaboratory.keyItem01BeingHeld;
+                                        break;
+                                    case "keyItem02":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 2;
+                                        CanUse = !ZombieLaboratory.keyItem02BeingHeld;
+                                        break;
+                                    case "keyItem03":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 3;
+                                        CanUse = !ZombieLaboratory.keyItem03BeingHeld;
+                                        break;
+                                    case "keyItem04":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 4;
+                                        CanUse = !ZombieLaboratory.keyItem04BeingHeld;
+                                        break;
+                                    case "keyItem05":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 5;
+                                        CanUse = !ZombieLaboratory.keyItem05BeingHeld;
+                                        break;
+                                    case "keyItem06":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 6;
+                                        CanUse = !ZombieLaboratory.keyItem06BeingHeld;
+                                        break;
+                                    case "ammoBox":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 7;
+                                        CanUse = (!ZombieLaboratory.survivorPlayer13HasKeyItem || !ZombieLaboratory.survivorPlayer13CanKill);
+                                        break;
+                                    case "nothingBox":
+                                        ZombieLaboratory.survivorPlayer13FoundBox = 8;
+                                        CanUse = !ZombieLaboratory.survivorPlayer13HasKeyItem;
+                                        break;
+                                    case "nothingBoxOpened":
+                                        CanUse = false;
+                                        break;
+                                }
+                            }
+                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer13HasKeyItem) {
+                                CanUse = true;
+                            }
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer13IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => { survivor13FindDeliverButton.Timer = survivor13FindDeliverButton.MaxTimer; },
+                ZombieLaboratory.getSurvivorTakeBoxButtonSprite(),
+                new Vector3(-1.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                ZombieLaboratory.searchBoxTimer,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer13.Data.IsDead) {
+                        if (ZombieLaboratory.survivorPlayer13FoundBox >= 1 && ZombieLaboratory.survivorPlayer13FoundBox <= 6) {
+                            byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                            byte keyId = ZombieLaboratory.survivorPlayer13FoundBox;
+                            MessageWriter survivorWhoFoundKey = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieTakeKeyItem, Hazel.SendOption.Reliable, -1);
+                            survivorWhoFoundKey.Write(targetId);
+                            survivorWhoFoundKey.Write(keyId);
+                            AmongUsClient.Instance.FinishRpcImmediately(survivorWhoFoundKey);
+                            RPCProcedure.zombieTakeKeyItem(targetId, keyId);
+                        }
+                        else if (ZombieLaboratory.survivorPlayer13FoundBox == 7) {
+                            MessageWriter ammoRecovered = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ZombieAmmoRecover, Hazel.SendOption.Reliable, -1);
+                            ammoRecovered.Write(13);
+                            AmongUsClient.Instance.FinishRpcImmediately(ammoRecovered);
+                            RPCProcedure.zombieAmmoRecover(13);
+
+                            SoundManager.Instance.PlaySound(CustomMain.customAssets.rechargeAmmoClip, false, 100f);
+
+                            ZombieLaboratory.survivorPlayer13SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.ammoBox.GetComponent<SpriteRenderer>().sprite;
+                        }
+                        else {
+                            ZombieLaboratory.survivorPlayer13SelectedBox.GetComponent<SpriteRenderer>().sprite = CustomMain.customAssets.emptyBox.GetComponent<SpriteRenderer>().sprite;
+                            ZombieLaboratory.survivorPlayer13SelectedBox.name = "nothingBoxOpened";
+                            // nothing box
+                        }
+                    }
+                    survivor13FindDeliverButton.Timer = survivor13FindDeliverButton.MaxTimer;
+                }
+            );
+
+            // Survivor13 EnterExit Button
+            survivor13EnterExitButton = new CustomButton(
+                () => {
+                    byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                    bool entering = true;
+                    MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                    enterInfirmary.Write(targetId);
+                    enterInfirmary.Write(entering);
+                    AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                    RPCProcedure.enterLeaveInfirmary(targetId, entering, 0);
+                    survivor13EnterExitButton.HasEffect = true;
+                },
+                () => { return ZombieLaboratory.survivorPlayer13 != null && ZombieLaboratory.survivorPlayer13 == PlayerControl.LocalPlayer; },
+                () => {
+                    if (survivor13EnterExitButton.isEffectActive) {
+                        if (ZombieLaboratory.survivorPlayer13.Data.IsDead) {
+                            survivor13EnterExitButton.HasEffect = false;
+                            survivor13EnterExitButton.Timer = survivor13EnterExitButton.MaxTimer;
+                            survivor13EnterExitButton.isEffectActive = false;
+                        }
+                        survivor13EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorExitLaboratoryButtonSprite();
+                    }
+                    else {
+                        survivor13EnterExitButton.actionButton.graphic.sprite = ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite();
+                    }
+                    bool CanUse = false;
+                    if (ZombieLaboratory.laboratory != null) {
+                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer13.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer13.Data.IsDead) {
+                            CanUse = true;
+                        }
+                    }
+                    return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.survivorPlayer13IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
+                },
+                () => {
+                    survivor13EnterExitButton.Timer = survivor13EnterExitButton.MaxTimer;
+                },
+                ZombieLaboratory.getSurvivorEnterLaboratoryButtonSprite(),
+                new Vector3(-0.9f, -0.06f, 0),
+                __instance,
+                KeyCode.T,
+                false,
+                10f,
+                () => {
+                    if (!ZombieLaboratory.survivorPlayer13.Data.IsDead) {
+                        byte targetId = PlayerControl.LocalPlayer.PlayerId;
+                        bool entering = false;
+                        MessageWriter enterInfirmary = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.EnterLeaveInfirmary, Hazel.SendOption.Reliable, -1);
+                        enterInfirmary.Write(targetId);
+                        enterInfirmary.Write(entering);
+                        AmongUsClient.Instance.FinishRpcImmediately(enterInfirmary);
+                        RPCProcedure.enterLeaveInfirmary(targetId, entering, 1);
+                    }
+                    survivor13EnterExitButton.Timer = survivor13EnterExitButton.MaxTimer;
+                }
             );
 
             setCustomButtonCooldowns();

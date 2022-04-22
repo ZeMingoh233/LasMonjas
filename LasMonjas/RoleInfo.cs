@@ -108,6 +108,36 @@ namespace LasMonjas
         public static RoleInfo explodedPotato12 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato12);
         public static RoleInfo explodedPotato13 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato13);
         public static RoleInfo explodedPotato14 = new RoleInfo("Burnt Potato", Mechanic.color, "You are burnt", "You are burnt", RoleId.ExplodedPotato14);
+
+        // ZombieLaboratory Teams
+        public static RoleInfo nursePlayer = new RoleInfo("Nurse", Medusa.color, "Heal survivors and create the cure", "Heal survivors and create the cure", RoleId.NursePlayer);
+        public static RoleInfo survivorPlayer01 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer01);
+        public static RoleInfo survivorPlayer02 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer02);
+        public static RoleInfo survivorPlayer03 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer03);
+        public static RoleInfo survivorPlayer04 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer04);
+        public static RoleInfo survivorPlayer05 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer05);
+        public static RoleInfo survivorPlayer06 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer06);
+        public static RoleInfo survivorPlayer07 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer07);
+        public static RoleInfo survivorPlayer08 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer08);
+        public static RoleInfo survivorPlayer09 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer09);
+        public static RoleInfo survivorPlayer10 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer10);
+        public static RoleInfo survivorPlayer11 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer11);
+        public static RoleInfo survivorPlayer12 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer12);
+        public static RoleInfo survivorPlayer13 = new RoleInfo("Survivor", Color.cyan, "Survive while looking for items to make the cure", "Survive while looking for items to make the cure", RoleId.SurvivorPlayer13);
+        public static RoleInfo zombiePlayer01 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer01);
+        public static RoleInfo zombiePlayer02 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer02);
+        public static RoleInfo zombiePlayer03 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer03);
+        public static RoleInfo zombiePlayer04 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer04);
+        public static RoleInfo zombiePlayer05 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer05);
+        public static RoleInfo zombiePlayer06 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer06);
+        public static RoleInfo zombiePlayer07 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer07);
+        public static RoleInfo zombiePlayer08 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer08);
+        public static RoleInfo zombiePlayer09 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer09);
+        public static RoleInfo zombiePlayer10 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer10);
+        public static RoleInfo zombiePlayer11 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer11);
+        public static RoleInfo zombiePlayer12 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer12);
+        public static RoleInfo zombiePlayer13 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer13);
+        public static RoleInfo zombiePlayer14 = new RoleInfo("Zombie", Mechanic.color, "Infect all survivors", "Infect all survivors", RoleId.ZombiePlayer14);
         
         // Impostor roles
         public static RoleInfo mimic = new RoleInfo("Mimic", Mimic.color, "Mimic the look of other player", "Mimic the look of other player", RoleId.Mimic);
@@ -296,7 +326,35 @@ namespace LasMonjas
             explodedPotato11,
             explodedPotato12,
             explodedPotato13,
-            explodedPotato14
+            explodedPotato14,
+            nursePlayer,
+            survivorPlayer01,
+            survivorPlayer02,
+            survivorPlayer03,
+            survivorPlayer04,
+            survivorPlayer05,
+            survivorPlayer06,
+            survivorPlayer07,
+            survivorPlayer08,
+            survivorPlayer09,
+            survivorPlayer10,
+            survivorPlayer11,
+            survivorPlayer12,
+            survivorPlayer13,
+            zombiePlayer01,
+            zombiePlayer02,
+            zombiePlayer03,
+            zombiePlayer04,
+            zombiePlayer05,
+            zombiePlayer06,
+            zombiePlayer07,
+            zombiePlayer08,
+            zombiePlayer09,
+            zombiePlayer10,
+            zombiePlayer11,
+            zombiePlayer12,
+            zombiePlayer13,
+            zombiePlayer14
         };
 
         public static List<RoleInfo> getRoleInfoForPlayer(PlayerControl p) {
@@ -385,6 +443,37 @@ namespace LasMonjas
             if (p == HotPotato.explodedPotato12) infos.Add(explodedPotato12);
             if (p == HotPotato.explodedPotato13) infos.Add(explodedPotato13);
             if (p == HotPotato.explodedPotato14) infos.Add(explodedPotato14);
+
+            // ZombieLaboratory
+            if (p == ZombieLaboratory.nursePlayer) infos.Add(nursePlayer);
+            if (p == ZombieLaboratory.survivorPlayer01) infos.Add(survivorPlayer01);
+            if (p == ZombieLaboratory.survivorPlayer02) infos.Add(survivorPlayer02);
+            if (p == ZombieLaboratory.survivorPlayer03) infos.Add(survivorPlayer03);
+            if (p == ZombieLaboratory.survivorPlayer04) infos.Add(survivorPlayer04);
+            if (p == ZombieLaboratory.survivorPlayer05) infos.Add(survivorPlayer05);
+            if (p == ZombieLaboratory.survivorPlayer06) infos.Add(survivorPlayer06);
+            if (p == ZombieLaboratory.survivorPlayer07) infos.Add(survivorPlayer07);
+            if (p == ZombieLaboratory.survivorPlayer08) infos.Add(survivorPlayer08);
+            if (p == ZombieLaboratory.survivorPlayer09) infos.Add(survivorPlayer09);
+            if (p == ZombieLaboratory.survivorPlayer10) infos.Add(survivorPlayer10);
+            if (p == ZombieLaboratory.survivorPlayer11) infos.Add(survivorPlayer11);
+            if (p == ZombieLaboratory.survivorPlayer12) infos.Add(survivorPlayer12);
+            if (p == ZombieLaboratory.survivorPlayer13) infos.Add(survivorPlayer13);
+
+            if (p == ZombieLaboratory.zombiePlayer01) infos.Add(zombiePlayer01);
+            if (p == ZombieLaboratory.zombiePlayer02) infos.Add(zombiePlayer02);
+            if (p == ZombieLaboratory.zombiePlayer03) infos.Add(zombiePlayer03);
+            if (p == ZombieLaboratory.zombiePlayer04) infos.Add(zombiePlayer04);
+            if (p == ZombieLaboratory.zombiePlayer05) infos.Add(zombiePlayer05);
+            if (p == ZombieLaboratory.zombiePlayer06) infos.Add(zombiePlayer06);
+            if (p == ZombieLaboratory.zombiePlayer07) infos.Add(zombiePlayer07);
+            if (p == ZombieLaboratory.zombiePlayer08) infos.Add(zombiePlayer08);
+            if (p == ZombieLaboratory.zombiePlayer09) infos.Add(zombiePlayer09);
+            if (p == ZombieLaboratory.zombiePlayer10) infos.Add(zombiePlayer10);
+            if (p == ZombieLaboratory.zombiePlayer11) infos.Add(zombiePlayer11);
+            if (p == ZombieLaboratory.zombiePlayer12) infos.Add(zombiePlayer12);
+            if (p == ZombieLaboratory.zombiePlayer13) infos.Add(zombiePlayer13);
+            if (p == ZombieLaboratory.zombiePlayer14) infos.Add(zombiePlayer14);
 
 
             // Impostor roles
