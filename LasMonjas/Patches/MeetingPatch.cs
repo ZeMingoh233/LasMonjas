@@ -237,7 +237,7 @@ namespace LasMonjas.Patches {
             exitButtonParent.transform.localPosition = new Vector3(2.725f, 2.1f, -5);
             exitButtonParent.transform.localScale = new Vector3(0.217f, 0.9f, 1);
             exitButton.GetComponent<PassiveButton>().OnClick.RemoveAllListeners();
-            exitButton.GetComponent<PassiveButton>().OnClick.AddListener((UnityEngine.Events.UnityAction)(() => {
+            exitButton.GetComponent<PassiveButton>().OnClick.AddListener((System.Action)(() => {
                 __instance.playerStates.ToList().ForEach(x => x.gameObject.SetActive(true));
                 UnityEngine.Object.Destroy(container.gameObject);
             }));
@@ -256,7 +256,7 @@ namespace LasMonjas.Patches {
                         /* King of the hill*/ || roleInfo.roleId == RoleId.GreenKing || roleInfo.roleId == RoleId.YellowKing || roleInfo.roleId == RoleId.GreenPlayer01 || roleInfo.roleId == RoleId.GreenPlayer02 || roleInfo.roleId == RoleId.GreenPlayer03 || roleInfo.roleId == RoleId.GreenPlayer04 || roleInfo.roleId == RoleId.GreenPlayer05 || roleInfo.roleId == RoleId.GreenPlayer06 || roleInfo.roleId == RoleId.YellowPlayer01 || roleInfo.roleId == RoleId.YellowPlayer02 || roleInfo.roleId == RoleId.YellowPlayer03 || roleInfo.roleId == RoleId.YellowPlayer04 || roleInfo.roleId == RoleId.YellowPlayer05 || roleInfo.roleId == RoleId.YellowPlayer06 || roleInfo.roleId == RoleId.UsurperPlayer
                         /* Hot Potato */ || roleInfo.roleId == RoleId.HotPotato || roleInfo.roleId == RoleId.NotPotato01 || roleInfo.roleId == RoleId.NotPotato02 || roleInfo.roleId == RoleId.NotPotato03 || roleInfo.roleId == RoleId.NotPotato04 || roleInfo.roleId == RoleId.NotPotato05 || roleInfo.roleId == RoleId.NotPotato06 || roleInfo.roleId == RoleId.NotPotato07 || roleInfo.roleId == RoleId.NotPotato08 || roleInfo.roleId == RoleId.NotPotato09 || roleInfo.roleId == RoleId.NotPotato10 || roleInfo.roleId == RoleId.NotPotato11 || roleInfo.roleId == RoleId.NotPotato12 || roleInfo.roleId == RoleId.NotPotato13 || roleInfo.roleId == RoleId.NotPotato14
                         /* Exploded Potato */ || roleInfo.roleId == RoleId.ExplodedPotato01 || roleInfo.roleId == RoleId.ExplodedPotato02 || roleInfo.roleId == RoleId.ExplodedPotato03 || roleInfo.roleId == RoleId.ExplodedPotato04 || roleInfo.roleId == RoleId.ExplodedPotato05 || roleInfo.roleId == RoleId.ExplodedPotato06 || roleInfo.roleId == RoleId.ExplodedPotato07 || roleInfo.roleId == RoleId.ExplodedPotato08 || roleInfo.roleId == RoleId.ExplodedPotato09 || roleInfo.roleId == RoleId.ExplodedPotato10 || roleInfo.roleId == RoleId.ExplodedPotato11 || roleInfo.roleId == RoleId.ExplodedPotato12 || roleInfo.roleId == RoleId.ExplodedPotato13 || roleInfo.roleId == RoleId.ExplodedPotato14
-                        /* Zombie Laboratory */ || roleInfo.roleId == RoleId.NursePlayer || roleInfo.roleId == RoleId.ZombiePlayer01 || roleInfo.roleId == RoleId.ZombiePlayer02 || roleInfo.roleId == RoleId.ZombiePlayer03 || roleInfo.roleId == RoleId.ZombiePlayer04 || roleInfo.roleId == RoleId.ZombiePlayer05 || roleInfo.roleId == RoleId.ZombiePlayer06 || roleInfo.roleId == RoleId.ZombiePlayer07 || roleInfo.roleId == RoleId.ZombiePlayer08 || roleInfo.roleId == RoleId.ZombiePlayer09 || roleInfo.roleId == RoleId.ZombiePlayer10 || roleInfo.roleId == RoleId.ZombiePlayer11 || roleInfo.roleId == RoleId.ZombiePlayer12 || roleInfo.roleId == RoleId.ZombiePlayer13 || roleInfo.roleId == RoleId.ZombiePlayer14 || roleInfo.roleId == RoleId.SurvivorPlayer01 || roleInfo.roleId == RoleId.SurvivorPlayer02 || roleInfo.roleId == RoleId.SurvivorPlayer03 || roleInfo.roleId == RoleId.SurvivorPlayer04 || roleInfo.roleId == RoleId.SurvivorPlayer05 || roleInfo.roleId == RoleId.SurvivorPlayer06 || roleInfo.roleId == RoleId.SurvivorPlayer07 || roleInfo.roleId == RoleId.SurvivorPlayer08 || roleInfo.roleId == RoleId.SurvivorPlayer09 || roleInfo.roleId == RoleId.SurvivorPlayer10 || roleInfo.roleId == RoleId.SurvivorPlayer11 || roleInfo.roleId == RoleId.SurvivorPlayer12 || roleInfo.roleId == RoleId.SurvivorPlayer13)                      
+                        /* Zombie Laboratory */ || roleInfo.roleId == RoleId.NursePlayer || roleInfo.roleId == RoleId.ZombiePlayer01 || roleInfo.roleId == RoleId.ZombiePlayer02 || roleInfo.roleId == RoleId.ZombiePlayer03 || roleInfo.roleId == RoleId.ZombiePlayer04 || roleInfo.roleId == RoleId.ZombiePlayer05 || roleInfo.roleId == RoleId.ZombiePlayer06 || roleInfo.roleId == RoleId.ZombiePlayer07 || roleInfo.roleId == RoleId.ZombiePlayer08 || roleInfo.roleId == RoleId.ZombiePlayer09 || roleInfo.roleId == RoleId.ZombiePlayer10 || roleInfo.roleId == RoleId.ZombiePlayer11 || roleInfo.roleId == RoleId.ZombiePlayer12 || roleInfo.roleId == RoleId.ZombiePlayer13 || roleInfo.roleId == RoleId.ZombiePlayer14 || roleInfo.roleId == RoleId.SurvivorPlayer01 || roleInfo.roleId == RoleId.SurvivorPlayer02 || roleInfo.roleId == RoleId.SurvivorPlayer03 || roleInfo.roleId == RoleId.SurvivorPlayer04 || roleInfo.roleId == RoleId.SurvivorPlayer05 || roleInfo.roleId == RoleId.SurvivorPlayer06 || roleInfo.roleId == RoleId.SurvivorPlayer07 || roleInfo.roleId == RoleId.SurvivorPlayer08 || roleInfo.roleId == RoleId.SurvivorPlayer09 || roleInfo.roleId == RoleId.SurvivorPlayer10 || roleInfo.roleId == RoleId.SurvivorPlayer11 || roleInfo.roleId == RoleId.SurvivorPlayer12 || roleInfo.roleId == RoleId.SurvivorPlayer13)
                         continue;
 
                     // Only add current game roles
@@ -281,7 +281,7 @@ namespace LasMonjas.Patches {
                     int copiedIndex = i;
 
                     button.GetComponent<PassiveButton>().OnClick.RemoveAllListeners();
-                    if (!PlayerControl.LocalPlayer.Data.IsDead) button.GetComponent<PassiveButton>().OnClick.AddListener((UnityEngine.Events.UnityAction)(() => {
+                    if (!PlayerControl.LocalPlayer.Data.IsDead) button.GetComponent<PassiveButton>().OnClick.AddListener((System.Action)(() => {
                         if (selectedButton != button) {
                             selectedButton = button;
                             buttons.ForEach(x => x.GetComponent<SpriteRenderer>().color = x == selectedButton ? Color.red : Color.white);
@@ -362,8 +362,7 @@ namespace LasMonjas.Patches {
                     PassiveButton button = checkbox.GetComponent<PassiveButton>();
                     button.OnClick.RemoveAllListeners();
                     int copiedIndex = i;
-                    button.OnClick.AddListener((UnityEngine.Events.UnityAction)(() => cheaterOnClick(copiedIndex, __instance)));
-                    
+                    button.OnClick.AddListener((System.Action)(() => cheaterOnClick(copiedIndex, __instance)));
                     selections[i] = false;
                     renderers[i] = renderer;
                 }
@@ -404,7 +403,7 @@ namespace LasMonjas.Patches {
                     PassiveButton button = targetBox.GetComponent<PassiveButton>();
                     button.OnClick.RemoveAllListeners();
                     int copiedIndex = i;
-                    button.OnClick.AddListener((UnityEngine.Events.UnityAction)(() => gamblerOnClick(copiedIndex, __instance)));
+                    button.OnClick.AddListener((System.Action)(() => gamblerOnClick(copiedIndex, __instance)));
                 }
             }
         }

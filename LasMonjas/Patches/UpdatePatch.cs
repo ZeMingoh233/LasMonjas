@@ -459,11 +459,11 @@ namespace LasMonjas.Patches {
                     p.transform.localScale = new Vector3(0.45f, 0.45f, 1f);
                 // big chungus update, restore original scale on duel and painting to be more fair
                 else if (Modifiers.bigchungus != null && Modifiers.bigchungus == p && !Challenger.isDueling && Painter.painterTimer <= 0) {
-                    p.transform.localScale = new Vector3(1f, 1f, 1f);
+                    p.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
                 }
                 // Mimic big chungus update
                 else if (Mimic.mimic != null && Mimic.mimic == p && Mimic.transformTarget != null && Mimic.transformTarget == Modifiers.bigchungus && Mimic.transformTimer > 0f)
-                    p.transform.localScale = new Vector3(1f, 1f, 1f);
+                    p.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
                 else
                     p.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
@@ -590,14 +590,9 @@ namespace LasMonjas.Patches {
                 Yinyanger.yanedPlayer = Yinyanger.yangyedplayer;
                 if (p == 1f) {
 
-                    //MurderAttemptResult murderAttemptResultforYined = Helpers.checkMurderAttempt(Yinyanger.yinyanger, Yinyanger.yinedPlayer);
-                    //if (murderAttemptResultforYined == MurderAttemptResult.PerformKill) {
-                        RPCProcedure.uncheckedMurderPlayer(Yinyanger.yinyanger.PlayerId, Yinyanger.yinedPlayer.PlayerId, 0);
-                    //}
-                    //MurderAttemptResult murderAttemptResultforYanged = Helpers.checkMurderAttempt(Yinyanger.yinyanger, Yinyanger.yanedPlayer);
-                    //if (murderAttemptResultforYanged == MurderAttemptResult.PerformKill) {
-                        RPCProcedure.uncheckedMurderPlayer(Yinyanger.yinyanger.PlayerId, Yinyanger.yanedPlayer.PlayerId, 0);
-                    //}
+                    RPCProcedure.uncheckedMurderPlayer(Yinyanger.yinyanger.PlayerId, Yinyanger.yinedPlayer.PlayerId, 0);
+
+                    RPCProcedure.uncheckedMurderPlayer(Yinyanger.yinyanger.PlayerId, Yinyanger.yanedPlayer.PlayerId, 0);
 
                     Yinyanger.yinyedplayer.moveable = true;
                     Yinyanger.yangyedplayer.moveable = true;
@@ -743,13 +738,43 @@ namespace LasMonjas.Patches {
                     // If after the duel both are dead, teleport their body to the player location
                     if (Challenger.challenger.Data.IsDead && Challenger.rivalPlayer.Data.IsDead) {
                         var bodyChallenger = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Challenger.challenger.PlayerId);
-                        bodyChallenger.transform.position = Challenger.challenger.transform.position;
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            if (bodyChallenger.transform.position.y > 0) {
+                                bodyChallenger.transform.position = new Vector3(5f, 19.5f, -5);
+                            }
+                            else {
+                                bodyChallenger.transform.position = new Vector3(1.35f, -28.25f, -5);
+                            }
+                        }
+                        else {
+                            bodyChallenger.transform.position = Challenger.challenger.transform.position;
+                        }
                         var bodyRival = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Challenger.rivalPlayer.PlayerId);
-                        bodyRival.transform.position = Challenger.rivalPlayer.transform.position;
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            if (bodyRival.transform.position.y > 0) {
+                                bodyRival.transform.position = new Vector3(5f, 19.5f, -5);
+                            }
+                            else {
+                                bodyRival.transform.position = new Vector3(1.35f, -28.25f, -5);
+                            }
+                        }
+                        else {
+                            bodyRival.transform.position = Challenger.rivalPlayer.transform.position;
+                        }
                         // If after the duel one of them was a lover, teleport the other lover body too
                         if (Modifiers.lover1 != null && (Challenger.rivalPlayer.PlayerId == Modifiers.lover1.PlayerId || Challenger.challenger.PlayerId == Modifiers.lover1.PlayerId)) {
                             var bodyLover2 = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Modifiers.lover2.PlayerId);
-                            bodyLover2.transform.position = Modifiers.lover2.transform.position;
+                            if (PlayerControl.GameOptions.MapId == 5) {
+                                if (bodyLover2.transform.position.y > 0) {
+                                    bodyLover2.transform.position = new Vector3(5f, 19.5f, -5);
+                                }
+                                else {
+                                    bodyLover2.transform.position = new Vector3(1.35f, -28.25f, -5);
+                                }
+                            }
+                            else {
+                                bodyLover2.transform.position = Modifiers.lover2.transform.position;
+                            }
                         }
                         else if (Modifiers.lover2 != null && (Challenger.rivalPlayer.PlayerId == Modifiers.lover2.PlayerId || Challenger.challenger.PlayerId == Modifiers.lover2.PlayerId)) {
                             var bodyLover1 = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Modifiers.lover1.PlayerId);
@@ -759,29 +784,89 @@ namespace LasMonjas.Patches {
                     // If after the duel the challenger is dead, teleport his body to the player location
                     else if (Challenger.challenger.Data.IsDead) {
                         var bodyC = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Challenger.challenger.PlayerId);
-                        bodyC.transform.position = Challenger.challenger.transform.position;
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            if (bodyC.transform.position.y > 0) {
+                                bodyC.transform.position = new Vector3(5f, 19.5f, -5);
+                            }
+                            else {
+                                bodyC.transform.position = new Vector3(1.35f, -28.25f, -5);
+                            }
+                        }
+                        else {
+                            bodyC.transform.position = Challenger.challenger.transform.position;
+                        }
                         // If after the duel one of them was a lover, teleport the other lover body too
                         if (Modifiers.lover1 != null && Challenger.challenger.PlayerId == Modifiers.lover1.PlayerId) {
                             var bodyLover2 = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Modifiers.lover2.PlayerId);
-                            bodyLover2.transform.position = Modifiers.lover2.transform.position;
+                            if (PlayerControl.GameOptions.MapId == 5) {
+                                if (bodyLover2.transform.position.y > 0) {
+                                    bodyLover2.transform.position = new Vector3(5f, 19.5f, -5);
+                                }
+                                else {
+                                    bodyLover2.transform.position = new Vector3(1.35f, -28.25f, -5);
+                                }
+                            }
+                            else {
+                                bodyLover2.transform.position = Modifiers.lover2.transform.position;
+                            }
                         }
                         else if (Modifiers.lover2 != null && Challenger.challenger.PlayerId == Modifiers.lover2.PlayerId) {
                             var bodyLover1 = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Modifiers.lover1.PlayerId);
-                            bodyLover1.transform.position = Modifiers.lover1.transform.position;
+                            if (PlayerControl.GameOptions.MapId == 5) {
+                                if (bodyLover1.transform.position.y > 0) {
+                                    bodyLover1.transform.position = new Vector3(5f, 19.5f, -5);
+                                }
+                                else {
+                                    bodyLover1.transform.position = new Vector3(1.35f, -28.25f, -5);
+                                }
+                            }
+                            else {
+                                bodyLover1.transform.position = Modifiers.lover1.transform.position;
+                            }
                         }
                     }
                     // If after the duel the rival is dead, teleport his body to the player location
                     else if (Challenger.rivalPlayer.Data.IsDead) {
                         var bodyR = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Challenger.rivalPlayer.PlayerId);
-                        bodyR.transform.position = Challenger.rivalPlayer.transform.position;
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            if (bodyR.transform.position.y > 0) {
+                                bodyR.transform.position = new Vector3(5f, 19.5f, -5);
+                            }
+                            else {
+                                bodyR.transform.position = new Vector3(1.35f, -28.25f, -5);
+                            }
+                        }
+                        else {
+                            bodyR.transform.position = Challenger.rivalPlayer.transform.position;
+                        }
                         // If after the duel one of them was a lover, teleport the other lover body too
                         if (Modifiers.lover1 != null && Challenger.rivalPlayer.PlayerId == Modifiers.lover1.PlayerId) {
                             var bodyLover2 = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Modifiers.lover2.PlayerId);
-                            bodyLover2.transform.position = Modifiers.lover2.transform.position;
+                            if (PlayerControl.GameOptions.MapId == 5) {
+                                if (bodyLover2.transform.position.y > 0) {
+                                    bodyLover2.transform.position = new Vector3(5f, 19.5f, -5);
+                                }
+                                else {
+                                    bodyLover2.transform.position = new Vector3(1.35f, -28.25f, -5);
+                                }
+                            }
+                            else {
+                                bodyLover2.transform.position = Modifiers.lover2.transform.position;
+                            }
                         }
                         else if (Modifiers.lover2 != null && Challenger.rivalPlayer.PlayerId == Modifiers.lover2.PlayerId) {
                             var bodyLover1 = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == Modifiers.lover1.PlayerId);
-                            bodyLover1.transform.position = Modifiers.lover1.transform.position;
+                            if (PlayerControl.GameOptions.MapId == 5) {
+                                if (bodyLover1.transform.position.y > 0) {
+                                    bodyLover1.transform.position = new Vector3(5f, 19.5f, -5);
+                                }
+                                else {
+                                    bodyLover1.transform.position = new Vector3(1.35f, -28.25f, -5);
+                                }
+                            }
+                            else {
+                                bodyLover1.transform.position = Modifiers.lover1.transform.position;
+                            }
                         }
                     }
                 }
@@ -791,7 +876,6 @@ namespace LasMonjas.Patches {
                 if (p == 1f) {
                     // Reset painting after dueling
                     foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
-                        //player.moveable = true;
                         if (player == null) continue;
                         player.setDefaultLook();
                     }
@@ -832,7 +916,15 @@ namespace LasMonjas.Patches {
                             newPos,
                             Constants.ShipAndObjectsMask,
                             false
-                        )) array[i].transform.position = newPos;
+                        )) {
+                            if (PlayerControl.GameOptions.MapId == 5) {
+                                array[i].transform.position = newPos;
+                                array[i].transform.position += new Vector3(0,0, -0.5f);
+                            }
+                            else {
+                                array[i].transform.position = newPos;
+                            }
+                        }
                     }
                 }
             }
@@ -871,6 +963,10 @@ namespace LasMonjas.Patches {
                     case 4:
                         CaptureTheFlag.blueflag.transform.position = new Vector3(33.6f, 1.25f, 0.5f);
                         break;
+                    // Submerged
+                    case 5:
+                        CaptureTheFlag.blueflag.transform.position = new Vector3(12.5f, -31.45f, -0.011f);
+                        break;
                 }
                 CaptureTheFlag.blueflagtaken = false;
                 CaptureTheFlag.redPlayerWhoHasBlueFlag = null;
@@ -903,6 +999,10 @@ namespace LasMonjas.Patches {
                     // Airship
                     case 4:
                         CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.2f, 0.5f);
+                        break;
+                    // Submerged
+                    case 5:
+                        CaptureTheFlag.redflag.transform.position = new Vector3(-8.35f, 28.05f, 0.03f);
                         break;
                 }
                 CaptureTheFlag.redflagtaken = false;
@@ -1006,7 +1106,12 @@ namespace LasMonjas.Patches {
                 KingOfTheHill.greenTeam.Remove(KingOfTheHill.greenKingplayer);
                 KingOfTheHill.greenKingplayer = null;
                 KingOfTheHill.greenKingplayer = KingOfTheHill.greenTeam[0];
-                KingOfTheHill.greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                if (PlayerControl.GameOptions.MapId == 5) {
+                    KingOfTheHill.greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, -0.5f);
+                }
+                else {
+                    KingOfTheHill.greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, 0.4f);
+                }
                 KingOfTheHill.greenkingaura.transform.parent = KingOfTheHill.greenKingplayer.transform;
                 if (PlayerControl.LocalPlayer == KingOfTheHill.greenKingplayer) {
                     new CustomMessage("You're the new <color=#00FF00FF>Green King</color>!", 5, -1, 1.6f, 11);
@@ -1042,7 +1147,12 @@ namespace LasMonjas.Patches {
                 KingOfTheHill.yellowTeam.Remove(KingOfTheHill.yellowKingplayer);
                 KingOfTheHill.yellowKingplayer = null;
                 KingOfTheHill.yellowKingplayer = KingOfTheHill.yellowTeam[0];
-                KingOfTheHill.yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                if (PlayerControl.GameOptions.MapId == 5) {
+                    KingOfTheHill.yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, -0.5f);
+                }
+                else {
+                    KingOfTheHill.yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, 0.4f);
+                }
                 KingOfTheHill.yellowkingaura.transform.parent = KingOfTheHill.yellowKingplayer.transform;
                 if (PlayerControl.LocalPlayer == KingOfTheHill.yellowKingplayer) {
                     new CustomMessage("You're the new <color=#FFFF00FF>Yellow King</color>!", 5, -1, 1.6f, 11);
@@ -1488,6 +1598,10 @@ namespace LasMonjas.Patches {
                     case 4:
                         GameObject minimapSabotageAirship = GameObject.Find("Main Camera/Hud/AirshipMap(Clone)/InfectedOverlay");
                         minimapSabotageAirship.SetActive(false);
+                        break;
+                    case 5:
+                        GameObject minimapSabotageSubmerged = GameObject.Find("Main Camera/Hud/HudMapPrefab(Clone)(Clone)/MapHud/InfectedOverlay");
+                        minimapSabotageSubmerged.SetActive(false);
                         break;
                 }
             }

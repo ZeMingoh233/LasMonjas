@@ -234,7 +234,7 @@ namespace LasMonjas.Patches {
 
             // BountyHunter win
             else if (bountyhunterWin) {
-                // BountyHunter wins if nobody except BountyHunter is alive
+                // BountyHunter wins if he kills his target 
                 TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
                 WinningPlayerData wpd = new WinningPlayerData(BountyHunter.bountyhunter.Data);
                 TempData.winners.Add(wpd);

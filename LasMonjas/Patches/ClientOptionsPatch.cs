@@ -86,20 +86,22 @@ namespace LasMonjas.Patches
         {
             var moreOptions = Object.Instantiate(buttonPrefab, __instance.CensorChatButton.transform.parent);
             var transform = __instance.CensorChatButton.transform;
+            __instance.CensorChatButton.Text.transform.localScale = new Vector3(1 / 0.66f, 1, 1);
             _origin ??= transform.localPosition;
 
-            transform.localScale *= 0.7f;
+            transform.localPosition = _origin.Value + Vector3.left * 0.45f;
+            transform.localScale = new Vector3(0.66f, 1, 1);
 
-            var friendsTrasnform = __instance.EnableFriendInvitesButton.transform;
-            friendsTrasnform.localScale *= 0.7f;
+            __instance.EnableFriendInvitesButton.transform.localScale = new Vector3(0.66f, 1, 1);
+            __instance.EnableFriendInvitesButton.transform.localPosition += Vector3.right * 0.5f;
+            __instance.EnableFriendInvitesButton.Text.transform.localScale = new Vector3(1.2f, 1, 1);
 
-            transform.localPosition = _origin.Value + new Vector3(-0.475f, 0f, 0);
-            friendsTrasnform.localPosition = friendsTrasnform.localPosition + new Vector3(0.475f, 0f, 0);
-            moreOptions.transform.localPosition = _origin.Value + Vector3.right * 1.3f;
-            moreOptions.transform.localScale *= 0.7f;
+            moreOptions.transform.localPosition = _origin.Value + Vector3.right * 4f / 3f;
+            moreOptions.transform.localScale = new Vector3(0.66f, 1, 1); 
             
             moreOptions.gameObject.SetActive(true);
             moreOptions.Text.text = "Las Monjas Options";
+            moreOptions.Text.transform.localScale = new Vector3(1 / 0.66f, 1, 1);
             var moreOptionsButton = moreOptions.GetComponent<PassiveButton>();
             moreOptionsButton.OnClick = new ButtonClickedEvent();
             moreOptionsButton.OnClick.AddListener((Action) (() =>

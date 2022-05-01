@@ -264,19 +264,38 @@ namespace LasMonjas.Patches
                         GameObject duelArena = GameObject.Instantiate(CustomMain.customAssets.challengerDuelArena, PlayerControl.LocalPlayer.transform.parent);
                         duelArena.name = "duelArena";
                         duelArena.transform.position = new Vector3(40, 0f, 1f);
+                        if (PlayerControl.GameOptions.MapId == 5) { // Create another duel arena on submerged lower floor
+                            GameObject lowerduelArena = GameObject.Instantiate(CustomMain.customAssets.challengerDuelArena, PlayerControl.LocalPlayer.transform.parent);
+                            lowerduelArena.name = "lowerduelArena";
+                            lowerduelArena.transform.position = new Vector3(40, -48.119f, 1f);
+                        }
                         createdduelarena = true;
                     }
                 }
 
-                // Remove vitals use from Polus and Airship for TimeTraveler
+                // Remove vitals use for TimeTraveler
                 if (TimeTraveler.timeTraveler != null && PlayerControl.LocalPlayer == TimeTraveler.timeTraveler) {
-                    if (PlayerControl.GameOptions.MapId == 2) {
-                        GameObject vitals = GameObject.Find("panel_vitals");
-                        vitals.GetComponent<BoxCollider2D>().enabled = false;
+                    switch (PlayerControl.GameOptions.MapId) {
+                        case 2:
+                            GameObject polusvitals = GameObject.Find("panel_vitals");
+                            polusvitals.GetComponent<BoxCollider2D>().enabled = false;
+                            break;
+                        case 4:
+                            GameObject airshipvitals = GameObject.Find("panel_vitals");
+                            airshipvitals.GetComponent<CircleCollider2D>().enabled = false;
+                            break;
+                        case 5:
+                            GameObject submergedvitals = GameObject.Find("panel_vitals(Clone)");
+                            submergedvitals.GetComponent<CircleCollider2D>().enabled = false;
+                            break;
                     }
-                    if (PlayerControl.GameOptions.MapId == 4) {
-                        GameObject vitals = GameObject.Find("panel_vitals");
-                        vitals.GetComponent<CircleCollider2D>().enabled = false;
+                }
+
+                // Submerged remove Chameleon special vent
+                if (Chameleon.chameleon != null && PlayerControl.LocalPlayer == Chameleon.chameleon) {
+                    if (PlayerControl.GameOptions.MapId == 5) {
+                        GameObject vent = GameObject.Find("LowerCentralVent");
+                        vent.GetComponent<BoxCollider2D>().enabled = false;
                     }
                 }
 
@@ -311,6 +330,9 @@ namespace LasMonjas.Patches
                         break;
                     case 4:
                         allulfitti.transform.position = new Vector3(7.75f, 7.5f, 0.5f);
+                        break;
+                    case 5:
+                        allulfitti.transform.position = new Vector3(6f, 22.65f, -0.5f);
                         break;
                 }
 				
@@ -624,6 +646,92 @@ namespace LasMonjas.Patches
                                 BottomRightVert.SetActive(false);
                                 GameObject LeftDoorBottom = GameObject.Find("LeftDoorBottom");
                                 LeftDoorBottom.SetActive(false);
+                            }
+                            break;
+                        // Submerged
+                        case 5:
+                            if (PlayerControl.LocalPlayer == CaptureTheFlag.stealerPlayer) {
+                                CaptureTheFlag.stealerPlayer.transform.position = new Vector3(1f, 10f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(CaptureTheFlag.stealerPlayer);
+                            }
+
+                            foreach (PlayerControl player in CaptureTheFlag.redteamFlag) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-8.35f, 28.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in CaptureTheFlag.blueteamFlag) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(12.5f, -31.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdcapturetheflag) {
+                                GameObject redflag = GameObject.Instantiate(CustomMain.customAssets.redflag, PlayerControl.LocalPlayer.transform.parent);
+                                redflag.name = "redflag";
+                                redflag.transform.position = new Vector3(-8.35f, 28.05f, 0.03f);
+                                CaptureTheFlag.redflag = redflag;
+                                GameObject redflagbase = GameObject.Instantiate(CustomMain.customAssets.redflagbase, PlayerControl.LocalPlayer.transform.parent);
+                                redflagbase.name = "redflagbase";
+                                redflagbase.transform.position = new Vector3(-8.35f, 28, 0.031f);
+                                CaptureTheFlag.redflagbase = redflagbase;
+                                GameObject blueflag = GameObject.Instantiate(CustomMain.customAssets.blueflag, PlayerControl.LocalPlayer.transform.parent);
+                                blueflag.name = "blueflag";
+                                blueflag.transform.position = new Vector3(12.5f, -31.45f, -0.011f);
+                                CaptureTheFlag.blueflag = blueflag;
+                                GameObject blueflagbase = GameObject.Instantiate(CustomMain.customAssets.blueflagbase, PlayerControl.LocalPlayer.transform.parent);
+                                blueflagbase.name = "blueflagbase";
+                                blueflagbase.transform.position = new Vector3(12.5f, -31.5f, -0.01f);
+                                CaptureTheFlag.blueflagbase = blueflagbase;
+
+                                GameObject redteamfloor = GameObject.Instantiate(CustomMain.customAssets.redfloor, PlayerControl.LocalPlayer.transform.parent);
+                                redteamfloor.name = "redteamfloor";
+                                redteamfloor.transform.position = new Vector3(-14f, -27.5f, -0.01f);
+                                GameObject blueteamfloor = GameObject.Instantiate(CustomMain.customAssets.bluefloor, PlayerControl.LocalPlayer.transform.parent);
+                                blueteamfloor.name = "blueteamfloor";
+                                blueteamfloor.transform.position = new Vector3(14.25f, 24.25f, 0.03f); 
+                                
+                                createdcapturetheflag = true;
+
+                                // Remove camera use, admin table, vitals, on Submerged
+                                GameObject upperCentralVent = GameObject.Find("UpperCentralVent");
+                                upperCentralVent.GetComponent<CircleCollider2D>().enabled = false;
+                                upperCentralVent.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject lowerCentralVent = GameObject.Find("LowerCentralVent");
+                                lowerCentralVent.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject securityCams = GameObject.Find("SecurityConsole");
+                                securityCams.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals(Clone)");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("console-adm-admintable");
+                                adminone.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("console-adm-admintable (1)");
+                                GameObject deconVLower = GameObject.Find("DeconDoorVLower");
+                                deconVLower.SetActive(false);
+                                GameObject deconVUpper = GameObject.Find("DeconDoorVUpper");
+                                deconVUpper.SetActive(false);
+                                GameObject deconHLower = GameObject.Find("DeconDoorHLower");
+                                deconHLower.SetActive(false); 
+                                GameObject deconHUpper = GameObject.Find("DeconDoorHUpper");
+                                deconHUpper.SetActive(false); 
+                                admintwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsone = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Electrical/FixConsole");
+                                camsone.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camstwo = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Lobby/FixConsole");
+                                camstwo.GetComponent<BoxCollider2D>().enabled = false;
+                                camstwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsthree = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Comms/FixConsole");
+                                camsthree.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camsfour = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Lobby/FixConsole");
+                                camsfour.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfour.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsfive = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/WestHallway/FixConsole");
+                                camsfive.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfive.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camssix = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/YHallway/FixConsole");
+                                camssix.GetComponent<BoxCollider2D>().enabled = false;
+                                camssix.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsseven = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/WestHallway/FixConsole");
+                                camsseven.GetComponent<BoxCollider2D>().enabled = false;
                             }
                             break;
                     }
@@ -1402,6 +1510,177 @@ namespace LasMonjas.Patches
                                 PoliceAndThief.thiefTreasures.Add(jewel15);
                             }
                             break;
+                        // Submerged
+                        case 5:
+                            foreach (PlayerControl player in PoliceAndThief.policeTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-8.45f, 27f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(1f, 10f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
+                                GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
+                                cell.name = "cell";
+                                cell.transform.position = new Vector3(-5.9f, 31.85f, 0.5f);
+                                cell.gameObject.layer = 9;
+                                cell.transform.GetChild(0).gameObject.layer = 9;
+                                PoliceAndThief.cell = cell;
+                                GameObject cellbutton = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
+                                cellbutton.name = "cellbutton";
+                                cellbutton.transform.position = new Vector3(-6f, 28.5f, 0.03f);
+                                PoliceAndThief.cellbutton = cellbutton;
+                                GameObject jewelbutton = GameObject.Instantiate(CustomMain.customAssets.jewelbutton, PlayerControl.LocalPlayer.transform.parent);
+                                jewelbutton.name = "jewelbutton";
+                                jewelbutton.transform.position = new Vector3(1f, 10f, 0.03f);
+                                PoliceAndThief.jewelbutton = jewelbutton;
+                                GameObject thiefspaceship = GameObject.Instantiate(CustomMain.customAssets.thiefspaceship, PlayerControl.LocalPlayer.transform.parent);
+                                thiefspaceship.name = "thiefspaceship";
+                                thiefspaceship.transform.position = new Vector3(-2.75f, 9f, 0.031f);
+                                thiefspaceship.transform.localScale = new Vector3(-1f, 1f, 1f);
+
+                                GameObject celltwo = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
+                                celltwo.name = "celltwo";
+                                celltwo.transform.position = new Vector3(-14.1f, -39f, -0.01f);
+                                celltwo.gameObject.layer = 9;
+                                celltwo.transform.GetChild(0).gameObject.layer = 9;
+                                PoliceAndThief.celltwo = celltwo;
+                                GameObject cellbuttontwo = GameObject.Instantiate(CustomMain.customAssets.freethiefbutton, PlayerControl.LocalPlayer.transform.parent);
+                                cellbuttontwo.name = "cellbuttontwo";
+                                cellbuttontwo.transform.position = new Vector3(-11f, -39.35f, -0.01f);
+                                PoliceAndThief.cellbuttontwo = cellbuttontwo;
+                                GameObject jewelbuttontwo = GameObject.Instantiate(CustomMain.customAssets.jewelbutton, PlayerControl.LocalPlayer.transform.parent);
+                                jewelbuttontwo.name = "jewelbuttontwo";
+                                jewelbuttontwo.transform.position = new Vector3(13f, -32.5f, -0.01f);
+                                PoliceAndThief.jewelbuttontwo = jewelbuttontwo;
+                                GameObject thiefspaceshiptwo = GameObject.Instantiate(CustomMain.customAssets.thiefspaceship, PlayerControl.LocalPlayer.transform.parent);
+                                thiefspaceshiptwo.name = "thiefspaceshiptwo";
+                                thiefspaceshiptwo.transform.position = new Vector3(14.5f, -35f, -0.011f);
+
+                                createdpoliceandthief = true;
+
+                                // Remove camera use, admin table, vitals, on Submerged
+                                GameObject upperCentralVent = GameObject.Find("UpperCentralVent");
+                                upperCentralVent.GetComponent<CircleCollider2D>().enabled = false;
+                                upperCentralVent.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject lowerCentralVent = GameObject.Find("LowerCentralVent");
+                                lowerCentralVent.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject securityCams = GameObject.Find("SecurityConsole");
+                                securityCams.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals(Clone)");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("console-adm-admintable");
+                                adminone.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("console-adm-admintable (1)");
+                                GameObject deconVLower = GameObject.Find("DeconDoorVLower");
+                                deconVLower.SetActive(false);
+                                GameObject deconVUpper = GameObject.Find("DeconDoorVUpper");
+                                deconVUpper.SetActive(false);
+                                GameObject deconHLower = GameObject.Find("DeconDoorHLower");
+                                deconHLower.SetActive(false);
+                                GameObject deconHUpper = GameObject.Find("DeconDoorHUpper");
+                                deconHUpper.SetActive(false);
+                                admintwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsone = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Electrical/FixConsole");
+                                camsone.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camstwo = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Lobby/FixConsole");
+                                camstwo.GetComponent<BoxCollider2D>().enabled = false;
+                                camstwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsthree = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Comms/FixConsole");
+                                camsthree.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camsfour = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Lobby/FixConsole");
+                                camsfour.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfour.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsfive = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/WestHallway/FixConsole");
+                                camsfive.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfive.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camssix = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/YHallway/FixConsole");
+                                camssix.GetComponent<BoxCollider2D>().enabled = false;
+                                camssix.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsseven = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/WestHallway/FixConsole");
+                                camsseven.GetComponent<BoxCollider2D>().enabled = false;
+
+                                // Spawn jewels
+                                GameObject jewel01 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel01.transform.position = new Vector3(-15f, 17.5f, -1f);
+                                jewel01.name = "jewel01";
+                                PoliceAndThief.jewel01 = jewel01;
+                                GameObject jewel02 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel02.transform.position = new Vector3(8f, 32f, -1f);
+                                jewel02.name = "jewel02";
+                                PoliceAndThief.jewel02 = jewel02;
+                                GameObject jewel03 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel03.transform.position = new Vector3(-6.75f, 10f, -1f);
+                                jewel03.name = "jewel03";
+                                PoliceAndThief.jewel03 = jewel03;
+                                GameObject jewel04 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel04.transform.position = new Vector3(5.15f, 8f, -1f);
+                                jewel04.name = "jewel04";
+                                PoliceAndThief.jewel04 = jewel04;
+                                GameObject jewel05 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel05.transform.position = new Vector3(5f, -33.5f, -1f);
+                                jewel05.name = "jewel05";
+                                PoliceAndThief.jewel05 = jewel05;
+                                GameObject jewel06 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel06.transform.position = new Vector3(-4.15f, -33.5f, -1f);
+                                jewel06.name = "jewel06";
+                                PoliceAndThief.jewel06 = jewel06;
+                                GameObject jewel07 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel07.transform.position = new Vector3(-14f, -27.75f, -1f);
+                                jewel07.name = "jewel07";
+                                PoliceAndThief.jewel07 = jewel07;
+                                GameObject jewel08 = GameObject.Instantiate(CustomMain.customAssets.jeweldiamond, PlayerControl.LocalPlayer.transform.parent);
+                                jewel08.transform.position = new Vector3(7.8f, -23.75f, -1f);
+                                jewel08.name = "jewel08";
+                                PoliceAndThief.jewel08 = jewel08;
+                                GameObject jewel09 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel09.transform.position = new Vector3(-6.75f, -42.75f, -1f);
+                                jewel09.name = "jewel09";
+                                PoliceAndThief.jewel09 = jewel09;
+                                GameObject jewel10 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel10.transform.position = new Vector3(13f, -25.25f, -1f);
+                                jewel10.name = "jewel10";
+                                PoliceAndThief.jewel10 = jewel10;
+                                GameObject jewel11 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel11.transform.position = new Vector3(-14f, -34.25f, -1f);
+                                jewel11.name = "jewel11";
+                                PoliceAndThief.jewel11 = jewel11;
+                                GameObject jewel12 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel12.transform.position = new Vector3(0f, -33.5f, -1f);
+                                jewel12.name = "jewel12";
+                                PoliceAndThief.jewel12 = jewel12;
+                                GameObject jewel13 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel13.transform.position = new Vector3(-6.5f, 14f, -1f);
+                                jewel13.name = "jewel13";
+                                PoliceAndThief.jewel13 = jewel13;
+                                GameObject jewel14 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel14.transform.position = new Vector3(14.25f, 24.5f, -1f);
+                                jewel14.name = "jewel14";
+                                PoliceAndThief.jewel14 = jewel14;
+                                GameObject jewel15 = GameObject.Instantiate(CustomMain.customAssets.jewelruby, PlayerControl.LocalPlayer.transform.parent);
+                                jewel15.transform.position = new Vector3(-12.25f, 31f, -1f);
+                                jewel15.name = "jewel15";
+                                PoliceAndThief.jewel15 = jewel15;
+                                PoliceAndThief.thiefTreasures.Add(jewel01);
+                                PoliceAndThief.thiefTreasures.Add(jewel02);
+                                PoliceAndThief.thiefTreasures.Add(jewel03);
+                                PoliceAndThief.thiefTreasures.Add(jewel04);
+                                PoliceAndThief.thiefTreasures.Add(jewel05);
+                                PoliceAndThief.thiefTreasures.Add(jewel06);
+                                PoliceAndThief.thiefTreasures.Add(jewel07);
+                                PoliceAndThief.thiefTreasures.Add(jewel08);
+                                PoliceAndThief.thiefTreasures.Add(jewel09);
+                                PoliceAndThief.thiefTreasures.Add(jewel10);
+                                PoliceAndThief.thiefTreasures.Add(jewel11);
+                                PoliceAndThief.thiefTreasures.Add(jewel12);
+                                PoliceAndThief.thiefTreasures.Add(jewel13);
+                                PoliceAndThief.thiefTreasures.Add(jewel14);
+                                PoliceAndThief.thiefTreasures.Add(jewel15);
+                            }
+                            break;
                     }
 
                     if (!PoliceAndThief.policeCanSeeJewels) {
@@ -1879,6 +2158,115 @@ namespace LasMonjas.Patches
                                 LeftDoorBottom.SetActive(false);
                             }
                             break;
+                        // Submerged
+                        case 5:
+                            if (PlayerControl.LocalPlayer == KingOfTheHill.usurperPlayer) {
+                                KingOfTheHill.usurperPlayer.transform.position = new Vector3(5.75f, 31.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(KingOfTheHill.usurperPlayer);
+                            }
+
+                            foreach (PlayerControl player in KingOfTheHill.greenTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-12.25f, 18.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            foreach (PlayerControl player in KingOfTheHill.yellowTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(-8.5f, -39.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+                            if (PlayerControl.LocalPlayer != null && !createdkingofthehill) {
+                                GameObject greenteamfloor = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                greenteamfloor.name = "greenteamfloor";
+                                greenteamfloor.transform.position = new Vector3(-12.25f, 18.25f, 0.03f);
+                                GameObject greenteamfloortwo = GameObject.Instantiate(CustomMain.customAssets.greenfloor, PlayerControl.LocalPlayer.transform.parent);
+                                greenteamfloortwo.name = "greenteamfloortwo";
+                                greenteamfloortwo.transform.position = new Vector3(-14.5f, -34.35f, -0.01f); 
+                                GameObject yellowteamfloor = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                yellowteamfloor.name = "yellowteamfloor";
+                                yellowteamfloor.transform.position = new Vector3(-8.5f, -39.5f, -0.01f);
+                                GameObject yellowteamfloortwo = GameObject.Instantiate(CustomMain.customAssets.yellowfloor, PlayerControl.LocalPlayer.transform.parent);
+                                yellowteamfloortwo.name = "yellowteamfloortwo";
+                                yellowteamfloortwo.transform.position = new Vector3(0f, 33.5f, 0.03f); 
+                                GameObject greenkingaura = GameObject.Instantiate(CustomMain.customAssets.greenaura, KingOfTheHill.greenKingplayer.transform);
+                                greenkingaura.name = "greenkingaura";
+                                greenkingaura.transform.position = new Vector3(KingOfTheHill.greenKingplayer.transform.position.x, KingOfTheHill.greenKingplayer.transform.position.y, -0.5f);
+                                KingOfTheHill.greenkingaura = greenkingaura;
+                                GameObject yellowkingaura = GameObject.Instantiate(CustomMain.customAssets.yellowaura, KingOfTheHill.yellowKingplayer.transform);
+                                yellowkingaura.name = "yellowkingaura";
+                                yellowkingaura.transform.position = new Vector3(KingOfTheHill.yellowKingplayer.transform.position.x, KingOfTheHill.yellowKingplayer.transform.position.y, -0.5f);
+                                KingOfTheHill.yellowkingaura = yellowkingaura;
+                                GameObject flagzoneone = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzoneone.name = "flagzoneone";
+                                flagzoneone.transform.position = new Vector3(1f, 10f, 0.029f);
+                                KingOfTheHill.flagzoneone = flagzoneone;
+                                GameObject zoneone = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zoneone.name = "zoneone";
+                                zoneone.transform.position = new Vector3(1f, 10f, 0.03f);
+                                KingOfTheHill.zoneone = zoneone;
+                                GameObject flagzonetwo = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonetwo.name = "flagzonetwo";
+                                flagzonetwo.transform.position = new Vector3(2.5f, -35.5f, -0.01f);
+                                KingOfTheHill.flagzonetwo = flagzonetwo;
+                                GameObject zonetwo = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonetwo.name = "zonetwo";
+                                zonetwo.transform.position = new Vector3(2.5f, -35.5f, -0.011f);
+                                KingOfTheHill.zonetwo = zonetwo;
+                                GameObject flagzonethree = GameObject.Instantiate(CustomMain.customAssets.whiteflag, PlayerControl.LocalPlayer.transform.parent);
+                                flagzonethree.name = "flagzonethree";
+                                flagzonethree.transform.position = new Vector3(10f, -31.5f, -0.01f);
+                                KingOfTheHill.flagzonethree = flagzonethree;
+                                GameObject zonethree = GameObject.Instantiate(CustomMain.customAssets.whitebase, PlayerControl.LocalPlayer.transform.parent);
+                                zonethree.name = "zonethree";
+                                zonethree.transform.position = new Vector3(10f, -31.5f, -0.011f);
+                                KingOfTheHill.zonethree = zonethree;
+                                KingOfTheHill.kingZones.Add(zoneone);
+                                KingOfTheHill.kingZones.Add(zonetwo);
+                                KingOfTheHill.kingZones.Add(zonethree);
+                                createdkingofthehill = true;
+
+                                // Remove camera use, admin table, vitals, on Submerged
+                                GameObject upperCentralVent = GameObject.Find("UpperCentralVent");
+                                upperCentralVent.GetComponent<CircleCollider2D>().enabled = false;
+                                upperCentralVent.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject lowerCentralVent = GameObject.Find("LowerCentralVent");
+                                lowerCentralVent.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject securityCams = GameObject.Find("SecurityConsole");
+                                securityCams.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals(Clone)");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("console-adm-admintable");
+                                adminone.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("console-adm-admintable (1)");
+                                GameObject deconVLower = GameObject.Find("DeconDoorVLower");
+                                deconVLower.SetActive(false);
+                                GameObject deconVUpper = GameObject.Find("DeconDoorVUpper");
+                                deconVUpper.SetActive(false);
+                                GameObject deconHLower = GameObject.Find("DeconDoorHLower");
+                                deconHLower.SetActive(false);
+                                GameObject deconHUpper = GameObject.Find("DeconDoorHUpper");
+                                deconHUpper.SetActive(false);
+                                admintwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsone = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Electrical/FixConsole");
+                                camsone.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camstwo = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Lobby/FixConsole");
+                                camstwo.GetComponent<BoxCollider2D>().enabled = false;
+                                camstwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsthree = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Comms/FixConsole");
+                                camsthree.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camsfour = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Lobby/FixConsole");
+                                camsfour.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfour.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsfive = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/WestHallway/FixConsole");
+                                camsfive.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfive.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camssix = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/YHallway/FixConsole");
+                                camssix.GetComponent<BoxCollider2D>().enabled = false;
+                                camssix.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsseven = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/WestHallway/FixConsole");
+                                camsseven.GetComponent<BoxCollider2D>().enabled = false;
+                            }
+                            break;
                     }
                     new CustomMessage("Time Left: ", KingOfTheHill.matchDuration, -1, -1.3f, 10);
                     new CustomMessage(KingOfTheHill.kingpointCounter, KingOfTheHill.matchDuration, -1, 1.9f, 12);
@@ -2107,6 +2495,68 @@ namespace LasMonjas.Patches
                                 BottomRightVert.SetActive(false);
                                 GameObject LeftDoorBottom = GameObject.Find("LeftDoorBottom");
                                 LeftDoorBottom.SetActive(false);
+                            }
+                            break;
+                        // Submerged
+                        case 5:
+                            if (PlayerControl.LocalPlayer == HotPotato.hotPotatoPlayer) {
+                                HotPotato.hotPotatoPlayer.transform.position = new Vector3(-4.25f, -33.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(HotPotato.hotPotatoPlayer);
+                            }
+
+                            foreach (PlayerControl player in HotPotato.notPotatoTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(13f, -25.25f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdhotpotato) {
+                                GameObject hotpotato = GameObject.Instantiate(CustomMain.customAssets.hotPotato, HotPotato.hotPotatoPlayer.transform);
+                                hotpotato.name = "hotpotato";
+                                hotpotato.transform.position = HotPotato.hotPotatoPlayer.transform.position + new Vector3(0, 0.5f, -0.25f);
+                                HotPotato.hotPotato = hotpotato;
+                                createdhotpotato = true;
+
+                                // Remove camera use, admin table, vitals, on Submerged
+                                GameObject upperCentralVent = GameObject.Find("UpperCentralVent");
+                                upperCentralVent.GetComponent<CircleCollider2D>().enabled = false;
+                                upperCentralVent.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject lowerCentralVent = GameObject.Find("LowerCentralVent");
+                                lowerCentralVent.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject securityCams = GameObject.Find("SecurityConsole");
+                                securityCams.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals(Clone)");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("console-adm-admintable");
+                                adminone.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("console-adm-admintable (1)");
+                                GameObject deconVLower = GameObject.Find("DeconDoorVLower");
+                                deconVLower.SetActive(false);
+                                GameObject deconVUpper = GameObject.Find("DeconDoorVUpper");
+                                deconVUpper.SetActive(false);
+                                GameObject deconHLower = GameObject.Find("DeconDoorHLower");
+                                deconHLower.SetActive(false);
+                                GameObject deconHUpper = GameObject.Find("DeconDoorHUpper");
+                                deconHUpper.SetActive(false);
+                                admintwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsone = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Electrical/FixConsole");
+                                camsone.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camstwo = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Lobby/FixConsole");
+                                camstwo.GetComponent<BoxCollider2D>().enabled = false;
+                                camstwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsthree = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Comms/FixConsole");
+                                camsthree.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camsfour = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Lobby/FixConsole");
+                                camsfour.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfour.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsfive = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/WestHallway/FixConsole");
+                                camsfive.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfive.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camssix = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/YHallway/FixConsole");
+                                camssix.GetComponent<BoxCollider2D>().enabled = false;
+                                camssix.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsseven = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/WestHallway/FixConsole");
+                                camsseven.GetComponent<BoxCollider2D>().enabled = false;
                             }
                             break;
                     }
@@ -2592,6 +3042,133 @@ namespace LasMonjas.Patches
                                 BottomRightVert.SetActive(false);
                                 GameObject LeftDoorBottom = GameObject.Find("LeftDoorBottom");
                                 LeftDoorBottom.SetActive(false);
+                            }
+                            break;
+                        // Submerged
+                        case 5:
+                            foreach (PlayerControl player in ZombieLaboratory.zombieTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(1f, 10f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
+                                if (player == PlayerControl.LocalPlayer)
+                                    player.transform.position = new Vector3(5.5f, 31.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(player);
+                            }
+
+                            if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
+                                ZombieLaboratory.nursePlayer.transform.position = new Vector3(-6f, 31.5f, PlayerControl.LocalPlayer.transform.position.z);
+                                Helpers.clearAllTasks(ZombieLaboratory.nursePlayer);
+                                ZombieLaboratory.nursePlayerInsideLaboratory = false;
+                                GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKit.name = "mapMedKit";
+                                mapMedKit.transform.position = new Vector3(0f, 33.75f, -1f);
+                                GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKittwo.name = "mapMedKittwo";
+                                mapMedKittwo.transform.position = new Vector3(5f, -33.5f, -1f);
+                                GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                mapMedKitthree.name = "mapMedKitthree";
+                                mapMedKitthree.transform.position = new Vector3(-13.75f, -27.75f, -1f);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKit);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
+                                ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);
+                                // Add Arrows pointing the medkit only for nurse
+                                if (ZombieLaboratory.localNurseArrows.Count == 0 && ZombieLaboratory.localNurseArrows.Count < 3) {
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                    ZombieLaboratory.localNurseArrows.Add(new Arrow(Medusa.color));
+                                }
+                                ZombieLaboratory.localNurseArrows[0].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[1].arrow.SetActive(true);
+                                ZombieLaboratory.localNurseArrows[2].arrow.SetActive(true);
+                            }
+
+                            if (PlayerControl.LocalPlayer != null && !createdzombielaboratory) {
+                                GameObject laboratory = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                laboratory.name = "laboratory";
+                                laboratory.transform.position = new Vector3(-5.9f, 31.85f, 0.5f);
+                                laboratory.gameObject.layer = 9;
+                                laboratory.transform.GetChild(0).gameObject.layer = 9;
+                                ZombieLaboratory.laboratory = laboratory;
+                                ZombieLaboratory.laboratoryEnterButton = laboratory.transform.GetChild(1).gameObject;
+                                ZombieLaboratory.laboratoryEnterButton.transform.position = new Vector3(-5.45f, 29.4f, -1.5f);
+                                ZombieLaboratory.laboratoryExitButton = laboratory.transform.GetChild(2).gameObject;
+                                ZombieLaboratory.laboratoryCreateCureButton = laboratory.transform.GetChild(3).gameObject;
+                                ZombieLaboratory.laboratoryPutKeyItemButton = laboratory.transform.GetChild(4).gameObject;
+                                ZombieLaboratory.laboratoryExitLeftButton = laboratory.transform.GetChild(5).gameObject;
+                                ZombieLaboratory.laboratoryExitRightButton = laboratory.transform.GetChild(6).gameObject;
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryEnterButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitLeftButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratoryExitRightButton);
+
+                                GameObject laboratorytwo = GameObject.Instantiate(CustomMain.customAssets.laboratory, PlayerControl.LocalPlayer.transform.parent);
+                                laboratorytwo.name = "laboratorytwo";
+                                laboratorytwo.transform.position = new Vector3(-14.1f, -39f, -0.01f);
+                                laboratorytwo.gameObject.layer = 9;
+                                laboratorytwo.transform.GetChild(0).gameObject.layer = 9;
+                                ZombieLaboratory.laboratorytwo = laboratorytwo;
+                                ZombieLaboratory.laboratorytwoEnterButton = laboratorytwo.transform.GetChild(1).gameObject;
+                                ZombieLaboratory.laboratorytwoEnterButton.transform.position = new Vector3(-10.08f, -39.5f, -0.11f);
+                                ZombieLaboratory.laboratorytwoExitButton = laboratorytwo.transform.GetChild(2).gameObject;
+                                ZombieLaboratory.laboratorytwoCreateCureButton = laboratorytwo.transform.GetChild(3).gameObject;
+                                ZombieLaboratory.laboratorytwoPutKeyItemButton = laboratorytwo.transform.GetChild(4).gameObject;
+                                ZombieLaboratory.laboratorytwoExitLeftButton = laboratorytwo.transform.GetChild(5).gameObject;
+                                ZombieLaboratory.laboratorytwoExitRightButton = laboratorytwo.transform.GetChild(6).gameObject;
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratorytwoEnterButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratorytwoExitButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratorytwoExitLeftButton);
+                                ZombieLaboratory.nurseExits.Add(ZombieLaboratory.laboratorytwoExitRightButton);
+
+                                GameObject nurseMedKit = GameObject.Instantiate(CustomMain.customAssets.nurseMedKit, PlayerControl.LocalPlayer.transform.parent);
+                                nurseMedKit.name = "nurseMedKit";
+                                nurseMedKit.transform.parent = ZombieLaboratory.nursePlayer.transform;
+                                nurseMedKit.transform.localPosition = new Vector3(0f, 0.7f, -0.5f);
+                                ZombieLaboratory.laboratoryNurseMedKit = nurseMedKit;
+                                ZombieLaboratory.laboratoryNurseMedKit.SetActive(false);
+
+                                // Remove camera use, admin table, vitals, on Submerged
+                                GameObject upperCentralVent = GameObject.Find("UpperCentralVent");
+                                upperCentralVent.GetComponent<CircleCollider2D>().enabled = false;
+                                upperCentralVent.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject lowerCentralVent = GameObject.Find("LowerCentralVent");
+                                lowerCentralVent.GetComponent<BoxCollider2D>().enabled = false;
+                                GameObject securityCams = GameObject.Find("SecurityConsole");
+                                securityCams.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject vitals = GameObject.Find("panel_vitals(Clone)");
+                                vitals.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject adminone = GameObject.Find("console-adm-admintable");
+                                adminone.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject admintwo = GameObject.Find("console-adm-admintable (1)");
+                                GameObject deconVLower = GameObject.Find("DeconDoorVLower");
+                                deconVLower.SetActive(false);
+                                GameObject deconVUpper = GameObject.Find("DeconDoorVUpper");
+                                deconVUpper.SetActive(false);
+                                GameObject deconHLower = GameObject.Find("DeconDoorHLower");
+                                deconHLower.SetActive(false);
+                                GameObject deconHUpper = GameObject.Find("DeconDoorHUpper");
+                                deconHUpper.SetActive(false);
+                                admintwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsone = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Electrical/FixConsole");
+                                camsone.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camstwo = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/Lobby/FixConsole");
+                                camstwo.GetComponent<BoxCollider2D>().enabled = false;
+                                camstwo.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsthree = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Comms/FixConsole");
+                                camsthree.GetComponent<PolygonCollider2D>().enabled = false;
+                                GameObject camsfour = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/Lobby/FixConsole");
+                                camsfour.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfour.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsfive = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/WestHallway/FixConsole");
+                                camsfive.GetComponent<BoxCollider2D>().enabled = false;
+                                camsfive.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camssix = GameObject.Find("Submerged(Clone)/Cameras/UpperDeck/YHallway/FixConsole");
+                                camssix.GetComponent<BoxCollider2D>().enabled = false;
+                                camssix.GetComponent<CircleCollider2D>().enabled = false;
+                                GameObject camsseven = GameObject.Find("Submerged(Clone)/Cameras/LowerDeck/WestHallway/FixConsole");
+                                camsseven.GetComponent<BoxCollider2D>().enabled = false;
                             }
                             break;
                     }

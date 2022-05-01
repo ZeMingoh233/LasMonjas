@@ -14,29 +14,44 @@ namespace LasMonjas.Patches {
     [HarmonyPatch(typeof(Vent), nameof(Vent.CanUse))]
     public static class VentCanUsePatch
     {
-        public static bool Prefix(Vent __instance, ref float __result, [HarmonyArgument(0)] GameData.PlayerInfo pc, [HarmonyArgument(1)] out bool canUse, [HarmonyArgument(2)] out bool couldUse)
+        public static bool Prefix(bool __runOriginal, Vent __instance, ref float __result, [HarmonyArgument(0)] GameData.PlayerInfo pc, [HarmonyArgument(1)] ref bool canUse, [HarmonyArgument(2)] ref bool couldUse)
         {
-            float num = float.MaxValue;
+            if (!__runOriginal) {
+                return false;
+            }
+			
+			float num = float.MaxValue;
             PlayerControl @object = pc.Object;
 
             bool roleCouldUse = @object.roleCanUseVents();
 
             var usableDistance = __instance.UsableDistance;
             if (__instance.name.StartsWith("Hat_")) {
-                if(Ilusionist.ilusionist != PlayerControl.LocalPlayer) {
+                if (Ilusionist.ilusionist != PlayerControl.LocalPlayer) {
                     // Only the Ilusionist can use the Hats
                     canUse = false;
                     couldUse = false;
                     __result = num;
-                    return false; 
-                } else {
-                    // Reduce the usable distance to reduce the risk of gettings stuck while trying to jump into the hat if it's placed near objects
-                    usableDistance = 0.4f; 
+                    return false;
                 }
-            } else if (__instance.name.StartsWith("SealedVent_")) {
+                else {
+                    // Reduce the usable distance to reduce the risk of gettings stuck while trying to jump into the hat if it's placed near objects
+                    usableDistance = 0.4f;
+                }
+            }
+            else if (__instance.name.StartsWith("SealedVent_")) {
                 canUse = couldUse = false;
                 __result = num;
                 return false;
+            }
+
+            // Submerged check
+            else if (PlayerControl.GameOptions.MapId == 5) {
+                if (!PlayerControl.LocalPlayer.Data.Role.IsImpostor && (__instance.name.StartsWith("LowerCentralVent") || __instance.name.StartsWith("UpperCentralVent"))) {
+                    canUse = couldUse = false;
+                    __result = num;
+                    return false;
+                }
             }
 
             couldUse = (@object.inVent || roleCouldUse) && !pc.IsDead && (@object.CanMove || @object.inVent);
@@ -316,8 +331,7 @@ namespace LasMonjas.Patches {
                 if (Hacker.hacker != null && Hacker.hacker == PlayerControl.LocalPlayer && Hacker.hackerTimer > 0) {
                     for (int k = 0; k < __instance.vitals.Length; k++) {
                         VitalsPanel vitalsPanel = __instance.vitals[k];
-                        GameData.PlayerInfo player = GameData.Instance.AllPlayers[k];
-
+                        GameData.PlayerInfo player = vitalsPanel.PlayerInfo;
                         // Hacker update
                         if (vitalsPanel.IsDead) {
                             DeadPlayer deadPlayer = deadPlayers?.Where(x => x.player?.PlayerId == player?.PlayerId)?.FirstOrDefault();
@@ -341,7 +355,8 @@ namespace LasMonjas.Patches {
     [HarmonyPatch]
     class AdminPanelPatch
     {
-        static Dictionary<SystemTypes, List<Color>> players = new Dictionary<SystemTypes, List<Color>>();
+        //static Dictionary<SystemTypes, List<Color>> players = new Dictionary<SystemTypes, List<Color>>();
+        static Dictionary<SystemTypes, List<Color>> players = new Dictionary<SystemTypes, System.Collections.Generic.List<Color>>();
 
         [HarmonyPatch(typeof(MapCountOverlay), nameof(MapCountOverlay.Update))]
         class MapCountOverlayUpdatePatch
@@ -564,5 +579,4 @@ namespace LasMonjas.Patches {
             }
         }
     }
-
 }
