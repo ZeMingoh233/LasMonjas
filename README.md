@@ -11,6 +11,7 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
   6. [Custom Music](#settings)
   7. [Custom Lobby](#settings)
   8. [Custom Hats, Visors and Nameplates](#customcosmetics)
+  9. [Submerged Compatibility](#submerged)
 
 -----------------------
 
@@ -30,6 +31,17 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 # Changelog
 <details>
   <summary>Click to show</summary>
+
+**Version 1.5.0 (1st May 2022)**
+- Added a new Map: Submerged (playable either with roles or gamemodes, huge thanks to [AlexejheroYTB](https://github.com/SubmergedAmongUs/Submerged))
+- Fixed some bugs with Janitor, if killed while dragging a body, the body stays on the ground instead of flying around, also if Challenger's duel happens while dragging a body, the body doesn't teleport.
+- Fixed warning messages not showing if the map was opened.
+- Fixed Manipulator buttons sprite
+- Fixed Vigilant remote camera button, it can no longer be used while Challenger's duel is happening
+- Added some quality of life changes, like Las Monjas discord's button on the main menu, moved custom ip and port label so they don't hide regions for people with a lot of them, and settings are now divided on 6 tabs (settings, gamemodes, impostors, rebels, neutrals and cremates)
+- Increased maximum initial zombis from 3 to 5 on Zombie Laboratory.
+- Lowered Police and Thiefs music volume.
+- Added 6 new hats and 3 visors.
 
 **Version 1.4.0 (22th April 2022)**
 - New Gamemode: Zombie Laboratory
@@ -1004,6 +1016,7 @@ A random player gets the Zombie role, another player the Nurse role and the rest
 | Option  | Description |
 |----------|-------------|
 | Match Duration | From 5 to 7 and half minutes |
+| Initial Zombies | Initial spawned zombie players, from 1 to 5 |
 | Time needed to Infect | Time needed next to a player to infect it |
 | Infect Cooldown | Infect Button Cooldown |
 | Search Box Timer | Time needed to search inside a Box |
@@ -1036,6 +1049,22 @@ A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/Ha
 
 -----------------------
 
+# Submerged
+
+From Las Monjas 1.5.0 version, Submerged is included on the modpack and can be played either on roles game or any gamemodes. There's still a few changes exclusively when playing on Submerged:
+- Custom arrows points towards the closest Elevator if the target is on the other floor.
+- Central vents (the ones on the glass floor) can be used only by impostor roles. Any crewmate who can vent won't be able to use them.
+- Mimic has a visual bug, if you're transformed into other player and get out of a vent, the hat (if it's adaptative) goes back to its original color, but its only a visual bug for the Mimic player, meaning other players still see the correct hat color.
+- Challenger's arena has a visual bug, players won't see the others on the other floor.
+- Mechanic can't fix O2 sabotage since it affects the players individually.
+- Time traveler's rewind makes the players go back to the central area on both floors instead going back in time.
+- Welder can't seal central vents or the one-way vent + its exit.
+- Spiritualist revive point is fixed to Medbey on the upper floor and security on the lower one, instead the body's location.
+- Vigilant can't put extra cameras, only check them remotely.
+- All gamemodes use both floors, there's two revive points based on the player's floor and central vents can't be used.
+
+-----------------------
+
 # Credits and Code snips
 
 If you use something from Las Monjas on your mod, please credit me on your mod's github page.
@@ -1061,9 +1090,11 @@ If you use something from Las Monjas on your mod, please credit me on your mod's
 [Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind, Coward, Medusa and some more that weren't original ideas\
 [Sensei](https://github.com/TheCollectionMod) - Made button sprites, custom map sprite and some hats\
 [xxomega77](https://github.com/xxomega77xx/HatPack) - Adapted Custom Hats System
+[AlexejheroYTB](https://github.com/AlexejheroYTB) - Made Submerged compatible with Las Monjas.
 
 -----------------------
 
 # Known Bugs
 - On the custom map, you can see player names and do some tasks across the walls (this is a vanilla game bug)
 - Sometimes when playing with modifiers, people can get a modifier as a primary role
+- Players can see their head off the map on Horse mode on some walls (this is a vanilla game bug)
