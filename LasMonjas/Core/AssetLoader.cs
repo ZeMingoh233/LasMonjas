@@ -58,6 +58,8 @@ namespace LasMonjas.Core
             CustomMain.customAssets.redflagbase = assetBundleBundle.LoadAsset<GameObject>("redFlagBase.prefab").DontUnload();
             CustomMain.customAssets.blueflag = assetBundleBundle.LoadAsset<GameObject>("blueFlag.prefab").DontUnload();
             CustomMain.customAssets.blueflagbase = assetBundleBundle.LoadAsset<GameObject>("blueFlagBase.prefab").DontUnload();
+            CustomMain.customAssets.redfloor = assetBundleBundle.LoadAsset<GameObject>("redfloorbase.prefab").DontUnload();
+            CustomMain.customAssets.bluefloor = assetBundleBundle.LoadAsset<GameObject>("bluefloorbase.prefab").DontUnload();
 
             // Police and Thief
             CustomMain.customAssets.cell = assetBundleBundle.LoadAsset<GameObject>("Cell.prefab").DontUnload();

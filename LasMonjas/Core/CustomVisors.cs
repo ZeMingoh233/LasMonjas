@@ -7,8 +7,6 @@ using HarmonyLib;
 using BepInEx.Logging;
 using UnityEngine;
 
-// Adapted from https://github.com/xxomega77xx/HatPack
-
 namespace LasMonjas.Core
 {
     class CustomVisors
@@ -29,6 +27,9 @@ namespace LasMonjas.Core
             new AuthorData {AuthorName = "Sensei", VisorName = "The Eye"},
             new AuthorData {AuthorName = "Sensei", VisorName = "TV Error"},
             new AuthorData {AuthorName = "Sensei", VisorName = "Visor Cleaner"},
+            new AuthorData {AuthorName = "Muaresito", VisorName = "Muaresito Joy"},
+            new AuthorData {AuthorName = "Muaresito", VisorName = "Olmaito"},
+            new AuthorData {AuthorName = "Muaresito", VisorName = "Impostor Bros"},
             new AuthorData {AuthorName = "IceCreamGuy", VisorName = "Mungus"},
          };
 
