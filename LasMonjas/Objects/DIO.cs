@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using static LasMonjas.HudManagerStartPatch;
 using Hazel;
+using LasMonjas.Patches;
 
 namespace LasMonjas.Objects
 {
@@ -26,7 +27,8 @@ namespace LasMonjas.Objects
 
             this.color = new Color(1f, 1f, 1f, 1f);
 
-            dio = new GameObject("DIO");            
+            dio = new GameObject("DIO");
+            dio.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
             Vector3 position = new Vector3(player.transform.position.x - 0.15f, player.transform.position.y + 0.35f, player.transform.position.z - 1f);
             dio.transform.position = position;
             dio.transform.localPosition = position;

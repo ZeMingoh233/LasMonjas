@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using static LasMonjas.HudManagerStartPatch;
 using Hazel;
+using LasMonjas.Patches;
 
 namespace LasMonjas.Objects
 {
@@ -30,6 +31,7 @@ namespace LasMonjas.Objects
             this.color = new Color(1f, 1f, 1f, 1f);
 
             bomb = new GameObject("Bomb");
+            bomb.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
             Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y, -0.5f);
             bomb.transform.position = position;
             bomb.transform.localPosition = position;

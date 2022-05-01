@@ -1,10 +1,10 @@
+using LasMonjas.Patches;
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
-using static LasMonjas.LasMonjas;
 
-namespace LasMonjas.Objects {
+namespace LasMonjas.Objects
+{
     class Footprint {
         private static List<Footprint> footprints = new List<Footprint>();
         private static Sprite sprite;
@@ -13,6 +13,7 @@ namespace LasMonjas.Objects {
         private SpriteRenderer spriteRenderer;
         private PlayerControl owner;
         private bool anonymousFootprints;
+        private Vector3 position;
 
         public static Sprite getFootprintSprite() {
             if (sprite) return sprite;
@@ -29,7 +30,13 @@ namespace LasMonjas.Objects {
                 this.color = Palette.PlayerColors[(int) player.Data.DefaultOutfit.ColorId];
 
             footprint = new GameObject("Footprint");
-            Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 1f);
+            footprint.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
+            if (PlayerControl.GameOptions.MapId == 5) {
+                position = new Vector3(player.transform.position.x, player.transform.position.y, -0.5f);
+            }
+            else {
+                position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 1f);
+            }
             footprint.transform.position = position;
             footprint.transform.localPosition = position;
             footprint.transform.SetParent(player.transform.parent);

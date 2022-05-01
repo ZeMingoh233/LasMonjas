@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using static LasMonjas.HudManagerStartPatch;
 using Hazel;
+using LasMonjas.Patches;
 
 namespace LasMonjas.Objects
 {
@@ -16,6 +17,7 @@ namespace LasMonjas.Objects
         public GameObject trap;
         private SpriteRenderer spriteRenderer;
         private bool touched = false;
+        private Vector3 position;
 
         public static Sprite getTrapSprite() {
             if (sprite) return sprite;
@@ -28,7 +30,13 @@ namespace LasMonjas.Objects
             this.color = new Color(1f, 1f, 1f, 1f);
 
             trap = new GameObject("Trap" + traps.Count.ToString());
-            Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 1f);
+            trap.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
+            if (PlayerControl.GameOptions.MapId == 5) {
+                position = new Vector3(player.transform.position.x, player.transform.position.y, -0.5f);
+            }
+            else {
+                position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 1f);
+            }
             trap.transform.position = position;
             trap.transform.localPosition = position;
             trap.transform.SetParent(player.transform.parent);

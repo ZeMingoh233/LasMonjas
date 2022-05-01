@@ -9,6 +9,7 @@ namespace LasMonjas.Objects {
         public SpriteRenderer image;
         public GameObject arrow;
         private Vector3 oldTarget;
+        private ArrowBehaviour arrowBehaviour;
 
         private static Sprite sprite;
         public static Sprite getSprite() {
@@ -24,6 +25,8 @@ namespace LasMonjas.Objects {
             image = arrow.AddComponent<SpriteRenderer>();
             image.sprite = getSprite();
             image.color = color;
+            arrowBehaviour = arrow.AddComponent<ArrowBehaviour>();
+            arrowBehaviour.image = image;
         }
 
         public void Update() {
@@ -39,7 +42,10 @@ namespace LasMonjas.Objects {
 
             if (color.HasValue) image.color = color.Value;
 
-            Camera main = Camera.main;
+            arrowBehaviour.target = target;
+            arrowBehaviour.Update(); // Use submerged arrows
+            
+            /*Camera main = Camera.main;
             Vector2 vector = target - main.transform.position;
             float num = vector.magnitude / (main.orthographicSize * perc);
             image.enabled = ((double)num > 0.3);
@@ -73,7 +79,7 @@ namespace LasMonjas.Objects {
         }
 
         private bool Between(float value, float min, float max) {
-            return value > min && value < max;
+            return value > min && value < max;*/
         }
     }
 }

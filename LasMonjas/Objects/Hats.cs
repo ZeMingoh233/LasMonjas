@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System.Linq;
+using LasMonjas.Patches;
 
 namespace LasMonjas.Objects {
 
@@ -11,6 +12,7 @@ namespace LasMonjas.Objects {
         public static int HatLimit = 3;
         public static bool hatsConvertedToVents = false;
         public static Sprite[] hatAnimationSprites = new Sprite[18];
+        private Vector3 position;
 
         public static Sprite getHatAnimationSprite(int index) {
             if (hatAnimationSprites == null || hatAnimationSprites.Length == 0) return null;
@@ -38,7 +40,13 @@ namespace LasMonjas.Objects {
 
         public Hats(Vector2 p) {
             gameObject = new GameObject("Hat");
-            Vector3 position = new Vector3(p.x, p.y, PlayerControl.LocalPlayer.transform.position.z + 1f);
+            gameObject.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover); 
+            if (PlayerControl.GameOptions.MapId == 5) {
+                position = new Vector3(p.x, p.y, -0.5f);
+            }
+            else {
+                position = new Vector3(p.x, p.y, PlayerControl.LocalPlayer.transform.position.z + 1f);
+            }
             position += (Vector3)PlayerControl.LocalPlayer.Collider.offset; 
             
             gameObject.transform.position = position;
@@ -48,6 +56,7 @@ namespace LasMonjas.Objects {
             
             var referenceVent = UnityEngine.Object.FindObjectOfType<Vent>();
             vent = UnityEngine.Object.Instantiate<Vent>(referenceVent);
+            vent.gameObject.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover); 
             vent.transform.position = gameObject.transform.position;
             vent.Left = null;
             vent.Right = null;

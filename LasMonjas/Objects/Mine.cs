@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using static LasMonjas.HudManagerStartPatch;
 using Hazel;
+using LasMonjas.Patches;
 
 namespace LasMonjas.Objects
 {
@@ -16,6 +17,7 @@ namespace LasMonjas.Objects
         public GameObject mine;
         private SpriteRenderer spriteRenderer;
         private bool touched = false;
+        private Vector3 position;
 
         public static Sprite getMineSprite() {
             if (sprite) return sprite;
@@ -28,7 +30,13 @@ namespace LasMonjas.Objects
             this.color = new Color(1f, 1f, 1f, 1f);
 
             mine = new GameObject("Mine" + mines.Count.ToString());
-            Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 1f);
+            mine.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
+            if (PlayerControl.GameOptions.MapId == 5) {
+                position = new Vector3(player.transform.position.x, player.transform.position.y, -0.5f);
+            }
+            else {
+                position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 1f);
+            }
             mine.transform.position = position;
             mine.transform.localPosition = position;
             mine.transform.SetParent(player.transform.parent);
