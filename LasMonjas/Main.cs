@@ -13,17 +13,19 @@ using System.Reflection;
 using UnhollowerBaseLib;
 using UnityEngine;
 using LasMonjas.Core;
+using LasMonjas.Patches;
 using Reactor.Extensions;
 
 namespace LasMonjas
 {
     [BepInPlugin(Id, "Las Monjas", VersionString)]
+    [BepInDependency(SubmergedCompatibility.SUBMERGED_GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInProcess("Among Us.exe")]
     public class LasMonjasPlugin : BasePlugin
     {
         public const string Id = "me.allul.lasmonjas";
 
-        public const string VersionString = "1.4.0";
+        public const string VersionString = "1.5.0";
 
         public static System.Version Version = System.Version.Parse(VersionString);
         internal static BepInEx.Logging.ManualLogSource Logger;
@@ -80,6 +82,7 @@ namespace LasMonjas
             CustomColors.Load();
 
             Harmony.PatchAll();
+            SubmergedCompatibility.Initialize();
         }
     }
 

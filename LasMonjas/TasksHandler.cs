@@ -18,7 +18,6 @@ namespace LasMonjas
                 playerInfo.Role && playerInfo.Role.TasksCountTowardProgress &&
                 !playerInfo.Object.hasFakeTasks()
                 ) {
-
                 for (int j = 0; j < playerInfo.Tasks.Count; j++) {
                     TotalTasks++;
                     if (playerInfo.Tasks[j].Complete) {
