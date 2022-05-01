@@ -1089,7 +1089,7 @@ If you use something from Las Monjas on your mod, please credit me on your mod's
 [Cheep](https://cheep-yt.com/home.php) - Original idea for Capture the Flag mod\
 [Allul](https://github.com/KiraYamato94/LasMonjas) - Coded the gamemodes, custom map, Bomberman, Bounty Hunter, Trapper, Yinyanger, Challenger, Treasure Hunter, Devourer, Performer, Blind, Coward, Medusa and some more that weren't original ideas\
 [Sensei](https://github.com/TheCollectionMod) - Made button sprites, custom map sprite and some hats\
-[xxomega77](https://github.com/xxomega77xx/HatPack) - Adapted Custom Hats System
+[xxomega77](https://github.com/xxomega77xx/HatPack) - Adapted Custom Hats System\
 [AlexejheroYTB](https://github.com/AlexejheroYTB) - Made Submerged compatible with Las Monjas.
 
 -----------------------
