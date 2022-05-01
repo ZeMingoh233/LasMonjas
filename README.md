@@ -1051,7 +1051,7 @@ A custom hats system (adapted from [xxomega77](https://github.com/xxomega77xx/Ha
 
 # Submerged
 
-From Las Monjas 1.5.0 version, Submerged is included on the modpack and can be played either on roles game or any gamemodes. There's still a few changes exclusively when playing on Submerged:
+From Las Monjas 1.5.0 version, [Submerged](https://github.com/SubmergedAmongUs/Submerged) is included on the modpack and can be played either on roles game or any gamemodes. There's still a few changes exclusively when playing on Submerged:
 - Custom arrows points towards the closest Elevator if the target is on the other floor.
 - Central vents (the ones on the glass floor) can be used only by impostor roles. Any crewmate who can vent won't be able to use them.
 - Mimic has a visual bug, if you're transformed into other player and get out of a vent, the hat (if it's adaptative) goes back to its original color, but its only a visual bug for the Mimic player, meaning other players still see the correct hat color.
