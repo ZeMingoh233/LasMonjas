@@ -32,6 +32,14 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
+**Version 1.5.1 (2nd May 2022)**
+- Updated Submerged to 2022.5.2
+- Updated Bepinex to version 559.
+- Fixed Forensic's ghosts to stay in the Submerged's elevators if a player died inside them.
+- Fixed custom buttons cooldown resets after meetings on Submerged.
+- Added an option on Zombie Laboratory to select who can Zombies kill (survivors only, all (this includes the Nurse), nobody)
+- Changed medkits on Submerged on Zombie Laboratory to not overlap with some boxes. 
+
 **Version 1.5.0 (1st May 2022)**
 - Added a new Map: Submerged (playable either with roles or gamemodes, huge thanks to [AlexejheroYTB](https://github.com/SubmergedAmongUs/Submerged))
 - Fixed some bugs with Janitor, if killed while dragging a body, the body stays on the ground instead of flying around, also if Challenger's duel happens while dragging a body, the body doesn't teleport.
@@ -1023,6 +1031,7 @@ A random player gets the Zombie role, another player the Nurse role and the rest
 | Survivors Vision Range | Survivor Team light range |
 | Time limit to use medkit | Nurse time limit to use medkit on a infected player |
 | Kill Cooldown | Kill Button cooldown |
+| Who Can Zombies Kill | Survivors only, all (including Nurse) or nobody |
 | Revive Time | Everyone revives on his team base after a setted amount of time |
 | Invincibility Time After Revive | Players can't use their abilities, vent or get killed during this time |
 
