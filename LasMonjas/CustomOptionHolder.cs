@@ -90,6 +90,7 @@ namespace LasMonjas
         public static CustomOption zombieLaboratoryInvincibilityTimeAfterRevive;
         public static CustomOption zombieLaboratoryInfectTime;
         public static CustomOption zombieLaboratoryTimeForHeal;
+        public static CustomOption zombieLaboratoryWhoCanZombiesKill;
         public static CustomOption zombieLaboratorySurvivorsVision;
         public static CustomOption zombieLaboratorySearchBoxTimer;
         
@@ -409,9 +410,10 @@ namespace LasMonjas
             zombieLaboratorySearchBoxTimer = CustomOption.Create(85, cs(Hunter.color, "Zombie Laboratory") + ": Search Box Timer", "gamemode", 5f, 3f, 5f, 1f, zombieLaboratoryMode);
             zombieLaboratorySurvivorsVision = CustomOption.Create(86, cs(Hunter.color, "Zombie Laboratory") + ": Survivors vision range", "gamemode", 0.8f, 0.8f, 1f, 0.1f, zombieLaboratoryMode);
             zombieLaboratoryTimeForHeal = CustomOption.Create(87, cs(Hunter.color, "Zombie Laboratory") + ": Time to use Medkit", "gamemode", 15f, 10f, 30f, 1f, zombieLaboratoryMode);
-            zombieLaboratoryKillCooldown = CustomOption.Create(88, cs(Hunter.color, "Zombie Laboratory") + ": Kill Cooldown", "gamemode", 10f, 10f, 20f, 1f, zombieLaboratoryMode);
-            zombieLaboratoryReviveTime = CustomOption.Create(89, cs(Hunter.color, "Zombie Laboratory") + ": Revive Wait Time", "gamemode", 8f, 8f, 13f, 1f, zombieLaboratoryMode);
-            zombieLaboratoryInvincibilityTimeAfterRevive = CustomOption.Create(90, cs(Hunter.color, "Zombie Laboratory") + ": Invincibility Time After Revive", "gamemode", 3f, 2f, 5f, 1f, zombieLaboratoryMode);
+            zombieLaboratoryWhoCanZombiesKill = CustomOption.Create(88, cs(Hunter.color, "Zombie Laboratory") + ": Who Can Zombies Kill", "gamemode", new string[] { "Survivors", "All", "Nobody" }, zombieLaboratoryMode);
+            zombieLaboratoryKillCooldown = CustomOption.Create(89, cs(Hunter.color, "Zombie Laboratory") + ": Kill Cooldown", "gamemode", 10f, 10f, 20f, 1f, zombieLaboratoryMode);
+            zombieLaboratoryReviveTime = CustomOption.Create(90, cs(Hunter.color, "Zombie Laboratory") + ": Revive Wait Time", "gamemode", 8f, 8f, 13f, 1f, zombieLaboratoryMode);
+            zombieLaboratoryInvincibilityTimeAfterRevive = CustomOption.Create(91, cs(Hunter.color, "Zombie Laboratory") + ": Invincibility Time After Revive", "gamemode", 3f, 2f, 5f, 1f, zombieLaboratoryMode);
             
             // Mimic options
             mimicSpawnRate = CustomOption.Create(110, cs(Mimic.color, "Mimic"), "impostor", rates, null, true);

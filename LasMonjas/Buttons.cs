@@ -908,8 +908,7 @@ namespace LasMonjas
                 },
                 () => {
                     janitorDragBodyButton.Timer = janitorDragBodyButton.MaxTimer;
-                    Janitor.dragginBody = false;
-                    Janitor.bodyId = 0;
+                    Janitor.janitorResetValuesAtDead();
                 },
                 Janitor.getDragButtonSprite(),
                 new Vector3(-3f, -0.06f, 0),
@@ -983,9 +982,7 @@ namespace LasMonjas
                         sabotageActive = true;
                     }
                     else {
-                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                        sabotageActive = Helpers.AnySabotageActive(true);                       
                     }
                     return !sabotageActive && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling && Hats.hasHatLimitReached() && Hats.hatsConvertedToVents;
                 },
@@ -1009,7 +1006,7 @@ namespace LasMonjas
                     if (Manipulator.manipulatedVictim == null) {
                         
                         Manipulator.manipulatedVictim = Manipulator.currentTarget;
-                        manipulatorManipulateButton.Sprite = Manipulator.getManipulateButtonSprite();
+                        manipulatorManipulateButton.Sprite = Manipulator.getManipulateKillButtonSprite();
                         manipulatorManipulateButton.Timer = 1f;
                     }
                     else if (Manipulator.manipulatedVictim != null && Manipulator.manipulatedVictimTarget != null) {
@@ -1017,7 +1014,7 @@ namespace LasMonjas
                         if (murder == MurderAttemptResult.JinxKill) {
                             SoundManager.Instance.PlaySound(CustomMain.customAssets.jinxQuack, false, 5f);
                             manipulatorManipulateButton.Timer = manipulatorManipulateButton.MaxTimer;
-                            manipulatorManipulateButton.Sprite = Manipulator.getManipulateKillButtonSprite();
+                            manipulatorManipulateButton.Sprite = Manipulator.getManipulateButtonSprite();
                             Manipulator.manipulatedVictim = null;
                             Manipulator.manipulatedVictimTarget = null;
                             return;
@@ -1080,6 +1077,9 @@ namespace LasMonjas
                         case 4:
                             Bomberman.bombDuration = 180;
                             break;
+                        case 5:
+                            Bomberman.bombDuration = 90;
+                            break;
                     }
 
                     foreach (PlayerControl player in PlayerControl.AllPlayerControls) {
@@ -1104,9 +1104,8 @@ namespace LasMonjas
                         }
                     }
                     bool sabotageActive = false;
-                    foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                        if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                            sabotageActive = true;
+                    sabotageActive = Helpers.AnySabotageActive(true);
+
                     return !closetoPlayer && !sabotageActive && PlayerControl.LocalPlayer.CanMove && !Bomberman.activeBomb && !Challenger.isDueling && Ilusionist.lightsOutTimer <= 0;
                 },
                 () => {
@@ -1723,9 +1722,8 @@ namespace LasMonjas
                                         sabotageActive = true;
                                     }
                                     else {
-                                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                                sabotageActive = true;
+                                        sabotageActive = Helpers.AnySabotageActive(true);
+
                                     }
 
                                     if (!sabotageActive) {
@@ -1776,9 +1774,8 @@ namespace LasMonjas
                         sabotageActive = true;
                     }
                     else {
-                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                        sabotageActive = Helpers.AnySabotageActive(true);
+
                     }
                     return !sabotageActive && Challenger.currentTarget && PlayerControl.LocalPlayer.CanMove;
                 },
@@ -2071,6 +2068,10 @@ namespace LasMonjas
                             int airshipNumber = rnd.Next(1, 27);
                             TreasureHunter.randomSpawn = airshipNumber;
                             break;
+                        case 5:
+                            int submergedNumber = rnd.Next(1, 23);
+                            TreasureHunter.randomSpawn = submergedNumber;
+                            break;
                     }
                     MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.PlaceTreasure, Hazel.SendOption.Reliable, -1);
                     AmongUsClient.Instance.FinishRpcImmediately(writer);
@@ -2275,7 +2276,7 @@ namespace LasMonjas
                     else {
                         foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
                             if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                                sabotageActive = true; 
                     }
                     return sabotageActive && !Mechanic.usedRepair && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
                 },
@@ -2502,9 +2503,8 @@ namespace LasMonjas
                         sabotageActive = true;
                     }
                     else {
-                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                        sabotageActive = Helpers.AnySabotageActive(true);
+
                     }
                     return !sabotageActive && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling && !TimeTraveler.usedShield;
                 },
@@ -2550,9 +2550,8 @@ namespace LasMonjas
                         sabotageActive = true;
                     }
                     else {
-                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                        sabotageActive = Helpers.AnySabotageActive(true);
+
                     }
                     return !sabotageActive && !TimeTraveler.usedRewind && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
                 },
@@ -2769,27 +2768,25 @@ namespace LasMonjas
                    Hacker.duration = Hacker.backUpduration;
                    hackerVitalsButton.EffectDuration = Hacker.duration;
 
-                   if (PlayerControl.GameOptions.MapId != 1) {
-                       if (Hacker.vitals == null) {
-                           var e = UnityEngine.Object.FindObjectsOfType<SystemConsole>().FirstOrDefault(x => x.gameObject.name.Contains("panel_vitals"));
-                           if (e == null || Camera.main == null) return;
-                           Hacker.vitals = UnityEngine.Object.Instantiate(e.MinigamePrefab, Camera.main.transform, false);
-                       }
-                       Hacker.vitals.transform.SetParent(Camera.main.transform, false);
-                       Hacker.vitals.transform.localPosition = new Vector3(0.0f, 0.0f, -50f);
-                       Hacker.vitals.Begin(null);
+                   if (Hacker.vitals == null) {
+                       var e = UnityEngine.Object.FindObjectsOfType<SystemConsole>().FirstOrDefault(x => x.gameObject.name.Contains("panel_vitals"));
+                       if (e == null || Camera.main == null) return;
+                       Hacker.vitals = UnityEngine.Object.Instantiate(e.MinigamePrefab, Camera.main.transform, false);
                    }
+                   Hacker.vitals.transform.SetParent(Camera.main.transform, false);
+                   Hacker.vitals.transform.localPosition = new Vector3(0.0f, 0.0f, -50f);
+                   Hacker.vitals.Begin(null);
 
                    MessageWriter usedVitalsWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.HackerAbilityUses, Hazel.SendOption.Reliable, -1);
                    usedVitalsWriter.Write(1);
                    AmongUsClient.Instance.FinishRpcImmediately(usedVitalsWriter);
-                   RPCProcedure.hackerAbilityUses(1); 
-            },
-            () => { return Hacker.hacker != null && Hacker.hacker == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.GameOptions.MapId != 0 && PlayerControl.GameOptions.MapId != 1 && PlayerControl.GameOptions.MapId != 3; },
-            () => {
+                   RPCProcedure.hackerAbilityUses(1);
+               },
+               () => { return Hacker.hacker != null && Hacker.hacker == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead && PlayerControl.GameOptions.MapId != 0 && PlayerControl.GameOptions.MapId != 1 && PlayerControl.GameOptions.MapId != 3; },
+               () => {
                 if (Hacker.hackerVitalsChargesText != null) Hacker.hackerVitalsChargesText.text = $"{Hacker.chargesVitals} / {Hacker.toolsNumber}";
                 return PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling && Hacker.chargesVitals > 0;
-            },
+               },
                () => {
                    hackerVitalsButton.Timer = hackerVitalsButton.MaxTimer;
                    hackerVitalsButton.isEffectActive = false;
@@ -2924,9 +2921,8 @@ namespace LasMonjas
                         sabotageActive = true;
                     }
                     else {
-                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                        sabotageActive = Helpers.AnySabotageActive(true);
+
                     }
                     return !sabotageActive && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
                 },
@@ -2979,11 +2975,24 @@ namespace LasMonjas
                 () => {
                     bool canSeal = true;
                     if (Welder.ventTarget != null) {
-                        foreach (Vent vent in Welder.ventsSealed) {
-                            if (vent == Welder.ventTarget) {
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            if (Welder.ventTarget.name == "LowerCentralVent" || Welder.ventTarget.name == "UpperCentralVent" || Welder.ventTarget.name == "OpenEngineVent" || Welder.ventTarget.name == "NormalAdminVent") {
                                 canSeal = false;
                             }
-                        }
+                            else {
+                                foreach (Vent vent in Welder.ventsSealed) {
+                                    if (vent == Welder.ventTarget) {
+                                        canSeal = false;
+                                    }
+                                }
+                            }
+                        } else {
+                            foreach (Vent vent in Welder.ventsSealed) {
+                                if (vent == Welder.ventTarget) {
+                                    canSeal = false;
+                                }
+                            }
+                        }                      
                     }
 
                     return Welder.ventTarget != null && canSeal && Welder.remainingWelds > 0 && Welder.remainingWelds <= Welder.totalWelds && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
@@ -3106,9 +3115,8 @@ namespace LasMonjas
                         sabotageActive = true;
                     }
                     else {
-                        foreach (PlayerTask task in PlayerControl.LocalPlayer.myTasks)
-                            if (task.TaskType == TaskTypes.FixLights || task.TaskType == TaskTypes.RestoreOxy || task.TaskType == TaskTypes.ResetReactor || task.TaskType == TaskTypes.ResetSeismic || task.TaskType == TaskTypes.FixComms || task.TaskType == TaskTypes.StopCharles)
-                                sabotageActive = true;
+                        sabotageActive = Helpers.AnySabotageActive(true);
+
                     }
                     return !sabotageActive && !Coward.usedCalls && PlayerControl.LocalPlayer.CanMove && !Challenger.isDueling;
                 },
@@ -3208,11 +3216,18 @@ namespace LasMonjas
                                 var e = UnityEngine.Object.FindObjectsOfType<SystemConsole>().FirstOrDefault(x => x.gameObject.name.Contains("SurvConsole"));
                                 if (e == null || Camera.main == null) return;
                                 Vigilant.minigame = UnityEngine.Object.Instantiate(e.MinigamePrefab, Camera.main.transform, false);
-                            }
+                            }                            
                             break;
                         case 4:
                             if (Vigilant.minigame == null) {
                                 var e = UnityEngine.Object.FindObjectsOfType<SystemConsole>().FirstOrDefault(x => x.gameObject.name.Contains("task_cams"));
+                                if (e == null || Camera.main == null) return;
+                                Vigilant.minigame = UnityEngine.Object.Instantiate(e.MinigamePrefab, Camera.main.transform, false);
+                            }
+                            break;
+                        case 5:
+                            if (Vigilant.minigame == null) {
+                                var e = UnityEngine.Object.FindObjectsOfType<SystemConsole>().FirstOrDefault(x => x.gameObject.name.Contains("SecurityConsole"));
                                 if (e == null || Camera.main == null) return;
                                 Vigilant.minigame = UnityEngine.Object.Instantiate(e.MinigamePrefab, Camera.main.transform, false);
                             }
@@ -3227,16 +3242,15 @@ namespace LasMonjas
                     AmongUsClient.Instance.FinishRpcImmediately(usedCamsWriter);
                     RPCProcedure.vigilantAbilityUses(0);
 
-                    PlayerControl.LocalPlayer.NetTransform.Halt();
-
                     Vigilant.duration = Vigilant.backUpduration;
                     vigilantCamButton.EffectDuration = Vigilant.duration;
 
+                    PlayerControl.LocalPlayer.NetTransform.Halt();
                 },
                 () => { return Vigilant.vigilant != null && Vigilant.vigilant == PlayerControl.LocalPlayer && !PlayerControl.LocalPlayer.Data.IsDead && Vigilant.placedCameras >= 4 && PlayerControl.GameOptions.MapId != 1; },
                 () => {
                     if (Vigilant.vigilantButtonCameraUsesText != null) Vigilant.vigilantButtonCameraUsesText.text = $"{Vigilant.charges} / {Vigilant.maxCharges}";
-                    return PlayerControl.LocalPlayer.CanMove && Vigilant.charges > 0;
+                    return PlayerControl.LocalPlayer.CanMove && Vigilant.charges > 0 && !Challenger.isDueling;
                 },
                 () => {
                     vigilantCamButton.Timer = vigilantCamButton.MaxTimer;
@@ -3251,9 +3265,10 @@ namespace LasMonjas
                 0f,
                 () => {
                     vigilantCamButton.Timer = vigilantCamButton.MaxTimer;
-                    if (Minigame.Instance) {
+                    if(Minigame.Instance) {
                         Vigilant.minigame.ForceClose();
                     }
+                    Vigilant.minigame = null;
                     PlayerControl.LocalPlayer.moveable = true;
                 },
                 false
@@ -4376,7 +4391,7 @@ namespace LasMonjas
                 () => { return PoliceAndThief.policeplayer01 != null && PoliceAndThief.policeplayer01 == PlayerControl.LocalPlayer; },
                 () => {
                     bool CanUse = true;
-                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                    if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbuttontwo.transform.position) <= 3f || PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f) && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
                         CanUse = false;
                     }
                     return CanUse && PoliceAndThief.policeplayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer01IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
@@ -4465,7 +4480,7 @@ namespace LasMonjas
                 () => { return PoliceAndThief.policeplayer02 != null && PoliceAndThief.policeplayer02 == PlayerControl.LocalPlayer; },
                 () => {
                     bool CanUse = true;
-                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                    if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbuttontwo.transform.position) <= 3f || PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f) && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
                         CanUse = false;
                     }
                     return CanUse && PoliceAndThief.policeplayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer02IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
@@ -4554,7 +4569,7 @@ namespace LasMonjas
                 () => { return PoliceAndThief.policeplayer03 != null && PoliceAndThief.policeplayer03 == PlayerControl.LocalPlayer; },
                 () => {
                     bool CanUse = true;
-                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                    if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbuttontwo.transform.position) <= 3f || PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f) && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
                         CanUse = false;
                     }
                     return CanUse && PoliceAndThief.policeplayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer03IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
@@ -4644,7 +4659,7 @@ namespace LasMonjas
                 () => { return PoliceAndThief.policeplayer04 != null && PoliceAndThief.policeplayer04 == PlayerControl.LocalPlayer; },
                 () => {
                     bool CanUse = true;
-                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                    if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbuttontwo.transform.position) <= 3f || PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f) && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
                         CanUse = false;
                     }
                     return CanUse && PoliceAndThief.policeplayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer04IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
@@ -4734,7 +4749,7 @@ namespace LasMonjas
                 () => { return PoliceAndThief.policeplayer05 != null && PoliceAndThief.policeplayer05 == PlayerControl.LocalPlayer; },
                 () => {
                     bool CanUse = true;
-                    if (PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
+                    if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbuttontwo.transform.position) <= 3f || PoliceAndThief.cellbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.cellbutton.transform.position) <= 3f) && !PlayerControl.LocalPlayer.Data.IsDead && !PoliceAndThief.policeCanKillNearPrison) {
                         CanUse = false;
                     }
                     return CanUse && PoliceAndThief.policeplayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PoliceAndThief.policeplayer05IsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
@@ -4842,7 +4857,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer01.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer01.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer01.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer01.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer01.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -4888,7 +4903,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer01IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer01JewelId = 1;
@@ -4952,7 +4966,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer01IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer01IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5000,7 +5014,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer02.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer02.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer02.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer02.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer02.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5046,7 +5060,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer02IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer02JewelId = 1;
@@ -5110,7 +5123,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer02IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer02IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5158,7 +5171,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer03.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer03.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer03.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer03.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer03.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5204,7 +5217,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer03IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer03JewelId = 1;
@@ -5268,7 +5280,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer03IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer03IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5316,7 +5328,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer04.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer04.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer04.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer04.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer04.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5362,7 +5374,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer04IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer04JewelId = 1;
@@ -5426,7 +5437,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer04IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer04IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5474,7 +5485,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer05.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer05.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer05.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer05.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer05.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5520,7 +5531,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer05IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer05JewelId = 1;
@@ -5584,7 +5594,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer05IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer05IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5632,7 +5642,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer06.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer06.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer06.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer06.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer06.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5678,7 +5688,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer06IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer06JewelId = 1;
@@ -5742,7 +5751,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer06IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer06IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5790,7 +5799,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer07.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer07.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer07.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer07.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer07.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5836,7 +5845,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer07IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer07JewelId = 1;
@@ -5900,7 +5908,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer07IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer07IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -5948,7 +5956,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer08.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer08.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer08.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer08.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer08.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -5994,7 +6002,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer08IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer08JewelId = 1;
@@ -6058,7 +6065,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer08IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer08IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -6106,7 +6113,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer09.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer09.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer09.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer09.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer09.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -6152,7 +6159,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer09IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer09JewelId = 1;
@@ -6216,7 +6222,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer09IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer09IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -6264,7 +6270,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
-                        if (Vector2.Distance(PoliceAndThief.thiefplayer10.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f && !PoliceAndThief.thiefplayer10.Data.IsDead) {
+                        if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer10.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer10.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer10.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -6310,7 +6316,6 @@ namespace LasMonjas
                     if (PoliceAndThief.thiefTreasures.Count != 0) {
                         foreach (GameObject jewel in PoliceAndThief.thiefTreasures) {
                             if (jewel != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, jewel.transform.position) < 0.5f && !PoliceAndThief.thiefplayer10IsStealing) {
-                                //CanUse = true;
                                 switch (jewel.name) {
                                     case "jewel01":
                                         PoliceAndThief.thiefplayer10JewelId = 1;
@@ -6374,7 +6379,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f && PoliceAndThief.thiefplayer10IsStealing) {
+                            else if ((PoliceAndThief.jewelbuttontwo != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbuttontwo.transform.position) < 0.5f || PoliceAndThief.jewelbutton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, PoliceAndThief.jewelbutton.transform.position) < 0.5f) && PoliceAndThief.thiefplayer10IsStealing) {
                                 CanUse = true;
                             }
                         }
@@ -8044,7 +8049,7 @@ namespace LasMonjas
                     zombie01KillButton.Timer = zombie01KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer01currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer01 != null && ZombieLaboratory.zombiePlayer01 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer01 != null && ZombieLaboratory.zombiePlayer01 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer01currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer01IsReviving; },
                 () => { zombie01KillButton.Timer = zombie01KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8065,7 +8070,7 @@ namespace LasMonjas
                     zombie02KillButton.Timer = zombie02KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer02currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer02 != null && ZombieLaboratory.zombiePlayer02 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer02 != null && ZombieLaboratory.zombiePlayer02 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer02currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer02IsReviving; },
                 () => { zombie02KillButton.Timer = zombie02KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8086,7 +8091,7 @@ namespace LasMonjas
                     zombie03KillButton.Timer = zombie03KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer03currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer03 != null && ZombieLaboratory.zombiePlayer03 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer03 != null && ZombieLaboratory.zombiePlayer03 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer03currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer03IsReviving; },
                 () => { zombie03KillButton.Timer = zombie03KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8107,7 +8112,7 @@ namespace LasMonjas
                     zombie04KillButton.Timer = zombie04KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer04currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer04 != null && ZombieLaboratory.zombiePlayer04 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer04 != null && ZombieLaboratory.zombiePlayer04 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer04currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer04IsReviving; },
                 () => { zombie04KillButton.Timer = zombie04KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8128,7 +8133,7 @@ namespace LasMonjas
                     zombie05KillButton.Timer = zombie05KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer05currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer05 != null && ZombieLaboratory.zombiePlayer05 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer05 != null && ZombieLaboratory.zombiePlayer05 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer05currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer05IsReviving; },
                 () => { zombie05KillButton.Timer = zombie05KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8149,7 +8154,7 @@ namespace LasMonjas
                     zombie06KillButton.Timer = zombie06KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer06currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer06 != null && ZombieLaboratory.zombiePlayer06 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer06 != null && ZombieLaboratory.zombiePlayer06 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer06currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer06IsReviving; },
                 () => { zombie06KillButton.Timer = zombie06KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8170,7 +8175,7 @@ namespace LasMonjas
                     zombie07KillButton.Timer = zombie07KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer07currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer07 != null && ZombieLaboratory.zombiePlayer07 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer07 != null && ZombieLaboratory.zombiePlayer07 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer07currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer07IsReviving; },
                 () => { zombie07KillButton.Timer = zombie07KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8191,7 +8196,7 @@ namespace LasMonjas
                     zombie08KillButton.Timer = zombie08KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer08currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer08 != null && ZombieLaboratory.zombiePlayer08 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer08 != null && ZombieLaboratory.zombiePlayer08 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer08currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer08IsReviving; },
                 () => { zombie08KillButton.Timer = zombie08KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8212,7 +8217,7 @@ namespace LasMonjas
                     zombie09KillButton.Timer = zombie09KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer09currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer09 != null && ZombieLaboratory.zombiePlayer09 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer09 != null && ZombieLaboratory.zombiePlayer09 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer09currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer09IsReviving; },
                 () => { zombie09KillButton.Timer = zombie09KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8233,7 +8238,7 @@ namespace LasMonjas
                     zombie10KillButton.Timer = zombie10KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer10currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer10 != null && ZombieLaboratory.zombiePlayer10 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer10 != null && ZombieLaboratory.zombiePlayer10 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer10currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer10IsReviving; },
                 () => { zombie10KillButton.Timer = zombie10KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8254,7 +8259,7 @@ namespace LasMonjas
                     zombie11KillButton.Timer = zombie11KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer11currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer11 != null && ZombieLaboratory.zombiePlayer11 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer11 != null && ZombieLaboratory.zombiePlayer11 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer11currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer11IsReviving; },
                 () => { zombie11KillButton.Timer = zombie11KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8275,7 +8280,7 @@ namespace LasMonjas
                     zombie12KillButton.Timer = zombie12KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer12currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer12 != null && ZombieLaboratory.zombiePlayer12 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer12 != null && ZombieLaboratory.zombiePlayer12 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer12currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer12IsReviving; },
                 () => { zombie12KillButton.Timer = zombie12KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8296,7 +8301,7 @@ namespace LasMonjas
                     zombie13KillButton.Timer = zombie13KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer13currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer13 != null && ZombieLaboratory.zombiePlayer13 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer13 != null && ZombieLaboratory.zombiePlayer13 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer13currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer13IsReviving; },
                 () => { zombie13KillButton.Timer = zombie13KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8317,7 +8322,7 @@ namespace LasMonjas
                     zombie14KillButton.Timer = zombie14KillButton.MaxTimer;
                     ZombieLaboratory.zombiePlayer14currentTarget = null;
                 },
-                () => { return ZombieLaboratory.zombiePlayer14 != null && ZombieLaboratory.zombiePlayer14 == PlayerControl.LocalPlayer; },
+                () => { return ZombieLaboratory.zombiePlayer14 != null && ZombieLaboratory.zombiePlayer14 == PlayerControl.LocalPlayer && ZombieLaboratory.whoCanZombiesKill != 2; },
                 () => { return ZombieLaboratory.zombiePlayer14currentTarget && PlayerControl.LocalPlayer.CanMove && !PlayerControl.LocalPlayer.Data.IsDead && !ZombieLaboratory.zombiePlayer14IsReviving; },
                 () => { zombie14KillButton.Timer = zombie14KillButton.MaxTimer; },
                 __instance.KillButton.graphic.sprite,
@@ -8385,13 +8390,6 @@ namespace LasMonjas
                             }
                         }
                     }
-
-                    /*bool CanUse = false;
-                    if (ZombieLaboratory.laboratory != null) {
-                        if (((Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) || (Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryExitButton.transform.position) < 0.5f)) && !ZombieLaboratory.nursePlayer.Data.IsDead) {
-                            CanUse = true;
-                        }
-                    }*/
                     return CanUse && PlayerControl.LocalPlayer.CanMove && !ZombieLaboratory.nursePlayerIsReviving && !PlayerControl.LocalPlayer.Data.IsDead;
                 },
                 () => {
@@ -8474,7 +8472,7 @@ namespace LasMonjas
                 () => {
                     bool CanUse = false;
                     if (ZombieLaboratory.nursePlayerHasCureReady) {
-                        if (Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryCreateCureButton.transform.position) < 0.35f && !ZombieLaboratory.nursePlayer.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoCreateCureButton != null && Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratorytwoCreateCureButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.nursePlayer.transform.position, ZombieLaboratory.laboratoryCreateCureButton.transform.position) < 0.35f) && !ZombieLaboratory.nursePlayer.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -8592,7 +8590,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer01HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer01HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -8665,7 +8663,7 @@ namespace LasMonjas
 
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer01.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer01.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer01.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer01.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer01.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -8797,7 +8795,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer02HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer02HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -8869,7 +8867,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer02.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer02.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer02.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer02.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer02.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -9001,7 +8999,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer03HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer03HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -9073,7 +9071,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer03.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer03.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer03.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer03.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer03.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -9205,7 +9203,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer04HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer04HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -9277,7 +9275,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer04.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer04.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer04.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer04.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer04.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -9409,7 +9407,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer05HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer05HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -9481,7 +9479,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer05.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer05.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer05.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer05.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer05.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -9613,7 +9611,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer06HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer06HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -9685,7 +9683,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer06.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer06.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer06.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer06.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer06.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -9817,7 +9815,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer07HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer07HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -9889,7 +9887,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer07.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer07.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer07.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer07.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer07.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -10021,7 +10019,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer08HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer08HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -10093,7 +10091,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer08.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer08.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer08.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer08.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer08.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -10225,7 +10223,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer09HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer09HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -10297,7 +10295,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer09.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer09.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer09.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer09.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer09.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -10429,7 +10427,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer10HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer10HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -10501,7 +10499,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer10.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer10.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer10.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer10.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer10.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -10633,7 +10631,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer11HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer11HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -10705,7 +10703,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer11.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer11.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer11.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer11.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer11.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -10837,7 +10835,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer12HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer12HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -10909,7 +10907,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer12.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer12.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer12.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer12.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer12.Data.IsDead) {
                             CanUse = true;
                         }
                     }
@@ -11041,7 +11039,7 @@ namespace LasMonjas
                                         break;
                                 }
                             }
-                            else if (ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f && ZombieLaboratory.survivorPlayer13HasKeyItem) {
+                            else if ((ZombieLaboratory.laboratorytwoPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratorytwoPutKeyItemButton.transform.position) < 0.5f || ZombieLaboratory.laboratoryPutKeyItemButton != null && Vector2.Distance(PlayerControl.LocalPlayer.transform.position, ZombieLaboratory.laboratoryPutKeyItemButton.transform.position) < 0.5f) && ZombieLaboratory.survivorPlayer13HasKeyItem) {
                                 CanUse = true;
                             }
                         }
@@ -11113,7 +11111,7 @@ namespace LasMonjas
                     }
                     bool CanUse = false;
                     if (ZombieLaboratory.laboratory != null) {
-                        if (Vector2.Distance(ZombieLaboratory.survivorPlayer13.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f && !ZombieLaboratory.survivorPlayer13.Data.IsDead) {
+                        if ((ZombieLaboratory.laboratorytwoEnterButton != null && Vector2.Distance(ZombieLaboratory.survivorPlayer13.transform.position, ZombieLaboratory.laboratorytwoEnterButton.transform.position) < 0.35f || Vector2.Distance(ZombieLaboratory.survivorPlayer13.transform.position, ZombieLaboratory.laboratoryEnterButton.transform.position) < 0.35f) && !ZombieLaboratory.survivorPlayer13.Data.IsDead) {
                             CanUse = true;
                         }
                     }

@@ -2909,6 +2909,7 @@ namespace LasMonjas
         public static float timeForHeal = 20f;
         public static float survivorsVision = 1f;
         public static float searchBoxTimer = 5f;
+        public static int whoCanZombiesKill = 0;
 
         public static int currentKeyItems = 0;
         public static bool triggerZombieWin = false;
@@ -3243,6 +3244,7 @@ namespace LasMonjas
             currentKeyItems = 0;
             triggerZombieWin = false;
             triggerSurvivorWin = false;
+            whoCanZombiesKill = CustomOptionHolder.zombieLaboratoryWhoCanZombiesKill.getSelection();
 
             laboratorytwo = null;
             laboratorytwoEnterButton = null;
