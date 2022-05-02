@@ -3064,13 +3064,13 @@ namespace LasMonjas.Patches
                                 ZombieLaboratory.nursePlayerInsideLaboratory = false;
                                 GameObject mapMedKit = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
                                 mapMedKit.name = "mapMedKit";
-                                mapMedKit.transform.position = new Vector3(0f, 33.75f, -1f);
+                                mapMedKit.transform.position = new Vector3(0f, 32f, -1f);
                                 GameObject mapMedKittwo = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
                                 mapMedKittwo.name = "mapMedKittwo";
-                                mapMedKittwo.transform.position = new Vector3(5f, -33.5f, -1f);
+                                mapMedKittwo.transform.position = new Vector3(6f, -34f, -1f);
                                 GameObject mapMedKitthree = GameObject.Instantiate(CustomMain.customAssets.mapMedKit, PlayerControl.LocalPlayer.transform.parent);
                                 mapMedKitthree.name = "mapMedKitthree";
-                                mapMedKitthree.transform.position = new Vector3(-13.75f, -27.75f, -1f);
+                                mapMedKitthree.transform.position = new Vector3(-11.25f, -27.75f, -1f);
                                 ZombieLaboratory.nurseMedkits.Add(mapMedKit);
                                 ZombieLaboratory.nurseMedkits.Add(mapMedKittwo);
                                 ZombieLaboratory.nurseMedkits.Add(mapMedKitthree);

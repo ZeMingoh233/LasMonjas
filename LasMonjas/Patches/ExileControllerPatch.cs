@@ -18,122 +18,126 @@ namespace LasMonjas.Patches {
     class ExileControllerBeginPatch {
         public static void Prefix(ExileController __instance, [HarmonyArgument(0)]ref GameData.PlayerInfo exiled, [HarmonyArgument(1)]bool tie) {
 
-            //Change Music based on alive player number on submerged
             if (PlayerControl.GameOptions.MapId == 5) {
+
+                // Reset custom button timers where necessary
+                CustomButton.MeetingEndedUpdate();
+                
+                //Change Music based on alive player number on submerged
                 MessageWriter musicwriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ChangeMusic, Hazel.SendOption.Reliable, -1);
                 musicwriter.Write(2);
                 AmongUsClient.Instance.FinishRpcImmediately(musicwriter);
                 RPCProcedure.changeMusic(2);
-            }
 
-            // Forensic spawn ghosts after meeting
-            if (Forensic.forensic != null && PlayerControl.LocalPlayer == Forensic.forensic && PlayerControl.GameOptions.MapId == 5) {
-                if (Forensic.souls != null) {
-                    foreach (SpriteRenderer sr in Forensic.souls) UnityEngine.Object.Destroy(sr.gameObject);
-                    Forensic.souls = new List<SpriteRenderer>();
-                }
 
-                if (Forensic.featureDeadBodies != null) {
-                    foreach ((DeadPlayer db, Vector3 ps) in Forensic.featureDeadBodies) {
-                        GameObject s = new GameObject();
-                        s.transform.position = ps;
-                        s.layer = 5;
-                        var rend = s.AddComponent<SpriteRenderer>();
-                        rend.sprite = Forensic.getSoulSprite();
-                        Forensic.souls.Add(rend);
+                // Forensic spawn ghosts after meeting
+                if (Forensic.forensic != null && PlayerControl.LocalPlayer == Forensic.forensic) {
+                    if (Forensic.souls != null) {
+                        foreach (SpriteRenderer sr in Forensic.souls) UnityEngine.Object.Destroy(sr.gameObject);
+                        Forensic.souls = new List<SpriteRenderer>();
                     }
-                    Forensic.deadBodies = Forensic.featureDeadBodies;
-                    Forensic.featureDeadBodies = new List<Tuple<DeadPlayer, Vector3>>();
-                }
-            }
 
-            // BountyHunter exile if the exiled player was the bounty hunter target
-            if (PlayerControl.GameOptions.MapId == 5 && BountyHunter.bountyhunter != null && !BountyHunter.bountyhunter.Data.IsDead && exiled.PlayerId == BountyHunter.hasToKill.PlayerId) {
-                MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedExilePlayer, Hazel.SendOption.Reliable, -1);
-                writer.Write(BountyHunter.bountyhunter.PlayerId);
-                AmongUsClient.Instance.FinishRpcImmediately(writer);
-                RPCProcedure.uncheckedExilePlayer(BountyHunter.bountyhunter.PlayerId); 
-            }
-
-            // Treasure Hunter reset button after meeting
-            if (PlayerControl.GameOptions.MapId == 5 && TreasureHunter.treasureHunter != null && !TreasureHunter.treasureHunter.Data.IsDead) {
-                TreasureHunter.canPlace = true;
-            }
-
-            // Pyromaniac deactivate dead players icons
-            if (PlayerControl.GameOptions.MapId == 5 && Pyromaniac.pyromaniac != null && Pyromaniac.pyromaniac == PlayerControl.LocalPlayer) {
-                int visibleCounter = 0;
-                Vector3 bottomLeft = new Vector3(-HudManager.Instance.UseButton.transform.localPosition.x, HudManager.Instance.UseButton.transform.localPosition.y, HudManager.Instance.UseButton.transform.localPosition.z);
-                bottomLeft += new Vector3(-0.25f, -0.25f, 0);
-                foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
-                    if (!MapOptions.playerIcons.ContainsKey(p.PlayerId)) continue;
-                    if (p.Data.IsDead || p.Data.Disconnected) {
-                        MapOptions.playerIcons[p.PlayerId].gameObject.SetActive(false);
-                    }
-                    else {
-                        MapOptions.playerIcons[p.PlayerId].transform.localPosition = bottomLeft + Vector3.right * visibleCounter * 0.35f;
-                        visibleCounter++;
+                    if (Forensic.featureDeadBodies != null) {
+                        foreach ((DeadPlayer db, Vector3 ps) in Forensic.featureDeadBodies) {
+                            GameObject s = new GameObject();
+                            s.transform.position = ps;
+                            s.layer = 5;
+                            var rend = s.AddComponent<SpriteRenderer>();
+                            s.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
+                            rend.sprite = Forensic.getSoulSprite();
+                            Forensic.souls.Add(rend);
+                        }
+                        Forensic.deadBodies = Forensic.featureDeadBodies;
+                        Forensic.featureDeadBodies = new List<Tuple<DeadPlayer, Vector3>>();
                     }
                 }
-            }
 
-            // Sleuth reset deadBodyPositions after meeting
-            if (PlayerControl.GameOptions.MapId == 5) {
+                // BountyHunter exile if the exiled player was the bounty hunter target
+                if (BountyHunter.bountyhunter != null && !BountyHunter.bountyhunter.Data.IsDead && exiled.PlayerId == BountyHunter.hasToKill.PlayerId) {
+                    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedExilePlayer, Hazel.SendOption.Reliable, -1);
+                    writer.Write(BountyHunter.bountyhunter.PlayerId);
+                    AmongUsClient.Instance.FinishRpcImmediately(writer);
+                    RPCProcedure.uncheckedExilePlayer(BountyHunter.bountyhunter.PlayerId);
+                }
+
+                // Treasure Hunter reset button after meeting
+                if (TreasureHunter.treasureHunter != null && !TreasureHunter.treasureHunter.Data.IsDead) {
+                    TreasureHunter.canPlace = true;
+                }
+
+                // Pyromaniac deactivate dead players icons
+                if (Pyromaniac.pyromaniac != null && Pyromaniac.pyromaniac == PlayerControl.LocalPlayer) {
+                    int visibleCounter = 0;
+                    Vector3 bottomLeft = new Vector3(-HudManager.Instance.UseButton.transform.localPosition.x, HudManager.Instance.UseButton.transform.localPosition.y, HudManager.Instance.UseButton.transform.localPosition.z);
+                    bottomLeft += new Vector3(-0.25f, -0.25f, 0);
+                    foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
+                        if (!MapOptions.playerIcons.ContainsKey(p.PlayerId)) continue;
+                        if (p.Data.IsDead || p.Data.Disconnected) {
+                            MapOptions.playerIcons[p.PlayerId].gameObject.SetActive(false);
+                        }
+                        else {
+                            MapOptions.playerIcons[p.PlayerId].transform.localPosition = bottomLeft + Vector3.right * visibleCounter * 0.35f;
+                            visibleCounter++;
+                        }
+                    }
+                }
+
+                // Sleuth reset deadBodyPositions after meeting
                 Sleuth.deadBodyPositions = new List<Vector3>();
-            }
 
-            // Show roles after meeting for dead players if the option is active
-            if (MapOptions.ghostsSeeRoles && howmanygamemodesareon != 1 && PlayerControl.GameOptions.MapId == 5) {
-                foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
-                    if (p == PlayerControl.LocalPlayer || PlayerControl.LocalPlayer.Data.IsDead) {
-                        Transform playerInfoTransform = p.nameText.transform.parent.FindChild("Info");
-                        TMPro.TextMeshPro playerInfo = playerInfoTransform != null ? playerInfoTransform.GetComponent<TMPro.TextMeshPro>() : null;
-                        if (playerInfo == null) {
-                            playerInfo = UnityEngine.Object.Instantiate(p.nameText, p.nameText.transform.parent);
-                            playerInfo.transform.localPosition += Vector3.up * 0.5f;
-                            playerInfo.fontSize *= 0.75f;
-                            playerInfo.gameObject.name = "Info";
+                // Show roles after meeting for dead players if the option is active
+                if (MapOptions.ghostsSeeRoles && howmanygamemodesareon != 1) {
+                    foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
+                        if (p == PlayerControl.LocalPlayer || PlayerControl.LocalPlayer.Data.IsDead) {
+                            Transform playerInfoTransform = p.nameText.transform.parent.FindChild("Info");
+                            TMPro.TextMeshPro playerInfo = playerInfoTransform != null ? playerInfoTransform.GetComponent<TMPro.TextMeshPro>() : null;
+                            if (playerInfo == null) {
+                                playerInfo = UnityEngine.Object.Instantiate(p.nameText, p.nameText.transform.parent);
+                                playerInfo.transform.localPosition += Vector3.up * 0.5f;
+                                playerInfo.fontSize *= 0.75f;
+                                playerInfo.gameObject.name = "Info";
+                            }
+
+                            string roleNames = RoleInfo.GetRolesString(p, true);
+
+                            string playerInfoText = "";
+                            if (PlayerControl.LocalPlayer.Data.IsDead) {
+                                playerInfoText = $"{roleNames}";
+                            }
+
+                            playerInfo.text = playerInfoText;
+                            playerInfo.gameObject.SetActive(p.Visible);
                         }
-
-                        string roleNames = RoleInfo.GetRolesString(p, true);
-
-                        string playerInfoText = "";
-                        if (PlayerControl.LocalPlayer.Data.IsDead) {
-                            playerInfoText = $"{roleNames}";
-                        }
-
-                        playerInfo.text = playerInfoText;
-                        playerInfo.gameObject.SetActive(p.Visible);
                     }
                 }
-            }
 
-            // Cheater exile if the cheated player was innocent, rebels and neutrals counts as impostors
-            if (Cheater.cheater != null && !Cheater.cheater.Data.IsDead && PlayerControl.GameOptions.MapId == 5) {
-                if (Cheater.usedCheat == true && exiled.PlayerId == Cheater.cheatedP1.PlayerId && !Cheater.cheatedP1.Data.Role.IsImpostor && Cheater.cheatedP1 != Renegade.renegade && Cheater.cheatedP1 != Minion.minion && Cheater.cheatedP1 != BountyHunter.bountyhunter && Cheater.cheatedP1 != Trapper.trapper && Cheater.cheatedP1 != Yinyanger.yinyanger && Cheater.cheatedP1 != Challenger.challenger && Cheater.cheatedP1 != Joker.joker && Cheater.cheatedP1 != RoleThief.rolethief && Cheater.cheatedP1 != Pyromaniac.pyromaniac && Cheater.cheatedP1 != TreasureHunter.treasureHunter && Cheater.cheatedP1 != Devourer.devourer) {
-                    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedExilePlayer, Hazel.SendOption.Reliable, -1);
-                    writer.Write(Cheater.cheater.PlayerId);
-                    AmongUsClient.Instance.FinishRpcImmediately(writer);
-                    RPCProcedure.uncheckedExilePlayer(Cheater.cheater.PlayerId); 
+                // Cheater exile if the cheated player was innocent, rebels and neutrals counts as impostors
+                if (Cheater.cheater != null && !Cheater.cheater.Data.IsDead) {
+                    if (Cheater.usedCheat == true && exiled.PlayerId == Cheater.cheatedP1.PlayerId && !Cheater.cheatedP1.Data.Role.IsImpostor && Cheater.cheatedP1 != Renegade.renegade && Cheater.cheatedP1 != Minion.minion && Cheater.cheatedP1 != BountyHunter.bountyhunter && Cheater.cheatedP1 != Trapper.trapper && Cheater.cheatedP1 != Yinyanger.yinyanger && Cheater.cheatedP1 != Challenger.challenger && Cheater.cheatedP1 != Joker.joker && Cheater.cheatedP1 != RoleThief.rolethief && Cheater.cheatedP1 != Pyromaniac.pyromaniac && Cheater.cheatedP1 != TreasureHunter.treasureHunter && Cheater.cheatedP1 != Devourer.devourer) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedExilePlayer, Hazel.SendOption.Reliable, -1);
+                        writer.Write(Cheater.cheater.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.uncheckedExilePlayer(Cheater.cheater.PlayerId);
+                    }
+                    else if (Cheater.usedCheat == true && exiled.PlayerId == Cheater.cheatedP2.PlayerId && !Cheater.cheatedP2.Data.Role.IsImpostor && Cheater.cheatedP2 != Renegade.renegade && Cheater.cheatedP2 != Minion.minion && Cheater.cheatedP2 != BountyHunter.bountyhunter && Cheater.cheatedP2 != Trapper.trapper && Cheater.cheatedP2 != Yinyanger.yinyanger && Cheater.cheatedP2 != Challenger.challenger && Cheater.cheatedP2 != Joker.joker && Cheater.cheatedP2 != RoleThief.rolethief && Cheater.cheatedP2 != Pyromaniac.pyromaniac && Cheater.cheatedP2 != TreasureHunter.treasureHunter && Cheater.cheatedP2 != Devourer.devourer) {
+                        MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedExilePlayer, Hazel.SendOption.Reliable, -1);
+                        writer.Write(Cheater.cheater.PlayerId);
+                        AmongUsClient.Instance.FinishRpcImmediately(writer);
+                        RPCProcedure.uncheckedExilePlayer(Cheater.cheater.PlayerId);
+                    }
+                    Cheater.cheatedP1 = null;
+                    Cheater.cheatedP2 = null;
+                    Cheater.usedCheat = false;
                 }
-                else if (Cheater.usedCheat == true && exiled.PlayerId == Cheater.cheatedP2.PlayerId && !Cheater.cheatedP2.Data.Role.IsImpostor && Cheater.cheatedP2 != Renegade.renegade && Cheater.cheatedP2 != Minion.minion && Cheater.cheatedP2 != BountyHunter.bountyhunter && Cheater.cheatedP2 != Trapper.trapper && Cheater.cheatedP2 != Yinyanger.yinyanger && Cheater.cheatedP2 != Challenger.challenger && Cheater.cheatedP2 != Joker.joker && Cheater.cheatedP2 != RoleThief.rolethief && Cheater.cheatedP2 != Pyromaniac.pyromaniac && Cheater.cheatedP2 != TreasureHunter.treasureHunter && Cheater.cheatedP2 != Devourer.devourer) {
-                    MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.UncheckedExilePlayer, Hazel.SendOption.Reliable, -1);
-                    writer.Write(Cheater.cheater.PlayerId);
-                    AmongUsClient.Instance.FinishRpcImmediately(writer);
-                    RPCProcedure.uncheckedExilePlayer(Cheater.cheater.PlayerId); 
+
+                // Yinyanger reset button after meeting
+                if (Yinyanger.yinyanger != null && !Yinyanger.yinyanger.Data.IsDead) {
+                    Yinyanger.usedYined = false;
+                    Yinyanger.usedYanged = false;
+                    Yinyanger.yinyedplayer = null;
+                    Yinyanger.yangyedplayer = null;
+                    Yinyanger.colision = false;
                 }
-                Cheater.cheatedP1 = null;
-                Cheater.cheatedP2 = null;
-                Cheater.usedCheat = false;
-            }
-            
-            // Yinyanger reset button after meeting
-            if (Yinyanger.yinyanger != null && !Yinyanger.yinyanger.Data.IsDead && PlayerControl.GameOptions.MapId == 5) {
-                Yinyanger.usedYined = false;
-                Yinyanger.usedYanged = false;
-                Yinyanger.yinyedplayer = null;
-                Yinyanger.yangyedplayer = null;
-                Yinyanger.colision = false;
             }
             
             // Sorcerer execute casted spells
@@ -205,114 +209,114 @@ namespace LasMonjas.Patches {
                 Joker.triggerJokerWin = true;
             }
 
-            // Reset custom button timers where necessary
-            CustomButton.MeetingEndedUpdate();
-            
-            // Pyromaniac deactivate dead players icons
-            if (PlayerControl.GameOptions.MapId != 5 && Pyromaniac.pyromaniac != null && Pyromaniac.pyromaniac == PlayerControl.LocalPlayer) {
-                int visibleCounter = 0;
-                Vector3 bottomLeft = new Vector3(-HudManager.Instance.UseButton.transform.localPosition.x, HudManager.Instance.UseButton.transform.localPosition.y, HudManager.Instance.UseButton.transform.localPosition.z);
-                bottomLeft += new Vector3(-0.25f, -0.25f, 0);
-                foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
-                    if (!MapOptions.playerIcons.ContainsKey(p.PlayerId)) continue;
-                    if (p.Data.IsDead || p.Data.Disconnected) {
-                        MapOptions.playerIcons[p.PlayerId].gameObject.SetActive(false);
-                    }
-                    else {
-                        MapOptions.playerIcons[p.PlayerId].transform.localPosition = bottomLeft + Vector3.right * visibleCounter * 0.35f;
-                        visibleCounter++;
-                    }
-                }
-            }
-
-            // Cheater exile if the cheated player was innocent, rebels and neutrals counts as impostors
-            if (Cheater.cheater != null && !Cheater.cheater.Data.IsDead && PlayerControl.GameOptions.MapId != 5) {
-                if (Cheater.usedCheat == true && Cheater.cheatedP1.Data.IsDead && !Cheater.cheatedP1.Data.Role.IsImpostor && Cheater.cheatedP1 != Renegade.renegade && Cheater.cheatedP1 != Minion.minion && Cheater.cheatedP1 != BountyHunter.bountyhunter && Cheater.cheatedP1 != Trapper.trapper && Cheater.cheatedP1 != Yinyanger.yinyanger && Cheater.cheatedP1 != Challenger.challenger && Cheater.cheatedP1 != Joker.joker && Cheater.cheatedP1 != RoleThief.rolethief && Cheater.cheatedP1 != Pyromaniac.pyromaniac && Cheater.cheatedP1 != TreasureHunter.treasureHunter && Cheater.cheatedP1 != Devourer.devourer) {
-                    Cheater.cheater.Exiled();
-                }
-                else if (Cheater.usedCheat == true && Cheater.cheatedP2.Data.IsDead && !Cheater.cheatedP2.Data.Role.IsImpostor && Cheater.cheatedP2 != Renegade.renegade && Cheater.cheatedP2 != Minion.minion && Cheater.cheatedP2 != BountyHunter.bountyhunter && Cheater.cheatedP2 != Trapper.trapper && Cheater.cheatedP2 != Yinyanger.yinyanger && Cheater.cheatedP2 != Challenger.challenger && Cheater.cheatedP2 != Joker.joker && Cheater.cheatedP2 != RoleThief.rolethief && Cheater.cheatedP2 != Pyromaniac.pyromaniac && Cheater.cheatedP2 != TreasureHunter.treasureHunter && Cheater.cheatedP2 != Devourer.devourer) {
-                    Cheater.cheater.Exiled();
-                }
-                Cheater.cheatedP1 = null;
-                Cheater.cheatedP2 = null;
-                Cheater.usedCheat = false;
-            }
-
-            // BountyHunter exile if the exiled player was the bounty hunter target
-            if (PlayerControl.GameOptions.MapId != 5 && BountyHunter.bountyhunter != null && !BountyHunter.bountyhunter.Data.IsDead && BountyHunter.hasToKill.Data.IsDead) {
-                BountyHunter.bountyhunter.Exiled();
-            }
-
-            // Treasure Hunter reset button after meeting
-            if (PlayerControl.GameOptions.MapId != 5 && TreasureHunter.treasureHunter != null && !TreasureHunter.treasureHunter.Data.IsDead) {
-                TreasureHunter.canPlace = true;
-            }
-
-            // Yinyanger reset button after meeting
-            if (Yinyanger.yinyanger != null && !Yinyanger.yinyanger.Data.IsDead && PlayerControl.GameOptions.MapId != 5) {
-                Yinyanger.usedYined = false;
-                Yinyanger.usedYanged = false;
-                Yinyanger.yinyedplayer = null;
-                Yinyanger.yangyedplayer = null;
-                Yinyanger.colision = false;
-            }
-
-            // Forensic spawn ghosts after meeting
-            if (Forensic.forensic != null && PlayerControl.LocalPlayer == Forensic.forensic && PlayerControl.GameOptions.MapId != 5) {
-                if (Forensic.souls != null) {
-                    foreach (SpriteRenderer sr in Forensic.souls) UnityEngine.Object.Destroy(sr.gameObject);
-                    Forensic.souls = new List<SpriteRenderer>();
-                }
-
-                if (Forensic.featureDeadBodies != null) {
-                    foreach ((DeadPlayer db, Vector3 ps) in Forensic.featureDeadBodies) {
-                        GameObject s = new GameObject();
-                        s.transform.position = ps;
-                        s.layer = 5;
-                        var rend = s.AddComponent<SpriteRenderer>();
-                        rend.sprite = Forensic.getSoulSprite();
-                        Forensic.souls.Add(rend);
-                    }
-                    Forensic.deadBodies = Forensic.featureDeadBodies;
-                    Forensic.featureDeadBodies = new List<Tuple<DeadPlayer, Vector3>>();
-                }
-            }
-
-            // Sleuth reset deadBodyPositions after meeting
             if (PlayerControl.GameOptions.MapId != 5) {
+
+                // Reset custom button timers where necessary
+                CustomButton.MeetingEndedUpdate();
+
+                // Pyromaniac deactivate dead players icons
+                if (Pyromaniac.pyromaniac != null && Pyromaniac.pyromaniac == PlayerControl.LocalPlayer) {
+                    int visibleCounter = 0;
+                    Vector3 bottomLeft = new Vector3(-HudManager.Instance.UseButton.transform.localPosition.x, HudManager.Instance.UseButton.transform.localPosition.y, HudManager.Instance.UseButton.transform.localPosition.z);
+                    bottomLeft += new Vector3(-0.25f, -0.25f, 0);
+                    foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
+                        if (!MapOptions.playerIcons.ContainsKey(p.PlayerId)) continue;
+                        if (p.Data.IsDead || p.Data.Disconnected) {
+                            MapOptions.playerIcons[p.PlayerId].gameObject.SetActive(false);
+                        }
+                        else {
+                            MapOptions.playerIcons[p.PlayerId].transform.localPosition = bottomLeft + Vector3.right * visibleCounter * 0.35f;
+                            visibleCounter++;
+                        }
+                    }
+                }
+
+                // Cheater exile if the cheated player was innocent, rebels and neutrals counts as impostors
+                if (Cheater.cheater != null && !Cheater.cheater.Data.IsDead) {
+                    if (Cheater.usedCheat == true && Cheater.cheatedP1.Data.IsDead && !Cheater.cheatedP1.Data.Role.IsImpostor && Cheater.cheatedP1 != Renegade.renegade && Cheater.cheatedP1 != Minion.minion && Cheater.cheatedP1 != BountyHunter.bountyhunter && Cheater.cheatedP1 != Trapper.trapper && Cheater.cheatedP1 != Yinyanger.yinyanger && Cheater.cheatedP1 != Challenger.challenger && Cheater.cheatedP1 != Joker.joker && Cheater.cheatedP1 != RoleThief.rolethief && Cheater.cheatedP1 != Pyromaniac.pyromaniac && Cheater.cheatedP1 != TreasureHunter.treasureHunter && Cheater.cheatedP1 != Devourer.devourer) {
+                        Cheater.cheater.Exiled();
+                    }
+                    else if (Cheater.usedCheat == true && Cheater.cheatedP2.Data.IsDead && !Cheater.cheatedP2.Data.Role.IsImpostor && Cheater.cheatedP2 != Renegade.renegade && Cheater.cheatedP2 != Minion.minion && Cheater.cheatedP2 != BountyHunter.bountyhunter && Cheater.cheatedP2 != Trapper.trapper && Cheater.cheatedP2 != Yinyanger.yinyanger && Cheater.cheatedP2 != Challenger.challenger && Cheater.cheatedP2 != Joker.joker && Cheater.cheatedP2 != RoleThief.rolethief && Cheater.cheatedP2 != Pyromaniac.pyromaniac && Cheater.cheatedP2 != TreasureHunter.treasureHunter && Cheater.cheatedP2 != Devourer.devourer) {
+                        Cheater.cheater.Exiled();
+                    }
+                    Cheater.cheatedP1 = null;
+                    Cheater.cheatedP2 = null;
+                    Cheater.usedCheat = false;
+                }
+
+                // BountyHunter exile if the exiled player was the bounty hunter target
+                if (BountyHunter.bountyhunter != null && !BountyHunter.bountyhunter.Data.IsDead && BountyHunter.hasToKill.Data.IsDead) {
+                    BountyHunter.bountyhunter.Exiled();
+                }
+
+                // Treasure Hunter reset button after meeting
+                if (TreasureHunter.treasureHunter != null && !TreasureHunter.treasureHunter.Data.IsDead) {
+                    TreasureHunter.canPlace = true;
+                }
+
+                // Yinyanger reset button after meeting
+                if (Yinyanger.yinyanger != null && !Yinyanger.yinyanger.Data.IsDead) {
+                    Yinyanger.usedYined = false;
+                    Yinyanger.usedYanged = false;
+                    Yinyanger.yinyedplayer = null;
+                    Yinyanger.yangyedplayer = null;
+                    Yinyanger.colision = false;
+                }
+
+                // Forensic spawn ghosts after meeting
+                if (Forensic.forensic != null && PlayerControl.LocalPlayer == Forensic.forensic) {
+                    if (Forensic.souls != null) {
+                        foreach (SpriteRenderer sr in Forensic.souls) UnityEngine.Object.Destroy(sr.gameObject);
+                        Forensic.souls = new List<SpriteRenderer>();
+                    }
+
+                    if (Forensic.featureDeadBodies != null) {
+                        foreach ((DeadPlayer db, Vector3 ps) in Forensic.featureDeadBodies) {
+                            GameObject s = new GameObject();
+                            s.transform.position = ps;
+                            s.layer = 5;
+                            var rend = s.AddComponent<SpriteRenderer>();
+                            s.AddSubmergedComponent(SubmergedCompatibility.Classes.ElevatorMover);
+                            rend.sprite = Forensic.getSoulSprite();
+                            Forensic.souls.Add(rend);
+                        }
+                        Forensic.deadBodies = Forensic.featureDeadBodies;
+                        Forensic.featureDeadBodies = new List<Tuple<DeadPlayer, Vector3>>();
+                    }
+                }
+
+                // Sleuth reset deadBodyPositions after meeting
                 Sleuth.deadBodyPositions = new List<Vector3>();
-            }
 
-            if (PlayerControl.GameOptions.MapId != 5) {
                 //Change Music based on alive player number if not on submerged
                 MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.ChangeMusic, Hazel.SendOption.Reliable, -1);
                 writer.Write(2);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
                 RPCProcedure.changeMusic(2);
-            }
 
-            // Show roles after meeting for dead players if the option is active
-            if (MapOptions.ghostsSeeRoles && howmanygamemodesareon != 1 && PlayerControl.GameOptions.MapId != 5) {
-                foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
-                    if (p == PlayerControl.LocalPlayer || PlayerControl.LocalPlayer.Data.IsDead) {
-                        Transform playerInfoTransform = p.nameText.transform.parent.FindChild("Info");
-                        TMPro.TextMeshPro playerInfo = playerInfoTransform != null ? playerInfoTransform.GetComponent<TMPro.TextMeshPro>() : null;
-                        if (playerInfo == null) {
-                            playerInfo = UnityEngine.Object.Instantiate(p.nameText, p.nameText.transform.parent);
-                            playerInfo.transform.localPosition += Vector3.up * 0.5f;
-                            playerInfo.fontSize *= 0.75f;
-                            playerInfo.gameObject.name = "Info";
+                // Show roles after meeting for dead players if the option is active
+                if (MapOptions.ghostsSeeRoles && howmanygamemodesareon != 1) {
+                    foreach (PlayerControl p in PlayerControl.AllPlayerControls) {
+                        if (p == PlayerControl.LocalPlayer || PlayerControl.LocalPlayer.Data.IsDead) {
+                            Transform playerInfoTransform = p.nameText.transform.parent.FindChild("Info");
+                            TMPro.TextMeshPro playerInfo = playerInfoTransform != null ? playerInfoTransform.GetComponent<TMPro.TextMeshPro>() : null;
+                            if (playerInfo == null) {
+                                playerInfo = UnityEngine.Object.Instantiate(p.nameText, p.nameText.transform.parent);
+                                playerInfo.transform.localPosition += Vector3.up * 0.5f;
+                                playerInfo.fontSize *= 0.75f;
+                                playerInfo.gameObject.name = "Info";
+                            }
+
+                            string roleNames = RoleInfo.GetRolesString(p, true);
+
+                            string playerInfoText = "";
+                            if (PlayerControl.LocalPlayer.Data.IsDead) {
+                                playerInfoText = $"{roleNames}";
+                            }
+
+                            playerInfo.text = playerInfoText;
+                            playerInfo.gameObject.SetActive(p.Visible);
                         }
-
-                        string roleNames = RoleInfo.GetRolesString(p, true);
-
-                        string playerInfoText = "";
-                        if (PlayerControl.LocalPlayer.Data.IsDead) {
-                            playerInfoText = $"{roleNames}";
-                        }
-
-                        playerInfo.text = playerInfoText;
-                        playerInfo.gameObject.SetActive(p.Visible);
                     }
                 }
             }

@@ -94,11 +94,24 @@ namespace LasMonjas.Patches {
                     }
 
                     // Set position
-                    PlayerControl.LocalPlayer.transform.position = next.Item1;
+                    if (PlayerControl.GameOptions.MapId == 5) {
+                        localPlayerPositions.RemoveAt(0);
 
-                    localPlayerPositions.RemoveAt(0);
+                        if (localPlayerPositions.Count > 1) localPlayerPositions.RemoveAt(0); // Skip every second position to rewind twice as fast, but never skip the last position
+                        if (PlayerControl.LocalPlayer.transform.position.y > 0) {
+                            PlayerControl.LocalPlayer.transform.position = new Vector3(5f, 19.5f, PlayerControl.LocalPlayer.transform.position.z);
+                        }
+                        else {
+                            PlayerControl.LocalPlayer.transform.position = new Vector3(1.35f, -28.25f, PlayerControl.LocalPlayer.transform.position.z);
+                        }
+                    }
+                    else {
+                        PlayerControl.LocalPlayer.transform.position = next.Item1;
 
-                    if (localPlayerPositions.Count > 1) localPlayerPositions.RemoveAt(0); // Skip every second position to rewind twice as fast, but never skip the last position
+                        localPlayerPositions.RemoveAt(0);
+
+                        if (localPlayerPositions.Count > 1) localPlayerPositions.RemoveAt(0); // Skip every second position to rewind twice as fast, but never skip the last position
+                    }
 
                     // Try reviving LOCAL player 
                     if (TimeTraveler.reviveDuringRewind && PlayerControl.LocalPlayer.Data.IsDead) {
@@ -361,12 +374,16 @@ namespace LasMonjas.Patches {
         }
 
         static void finkUpdate() {
-            if (Fink.localArrows == null) return;
+            //if (Fink.localArrows == null) return;
 
-            foreach (Arrow arrow in Fink.localArrows) arrow.arrow.SetActive(false);
+            //foreach (Arrow arrow in Fink.localArrows) arrow.arrow.SetActive(false);
 
             if (Fink.fink == null || Fink.fink.Data.IsDead) return;
 
+            if (Fink.localArrows == null) return;
+            
+            foreach (Arrow arrow in Fink.localArrows) arrow.arrow.SetActive(false);
+            
             var (playerCompleted, playerTotal) = TasksHandler.taskInfo(Fink.fink.Data);
             int numberOfTasks = playerTotal - playerCompleted;
 
@@ -1217,12 +1234,16 @@ namespace LasMonjas.Patches {
 
             if (ZombieLaboratory.nursePlayer != null) {
                 untargetableSurvivorsPlayers.Add(ZombieLaboratory.nursePlayer);
-                if (ZombieLaboratory.nursePlayerIsReviving) {
+                if (ZombieLaboratory.whoCanZombiesKill == 1) {
+                    if (ZombieLaboratory.nursePlayerIsReviving) {
+                        untargetableZombiePlayers.Add(ZombieLaboratory.nursePlayer);
+                    }
+                    else {
+                        untargetableZombiePlayers.Remove(ZombieLaboratory.nursePlayer);
+                    }
+                } else {
                     untargetableZombiePlayers.Add(ZombieLaboratory.nursePlayer);
-                }
-                else {
-                    untargetableZombiePlayers.Remove(ZombieLaboratory.nursePlayer);
-                }
+                }              
             }
 
             // Prevent killing reviving players
@@ -1812,6 +1833,10 @@ namespace LasMonjas.Patches {
             // Janitor Button Sync
             if (Janitor.janitor != null && PlayerControl.LocalPlayer == Janitor.janitor && __instance == Janitor.janitor && HudManagerStartPatch.janitorCleanButton != null)
                 HudManagerStartPatch.janitorCleanButton.Timer = Janitor.janitor.killTimer;
+            
+            if (Janitor.janitor != null && target == Janitor.janitor && Janitor.dragginBody) {
+                Janitor.janitorResetValuesAtDead();
+            }
 
             // Manipulator Button Sync
             if (Manipulator.manipulator != null && PlayerControl.LocalPlayer == Manipulator.manipulator && __instance == Manipulator.manipulator && HudManagerStartPatch.manipulatorManipulateButton != null) {
@@ -1933,6 +1958,10 @@ namespace LasMonjas.Patches {
                         case 4:
                             CaptureTheFlag.blueflag.transform.position = new Vector3(33.6f, 1.25f, 0.5f);
                             break;
+                        // Submerged
+                        case 5:
+                            CaptureTheFlag.blueflag.transform.position = new Vector3(12.5f, -31.45f, -0.011f);
+                            break;
                     }
                 }
 
@@ -1966,6 +1995,10 @@ namespace LasMonjas.Patches {
                         // Airship
                         case 4:
                             CaptureTheFlag.redflag.transform.position = new Vector3(-17.5f, -1.2f, 0.5f);
+                            break;
+                        // Submerged
+                        case 5:
+                            CaptureTheFlag.redflag.transform.position = new Vector3(-8.35f, 28.05f, 0.03f);
                             break;
                     }
                 }
@@ -2036,6 +2069,15 @@ namespace LasMonjas.Patches {
                                 // Airship
                                 case 4:
                                     CaptureTheFlag.stealerPlayer.transform.position = new Vector3(10.25f, -15.35f, CaptureTheFlag.stealerPlayer.transform.position.z);
+                                    break;
+                                // Submerged
+                                case 5:
+                                    if (CaptureTheFlag.stealerPlayer.transform.position.y > 0) {
+                                        CaptureTheFlag.stealerPlayer.transform.position = new Vector3(1f, 10f, CaptureTheFlag.stealerPlayer.transform.position.z);
+                                    }
+                                    else {
+                                        CaptureTheFlag.stealerPlayer.transform.position = new Vector3(0f, -33.5f, CaptureTheFlag.stealerPlayer.transform.position.z);
+                                    }
                                     break;
                             }
                             DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
@@ -2157,6 +2199,15 @@ namespace LasMonjas.Patches {
                                     case 4:
                                         player.transform.position = new Vector3(-17.5f, -1.1f, player.transform.position.z);
                                         break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(-8.35f, 28.25f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-14f, -27.5f, player.transform.position.z);
+                                        }
+                                        break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
                                 if (body != null) UnityEngine.Object.Destroy(body.gameObject);
@@ -2277,6 +2328,15 @@ namespace LasMonjas.Patches {
                                     case 4:
                                         player.transform.position = new Vector3(33.6f, 1.45f, player.transform.position.z);
                                         break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(14.25f, 24.25f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(12.5f, -31.25f, player.transform.position.z);
+                                        }
+                                        break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
                                 if (body != null) UnityEngine.Object.Destroy(body.gameObject);
@@ -2389,6 +2449,15 @@ namespace LasMonjas.Patches {
                                     // Airship
                                     case 4:
                                         player.transform.position = new Vector3(-18.5f, 0.75f, player.transform.position.z);
+                                        break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(-8.45f, 27f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-9.25f, -41.25f, player.transform.position.z);
+                                        }
                                         break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
@@ -2558,6 +2627,15 @@ namespace LasMonjas.Patches {
                                     case 4:
                                         player.transform.position = new Vector3(7.15f, -14.5f, player.transform.position.z);
                                         break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(1f, 10f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(12.5f, -31.75f, player.transform.position.z);
+                                        }
+                                        break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
                                 if (body != null) UnityEngine.Object.Destroy(body.gameObject);
@@ -2638,6 +2716,15 @@ namespace LasMonjas.Patches {
                                 // Airship
                                 case 4:
                                     KingOfTheHill.usurperPlayer.transform.position = new Vector3(12.25f, 2f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    break;
+                                // Submerged
+                                case 5:
+                                    if (KingOfTheHill.usurperPlayer.transform.position.y > 0) {
+                                        KingOfTheHill.usurperPlayer.transform.position = new Vector3(5.75f, 31.25f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    }
+                                    else {
+                                        KingOfTheHill.usurperPlayer.transform.position = new Vector3(-4.25f, -33.5f, KingOfTheHill.usurperPlayer.transform.position.z);
+                                    }
                                     break;
                             }
                             DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
@@ -2799,6 +2886,15 @@ namespace LasMonjas.Patches {
                                     // Airship
                                     case 4:
                                         player.transform.position = new Vector3(-13.9f, -14.45f, player.transform.position.z);
+                                        break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(-12.25f, 18.5f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-14.5f, -34.35f, player.transform.position.z);
+                                        }
                                         break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
@@ -2962,6 +3058,15 @@ namespace LasMonjas.Patches {
                                     // Airship
                                     case 4:
                                         player.transform.position = new Vector3(37.35f, -3.25f, player.transform.position.z);
+                                        break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(0f, 33.5f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-8.5f, -39.5f, player.transform.position.z);
+                                        }
                                         break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
@@ -3431,8 +3536,26 @@ namespace LasMonjas.Patches {
                                             player.transform.position = new Vector3(25.25f, -8.65f, player.transform.position.z);
                                         }
                                         break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            if (player == ZombieLaboratory.nursePlayer) {
+                                                player.transform.position = new Vector3(-6f, 31.85f, player.transform.position.z);
+                                            }
+                                            else {
+                                                player.transform.position = new Vector3(5.5f, 31.5f, player.transform.position.z);
+                                            }
+                                        }
+                                        else {
+                                            if (player == ZombieLaboratory.nursePlayer) {
+                                                player.transform.position = new Vector3(-14f, -39.25f, player.transform.position.z);
+                                            }
+                                            else {
+                                                player.transform.position = new Vector3(9.75f, -31.35f, player.transform.position.z);
+                                            }
+                                        }                                       
+                                        break;
                                 }
-
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
                                 if (body != null) UnityEngine.Object.Destroy(body.gameObject);
                                 if (deadPlayerEntry != null) deadPlayers.Remove(deadPlayerEntry);
@@ -3592,6 +3715,15 @@ namespace LasMonjas.Patches {
                                     // Airship
                                     case 4:
                                         player.transform.position = new Vector3(32.35f, 7.25f, player.transform.position.z);
+                                        break;
+                                    // Submerged
+                                    case 5:
+                                        if (player.transform.position.y > 0) {
+                                            player.transform.position = new Vector3(1f, 10f, player.transform.position.z);
+                                        }
+                                        else {
+                                            player.transform.position = new Vector3(-4.15f, -33.5f, player.transform.position.z);
+                                        }
                                         break;
                                 }
                                 DeadPlayer deadPlayerEntry = deadPlayers.Where(x => x.player.PlayerId == target.PlayerId).FirstOrDefault();
