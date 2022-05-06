@@ -25,6 +25,12 @@ namespace LasMonjas.Core
             new AuthorData {AuthorName = "Sensei", NamePlateName = "Millennium Lore"},
             new AuthorData {AuthorName = "Muaresito", NamePlateName = "Muaresito Joy"},
             new AuthorData {AuthorName = "Muaresito", NamePlateName = "Shusron Radar"},
+            new AuthorData {AuthorName = "Muaresito", NamePlateName = "Winsus XP"},
+            new AuthorData {AuthorName = "Muaresito", NamePlateName = "Be not afraid Allul"},
+            new AuthorData {AuthorName = "Blocky", NamePlateName = "Submerged"},
+            new AuthorData {AuthorName = "Blocky", NamePlateName = "What the cow"},
+            new AuthorData {AuthorName = "Blocky", NamePlateName = "Bluescreen"},
+            new AuthorData {AuthorName = "Blocky", NamePlateName = "Lot of bodies"},
         };
 
         internal static Dictionary<int, AuthorData> IdToData = new Dictionary<int, AuthorData>();
