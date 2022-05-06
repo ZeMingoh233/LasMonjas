@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LasMonjas.Objects;
 using LasMonjas.Core;
+using Hazel;
 
 namespace LasMonjas.Patches
 {
@@ -40,6 +41,8 @@ namespace LasMonjas.Patches
                     }
                 }
             }
+
+            
         }
     }
 
@@ -213,40 +216,47 @@ namespace LasMonjas.Patches
         }
 
         [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.ShowRole))]
-        class ShowRolePatch
+        class SetUpRoleTextPatch
         {
-            public static void Postfix(IntroCutscene __instance) {
+            public static void setUpRoleText(IntroCutscene __instance) {
 
                 if (!CustomOptionHolder.activateRoles.getBool()) return; 
 
                 List<RoleInfo> infos = RoleInfo.getRoleInfoForPlayer(PlayerControl.LocalPlayer);
                 RoleInfo roleInfo = infos.Where(info => info.roleId != RoleId.Lover).FirstOrDefault();
 
-                Color color = new Color(__instance.YouAreText.color.r, __instance.YouAreText.color.g, __instance.YouAreText.color.b, 0f);
-                __instance.StartCoroutine(Effects.Lerp(0.5f, new Action<float>((t) => {
+                if (roleInfo != null) {
+                    __instance.RoleText.text = roleInfo.name;
+                    __instance.RoleText.color = roleInfo.color;
+                    __instance.RoleBlurbText.text = roleInfo.introDescription;
+                    __instance.RoleBlurbText.color = roleInfo.color;
+                    __instance.YouAreText.color = roleInfo.color;
 
-                    if (roleInfo != null) {
-                        __instance.RoleText.text = roleInfo.name;
-                        __instance.RoleBlurbText.text = roleInfo.introDescription;
-                        color = roleInfo.color;
+                }
 
-                    }
+                if (infos.Any(info => info.roleId == RoleId.Lover)) {
+                    PlayerControl otherLover = PlayerControl.LocalPlayer == Modifiers.lover1 ? Modifiers.lover2 : Modifiers.lover1;
+                    __instance.RoleBlurbText.text = PlayerControl.LocalPlayer.Data.Role.IsImpostor ? "<color=#FF00D1FF>Lover</color><color=#FF0000FF>stor</color>" : "<color=#FF00D1FF>Lover</color>";
+                    __instance.RoleBlurbText.color = PlayerControl.LocalPlayer.Data.Role.IsImpostor ? Color.white : Modifiers.loverscolor;
+                    __instance.ImpostorText.text = Helpers.cs(Modifiers.loverscolor, $"♥ Survive as a couple with {otherLover?.Data?.PlayerName ?? ""} ♥");
+                    __instance.ImpostorText.gameObject.SetActive(true);
+                    __instance.BackgroundBar.material.color = Modifiers.loverscolor;
+                }
 
-                    if (infos.Any(info => info.roleId == RoleId.Lover)) {
-                        PlayerControl otherLover = PlayerControl.LocalPlayer == Modifiers.lover1 ? Modifiers.lover2 : Modifiers.lover1;
-                        __instance.RoleBlurbText.text = PlayerControl.LocalPlayer.Data.Role.IsImpostor ? "<color=#FF00D1FF>Lover</color><color=#FF0000FF>stor</color>" : "<color=#FF00D1FF>Lover</color>";
-                        __instance.RoleBlurbText.color = PlayerControl.LocalPlayer.Data.Role.IsImpostor ? Color.white : Modifiers.loverscolor;
-                        __instance.ImpostorText.text = Helpers.cs(Modifiers.loverscolor, $"♥ Survive as a couple with {otherLover?.Data?.PlayerName ?? ""} ♥");
-                        __instance.ImpostorText.gameObject.SetActive(true);
-                        __instance.BackgroundBar.material.color = Modifiers.loverscolor;
-                    }
+                __instance.YouAreText.gameObject.SetActive(true);
+                __instance.RoleText.gameObject.SetActive(true);
+                __instance.RoleBlurbText.gameObject.SetActive(true);
 
-                    color.a = t;
-                    __instance.YouAreText.color = color;
-                    __instance.RoleText.color = color;
-                    __instance.RoleBlurbText.color = color;
-                })));
+                SoundManager.Instance.PlaySound(PlayerControl.LocalPlayer.Data.Role.IntroSound, false, 1f);
 
+                if (__instance.ourCrewmate == null) {
+                    __instance.ourCrewmate = __instance.CreatePlayer(0, 1, PlayerControl.LocalPlayer.Data, false);
+                    __instance.ourCrewmate.gameObject.SetActive(false);
+                }
+                __instance.ourCrewmate.gameObject.SetActive(true);
+                __instance.ourCrewmate.transform.localPosition = new Vector3(0f, -1.05f, -18f);
+                __instance.ourCrewmate.transform.localScale = new Vector3(1f, 1f, 1f);
+                
                 // Create the doorlog access from anywhere to the Vigilant on MiraHQ
                 if (PlayerControl.GameOptions.MapId == 1 && Vigilant.vigilantMira != null && Vigilant.vigilantMira == PlayerControl.LocalPlayer && !Vigilant.createdDoorLog) {
                     GameObject vigilantDoorLog = GameObject.Find("SurvLogConsole");
@@ -756,9 +766,20 @@ namespace LasMonjas.Patches
                                     Helpers.clearAllTasks(player);
                                 }
                                 foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                    if (player == PlayerControl.LocalPlayer)
+                                    if (player == PlayerControl.LocalPlayer) {
                                         player.transform.position = new Vector3(13.75f, -0.2f, PlayerControl.LocalPlayer.transform.position.z);
-                                    Helpers.clearAllTasks(player);
+                                        Helpers.clearAllTasks(player);
+
+                                        // Add Arrows pointing the release and deliver point
+                                        if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                            PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                            PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                        }
+                                        if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                            PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                            PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                        }
+                                    }
                                 }
                                 if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                     GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -871,9 +892,20 @@ namespace LasMonjas.Patches
                                     Helpers.clearAllTasks(player);
                                 }
                                 foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                    if (player == PlayerControl.LocalPlayer)
+                                    if (player == PlayerControl.LocalPlayer) {
                                         player.transform.position = new Vector3(-1.31f, -16.25f, PlayerControl.LocalPlayer.transform.position.z);
-                                    Helpers.clearAllTasks(player);
+                                        Helpers.clearAllTasks(player);
+
+                                        // Add Arrows pointing the release and deliver point
+                                        if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                            PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                            PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                        }
+                                        if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                            PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                            PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                        }
+                                    }
                                 }
                                 if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                     GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -991,9 +1023,20 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer) {
                                     player.transform.position = new Vector3(17.75f, 11.5f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+
+                                    // Add Arrows pointing the release and deliver point
+                                    if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                        PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                        PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                    }
+                                    if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                        PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                        PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
                             if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                 GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -1119,9 +1162,20 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer) {
                                     player.transform.position = new Vector3(30f, -15.75f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+
+                                    // Add Arrows pointing the release and deliver point
+                                    if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                        PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                        PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                    }
+                                    if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                        PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                        PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
                             if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                 GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -1249,9 +1303,20 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer) {
                                     player.transform.position = new Vector3(1.31f, -16.25f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+
+                                    // Add Arrows pointing the release and deliver point
+                                    if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                        PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                        PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                    }
+                                    if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                        PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                        PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
                             if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                 GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -1368,9 +1433,20 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer) {
                                     player.transform.position = new Vector3(7.15f, -14.5f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+
+                                    // Add Arrows pointing the release and deliver point
+                                    if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                        PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                        PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                    }
+                                    if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                        PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                        PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
                             if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                 GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -1518,9 +1594,24 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in PoliceAndThief.thiefTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer) {
                                     player.transform.position = new Vector3(1f, 10f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+
+                                    // Add Arrows pointing the release and deliver point
+                                    if (PoliceAndThief.localThiefReleaseArrow.Count == 0) {
+                                        PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                        PoliceAndThief.localThiefReleaseArrow[0].arrow.SetActive(true);
+                                        PoliceAndThief.localThiefReleaseArrow.Add(new Arrow(Palette.PlayerColors[10]));
+                                        PoliceAndThief.localThiefReleaseArrow[1].arrow.SetActive(true);
+                                    }
+                                    if (PoliceAndThief.localThiefDeliverArrow.Count == 0) {
+                                        PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                        PoliceAndThief.localThiefDeliverArrow[0].arrow.SetActive(true);
+                                        PoliceAndThief.localThiefDeliverArrow.Add(new Arrow(Palette.PlayerColors[16]));
+                                        PoliceAndThief.localThiefDeliverArrow[1].arrow.SetActive(true);
+                                    }
+                                }
                             }
                             if (PlayerControl.LocalPlayer != null && !createdpoliceandthief) {
                                 GameObject cell = GameObject.Instantiate(CustomMain.customAssets.cell, PlayerControl.LocalPlayer.transform.parent);
@@ -2572,9 +2663,15 @@ namespace LasMonjas.Patches
                                     Helpers.clearAllTasks(player);
                                 }
                                 foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                    if (player == PlayerControl.LocalPlayer)
+                                    if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                         player.transform.position = new Vector3(4.75f, -8.5f, PlayerControl.LocalPlayer.transform.position.z);
-                                    Helpers.clearAllTasks(player);
+                                        Helpers.clearAllTasks(player);
+                                        // Add Arrows pointing the deliver point
+                                        if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                        }
+                                    }
                                 }
 
                                 if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -2643,9 +2740,15 @@ namespace LasMonjas.Patches
                                 }
 
                                 foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                    if (player == PlayerControl.LocalPlayer)
+                                    if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                         player.transform.position = new Vector3(11.75f, -4.75f, PlayerControl.LocalPlayer.transform.position.z);
-                                    Helpers.clearAllTasks(player);
+                                        Helpers.clearAllTasks(player);
+                                        // Add Arrows pointing the deliver point
+                                        if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                        }
+                                    }
                                 }
 
                                 if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -2715,9 +2818,15 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                     player.transform.position = new Vector3(6.1f, 5.75f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+                                    // Add Arrows pointing the deliver point
+                                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
 
                             if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -2798,9 +2907,15 @@ namespace LasMonjas.Patches
                                 Helpers.clearAllTasks(player);
                             }
                             foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                     player.transform.position = new Vector3(40.4f, -6.8f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+                                    // Add Arrows pointing the deliver point
+                                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
 
                             if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -2882,9 +2997,15 @@ namespace LasMonjas.Patches
                             }
 
                             foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                     player.transform.position = new Vector3(-11.75f, -4.75f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+                                    // Add Arrows pointing the deliver point
+                                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
 
                             if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -2954,9 +3075,15 @@ namespace LasMonjas.Patches
                             }
 
                             foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                     player.transform.position = new Vector3(25.25f, -8.65f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+                                    // Add Arrows pointing the deliver point
+                                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                    }
+                                }
                             }
 
                             if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -3053,9 +3180,17 @@ namespace LasMonjas.Patches
                             }
 
                             foreach (PlayerControl player in ZombieLaboratory.survivorTeam) {
-                                if (player == PlayerControl.LocalPlayer)
+                                if (player == PlayerControl.LocalPlayer && PlayerControl.LocalPlayer != ZombieLaboratory.nursePlayer) {
                                     player.transform.position = new Vector3(5.5f, 31.5f, PlayerControl.LocalPlayer.transform.position.z);
-                                Helpers.clearAllTasks(player);
+                                    Helpers.clearAllTasks(player);
+                                    // Add Arrows pointing the deliver point
+                                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count == 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(true);
+                                        ZombieLaboratory.localSurvivorsDeliverArrow.Add(new Arrow(Palette.PlayerColors[3]));
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(true);
+                                    }
+                                }
                             }
 
                             if (PlayerControl.LocalPlayer == ZombieLaboratory.nursePlayer) {
@@ -3232,8 +3367,26 @@ namespace LasMonjas.Patches
 
                     new CustomMessage("Time Left: ", ZombieLaboratory.matchDuration, -1, -1.3f, 19);
                     ZombieLaboratory.zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + ZombieLaboratory.currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + ZombieLaboratory.survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + ZombieLaboratory.infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + ZombieLaboratory.zombieTeam.Count + "</color>";
-                    new CustomMessage(ZombieLaboratory.zombieLaboratoryCounter, ZombieLaboratory.matchDuration, -1, 1.9f, 20);
+                    new CustomMessage(ZombieLaboratory.zombieLaboratoryCounter, ZombieLaboratory.matchDuration, -1, 1.9f, 20);                                      
                 }
+            }
+
+            public static bool Prefix(IntroCutscene __instance, ref Il2CppSystem.Collections.IEnumerator __result) {
+                var list = new List<Il2CppSystem.Collections.IEnumerator>();
+
+                list.Add(Effects.Action((Il2CppSystem.Action)(() => {
+                    setUpRoleText(__instance);
+                })));
+                list.Add(Effects.Wait(2.5f));
+                list.Add(Effects.Action((Il2CppSystem.Action)(() => {
+                    __instance.YouAreText.gameObject.SetActive(false);
+                    __instance.RoleText.gameObject.SetActive(false);
+                    __instance.RoleBlurbText.gameObject.SetActive(false);
+                    __instance.ourCrewmate.gameObject.SetActive(false);
+                })));
+
+                __result = Effects.Sequence(list.ToArray());
+                return false;
             }
         }
 
