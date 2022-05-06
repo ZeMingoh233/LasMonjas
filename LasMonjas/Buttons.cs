@@ -4855,6 +4855,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer01 != null && PoliceAndThief.thiefplayer01 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer01.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer01.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer01.Data.IsDead) {
@@ -5012,6 +5025,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer02 != null && PoliceAndThief.thiefplayer02 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer02.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer02.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer02.Data.IsDead) {
@@ -5169,6 +5195,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer03 != null && PoliceAndThief.thiefplayer03 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer03.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer03.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer03.Data.IsDead) {
@@ -5326,6 +5365,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer04 != null && PoliceAndThief.thiefplayer04 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer04.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer04.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer04.Data.IsDead) {
@@ -5483,6 +5535,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer05 != null && PoliceAndThief.thiefplayer05 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer05.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer05.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer05.Data.IsDead) {
@@ -5640,6 +5705,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer06 != null && PoliceAndThief.thiefplayer06 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer06.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer06.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer06.Data.IsDead) {
@@ -5797,6 +5875,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer07 != null && PoliceAndThief.thiefplayer07 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer07.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer07.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer07.Data.IsDead) {
@@ -5954,6 +6045,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer08 != null && PoliceAndThief.thiefplayer08 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer08.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer08.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer08.Data.IsDead) {
@@ -6111,6 +6215,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer09 != null && PoliceAndThief.thiefplayer09 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer09.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer09.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer09.Data.IsDead) {
@@ -6268,6 +6385,19 @@ namespace LasMonjas
                 },
                 () => { return PoliceAndThief.thiefplayer10 != null && PoliceAndThief.thiefplayer10 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (PoliceAndThief.localThiefReleaseArrow.Count != 0) {
+                        PoliceAndThief.localThiefReleaseArrow[0].Update(PoliceAndThief.cellbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefReleaseArrow[1].Update(PoliceAndThief.cellbuttontwo.transform.position);
+                        }
+                    }
+                    if (PoliceAndThief.localThiefDeliverArrow.Count != 0) {
+                        PoliceAndThief.localThiefDeliverArrow[0].Update(PoliceAndThief.jewelbutton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            PoliceAndThief.localThiefDeliverArrow[1].Update(PoliceAndThief.jewelbuttontwo.transform.position);
+                        }
+                    }
+                    
                     bool CanUse = false;
                     if (PoliceAndThief.currentThiefsCaptured > 0) {
                         if ((PoliceAndThief.cellbuttontwo != null && Vector2.Distance(PoliceAndThief.thiefplayer10.transform.position, PoliceAndThief.cellbuttontwo.transform.position) < 0.4f || Vector2.Distance(PoliceAndThief.thiefplayer10.transform.position, PoliceAndThief.cellbutton.transform.position) < 0.4f) && !PoliceAndThief.thiefplayer10.Data.IsDead) {
@@ -8649,6 +8779,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer01 != null && ZombieLaboratory.survivorPlayer01 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor01EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer01.Data.IsDead) {
                             survivor01EnterExitButton.HasEffect = false;
@@ -8854,6 +8991,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer02 != null && ZombieLaboratory.survivorPlayer02 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor02EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer02.Data.IsDead) {
                             survivor02EnterExitButton.HasEffect = false;
@@ -9058,6 +9202,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer03 != null && ZombieLaboratory.survivorPlayer03 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor03EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer03.Data.IsDead) {
                             survivor03EnterExitButton.HasEffect = false;
@@ -9262,6 +9413,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer04 != null && ZombieLaboratory.survivorPlayer04 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor04EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer04.Data.IsDead) {
                             survivor04EnterExitButton.HasEffect = false;
@@ -9466,6 +9624,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer05 != null && ZombieLaboratory.survivorPlayer05 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor05EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer05.Data.IsDead) {
                             survivor05EnterExitButton.HasEffect = false;
@@ -9670,6 +9835,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer06 != null && ZombieLaboratory.survivorPlayer06 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor06EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer06.Data.IsDead) {
                             survivor06EnterExitButton.HasEffect = false;
@@ -9874,6 +10046,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer07 != null && ZombieLaboratory.survivorPlayer07 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor07EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer07.Data.IsDead) {
                             survivor07EnterExitButton.HasEffect = false;
@@ -10078,6 +10257,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer08 != null && ZombieLaboratory.survivorPlayer08 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+
                     if (survivor08EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer08.Data.IsDead) {
                             survivor08EnterExitButton.HasEffect = false;
@@ -10282,6 +10468,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer09 != null && ZombieLaboratory.survivorPlayer09 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor09EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer09.Data.IsDead) {
                             survivor09EnterExitButton.HasEffect = false;
@@ -10486,6 +10679,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer10 != null && ZombieLaboratory.survivorPlayer10 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor10EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer10.Data.IsDead) {
                             survivor10EnterExitButton.HasEffect = false;
@@ -10690,6 +10890,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer11 != null && ZombieLaboratory.survivorPlayer11 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor11EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer11.Data.IsDead) {
                             survivor11EnterExitButton.HasEffect = false;
@@ -10894,6 +11101,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer12 != null && ZombieLaboratory.survivorPlayer12 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor12EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer12.Data.IsDead) {
                             survivor12EnterExitButton.HasEffect = false;
@@ -11098,6 +11312,13 @@ namespace LasMonjas
                 },
                 () => { return ZombieLaboratory.survivorPlayer13 != null && ZombieLaboratory.survivorPlayer13 == PlayerControl.LocalPlayer; },
                 () => {
+                    if (ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                        ZombieLaboratory.localSurvivorsDeliverArrow[0].Update(ZombieLaboratory.laboratoryEnterButton.transform.position);
+                        if (PlayerControl.GameOptions.MapId == 5) {
+                            ZombieLaboratory.localSurvivorsDeliverArrow[1].Update(ZombieLaboratory.laboratorytwoEnterButton.transform.position);
+                        }
+                    }
+                    
                     if (survivor13EnterExitButton.isEffectActive) {
                         if (ZombieLaboratory.survivorPlayer13.Data.IsDead) {
                             survivor13EnterExitButton.HasEffect = false;

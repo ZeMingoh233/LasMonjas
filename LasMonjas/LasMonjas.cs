@@ -410,7 +410,7 @@ namespace LasMonjas
             bomberman = null;
             bombTimer = 0f;
             bombCooldown = CustomOptionHolder.bombermanBombCooldown.getFloat();
-            bombDuration = CustomOptionHolder.bombermanBombDuration.getFloat();
+            bombDuration = 60;
             activeBomb = false;
             triggerBombExploded = false;
             currentBombNumber = 0;
@@ -1217,7 +1217,7 @@ namespace LasMonjas
     public static class Cheater
     {
         public static PlayerControl cheater;
-        public static Color color = new Color32(240, 128, 72, byte.MaxValue);
+        public static Color color = new Color32(102, 102, 153, byte.MaxValue);
         private static Sprite spriteCheck;
         public static bool canCallEmergency = false;
         public static bool canOnlyCheatOthers = false;
@@ -2142,6 +2142,9 @@ namespace LasMonjas
 
         public static string thiefpointCounter = "Stealed Jewels: " + "<color=#FF0000FF>" + currentJewelsStoled + "/" + requiredJewels + "</color> | " + "Captured Thiefs: " + "<color=#0000FFFF>" + currentThiefsCaptured + "/ 10</color>";
 
+        public static List<Arrow> localThiefReleaseArrow = new List<Arrow>();
+        public static List<Arrow> localThiefDeliverArrow = new List<Arrow>();
+
 
         private static Sprite buttonSpriteLight;
 
@@ -2305,6 +2308,9 @@ namespace LasMonjas
             jewel14BeingStealed = null;
             jewel15 = null;
             jewel15BeingStealed = null;
+
+            localThiefReleaseArrow = new List<Arrow>();
+            localThiefDeliverArrow = new List<Arrow>();
 
             if (CustomOptionHolder.policeAndThiefMode.getSelection() == 1) {
                 policeAndThiefMode = true;
@@ -2917,6 +2923,8 @@ namespace LasMonjas
 
         public static string zombieLaboratoryCounter = "Key Items: " + "<color=#FF00FFFF>" + currentKeyItems + " / 6</color> | " + "Survivors: " + "<color=#00CCFFFF>" + survivorTeam.Count + "</color> " + "| " + "Infected: " + "<color=#FFFF00FF>" + infectedTeam.Count + "</color> " + "| " + "Zombies: " + "<color=#996633FF>" + zombieTeam.Count + "</color>";
 
+        public static List<Arrow> localSurvivorsDeliverArrow = new List<Arrow>();
+        
         private static Sprite buttonInfect;
 
         public static Sprite getInfectButtonSprite() {
@@ -3022,6 +3030,7 @@ namespace LasMonjas
             nurseExits.Clear();
             nurseMedkits.Clear();
             localNurseArrows = new List<Arrow>();
+            localSurvivorsDeliverArrow = new List<Arrow>();
 
             nursePlayer = null;
             nursePlayercurrentTarget = null;

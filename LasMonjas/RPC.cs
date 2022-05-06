@@ -191,6 +191,7 @@ namespace LasMonjas
         ShareOptions,
         ForceEnd,
         SetRole,
+        SetModifier,
         UseUncheckedVent,
         UncheckedMurderPlayer,
         UncheckedCmdReportDeadBody,
@@ -333,7 +334,7 @@ namespace LasMonjas
             }
         }
 
-        public static void setRole(byte roleId, byte playerId, byte flag) {
+        public static void setRole(byte roleId, byte playerId/*, byte flag*/) {
             foreach (PlayerControl player in PlayerControl.AllPlayerControls)
                 if (player.PlayerId == playerId) {
                     switch ((RoleId)roleId) {
@@ -462,31 +463,7 @@ namespace LasMonjas
                             break;
                         case RoleId.Jinx:
                             Jinx.jinx = player;
-                            break;
-
-                        // Modifiers
-                        case RoleId.Lover:
-                            if (flag == 0) Modifiers.lover1 = player;
-                            else Modifiers.lover2 = player;
-                            break;
-                        case RoleId.Lighter:
-                            Modifiers.lighter = player;
-                            break;
-                        case RoleId.Blind:
-                            Modifiers.blind = player;
-                            break;
-                        case RoleId.Flash:
-                            Modifiers.flash = player;
-                            break;
-                        case RoleId.BigChungus:
-                            Modifiers.bigchungus = player;
-                            break;
-                        case RoleId.TheChosenOne:
-                            Modifiers.theChosenOne = player;
-                            break;
-                        case RoleId.Performer:
-                            Modifiers.performer = player;
-                            break;
+                            break;                        
 
                         // Capture the Flag
                         case RoleId.RedPlayer01:
@@ -892,6 +869,35 @@ namespace LasMonjas
                 }
         }
 
+        public static void setModifier(byte modifierId, byte playerId, byte flag) {
+            PlayerControl player = Helpers.playerById(playerId);
+            switch ((RoleId)modifierId) {
+                // Modifiers
+                case RoleId.Lover:
+                    if (flag == 0) Modifiers.lover1 = player;
+                    else Modifiers.lover2 = player;
+                    break;
+                case RoleId.Lighter:
+                    Modifiers.lighter = player;
+                    break;
+                case RoleId.Blind:
+                    Modifiers.blind = player;
+                    break;
+                case RoleId.Flash:
+                    Modifiers.flash = player;
+                    break;
+                case RoleId.BigChungus:
+                    Modifiers.bigchungus = player;
+                    break;
+                case RoleId.TheChosenOne:
+                    Modifiers.theChosenOne = player;
+                    break;
+                case RoleId.Performer:
+                    Modifiers.performer = player;
+                    break;
+            }
+        }
+        
         public static void useUncheckedVent(int ventId, byte playerId, byte isEnter) {
             PlayerControl player = Helpers.playerById(playerId);
             if (player == null) return;
@@ -1312,7 +1318,7 @@ namespace LasMonjas
                     BountyHunter.rolName = ": <color=#00FF00FF>Squire</color>";
                 }
                 else if (BountyHunter.hasToKill == Cheater.cheater) {
-                    BountyHunter.rolName = ": <color=#F08048FF>Cheater</color>";
+                    BountyHunter.rolName = ": <color=#666699FF>Cheater</color>";
                 }
                 else if (BountyHunter.hasToKill == FortuneTeller.fortuneTeller) {
                     BountyHunter.rolName = ": <color=#00C642FF>Fortune Teller</color>";
@@ -4832,6 +4838,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer01);
                                     ZombieLaboratory.survivorPlayer01 = null;
                                     ZombieLaboratory.survivorPlayer01IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4847,6 +4859,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer02);
                                     ZombieLaboratory.survivorPlayer02 = null;
                                     ZombieLaboratory.survivorPlayer02IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4862,6 +4880,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer03);
                                     ZombieLaboratory.survivorPlayer03 = null;
                                     ZombieLaboratory.survivorPlayer03IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4877,6 +4901,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer04);
                                     ZombieLaboratory.survivorPlayer04 = null;
                                     ZombieLaboratory.survivorPlayer04IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4892,6 +4922,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer05);
                                     ZombieLaboratory.survivorPlayer05 = null;
                                     ZombieLaboratory.survivorPlayer05IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4907,6 +4943,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer06);
                                     ZombieLaboratory.survivorPlayer06 = null;
                                     ZombieLaboratory.survivorPlayer06IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4922,6 +4964,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer07);
                                     ZombieLaboratory.survivorPlayer07 = null;
                                     ZombieLaboratory.survivorPlayer07IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4937,6 +4985,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer08);
                                     ZombieLaboratory.survivorPlayer08 = null;
                                     ZombieLaboratory.survivorPlayer08IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4952,6 +5006,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer09);
                                     ZombieLaboratory.survivorPlayer09 = null;
                                     ZombieLaboratory.survivorPlayer09IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4967,6 +5027,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer10);
                                     ZombieLaboratory.survivorPlayer10 = null;
                                     ZombieLaboratory.survivorPlayer10IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4982,6 +5048,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer11);
                                     ZombieLaboratory.survivorPlayer11 = null;
                                     ZombieLaboratory.survivorPlayer11IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -4997,6 +5069,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer12);
                                     ZombieLaboratory.survivorPlayer12 = null;
                                     ZombieLaboratory.survivorPlayer12IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -5012,6 +5090,12 @@ namespace LasMonjas
                                     ZombieLaboratory.infectedTeam.Remove(ZombieLaboratory.survivorPlayer13);
                                     ZombieLaboratory.survivorPlayer13 = null;
                                     ZombieLaboratory.survivorPlayer13IsInfected = false;
+                                    if (player == PlayerControl.LocalPlayer && ZombieLaboratory.localSurvivorsDeliverArrow.Count != 0) {
+                                        ZombieLaboratory.localSurvivorsDeliverArrow[0].arrow.SetActive(false);
+                                        if (PlayerControl.GameOptions.MapId == 5) {
+                                            ZombieLaboratory.localSurvivorsDeliverArrow[1].arrow.SetActive(false);
+                                        }
+                                    }
                                 }
                                 else {
                                     return;
@@ -5525,8 +5609,14 @@ namespace LasMonjas
                 case (byte)CustomRPC.SetRole:
                     byte roleId = reader.ReadByte();
                     byte playerId = reader.ReadByte();
+                    //byte flag = reader.ReadByte();
+                    RPCProcedure.setRole(roleId, playerId/*, flag*/);
+                    break;
+                case (byte)CustomRPC.SetModifier:
+                    byte modifierId = reader.ReadByte();
+                    byte pId = reader.ReadByte();
                     byte flag = reader.ReadByte();
-                    RPCProcedure.setRole(roleId, playerId, flag);
+                    RPCProcedure.setModifier(modifierId, pId, flag);
                     break;
                 case (byte)CustomRPC.UseUncheckedVent:
                     int ventId = reader.ReadPackedInt32();

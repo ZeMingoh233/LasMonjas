@@ -26,7 +26,6 @@ namespace LasMonjas
         public static CustomOption activateRoles; 
         public static CustomOption randomRoles; 
         public static CustomOption activateModifiers;
-        public static CustomOption numberOfModifiers;
         public static CustomOption loverPlayer;
         public static CustomOption lighterPlayer;
         public static CustomOption blindPlayer;
@@ -130,7 +129,6 @@ namespace LasMonjas
         // Bomberman
         public static CustomOption bombermanSpawnRate;
         public static CustomOption bombermanBombCooldown;
-        public static CustomOption bombermanBombDuration;
 
         // Chameleon
         public static CustomOption chameleonSpawnRate;
@@ -302,7 +300,6 @@ namespace LasMonjas
         // Vigilant
         public static CustomOption vigilantSpawnRate;
         public static CustomOption vigilantCooldown;
-        public static CustomOption vigilantCameraNumber;
         public static CustomOption vigilantCamDuration;
         public static CustomOption vigilantCamMaxCharges;
         public static CustomOption vigilantCamRechargeTasksNumber;      
@@ -347,16 +344,15 @@ namespace LasMonjas
             activateSenseiMap = CustomOption.Create(13, cs(Modifiers.color, "Activate Custom Skeld Map"), "setting", false, activateModifiers);
             removeSwipeCard = CustomOption.Create(14, cs(Modifiers.color, "Remove Swipe Card Task"), "setting", false, activateModifiers);
             removeAirshipDoors = CustomOption.Create(15, cs(Modifiers.color, "Remove Airship Doors"), "setting", false, activateModifiers);
-            numberOfModifiers = CustomOption.Create(16, cs(Modifiers.color, "Modifiers ") + ": Modifiers Number", "setting", 7f, 1f, 7f, 1f, activateModifiers);
-            loverPlayer = CustomOption.Create(17, cs(Modifiers.color, "Lovers") + ": Two players linked", "setting", false, activateModifiers);
-            lighterPlayer = CustomOption.Create(18, cs(Modifiers.color, "Lighter") + ": Player with more Vision", "setting", false, activateModifiers);
-            blindPlayer = CustomOption.Create(19, cs(Modifiers.color, "Blind") + ": Player with less Vision", "setting", false, activateModifiers);
-            flashPlayer = CustomOption.Create(20, cs(Modifiers.color, "Flash") + ": Faster Player", "setting", false, activateModifiers);
-            bigchungusPlayer = CustomOption.Create(21, cs(Modifiers.color, "Big Chungus") + ": Bigger and Slower Player", "setting", false, activateModifiers);
-            theChosenOnePlayer = CustomOption.Create(22, cs(Modifiers.color, "The Chosen One") + ": Your killer will report your body", "setting", false, activateModifiers);
-            theChosenOneReportDelay = CustomOption.Create(23, cs(Modifiers.color, "The Chosen One") + ": Report Delay", "setting", 0f, 0f, 5f, 1f, activateModifiers);
-            performerPlayer = CustomOption.Create(24, cs(Modifiers.color, "Performer") + ": Your dead will trigger an alarm", "setting", false, activateModifiers);
-            performerDuration = CustomOption.Create(25, cs(Modifiers.color, "Performer") + ": Alarm Duration", "setting", 20f, 10f, 30f, 1f, activateModifiers);
+            loverPlayer = CustomOption.Create(16, cs(Modifiers.color, "Lovers") + ": Two players linked", "setting", rates, activateModifiers, false);
+            lighterPlayer = CustomOption.Create(17, cs(Modifiers.color, "Lighter") + ": Player with more Vision", "setting", rates, activateModifiers, false);
+            blindPlayer = CustomOption.Create(18, cs(Modifiers.color, "Blind") + ": Player with less Vision", "setting", rates, activateModifiers, false);
+            flashPlayer = CustomOption.Create(19, cs(Modifiers.color, "Flash") + ": Faster Player", "setting", rates, activateModifiers, false);
+            bigchungusPlayer = CustomOption.Create(20, cs(Modifiers.color, "Big Chungus") + ": Bigger and Slower Player", "setting", rates, activateModifiers, false);
+            theChosenOnePlayer = CustomOption.Create(21, cs(Modifiers.color, "The Chosen One") + ": Your killer will report your body", "setting", rates, activateModifiers, false);
+            theChosenOneReportDelay = CustomOption.Create(22, cs(Modifiers.color, "The Chosen One") + ": Report Delay", "setting", 0f, 0f, 5f, 1f, activateModifiers);
+            performerPlayer = CustomOption.Create(23, cs(Modifiers.color, "Performer") + ": Your death will trigger an alarm", "setting", rates, activateModifiers, false);
+            performerDuration = CustomOption.Create(24, cs(Modifiers.color, "Performer") + ": Alarm Duration", "setting", 20f, 10f, 30f, 1f, activateModifiers);
             
             // Capture the flag mode
             captureTheFlagMode = CustomOption.Create(30, cs(Sheriff.color, "Capture the Flag"), "gamemode", rates, null, true);
@@ -369,7 +365,7 @@ namespace LasMonjas
             // Police and Thief mode
             policeAndThiefMode = CustomOption.Create(40, cs(Coward.color, "Police and Thiefs"), "gamemode", rates, null, true);
             thiefModeMatchDuration = CustomOption.Create(41, cs(Coward.color, "Police and Thiefs") + ": Match Duration", "gamemode", 300f, 300f, 450f, 30f, policeAndThiefMode);
-            thiefModerequiredJewels = CustomOption.Create(42, cs(Coward.color, "Police and Thiefs") + ": Jewel Number", "gamemode", 15f, 10f, 15f, 1f, policeAndThiefMode);
+            thiefModerequiredJewels = CustomOption.Create(42, cs(Coward.color, "Police and Thiefs") + ": Jewel Number", "gamemode", 15f, 8f, 15f, 1f, policeAndThiefMode);
             thiefModePoliceKillCooldown = CustomOption.Create(43, cs(Coward.color, "Police and Thiefs") + ": Police Kill Cooldown", "gamemode", 15f, 10f, 20f, 1f, policeAndThiefMode);
             thiefModePoliceCanKillNearPrison = CustomOption.Create(44, cs(Coward.color, "Police and Thiefs") + ": Police can Kill near prison", "gamemode", false, policeAndThiefMode);
             thiefModePoliceCanSeeJewels = CustomOption.Create(45, cs(Coward.color, "Police and Thiefs") + ": Police can see Jewels", "gamemode", false, policeAndThiefMode);
@@ -378,7 +374,7 @@ namespace LasMonjas
             thiefModepolicevision = CustomOption.Create(48, cs(Coward.color, "Police and Thiefs") + ": Police vision range", "gamemode", 0.8f, 0.4f, 1.4f, 0.2f, policeAndThiefMode);
             thiefModePoliceReviveTime = CustomOption.Create(49, cs(Coward.color, "Police and Thiefs") + ": Police Revive Wait Time", "gamemode", 8f, 8f, 13f, 1f, policeAndThiefMode);
             thiefModeCanKill = CustomOption.Create(50, cs(Coward.color, "Police and Thiefs") + ": Thiefs Can Kill", "gamemode", false, policeAndThiefMode);
-            thiefModeKillCooldown = CustomOption.Create(51, cs(Coward.color, "Police and Thiefs") + ": Thiefs Kill Cooldown", "gamemode", 25f, 20f, 30f, 1f, policeAndThiefMode);
+            thiefModeKillCooldown = CustomOption.Create(51, cs(Coward.color, "Police and Thiefs") + ": Thiefs Kill Cooldown", "gamemode", 20f, 15f, 30f, 1f, policeAndThiefMode);
             thiefModeThiefReviveTime = CustomOption.Create(52, cs(Coward.color, "Police and Thiefs") + ": Thiefs Revive Wait Time", "gamemode", 13f, 13f, 23f, 1f, policeAndThiefMode);
             thiefModeInvincibilityTimeAfterRevive = CustomOption.Create(53, cs(Coward.color, "Police and Thiefs") + ": Invincibility Time After Revive", "gamemode", 3f, 2f, 5f, 1f, policeAndThiefMode);
 
@@ -447,8 +443,7 @@ namespace LasMonjas
 
             // Bomberman options
             bombermanSpawnRate = CustomOption.Create(170, cs(Bomberman.color, "Bomberman"), "impostor", rates, null, true);
-            bombermanBombCooldown = CustomOption.Create(171, cs(Bomberman.color, "Bomberman") + ": Cooldown", "impostor", 60f, 40f, 60f, 5f, bombermanSpawnRate);
-            bombermanBombDuration = CustomOption.Create(172, cs(Bomberman.color, "Bomberman") + ": Duration", "impostor", 60f, 60f, 60f, 1f, bombermanSpawnRate);
+            bombermanBombCooldown = CustomOption.Create(171, cs(Bomberman.color, "Bomberman") + ": Cooldown", "impostor", 40f, 30f, 60f, 5f, bombermanSpawnRate);
 
             // Chameleon options
             chameleonSpawnRate = CustomOption.Create(180, cs(Chameleon.color, "Chameleon"), "impostor", rates, null, true);
@@ -478,11 +473,11 @@ namespace LasMonjas
 
             // Bountyhunter options
             bountyHunterSpawnRate = CustomOption.Create(220, cs(BountyHunter.color, "Bounty Hunter"), "rebel", rates, null, true);
-            bountyHunterCooldown = CustomOption.Create(221, cs(BountyHunter.color, "Bounty Hunter") + ": Cooldown", "rebel", 20f, 10f, 20f, 2.5f, bountyHunterSpawnRate);
+            bountyHunterCooldown = CustomOption.Create(221, cs(BountyHunter.color, "Bounty Hunter") + ": Cooldown", "rebel", 15f, 10f, 20f, 1f, bountyHunterSpawnRate);
 
             // Trapper options
             trapperSpawnRate = CustomOption.Create(230, cs(Trapper.color, "Trapper"), "rebel", rates, null, true);
-            trapperCooldown = CustomOption.Create(231, cs(Trapper.color, "Trapper") + ": Cooldown", "rebel", 20f, 20f, 30f, 1f, trapperSpawnRate);
+            trapperCooldown = CustomOption.Create(231, cs(Trapper.color, "Trapper") + ": Cooldown", "rebel", 15f, 15f, 30f, 1f, trapperSpawnRate);
             trapperMineNumber = CustomOption.Create(232, cs(Trapper.color, "Trapper") + ": Mine Number", "rebel", 3f, 1f, 3f, 1f, trapperSpawnRate);
             trapperMineDuration = CustomOption.Create(233, cs(Trapper.color, "Trapper") + ": Mine Duration", "rebel", 45f, 30f, 60f, 5f, trapperSpawnRate);
             trapperTrapNumber = CustomOption.Create(234, cs(Trapper.color, "Trapper") + ": Trap Number", "rebel", 3f, 1f, 5f, 1f, trapperSpawnRate);
@@ -506,7 +501,7 @@ namespace LasMonjas
 
             // Pyromaniac options
             pyromaniacSpawnRate = CustomOption.Create(280, cs(Pyromaniac.color, "Pyromaniac"), "neutral", rates, null, true);
-            pyromaniacCooldown = CustomOption.Create(281, cs(Pyromaniac.color, "Pyromaniac") + ": Cooldown", "neutral", 15f, 5f, 20f, 2.5f, pyromaniacSpawnRate);
+            pyromaniacCooldown = CustomOption.Create(281, cs(Pyromaniac.color, "Pyromaniac") + ": Cooldown", "neutral", 15f, 10f, 20f, 1f, pyromaniacSpawnRate);
             pyromaniacDuration = CustomOption.Create(282, cs(Pyromaniac.color, "Pyromaniac") + ": Ignite Duration", "neutral", 3f, 1f, 5f, 1f, pyromaniacSpawnRate);
 
             // Treasure hunter options
@@ -570,7 +565,7 @@ namespace LasMonjas
 
             // FortuneTeller options
             fortuneTellerSpawnRate = CustomOption.Create(400, cs(FortuneTeller.color, "Fortune Teller"), "crewmate", rates, null, true);
-            fortuneTellerCooldown = CustomOption.Create(401, cs(FortuneTeller.color, "Fortune Teller") + ": Cooldown", "crewmate", 30f, 30f, 40f, 5f, fortuneTellerSpawnRate);
+            fortuneTellerCooldown = CustomOption.Create(401, cs(FortuneTeller.color, "Fortune Teller") + ": Cooldown", "crewmate", 30f, 30f, 40f, 2.5f, fortuneTellerSpawnRate);
             fortuneTellerDuration = CustomOption.Create(402, cs(FortuneTeller.color, "Fortune Teller") + ": Reveal Time", "crewmate", 3f, 3f, 5f, 1f, fortuneTellerSpawnRate);
             fortuneTellerNumberOfSee = CustomOption.Create(403, cs(FortuneTeller.color, "Fortune Teller") + ": Reveal Number", "crewmate", 3f, 1f, 3f, 1f, fortuneTellerSpawnRate);
             fortuneTellerKindOfInfo = CustomOption.Create(404, cs(FortuneTeller.color, "Fortune Teller") + ": Revealed Information", "crewmate", new string[] { "Good / Bad", "Rol Name" }, fortuneTellerSpawnRate);
@@ -611,8 +606,7 @@ namespace LasMonjas
 
             // Vigilant options
             vigilantSpawnRate = CustomOption.Create(480, cs(Vigilant.color, "Vigilant"), "crewmate", rates, null, true);
-            vigilantCooldown = CustomOption.Create(481, cs(Vigilant.color, "Vigilant") + ": Cooldown", "crewmate", 20f, 10f, 40f, 2.5f, vigilantSpawnRate);
-            vigilantCameraNumber = CustomOption.Create(482, cs(Vigilant.color, "Vigilant") + ": Camera Number", "crewmate", 4f, 4f, 4f, 1f, vigilantSpawnRate);
+            vigilantCooldown = CustomOption.Create(481, cs(Vigilant.color, "Vigilant") + ": Cooldown", "crewmate", 20f, 10f, 30f, 2.5f, vigilantSpawnRate);
             vigilantCamDuration = CustomOption.Create(483, cs(Vigilant.color, "Vigilant") + ": Remote Camera Duration", "crewmate", 10f, 5f, 15f, 1f, vigilantSpawnRate);
             vigilantCamMaxCharges = CustomOption.Create(484, cs(Vigilant.color, "Vigilant") + ": Battery Uses", "crewmate", 5f, 1f, 5f, 1f, vigilantSpawnRate);
             vigilantCamRechargeTasksNumber = CustomOption.Create(485, cs(Vigilant.color, "Vigilant") + ": Tasks for recharge batteries", "crewmate", 2f, 1f, 3f, 1f, vigilantSpawnRate);
@@ -623,7 +617,7 @@ namespace LasMonjas
 
             // Jinx
             jinxSpawnRate = CustomOption.Create(510, cs(Jinx.color, "Jinx"), "crewmate", rates, null, true);
-            jinxCooldown = CustomOption.Create(515, cs(Jinx.color, "Jinx") + ": Cooldown", "crewmate", 20f, 10f, 40f, 2.5f, jinxSpawnRate);
+            jinxCooldown = CustomOption.Create(515, cs(Jinx.color, "Jinx") + ": Cooldown", "crewmate", 20f, 10f, 30f, 2.5f, jinxSpawnRate);
             jinxJinxsNumber = CustomOption.Create(516, cs(Jinx.color, "Jinx") + ": Jinx Number", "crewmate", 10f, 5f, 15f, 1f, jinxSpawnRate);
 
             // Coward options
