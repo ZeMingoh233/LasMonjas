@@ -32,6 +32,19 @@ Las Monjas is a Spanish mod (translated and published on English) for Among Us m
 <details>
   <summary>Click to show</summary>
 
+**Version 1.5.2 (6th May 2022)**
+- Changed role assignment to try to fix the crewmate only issue
+- Fixed the "flash text screen" on role intro cutscene, some typos and long role descriptions
+- 6 new nameplates
+- On PAT gamemode, added two arrows for Thief team, a blue one pointing the release button and a brown one pointing to the deliver button (4 arrows on submerged). Also changed minimum jewels from 10 to 8 and thief's minimum kill cooldown from 20 to 15
+- On Zombie gamemode, added one arrow for Survivors pointing Infirmary's entrance (2 arrows on submerged). It disappears if you turn into a zombie
+- Removed Bomberman's bomb duration option since it can't be changed and reduced it's maximum cooldown from 40 to 30
+- Removed Vigilant's camera number since it can't be changed, also reduced it's maximum cooldown from 40 to 30
+- Trapper minimum trap's cooldown reduced from 20 to 15
+- Pyromaniac minimum cooldown increased from 5 to 10
+- Jinx, reduced maximum cooldown from 40 to 30
+- Changed Cheater's role color
+  
 **Version 1.5.1 (2nd May 2022)**
 - Updated Submerged to 2022.5.2
 - Updated Bepinex to version 559.
