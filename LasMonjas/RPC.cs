@@ -334,7 +334,7 @@ namespace LasMonjas
             }
         }
 
-        public static void setRole(byte roleId, byte playerId/*, byte flag*/) {
+        public static void setRole(byte roleId, byte playerId, byte flag) {
             foreach (PlayerControl player in PlayerControl.AllPlayerControls)
                 if (player.PlayerId == playerId) {
                     switch ((RoleId)roleId) {
@@ -463,9 +463,33 @@ namespace LasMonjas
                             break;
                         case RoleId.Jinx:
                             Jinx.jinx = player;
-                            break;                        
+                            break;
 
-                        // Capture the Flag
+                        // Modifiers
+                        case RoleId.Lover:
+                            if (flag == 0) Modifiers.lover1 = player;
+                            else Modifiers.lover2 = player;
+                            break;
+                        case RoleId.Lighter:
+                            Modifiers.lighter = player;
+                            break;
+                        case RoleId.Blind:
+                            Modifiers.blind = player;
+                            break;
+                        case RoleId.Flash:
+                            Modifiers.flash = player;
+                            break;
+                        case RoleId.BigChungus:
+                            Modifiers.bigchungus = player;
+                            break;
+                        case RoleId.TheChosenOne:
+                            Modifiers.theChosenOne = player;
+                            break;
+                        case RoleId.Performer:
+                            Modifiers.performer = player;
+                            break;
+                            
+                            // Capture the Flag
                         case RoleId.RedPlayer01:
                             CaptureTheFlag.redplayer01 = player;
                             CaptureTheFlag.redteamFlag.Add(player);
@@ -869,7 +893,7 @@ namespace LasMonjas
                 }
         }
 
-        public static void setModifier(byte modifierId, byte playerId, byte flag) {
+        /*public static void setModifier(byte modifierId, byte playerId, byte flag) {
             PlayerControl player = Helpers.playerById(playerId);
             switch ((RoleId)modifierId) {
                 // Modifiers
@@ -896,7 +920,7 @@ namespace LasMonjas
                     Modifiers.performer = player;
                     break;
             }
-        }
+        }*/
         
         public static void useUncheckedVent(int ventId, byte playerId, byte isEnter) {
             PlayerControl player = Helpers.playerById(playerId);
@@ -5609,15 +5633,15 @@ namespace LasMonjas
                 case (byte)CustomRPC.SetRole:
                     byte roleId = reader.ReadByte();
                     byte playerId = reader.ReadByte();
-                    //byte flag = reader.ReadByte();
-                    RPCProcedure.setRole(roleId, playerId/*, flag*/);
+                    byte flag = reader.ReadByte();
+                    RPCProcedure.setRole(roleId, playerId, flag);
                     break;
-                case (byte)CustomRPC.SetModifier:
+                /*case (byte)CustomRPC.SetModifier:
                     byte modifierId = reader.ReadByte();
                     byte pId = reader.ReadByte();
                     byte flag = reader.ReadByte();
                     RPCProcedure.setModifier(modifierId, pId, flag);
-                    break;
+                    break;*/
                 case (byte)CustomRPC.UseUncheckedVent:
                     int ventId = reader.ReadPackedInt32();
                     byte ventingPlayer = reader.ReadByte();
